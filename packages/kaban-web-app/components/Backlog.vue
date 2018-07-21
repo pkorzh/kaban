@@ -1,18 +1,16 @@
 <template>
-	<div class="backlog-view">
-		<new-item></new-item>
-
-		<div class="card" v-for="item in items" :key="item.id">
+	<div>
+		<div class="card" v-for="ticket in tickets" :key="ticket.id">
 			<div class="card-block">
 				<h5 class="card-title">
 					<span class="text-muted">
-						#{{item.id}}
+						#{{ticket.id}}
 					</span>
 
-					{{item.text}} 
+					{{ticket.name}}
 
 					<span>
-						{{ item.status }}
+						{{ ticket.status }}
 					</span>
 				</h5>
 			</div>
@@ -21,19 +19,23 @@
 </template>
 
 <script>
-	import { mapState } from 'vuex';
-	import NewItemForm from './NewItemForm';
+	//import NewItemForm from './NewItemForm';
 
 	export default {
 		name: 'Backlog',
-		components: {
-			'new-item': NewItemForm
+		props: {
+			backlog: {
+				type: Object,
+				required: true,
+			},
+			tickets: {
+				type: Array,
+				required: true,
+			}
 		},
-		computed: mapState({
-			items: s => s.items
-		}),
-		methods: {
-		}
+		components: {
+			//NewItemForm
+		},
 	};
 </script>
 

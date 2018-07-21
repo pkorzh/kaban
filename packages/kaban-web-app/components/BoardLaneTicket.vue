@@ -2,8 +2,10 @@
 	<div class="card">
 		<div class="card-block">
 			<h5 class="card-title">
-				<span class="text-muted">#{{item.id}}</span>
-				{{item.text}}
+				<span class="text-muted">
+					#{{ ticket.key }}
+				</span>
+				{{ ticket.name }}
 			</h5>
 		</div>
 	</div>
@@ -11,8 +13,12 @@
 
 <script>
 	export default {
-		name: 'TaskLaneItem',
-		props: ['item'],
+		props: {
+			ticket: {
+				type: Object,
+				required: true,
+			}
+		},
 	};
 </script>
 

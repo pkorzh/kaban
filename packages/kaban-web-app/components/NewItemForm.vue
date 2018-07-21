@@ -9,6 +9,7 @@
 <script>
 	export default {
 		name: 'NewItemForm',
+		prop: ['backlog'],
 		data() {
 			return {
 				itemText: ''
@@ -17,7 +18,7 @@
 		methods: {
 			submitForm() {
 				if (this.itemText) {
-					this.$store.commit('addItem', {
+					this.addItemToBacklog('addItem', {
 						text: this.itemText
 					});
 

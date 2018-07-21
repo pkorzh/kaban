@@ -1,13 +1,13 @@
 <template>
 	<div class="board">
 		<div class="row">
-			<div class="col-md" v-for="lane in board.lanes" :key="lane.slug">
-				<task-lane
-					:id="lane.slug" 
+			<div class="col-md" v-for="lane in board.lanes" :key="lane.key">
+				<BoardLane
+					:_key="lane.key"
 					:title="lane.name"
 					:mapsTo="lane.mapsTo"
 					:queues="lane.queues"
-					:items="laneItems(lane.mapsTo)"></task-lane>
+					:tickets="laneTickets(lane.mapsTo)"></BoardLane>
 			</div>
 		</div>
 	</div>
@@ -15,23 +15,29 @@
 
 <script>
 	import { mapState, mapGetters } from 'vuex';
-	import TaskLane from './TaskLane';
-	import NewItemForm from './NewItemForm';
+	import BoardLane from './BoardLane';
 
 	export default {
 		name: 'KanbanBoard',
-		props: ['board'],
 		components: {
-			'task-lane': TaskLane,
-			'new-item': NewItemForm,
+			BoardLane
 		},
-		computed: {
-			...mapState({
-				items: s => s.items
-			}),
-			...mapGetters([
-				'laneItems'
-			]),
+		methods: {
+			laneTickets(status) {
+				const statuses = Array.isArray(status) ? status : [status];
+				return this.tickets.filter(ticket =>
+					statuses.indexOf(ticket.status) !== -1)
+			}
 		},
+		props: {
+			board: {
+				type: Object,
+				required: true,
+			},
+			tickets: {
+				type: Array,
+				required: true,
+			}
+		}
 	};
 </script>

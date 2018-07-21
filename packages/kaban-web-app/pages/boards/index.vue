@@ -1,20 +1,24 @@
 <template>
 	<section>
-		<KanbanBoard :board="board"></KanbanBoard>
+		<p v-for="board in boardList" :key="board.key">
+			<nuxt-link :to="{name: 'boards-key', params: {key: board.key}}">
+				{{ board.name }}
+			</nuxt-link>
+		</p>
 	</section>
 </template>
 
 <script>
-	import { mapState } from 'vuex';
-	import KanbanBoard from '@/components/KanbanBoard';
-	
+	import { mapGetters } from 'vuex';
+
 	export default {
 		components: {
-			KanbanBoard
 		},
-		computed: mapState({
-			board: s => s.boards.ama
-		})
+		computed: {
+			...mapGetters('boards', {
+				boardList: 'list'
+			})
+		}
 	}
 </script>
 
