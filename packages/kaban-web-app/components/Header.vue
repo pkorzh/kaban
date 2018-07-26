@@ -2,7 +2,7 @@
 	<b-navbar toggleable="md">
 		<b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-		<b-navbar-brand href="/">
+		<b-navbar-brand to="/">
 			NavBar
 		</b-navbar-brand>
 
