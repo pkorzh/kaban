@@ -3,7 +3,7 @@
 		<b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
 		<b-navbar-brand href="/">
-			NavBar
+			<img src="../assets/images/logo.png" alt="Kaban">
 		</b-navbar-brand>
 
 		<b-collapse is-nav id="nav_collapse">
@@ -16,6 +16,16 @@
 				</b-nav-item-dropdown>
 
 			</b-navbar-nav>
+
+			<b-nav class="profile ml-auto">
+				<b-nav-item active><font-awesome-icon icon="cog" /></b-nav-item>
+				<b-nav-item>
+					<font-awesome-icon icon="bell" />
+					<span class="profile__mark"></span>
+				</b-nav-item>
+				<b-nav-item class="profile__avatar">
+				</b-nav-item>
+			</b-nav>
 
 		</b-collapse>
 	</b-navbar>

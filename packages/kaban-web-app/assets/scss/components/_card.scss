@@ -1,0 +1,18 @@
+.card {
+  border: 0;
+  padding: 10px;
+  border-radius: 0;
+  background: $gray-100;
+  &-chart {
+    padding: 10px 0;
+  }
+  &-body {
+    padding: 0;
+  }
+  &-title {
+    text-align: center;
+    border-bottom: 1px solid $gray-600;
+    padding-bottom: 5px;
+    margin-bottom: 0;
+  }
+}
