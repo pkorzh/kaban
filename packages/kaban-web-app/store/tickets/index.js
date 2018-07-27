@@ -26,5 +26,23 @@ export default moduleFactory({
 			'cca-1',
 			'cca-2'
 		]
+	},
+	actions: {
+		updateStatus({commit}, tickets, newStatus) {
+			tickets.forEach(ticket => ticket.status = newStatus)
+		},
+		createTicket({commit, state}, {name, backlog}) {
+			const key = `cca-${state.list.length + 1}`;
+
+			const ticket = {
+				id: state.list.length + 1,
+				name,
+				key,
+				status: 'todo',
+				backlog
+			}
+
+			commit('CREATE', ticket)
+		}
 	}
 });

@@ -19,8 +19,6 @@
 </template>
 
 <script>
-	//import NewItemForm from './NewItemForm';
-
 	export default {
 		name: 'Backlog',
 		props: {
@@ -32,10 +30,7 @@
 				type: Array,
 				required: true,
 			}
-		},
-		components: {
-			//NewItemForm
-		},
+		}
 	};
 </script>
 

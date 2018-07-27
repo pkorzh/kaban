@@ -1,4 +1,4 @@
-export default ({state, getters}) => {
+export default ({state, getters, actions, mutations}) => {
 	const moduleState = () => (Object.assign({
 		entities: {},
 		list: [],
@@ -18,12 +18,16 @@ export default ({state, getters}) => {
 		}
 	}, getters)
 
-	const moduleMutations = {
-	}
+	const moduleMutations = Object.assign({
+		CREATE(state, payload) {
+			const {id} = payload;
+			state.list.push(id);
+			state.entities[id] = payload;
+		}
+	}, mutations)
 
-	const moduleActions = {
-
-	}
+	const moduleActions = Object.assign({
+	}, actions)
 
 	return {
 		namespaced: true,

@@ -2,7 +2,7 @@
 	<b-navbar toggleable="md">
 		<b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-		<b-navbar-brand href="/">
+		<b-navbar-brand to="/">
 			<img src="../assets/images/logo.png" alt="Kaban">
 		</b-navbar-brand>
 

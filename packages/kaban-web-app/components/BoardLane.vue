@@ -75,7 +75,8 @@
 				get() {
 					return this.tickets;
 				},
-				set(items) {
+				set(tickets) {
+					this.$emit('updateStatus', tickets, this.mapsTo);
 				}
 			}
 		}
