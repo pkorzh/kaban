@@ -6,7 +6,7 @@
 
 <script>
 	import KanbanBoard from '@/components/KanbanBoard';
-	import { mapGetters } from 'vuex';
+	import { mapGetters, mapActions } from 'vuex';
 
 	export default {
 		components: {
@@ -18,7 +18,7 @@
 			}),
 
 			...mapGetters('tickets', {
-				queryTicket: 'query'
+				queryTicket: 'query',
 			}),
 
 			board() {
@@ -29,6 +29,16 @@
 				return this.queryTicket(
 					(ticket) => ticket.backlog.key === this.board.backlog.key)
 			}
+		},
+		methods: {
+			...mapActions('tickets', [
+				'updateTicketStatus'
+			])
+		},
+		created() {
+			this.$bus.$on('draggables', ({tickets, mapsTo}) => {
+				this.updateTicketStatus({tickets, mapsTo});
+			});
 		}
 	}
 </script>

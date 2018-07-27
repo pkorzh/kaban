@@ -27,9 +27,14 @@ export default moduleFactory({
 			'cca-2'
 		]
 	},
+	mutations: {
+		UPDATE_TICKETS_STATUS(state, {tickets, mapsTo}) {
+			tickets.forEach(ticket => ticket.status = mapsTo)
+		}
+	},
 	actions: {
-		updateStatus({commit}, tickets, newStatus) {
-			tickets.forEach(ticket => ticket.status = newStatus)
+		updateTicketStatus({commit}, {tickets, mapsTo}) {
+			commit('UPDATE_TICKETS_STATUS', {tickets, mapsTo})
 		},
 		createTicket({commit, state}, {name, backlog}) {
 			const key = `cca-${state.list.length + 1}`;

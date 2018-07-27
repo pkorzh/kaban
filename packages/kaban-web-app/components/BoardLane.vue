@@ -76,7 +76,10 @@
 					return this.tickets;
 				},
 				set(tickets) {
-					this.$emit('updateStatus', tickets, this.mapsTo);
+					this.$bus.$emit('draggables', {
+						tickets,
+						mapsTo: this.mapsTo,
+					});
 				}
 			}
 		}
