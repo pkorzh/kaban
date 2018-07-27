@@ -16,7 +16,7 @@
 		},
 		computed: {
 			...mapGetters('backlogs', {
-				backlogList: 'list'
+				backlogList: 'getList'
 			})
 		}
 	}

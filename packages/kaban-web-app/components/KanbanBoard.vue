@@ -24,9 +24,12 @@
 		},
 		methods: {
 			laneTickets(status) {
-				const statuses = Array.isArray(status) ? status : [status];
+				const statuses = Array.isArray(status) ?
+					status.map(s => s.key) :
+					[status.key];
+
 				return this.tickets.filter(ticket =>
-					statuses.indexOf(ticket.status) !== -1)
+					statuses.indexOf(ticket.status.key) !== -1)
 			}
 		},
 		props: {

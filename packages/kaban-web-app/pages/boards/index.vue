@@ -16,7 +16,7 @@
 		},
 		computed: {
 			...mapGetters('boards', {
-				boardList: 'list'
+				boardList: 'getList'
 			})
 		}
 	}

@@ -5,7 +5,25 @@ const request = require('request')
 const host = 'https://elasticmedia.atlassian.net'
 const token = 'cGxhdG9uLmtAYmxpbmsuZ2c6WTJveHVrdjdHUlk1dDhNb3k2T2JERjQw'
 
-const mapStatus = ({name}) => 'todo';
+const mapStatus = ({name}) => {
+	let key;
+
+	switch(name) {
+		case 'Closed':
+			key = 'done'
+			break
+		case 'Resolved':
+			key = 'doneProgress'
+			break
+		case 'In Progress':
+			key = 'inProgress'
+			break
+		default:
+			key = 'todo'
+	}
+
+	return { key }
+};
 
 request.get({
 	url: `${host}/rest/api/2/search`,

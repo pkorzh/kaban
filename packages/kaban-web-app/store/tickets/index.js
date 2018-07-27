@@ -3,33 +3,41 @@ import moduleFactory from '../module-factory'
 export default moduleFactory({
 	state: {
 		entities: {
-			'cca-1': {
+			1: {
 				id: 1,
 				name: 'As a user i want to see my settings',
 				key: 'cca-1',
-				status: 'todo',
+				status: {
+					key: 'todo'
+				},
 				backlog: {
 					key: 'create-aws-api'
 				}
 			},
-			'cca-2': {
+			2: {
 				id: 2,
 				name: 'As a user i want to be able to logout',
 				key: 'cca-2',
-				status: 'doneProgress',
+				status: {
+					key: 'doneProgress',
+				},
 				backlog: {
 					key: 'create-aws-api'
 				}
 			}
 		},
 		list: [
-			'cca-1',
-			'cca-2'
+			1,
+			2
 		]
 	},
 	mutations: {
 		UPDATE_TICKETS_STATUS(state, {tickets, mapsTo}) {
-			tickets.forEach(ticket => ticket.status = mapsTo)
+			tickets.forEach(ticket => {
+				if (ticket.status.key !== mapsTo.key) {
+					state.entities[ticket.id].status = mapsTo
+				}
+			})
 		}
 	},
 	actions: {

@@ -10,7 +10,7 @@
 					{{ticket.name}}
 
 					<span>
-						{{ ticket.status }}
+						{{ ticket.status.key }}
 					</span>
 				</h5>
 			</div>

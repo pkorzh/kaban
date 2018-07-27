@@ -14,32 +14,32 @@ export default moduleFactory({
 					{
 						name: 'To-Do',
 						key: 'todo',
-						mapsTo: 'todo',
+						mapsTo: { key: 'todo' },
 					},
 					{
 						name: 'Doing',
 						key: 'inProgress',
 						mapsTo: [
-							'inProgress',
-							'doneProgress',
+							{ key: 'inProgress' },
+							{ key: 'doneProgress' },
 						],
 						queues: [
 							{
 								name: 'Doing',
 								key: 'inProgress',
-								mapsTo: 'inProgress'
+								mapsTo: { key: 'inProgress' }
 							},
 							{
 								name: 'Done Doing',
 								key: 'doneProgress',
-								mapsTo: 'doneProgress'
+								mapsTo: { key: 'doneProgress' }
 							}
 						]
 					},
 					{
 						name: 'Done',
 						key: 'done',
-						mapsTo: 'done',
+						mapsTo: { key: 'done' },
 					}
 				]
 			},
@@ -54,32 +54,32 @@ export default moduleFactory({
 					{
 						name: 'To-Do',
 						key: 'todo',
-						mapsTo: 'todo',
+						mapsTo: { key: 'todo' },
 					},
 					{
 						name: 'Doing',
 						key: 'inProgress',
 						mapsTo: [
-							'inProgress',
-							'doneProgress',
+							{ key: 'inProgress' },
+							{ key: 'doneProgress' },
 						],
 						queues: [
 							{
 								name: 'Doing',
 								key: 'inProgress',
-								mapsTo: 'inProgress'
+								mapsTo: { key: 'inProgress' }
 							},
 							{
 								name: 'Done Doing',
 								key: 'doneProgress',
-								mapsTo: 'doneProgress'
+								mapsTo: { key: 'doneProgress' }
 							}
 						]
 					},
 					{
 						name: 'Done',
 						key: 'done',
-						mapsTo: 'done',
+						mapsTo: { key: 'done' },
 					}
 				]
 			}

@@ -61,7 +61,7 @@
 		methods: {
 			queueTickets(status) {
 				return this.tickets.filter(ticket =>
-					ticket.status === status)
+					ticket.status.key === status.key)
 			}
 		},
 		computed: {

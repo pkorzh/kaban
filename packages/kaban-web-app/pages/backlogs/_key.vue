@@ -20,7 +20,7 @@
 		},
 		computed: {
 			...mapGetters('backlogs', {
-				getBacklog: 'get'
+				getBacklog: 'getOne'
 			}),
 
 			...mapGetters('tickets', {

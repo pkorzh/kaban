@@ -5,10 +5,10 @@ export default ({state, getters, actions, mutations}) => {
 	}, state))
 
 	const moduleGetters = Object.assign({
-		list(state) {
+		getList(state) {
 			return state.list.map(key => state.entities[key]);
 		},
-		get(state) {
+		getOne(state) {
 			return key => state.entities[key];
 		},
 		query(state) {
@@ -19,15 +19,14 @@ export default ({state, getters, actions, mutations}) => {
 	}, getters)
 
 	const moduleMutations = Object.assign({
-		CREATE(state, objectOrArray) {
-			const items = Array.isArray(objectOrArray) ?
-				objectOrArray : [objectOrArray]
-
-			items.forEach(item => {
-				const {id} = item;
-				state.list.push(id);
-				state.entities[id] = item;
-			})
+		CREATE(state, payload) {
+			const {id} = payload;
+			state.list.push(id);
+			state.entities[id] = payload;
+		},
+		CREATE_MULTIPLE(state, multiple) {
+			multiple.forEach(payload =>
+				moduleMutations.CREATE(state, payload))
 		}
 	}, mutations)
 

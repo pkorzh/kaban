@@ -16,7 +16,7 @@ const store = () => new Vuex.Store({
 	actions: {
 		nuxtServerInit({commit}) {
 			const issues = require('../../kaban-importer-jira/issues.json')
-			commit('tickets/CREATE', issues)
+			commit('tickets/CREATE_MULTIPLE', issues)
 		}
 	}
 })

@@ -14,7 +14,7 @@
 		},
 		computed: {
 			...mapGetters('boards', {
-				getBoard: 'get'
+				getBoard: 'getOne'
 			}),
 
 			...mapGetters('tickets', {
