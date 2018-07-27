@@ -1,6 +1,9 @@
 <template>
 	<div class="card">
-		<h3 class="card-header">{{ title }}</h3>
+		<div class="card-header">
+			<h3>{{ title }} ({{itemCount}})</h3>
+			<a href="#" class="card-actions"><font-awesome-icon icon="ellipsis-h" /></a>
+		</div>
 		<div class="card-body">
 
 			<div class="row" v-if="queues && queues.length">
@@ -19,9 +22,6 @@
 				</div>
 			</draggable>
 
-		</div>
-		<div class="card-footer text-muted">
-			{{itemCount}}
 		</div>
 	</div>
 </template>
@@ -67,8 +67,8 @@
 		computed: {
 			itemCount() {
 				if (!this.tickets) return '';
-				if (this.tickets.length === 1) return '1 task';
-				return `${this.tickets.length} tasks`;
+				// if (this.tickets.length === 1) return '1 task';
+				return `${this.tickets.length}`;
 			},
 
 			draggables: {
@@ -87,7 +87,5 @@
 </script>
 
 <style>
-.card-body > * {
-  min-height: 50px;
-}
+
 </style>

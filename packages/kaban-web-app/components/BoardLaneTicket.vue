@@ -1,12 +1,24 @@
 <template>
-	<div class="card">
-		<div class="card-block">
-			<h5 class="card-title">
-				<span class="text-muted">
-					#{{ ticket.key }}
+	<div class="card card-ticket">
+		<h3 class="card-title">
+			<span class="text-muted">
+				#{{ ticket.key }}
+			</span>
+			{{ ticket.name }}
+		</h3>
+		<div class="card-footer">
+			<div class="card-col">
+				<div class="card-check">
+					<font-awesome-icon icon="check" />
+				</div>
+			</div>
+			<div class="card-col">
+				<span class="card-attach">
+					<font-awesome-icon icon="paperclip" />
+					10
 				</span>
-				{{ ticket.name }}
-			</h5>
+				<div class="card-image"></div>
+			</div>
 		</div>
 	</div>
 </template>

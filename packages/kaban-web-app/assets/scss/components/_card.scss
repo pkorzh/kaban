@@ -1,18 +1,93 @@
 .card {
   border: 0;
-  padding: 10px;
-  border-radius: 0;
-  background: $gray-100;
-  &-chart {
-    padding: 10px 0;
+  padding: 20px;
+  border-radius: 6px;
+  background: $gray-200;
+  flex: 1 1 auto;
+  .card-header {
+    background: none;
+    padding: 0 0 12px;
+    margin: 0 0 13px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #d3d5e0;
+    color: $gray-700;
+    h3 {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 500;
+      font-family: $font-family-sans-serif;
+      text-transform: uppercase;
+    }
   }
-  &-body {
+  .card-actions {
+    font-size: 29px;
+    line-height: 1;
+    color: $gray-700;
+  }
+  .card-body {
     padding: 0;
   }
-  &-title {
-    text-align: center;
-    border-bottom: 1px solid $gray-600;
-    padding-bottom: 5px;
-    margin-bottom: 0;
+  
+  .card {
+    padding: 0;
+    background: none;
+    .card-header {
+      padding: 0;
+      margin: 0;
+      border: 0;
+      h3 {
+        text-transform: none;
+        opacity: .5;
+      }
+      .card-actions {
+        display: none;
+      }
+    }
+  }
+
+  &.card-ticket {
+    background: $white;
+    font-size: 1.125rem;
+    margin-top: 15px;
+    padding: 8px 14px;
+    .card-title {
+      font: 400 1.125rem/1.4 $font-family-sans-serif;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      background: none;
+      border: 0;
+      color: #888ea7;
+      font-size: 18px;
+      padding: 0;
+      .card-col {
+        display: flex;
+        align-items: center;
+      }
+    }
+    .card-image {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-left: 10px;
+      background: $gray-300;
+    }
+    .card-check {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+      background: #70c9ee;
+      color: $white;
+    }
+    &:hover {
+      color: $white;
+      background: #273260;
+    }
   }
 }
