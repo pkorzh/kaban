@@ -19,10 +19,15 @@ export default ({state, getters, actions, mutations}) => {
 	}, getters)
 
 	const moduleMutations = Object.assign({
-		CREATE(state, payload) {
-			const {id} = payload;
-			state.list.push(id);
-			state.entities[id] = payload;
+		CREATE(state, objectOrArray) {
+			const items = Array.isArray(objectOrArray) ?
+				objectOrArray : [objectOrArray]
+
+			items.forEach(item => {
+				const {id} = item;
+				state.list.push(id);
+				state.entities[id] = item;
+			})
 		}
 	}, mutations)
 
