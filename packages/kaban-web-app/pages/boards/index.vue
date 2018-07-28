@@ -1,11 +1,11 @@
 <template>
-	<section>
+	<b-container fluid>
 		<p v-for="board in boardList" :key="board.key">
 			<nuxt-link :to="{name: 'boards-key', params: {key: board.key}}">
 				{{ board.name }}
 			</nuxt-link>
 		</p>
-	</section>
+	</b-container>
 </template>
 
 <script>
