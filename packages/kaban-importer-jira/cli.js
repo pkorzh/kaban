@@ -42,7 +42,7 @@ request.get({
 		name: issue.fields.summary,
 		status: mapStatus(issue.fields.status),
 		backlog: {
-			key: 'native-feed-profile'
+			key: 'create-aws-api'
 		}
 	}));
 

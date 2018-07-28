@@ -42,6 +42,11 @@ export default moduleFactory({
 						]
 					},
 					{
+						name: 'Verifying',
+						key: 'verifying',
+						mapsTo: { key: 'verifying' },
+					},
+					{
 						name: 'Done',
 						key: 'done',
 						mapsTo: { key: 'done' },
