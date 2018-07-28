@@ -35,7 +35,7 @@ export default moduleFactory({
 		UPDATE_TICKETS_STATUS(state, {tickets, mapsTo}) {
 			tickets.forEach(ticket => {
 				if (ticket.status.key !== mapsTo.key) {
-					state.entities[ticket.id].status = mapsTo
+					state.entities[ticket.id].status = Object.create(mapsTo)
 				}
 			})
 		}

@@ -2,7 +2,7 @@
 	<div class="card card-ticket">
 		<h3 class="card-title">
 			<span class="text-muted">
-				#{{ ticket.key }}
+				{{ ticket.key }}
 			</span>
 			{{ ticket.name }}
 		</h3>
