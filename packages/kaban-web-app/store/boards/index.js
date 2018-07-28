@@ -17,6 +17,11 @@ export default moduleFactory({
 						mapsTo: { key: 'todo' },
 					},
 					{
+						name: 'Analysis',
+						key: 'analysis',
+						mapsTo: { key: 'analysis' },
+					},
+					{
 						name: 'Doing',
 						key: 'inProgress',
 						mapsTo: [
@@ -57,6 +62,11 @@ export default moduleFactory({
 						mapsTo: { key: 'todo' },
 					},
 					{
+						name: 'Analysis',
+						key: 'analysis',
+						mapsTo: { key: 'analysis' },
+					},
+					{
 						name: 'Doing',
 						key: 'inProgress',
 						mapsTo: [
@@ -75,6 +85,11 @@ export default moduleFactory({
 								mapsTo: { key: 'doneProgress' }
 							}
 						]
+					},
+					{
+						name: 'Verifying',
+						key: 'verifying',
+						mapsTo: { key: 'verifying' },
 					},
 					{
 						name: 'Done',

@@ -67,7 +67,6 @@
 		computed: {
 			itemCount() {
 				if (!this.tickets) return '';
-				// if (this.tickets.length === 1) return '1 task';
 				return `${this.tickets.length}`;
 			},
 

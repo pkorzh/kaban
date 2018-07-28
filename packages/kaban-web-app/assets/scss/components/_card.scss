@@ -28,7 +28,7 @@
   .card-body {
     padding: 0;
   }
-  
+
   .card {
     padding: 0;
     background: none;
@@ -86,8 +86,7 @@
       color: $white;
     }
     &:hover {
-      color: $white;
-      background: #273260;
+      cursor: pointer;
     }
   }
 }
