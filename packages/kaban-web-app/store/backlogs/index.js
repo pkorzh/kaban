@@ -13,10 +13,6 @@ export default moduleFactory({
 				name: 'Native Feed & Profile',
 				key: 'native-feed-profile',
 			}
-		},
-		list: [
-			'create-aws-api',
-			'native-feed-profile'
-		]
+		}
 	}
 });

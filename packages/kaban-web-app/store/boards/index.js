@@ -103,10 +103,6 @@ export default moduleFactory({
 					}
 				]
 			}
-		},
-		list: [
-			'ama',
-			'nfp',
-		]
+		}
 	}
 });

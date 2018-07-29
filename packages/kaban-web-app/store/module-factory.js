@@ -1,28 +1,27 @@
+import Vue from 'Vue'
+
 export default ({state, getters, actions, mutations}) => {
 	const moduleState = () => (Object.assign({
-		entities: {},
-		list: [],
+		entities: {}
 	}, state))
 
 	const moduleGetters = Object.assign({
 		getList(state) {
-			return state.list.map(key => state.entities[key]);
+			return Object.keys(state.entities).map(key => state.entities[key]);
 		},
 		getOne(state) {
 			return key => state.entities[key];
 		},
 		query(state) {
-			return predicate => state.list
-				.map(key => state.entities[key])
-				.filter(item => predicate(item));
+			return predicate => moduleGetters
+				.getList(state)
+				.filter(predicate)
 		}
 	}, getters)
 
 	const moduleMutations = Object.assign({
 		CREATE(state, payload) {
-			const {id} = payload;
-			state.list.push(id);
-			state.entities[id] = payload;
+			Vue.set(state.entities, payload.key, payload)
 		},
 		CREATE_MULTIPLE(state, multiple) {
 			multiple.forEach(payload =>

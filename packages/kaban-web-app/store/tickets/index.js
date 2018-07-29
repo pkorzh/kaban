@@ -1,9 +1,11 @@
+import Vue from 'Vue'
+
 import moduleFactory from '../module-factory'
 
 export default moduleFactory({
 	state: {
 		entities: {
-			1: {
+			'cca-1': {
 				id: 1,
 				name: 'As a user i want to see my settings',
 				key: 'cca-1',
@@ -14,7 +16,7 @@ export default moduleFactory({
 					key: 'create-aws-api'
 				}
 			},
-			2: {
+			'cca-2': {
 				id: 2,
 				name: 'As a user i want to be able to logout',
 				key: 'cca-2',
@@ -25,17 +27,13 @@ export default moduleFactory({
 					key: 'create-aws-api'
 				}
 			}
-		},
-		list: [
-			1,
-			2
-		]
+		}
 	},
 	mutations: {
 		UPDATE_TICKETS_STATUS(state, {tickets, mapsTo}) {
 			tickets.forEach(ticket => {
 				if (ticket.status.key !== mapsTo.key) {
-					state.entities[ticket.id].status = Object.assign({}, mapsTo)
+					Vue.set(ticket, 'status', mapsTo)
 				}
 			})
 		}
