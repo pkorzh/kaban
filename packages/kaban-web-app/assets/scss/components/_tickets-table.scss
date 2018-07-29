@@ -1,0 +1,59 @@
+.tickets-table {
+  overflow: auto;
+  > div {
+    display: flex;
+  }
+  .ticket-line {
+    display: flex;
+    flex: 1 1 auto;
+    padding: 6px 0;
+    border-bottom: 1px solid $gray-300;
+    > div:not(:last-child) {
+      border-right: 1px solid $gray-300;
+      padding: 0 10px;
+      flex-shrink: 0;
+    }
+    &-type,
+    &-key {
+      width: 30px;
+      padding: 0 4px !important;
+      text-align: center;
+    }
+    &-key {
+      width: 90px;
+    }
+    &-title {
+      flex: 1 1 auto;
+      max-width: 330px;
+      min-width: 330px;
+      > span {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: block;
+      }
+    }
+    &-name {
+      width: 160px;
+      color: #2dade3;
+      a {
+        color: #2dade3;
+      }
+    }
+    &-status {
+      width: 150px;
+    }
+    &-resolution,
+    &-date {
+      width: 110px;
+      text-align: center;
+    }
+    &-action {
+      width: 70px;
+      text-align: center;
+      a {
+        color: $gray-700;
+      }
+    }
+  }
+}
