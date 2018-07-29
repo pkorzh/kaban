@@ -75,7 +75,7 @@
 					return this.tickets;
 				},
 				set(tickets) {
-					this.$bus.$emit('draggables', {
+					this.$bus.$emit('kaban::board::draggables', {
 						tickets,
 						mapsTo: this.mapsTo,
 					});

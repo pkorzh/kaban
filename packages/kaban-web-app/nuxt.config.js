@@ -36,6 +36,7 @@ module.exports = {
   plugins: [
   	'~/plugins/font-awesome',
   	'~/plugins/event-bus.js',
+  	{ src: '~plugins/vue-js-modal', ssr: false },
   ],
 
   /*

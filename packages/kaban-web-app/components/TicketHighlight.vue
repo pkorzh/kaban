@@ -1,18 +1,18 @@
 <template>
 	<div>
-		<Header />
-		<nuxt/>
+		{{ ticket.name }}
 	</div>
 </template>
 
 <script>
-	import Header from '@/components/Header';
-
 	export default {
-		components: {
-			Header
+		props: {
+			ticket: {
+				type: Object,
+				required: true,
+			}
 		}
-	}
+	};
 </script>
 
 <style>

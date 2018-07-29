@@ -4,7 +4,9 @@
 			<span class="text-muted">
 				{{ ticket.key }}
 			</span>
-			{{ ticket.name }}
+			<a href="" class="card-link" v-on:click.prevent.stop="clicked	">
+				{{ ticket.name }}
+			</a>
 		</h3>
 		<div class="card-footer">
 			<div class="card-col">
@@ -31,6 +33,11 @@
 				required: true,
 			}
 		},
+		methods: {
+			clicked() {
+				this.$bus.$emit('kaban::board::ticket::selected', this.ticket)
+			}
+		}
 	};
 </script>
 
