@@ -1,6 +1,12 @@
 <template>
 	<div>
-		{{ ticket.name }}
+		<p>
+			{{ ticket.name }}
+		</p>
+
+		<nuxt-link :to="{name: 'issues-key', params: {key: ticket.key}}">
+			Expand
+		</nuxt-link>
 	</div>
 </template>
 
@@ -11,8 +17,10 @@
 				type: Object,
 				required: true,
 			}
+		},
+		methods: {
 		}
-	};
+	}
 </script>
 
 <style>

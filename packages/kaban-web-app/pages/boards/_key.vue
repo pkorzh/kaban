@@ -1,22 +1,32 @@
 <template>
 	<div>
+		<button @click="boardView = !boardView">switch</button>
 		<KanbanBoard
+			v-if="boardView"
 			:board="board"
+			:tickets="tickets" />
+
+		<TicketsTable
+			v-if="!boardView"
 			:tickets="tickets" />
 	</div>
 </template>
 
 <script>
 	import KanbanBoard from '@/components/KanbanBoard';
+	import TicketsTable from '@/components/TicketsTable'
 	import TicketHighlight from '@/components/TicketHighlight';
+
 	import { mapGetters, mapActions } from 'vuex';
 
 	export default {
 		components: {
-			KanbanBoard
+			KanbanBoard,
+			TicketsTable
 		},
 		data() {
 			return {
+				boardView: false
 			}
 		},
 		computed: {

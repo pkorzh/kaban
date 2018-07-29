@@ -1,7 +1,8 @@
 <template>
 	<div>
 		<Header />
-		<nuxt/>
+		<nuxt />
+		<modals-container />
 	</div>
 </template>
 
