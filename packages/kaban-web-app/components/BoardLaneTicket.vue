@@ -11,6 +11,10 @@
 				{{ ticket.name }}
 			</a>
 		</h3>
+		<ul class="card-list card-list-tags">
+			<li><a href="#">Tag</a></li>
+			<li><a href="#">Tag</a></li>
+		</ul>
 		<div class="card-footer">
 			<div class="card-col">
 				<div class="card-check">
