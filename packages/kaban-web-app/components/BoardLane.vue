@@ -1,10 +1,10 @@
 <template>
-	<div class="card">
-		<div class="card-header">
+	<div class="board-column">
+		<div class="board-column-header">
 			<h3>{{ title }} ({{itemCount}})</h3>
-			<a href="#" class="card-actions"><font-awesome-icon icon="ellipsis-h" /></a>
+			<a href="#" class="board-column-actions"><font-awesome-icon icon="ellipsis-h" /></a>
 		</div>
-		<div class="card-body">
+		<div class="board-column-body">
 
 			<div class="row" v-if="queues && queues.length">
 				<div class="col-md" v-for="queue in queues" :key="queue.key">

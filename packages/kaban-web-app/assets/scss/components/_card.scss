@@ -4,53 +4,13 @@
   border-radius: 6px;
   background: $gray-200;
   flex: 1 1 auto;
-  .card-header {
-    background: none;
-    padding: 0 0 12px;
-    margin: 0 0 13px;
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #d3d5e0;
-    color: $gray-700;
-    h3 {
-      margin: 0;
-      font-size: 1.25rem;
-      font-weight: 500;
-      font-family: $font-family-sans-serif;
-      text-transform: uppercase;
-    }
-  }
-  .card-actions {
-    font-size: 29px;
-    line-height: 1;
-    color: $gray-700;
-  }
-  .card-body {
-    padding: 0;
-  }
-
-  .card {
-    padding: 0;
-    background: none;
-    .card-header {
-      padding: 0;
-      margin: 0;
-      border: 0;
-      h3 {
-        text-transform: none;
-        opacity: .5;
-      }
-      .card-actions {
-        display: none;
-      }
-    }
-  }
 
   &.card-ticket {
     background: $white;
     font-size: 1.125rem;
-    margin-top: 15px;
+    margin-top: 10px;
     padding: 8px 14px;
+    min-width: 200px;
     .card-title {
       font: 400 1.125rem/1.4 $font-family-sans-serif;
     }
@@ -60,7 +20,7 @@
       background: none;
       border: 0;
       color: #888ea7;
-      font-size: 18px;
+      font-size: 14px;
       padding: 0;
       .card-col {
         display: flex;
@@ -68,20 +28,18 @@
       }
     }
     .card-image {
-      width: 32px;
-      height: 32px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       overflow: hidden;
-      margin-left: 10px;
+      margin-left: 8px;
       background: $gray-300;
     }
     .card-check {
     }
     .card-link {
-    	text-decoration: none;
-    	color: $black;
-    }
-    &:hover {
+      text-decoration: none;
+      color: $black;
     }
   }
 }

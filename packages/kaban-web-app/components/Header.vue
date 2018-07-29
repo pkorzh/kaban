@@ -22,9 +22,9 @@
 					<b-nav-item active><font-awesome-icon icon="cog" /></b-nav-item>
 					<b-nav-item>
 						<font-awesome-icon icon="bell" />
-						<span class="profile__mark"></span>
+						<span class="profile-mark"></span>
 					</b-nav-item>
-					<b-nav-item class="profile__avatar">
+					<b-nav-item class="profile-avatar">
 					</b-nav-item>
 				</b-nav>
 
