@@ -4,14 +4,19 @@
 			<span class="text-muted">
 				{{ ticket.key }}
 			</span>
-			<a href="" class="card-link" v-on:click.prevent.stop="clicked	">
+			<a
+				href=""
+				class="card-link"
+				v-on:click.prevent.stop="clicked">
 				{{ ticket.name }}
 			</a>
 		</h3>
 		<div class="card-footer">
 			<div class="card-col">
 				<div class="card-check">
-					<font-awesome-icon icon="check" />
+					<img
+						:src="ticket.type.iconUrl"
+						:title="ticket.type.name">
 				</div>
 			</div>
 			<div class="card-col">

@@ -14,6 +14,10 @@ export default moduleFactory({
 				},
 				backlog: {
 					key: 'create-aws-api'
+				},
+				type: {
+					name: 'Story',
+					iconUrl: 'https://elasticmedia.atlassian.net/secure/viewavatar?size=xsmall&avatarId=10318&avatarType=issuetype',
 				}
 			},
 			'cca-2': {
@@ -25,6 +29,10 @@ export default moduleFactory({
 				},
 				backlog: {
 					key: 'create-aws-api'
+				},
+				type: {
+					name: 'Story',
+					iconUrl: 'https://elasticmedia.atlassian.net/secure/viewavatar?size=xsmall&avatarId=10318&avatarType=issuetype',
 				}
 			}
 		}

@@ -43,6 +43,10 @@ request.get({
 		status: mapStatus(issue.fields.status),
 		backlog: {
 			key: 'create-aws-api'
+		},
+		type: {
+			name: issue.fields.issuetype.name,
+			iconUrl: issue.fields.issuetype.iconUrl,
 		}
 	}));
 
