@@ -5,8 +5,11 @@
 @import "~bootstrap/scss/bootstrap";
 
 //components
+@import 'components/actions-nav';
 @import 'components/board';
 @import 'components/card';
 @import 'components/profile';
+@import 'components/form';
 @import 'components/header';
 @import 'components/tickets-table';
+@import 'components/top-bar';

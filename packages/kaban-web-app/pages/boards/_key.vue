@@ -1,6 +1,7 @@
 <template>
-	<div>
+	<b-container fluid>
 		<button @click="boardView = !boardView">switch</button>
+		<TopBar />
 		<KanbanBoard
 			v-if="boardView"
 			:board="board"
@@ -9,10 +10,11 @@
 		<TicketsTable
 			v-if="!boardView"
 			:tickets="tickets" />
-	</div>
+	</b-container>
 </template>
 
 <script>
+	import TopBar from '@/components/TopBar';
 	import KanbanBoard from '@/components/KanbanBoard';
 	import TicketsTable from '@/components/TicketsTable'
 	import TicketHighlight from '@/components/TicketHighlight';
@@ -21,6 +23,7 @@
 
 	export default {
 		components: {
+			TopBar,
 			KanbanBoard,
 			TicketsTable
 		},

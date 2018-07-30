@@ -1,18 +1,16 @@
 <template>
-	<b-container fluid>
-		<div class="board">
-			<div class="row">
-				<div class="col-md d-flex" v-for="lane in board.lanes" :key="lane.key">
-					<BoardLane
-						:_key="lane.key"
-						:title="lane.name"
-						:mapsTo="lane.mapsTo"
-						:queues="lane.queues"
-						:tickets="laneTickets(lane.mapsTo)"></BoardLane>
-				</div>
+	<div class="board">
+		<div class="row">
+			<div class="col-md d-flex" v-for="lane in board.lanes" :key="lane.key">
+				<BoardLane
+					:_key="lane.key"
+					:title="lane.name"
+					:mapsTo="lane.mapsTo"
+					:queues="lane.queues"
+					:tickets="laneTickets(lane.mapsTo)"></BoardLane>
 			</div>
 		</div>
-	</b-container>
+	</div>
 </template>
 
 <script>

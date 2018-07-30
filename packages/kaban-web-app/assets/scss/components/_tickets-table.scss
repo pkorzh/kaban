@@ -1,18 +1,59 @@
 .tickets-table {
   overflow: auto;
-  > div {
+  border: 1px solid $gray-300;
+  border-radius: 6px;
+  &-wrap {
     display: flex;
+    flex-direction: column;
+    min-width: 100%;
+  }
+  &-sort {
+    position: relative;
+    display: block;
+    color: $gray-700 !important;
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 7px;
+      height: 7px;
+      transform: translateY(-50%) rotate(-45deg);
+      border: 1px solid $gray-700;
+      border-width: 0 0 2px 2px;
+      transition: transform .3s;
+    }
+    &:hover {
+      text-decoration:none;
+      color: $gray-700;
+      &::after {
+        transform: translateY(-50%) rotate(-225deg);
+      }
+    }
   }
   .ticket-line {
-    display: flex;
-    flex: 1 1 auto;
     padding: 6px 0;
-    border-bottom: 1px solid $gray-300;
-    > div:not(:last-child) {
-      border-right: 1px solid $gray-300;
-      padding: 0 10px;
-      flex-shrink: 0;
+    display: flex;
+    &:not(:last-child) {
+      border-bottom: 1px solid $gray-300;
     }
+    > div {
+      flex-shrink: 0;
+      padding: 0 10px;
+      &:not(:last-child) {
+        border-right: 1px solid $gray-300;
+      }
+    }
+
+    &-head {
+      color: $gray-700;
+      font-family: $font-family-sans-serif;
+      font-weight: 600;
+      > div:not(.ticket-line-type)::not(.ticket-line-key) {
+        text-align: left;
+      }
+    }
+
     &-type,
     &-key {
       width: 30px;
@@ -32,12 +73,15 @@
         text-overflow: ellipsis;
         display: block;
       }
+      a {
+        color: $body-color;
+      }
     }
     &-name {
       width: 160px;
-      color: #2dade3;
+      color: $secondary;
       a {
-        color: #2dade3;
+        color: $secondary;
       }
     }
     &-status {
@@ -48,8 +92,10 @@
       width: 110px;
       text-align: center;
     }
-    &-action {
+    &-action,
+    &-block {
       width: 70px;
+      padding: 0 5px;
       text-align: center;
       a {
         color: $gray-700;

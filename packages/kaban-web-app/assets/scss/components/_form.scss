@@ -1,0 +1,24 @@
+.form {
+  &-search {
+    height: 48px;
+    border-radius: 6px;
+    position: relative; 
+    input[type='text'] {
+      border: 0;
+      height: 48px;
+      padding: 5px 10px;
+      background: $gray-200;
+      border-radius: 5px;
+    }
+    button {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      background: none;
+      border: 0;
+      color: $gray-700;
+      cursor: pointer;
+    }
+  }
+}
