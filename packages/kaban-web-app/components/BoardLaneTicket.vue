@@ -5,7 +5,7 @@
 				{{ ticket.key }}
 			</span>
 			<a
-				href=""
+				:href="ticketHref(ticket)"
 				class="card-link"
 				v-on:click.prevent.stop="clicked">
 				{{ ticket.name }}
@@ -45,6 +45,9 @@
 		methods: {
 			clicked() {
 				this.$bus.$emit('kaban::board::ticket::selected', this.ticket)
+			},
+			ticketHref(ticket) {
+				return `/issues/${ticket.key}`
 			}
 		}
 	};
