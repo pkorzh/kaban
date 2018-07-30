@@ -20,8 +20,16 @@
 							</a>
 						</span>
 					</div>
-					<div class="ticket-line-name">Name</div>
-					<div class="ticket-line-name">Name</div>
+					<div class="ticket-line-name">
+						<a href="">
+							Platon Korzh
+						</a>
+					</div>
+					<div class="ticket-line-name">
+						<a href="">
+							Platon Korzh
+						</a>
+					</div>
 					<div>Block</div>
 					<div class="ticket-line-status">
 						{{ ticket.status.name }}
