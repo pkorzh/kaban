@@ -1,6 +1,10 @@
 <template>
 	<b-container fluid>
-		<TopBar :board="board">
+		<TopBar>
+			<template slot="header">
+				{{ board.name }}
+			</template>
+
 			<ActionsNav>
 				<ActionsNavAssigned />
 				<ActionsNavQuickFilters />
@@ -21,32 +25,11 @@
 </template>
 
 <script>
-	import TopBar from '@/components/TopBar'
-
-	import ActionsNavBoardViewSwitcher from '@/components/ActionsNavBoardViewSwitcher'
-	import ActionsNavSimpleSearch from '@/components/ActionsNavSimpleSearch'
-	import ActionsNav from '@/components/ActionsNav'
-
-	import ActionsNavAssigned  from '@/components/ActionsNavAssigned'
-	import ActionsNavQuickFilters from '@/components/ActionsNavQuickFilters'
-
-	import Board from '@/components/Board'
-	import TicketsTable from '@/components/TicketsTable'
 	import TicketHighlight from '@/components/TicketHighlight';
 
 	import { mapGetters, mapActions } from 'vuex';
 
 	export default {
-		components: {
-			TopBar,
-			Board,
-			TicketsTable,
-			ActionsNav,
-			ActionsNavBoardViewSwitcher,
-			ActionsNavSimpleSearch,
-			ActionsNavAssigned,
-			ActionsNavQuickFilters,
-		},
 		data() {
 			return {
 				boardView: true

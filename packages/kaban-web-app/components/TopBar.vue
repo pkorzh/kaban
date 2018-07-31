@@ -1,8 +1,9 @@
 <template>
 	<div class="top-bar">
 		<div>
-			Board
-			<h1>{{ board.name }}</h1>
+			<h1>
+				<slot name="header"></slot>
+			</h1>
 		</div>
 		<slot></slot>
 	</div>
@@ -17,10 +18,6 @@
 			ActionsNav
 		},
 		props: {
-			board: {
-				type: Object,
-				required: true,
-			}
 		},
 		name: 'TopBar'
 	};

@@ -1,5 +1,17 @@
 <template>
 	<b-container fluid>
+		<TopBar>
+			<template slot="header">
+				Backlogs
+			</template>
+
+			<ActionsNavButton />
+
+			<ActionsNav>
+				<ActionsNavSimpleSearch />
+			</ActionsNav>
+		</TopBar>
+
 		<p v-for="backlog in backlogList" :key="backlog.key">
 			<nuxt-link :to="{name: 'backlogs-key', params: {key: backlog.key}}">
 				{{ backlog.name }}

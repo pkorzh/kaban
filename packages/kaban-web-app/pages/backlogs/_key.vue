@@ -9,15 +9,9 @@
 </template>
 
 <script>
-	import Backlog from '@/components/Backlog';
-	import NewTicketForm from '@/components/NewTicketForm';
 	import { mapGetters, mapActions } from 'vuex';
 
 	export default {
-		components: {
-			Backlog,
-			NewTicketForm
-		},
 		computed: {
 			...mapGetters('backlogs', {
 				getBacklog: 'getOne'

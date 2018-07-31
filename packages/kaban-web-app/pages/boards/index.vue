@@ -1,5 +1,17 @@
 <template>
 	<b-container fluid>
+		<TopBar>
+			<template slot="header">
+				Boards
+			</template>
+
+			<ActionsNavButton />
+
+			<ActionsNav>
+				<ActionsNavSimpleSearch />
+			</ActionsNav>
+		</TopBar>
+
 		<p v-for="board in boardList" :key="board.key">
 			<nuxt-link :to="{name: 'boards-key', params: {key: board.key}}">
 				{{ board.name }}
