@@ -1,7 +1,7 @@
 .actions-nav {
   display: flex;
   align-items: center;
-  font-size: 17px;
+  font-size: 15px;
   &-link {
     color: $body-color;
     margin: 0 0 0 25px;
@@ -29,14 +29,14 @@
     margin: 0 0 0 25px;
     list-style: none;
     display: flex;
-    font-size: 20px;
+    font-size: 17px;
     li {
       a {
         background: $gray-200;
         display: flex;
         align-items: center;
-        height: 48px;
-        padding: 0 18px;
+        height: 35px;
+        padding: 0 10px;
         color: $gray-700;
         border-radius: 5px 0 0 5px;
       }

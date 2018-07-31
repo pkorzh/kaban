@@ -1,14 +1,13 @@
 .form {
   &-search {
-    height: 48px;
-    border-radius: 6px;
     position: relative; 
-    input[type='text'] {
+    input[type='search'] {
       border: 0;
-      height: 48px;
-      padding: 5px 10px;
+      height: 35px;
+      padding: 5px 25px 5px 10px;
       background: $gray-200;
-      border-radius: 5px;
+      border-radius: 6px;
+      font: italic 14px/25px $font-family-base;
     }
     button {
       position: absolute;
