@@ -2,11 +2,14 @@
 	<b-container fluid>
 		<TopBar :board="board">
 			<ActionsNav>
-				<BoardViewSwitcher v-model="boardView" />
+				<ActionsNavAssigned />
+				<ActionsNavQuickFilters />
+				<ActionsNavSimpleSearch />
+				<ActionsNavBoardViewSwitcher v-model="boardView" />
 			</ActionsNav>
 		</TopBar>
 
-		<KanbanBoard
+		<Board
 			v-if="boardView"
 			:board="board"
 			:tickets="tickets" />
@@ -19,9 +22,15 @@
 
 <script>
 	import TopBar from '@/components/TopBar'
-	import BoardViewSwitcher from '@/components/BoardViewSwitcher'
+
+	import ActionsNavBoardViewSwitcher from '@/components/ActionsNavBoardViewSwitcher'
+	import ActionsNavSimpleSearch from '@/components/ActionsNavSimpleSearch'
 	import ActionsNav from '@/components/ActionsNav'
-	import KanbanBoard from '@/components/KanbanBoard'
+
+	import ActionsNavAssigned  from '@/components/ActionsNavAssigned'
+	import ActionsNavQuickFilters from '@/components/ActionsNavQuickFilters'
+
+	import Board from '@/components/Board'
 	import TicketsTable from '@/components/TicketsTable'
 	import TicketHighlight from '@/components/TicketHighlight';
 
@@ -30,10 +39,13 @@
 	export default {
 		components: {
 			TopBar,
-			KanbanBoard,
+			Board,
 			TicketsTable,
 			ActionsNav,
-			BoardViewSwitcher,
+			ActionsNavBoardViewSwitcher,
+			ActionsNavSimpleSearch,
+			ActionsNavAssigned,
+			ActionsNavQuickFilters,
 		},
 		data() {
 			return {

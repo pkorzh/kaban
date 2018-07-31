@@ -15,7 +15,7 @@
 
 						<form action="#" class="form-search">
 							<fieldset>
-								<input type="search" placeholder="Find a service by name or feature">
+								<input type="text" placeholder="Find a service by name or feature">
 								<button><font-awesome-icon icon="search" /></button>
 							</fieldset>
 						</form>

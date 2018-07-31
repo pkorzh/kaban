@@ -15,49 +15,17 @@
 				<div class="ticket-line-date"><a href="#" class="tickets-table-sort">Due</a></div>
 				<div class="ticket-line-action">Action</div>
 			</div>
-			<div class="ticket-line" v-for="ticket in tickets" :key="ticket.key">
-				<div class="ticket-line-type">
-					<img
-						:src="ticket.type.iconUrl"
-						:title="ticket.type.name">
-				</div>
-				<div class="ticket-line-key">
-					{{ ticket.key }}
-				</div>
-				<div class="ticket-line-title">
-					<span>
-						<a
-							:href="ticketHref(ticket)"
-							@click.prevent.stop="clicked(ticket)">
-							{{ ticket.name }}
-						</a>
-					</span>
-				</div>
-				<div class="ticket-line-name">
-					<a href="">
-						Platon Korzh
-					</a>
-				</div>
-				<div class="ticket-line-name">
-					<a href="">
-						Platon Korzh
-					</a>
-				</div>
-				<div class="ticket-line-block">Block</div>
-				<div class="ticket-line-status">
-					{{ ticket.status.name }}
-				</div>
-				<div class="ticket-line-resolution">Unresolved</div>
-				<div class="ticket-line-date">19/07/2018</div>
-				<div class="ticket-line-date">19/07/2018</div>
-				<div class="ticket-line-date">19/07/2018</div>
-				<div class="ticket-line-action"><a href="#"><font-awesome-icon icon="ellipsis-h" /></a></div>
-			</div>
+			<TicketsTableTicket
+				v-for="ticket in tickets"
+				:ticket="ticket"
+				:key="ticket.key" />
 		</div>
 	</div>
 </template>
 
 <script>
+	import TicketsTableTicket from './TicketsTableTicket'
+
 	export default {
 		props: {
 			tickets: {
@@ -65,13 +33,8 @@
 				required: true,
 			},
 		},
-		methods: {
-			clicked(ticket) {
-				this.$bus.$emit('kaban::board::ticket::selected', ticket)
-			},
-			ticketHref(ticket) {
-				return `/issues/${ticket.key}`
-			}
+		components: {
+			TicketsTableTicket
 		}
 	}
 </script>
