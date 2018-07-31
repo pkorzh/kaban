@@ -6,7 +6,7 @@
 
 		<form action="#" class="form-search">
 			<fieldset>
-				<input type="text" placeholder="Search">
+				<input type="search" placeholder="Search">
 				<button><font-awesome-icon icon="search" /></button>
 			</fieldset>
 		</form>

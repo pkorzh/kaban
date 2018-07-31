@@ -2,5 +2,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 15px;
+  color: $gray-600;
+
+  h1 {
+    font: 600 30px/1.2 $font-family-sans-serif;
+    text-transform: uppercase;
+    margin: 0;
+    color: $body-color;
+  }
 }
