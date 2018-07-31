@@ -12,8 +12,9 @@
 			</a>
 		</h3>
 		<ul class="card-list card-list-tags">
-			<li><a href="#">Tag</a></li>
-			<li><a href="#">Tag</a></li>
+			<li v-for="tag in ticket.tags" :key="tag.name">
+				<a href="#">{{ tag.name }}</a>
+			</li>
 		</ul>
 		<div class="card-footer">
 			<div class="card-col">

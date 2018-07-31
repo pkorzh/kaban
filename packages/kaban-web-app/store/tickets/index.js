@@ -18,7 +18,15 @@ export default moduleFactory({
 				type: {
 					name: 'Story',
 					iconUrl: 'https://elasticmedia.atlassian.net/secure/viewavatar?size=xsmall&avatarId=10318&avatarType=issuetype',
-				}
+				},
+				tags: [
+					{
+						name: 'P8'
+					}
+				],
+				createdAt: new Date().toISOString(),
+				updatedAt: new Date().toISOString(),
+				resolvedAt: new Date().toISOString(),
 			},
 			'cca-2': {
 				id: 2,
@@ -33,7 +41,10 @@ export default moduleFactory({
 				type: {
 					name: 'Story',
 					iconUrl: 'https://elasticmedia.atlassian.net/secure/viewavatar?size=xsmall&avatarId=10318&avatarType=issuetype',
-				}
+				},
+				createdAt: new Date().toISOString(),
+				updatedAt: new Date().toISOString(),
+				resolvedAt: new Date().toISOString(),
 			}
 		}
 	},

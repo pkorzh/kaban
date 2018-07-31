@@ -1,10 +1,10 @@
 <template>
 	<div class="top-bar">
 		<div>
-			breadcrumbs
-			<h1>title</h1>
+			Board
+			<h1>{{ board.name }}</h1>
 		</div>
-		<ActionsNav />
+		<slot></slot>
 	</div>
 </template>
 
@@ -15,6 +15,12 @@
 	export default {
 		components: {
 			ActionsNav
+		},
+		props: {
+			board: {
+				type: Object,
+				required: true,
+			}
 		},
 		name: 'TopBar'
 	};

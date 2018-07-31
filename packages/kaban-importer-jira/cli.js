@@ -47,7 +47,10 @@ request.get({
 		type: {
 			name: issue.fields.issuetype.name,
 			iconUrl: issue.fields.issuetype.iconUrl,
-		}
+		},
+		createdAt: new Date().toISOString(),
+		updatedAt: new Date().toISOString(),
+		resolvedAt: new Date().toISOString(),
 	}));
 
 	console.log(JSON.stringify(issues))

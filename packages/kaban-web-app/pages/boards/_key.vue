@@ -1,7 +1,11 @@
 <template>
 	<b-container fluid>
-		<button @click="boardView = !boardView">switch</button>
-		<TopBar />
+		<TopBar :board="board">
+			<ActionsNav>
+				<BoardViewSwitcher v-model="boardView" />
+			</ActionsNav>
+		</TopBar>
+
 		<KanbanBoard
 			v-if="boardView"
 			:board="board"
@@ -14,8 +18,10 @@
 </template>
 
 <script>
-	import TopBar from '@/components/TopBar';
-	import KanbanBoard from '@/components/KanbanBoard';
+	import TopBar from '@/components/TopBar'
+	import BoardViewSwitcher from '@/components/BoardViewSwitcher'
+	import ActionsNav from '@/components/ActionsNav'
+	import KanbanBoard from '@/components/KanbanBoard'
 	import TicketsTable from '@/components/TicketsTable'
 	import TicketHighlight from '@/components/TicketHighlight';
 
@@ -25,11 +31,13 @@
 		components: {
 			TopBar,
 			KanbanBoard,
-			TicketsTable
+			TicketsTable,
+			ActionsNav,
+			BoardViewSwitcher,
 		},
 		data() {
 			return {
-				boardView: false
+				boardView: true
 			}
 		},
 		computed: {
