@@ -11,8 +11,8 @@
 		<div class="ticket-line-title">
 			<span>
 				<a
-					:href="ticketHref(ticket)"
-					@click.prevent.stop="clicked(ticket)">
+					:href="ticketUrl(ticket)"
+					@click.prevent.stop="highlight(ticket)">
 					{{ ticket.name }}
 				</a>
 			</span>
@@ -40,7 +40,10 @@
 </template>
 
 <script>
+	import {TicketBaseMixin} from '@/mixins'
+
 	export default {
+		mixins: [TicketBaseMixin],
 		props: {
 			ticket: {
 				type: Object,
@@ -48,12 +51,6 @@
 			},
 		},
 		methods: {
-			clicked(ticket) {
-				this.$bus.$emit('kaban::board::ticket::selected', ticket)
-			},
-			ticketHref(ticket) {
-				return `/issues/${ticket.key}`
-			}
 		}
 	}
 </script>

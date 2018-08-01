@@ -36,12 +36,10 @@ module.exports = {
 	plugins: [
 		'~/plugins/font-awesome',
 		'~plugins/vue-js-modal',
-
 		{ src: '~/plugins/vue-shortkey', ssr: false },
-
 		'~/plugins/kaban-event-bus.js',
 		'~/plugins/kaban-components',
-		'~/plugins/kaban-actions',
+		{ src: '~/plugins/kaban-actions', ssr: false },
 	],
 
 	/*

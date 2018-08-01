@@ -1,7 +1,7 @@
 <template>
 	<button
 		class="btn btn-light"
-		v-shortkey.once="['c']"
+		v-shortkey.once="[this.shortkey]"
 		@shortkey="handleAction()">Add</button>
 </template>
 
@@ -9,17 +9,21 @@
 	export default {
 		props: {
 			action: {
-				type: String
+				type: String,
+				required: true,
 			},
 			text: {
-				type: String
+				type: String,
+				required: true,
+			},
+			shortkey: {
+				type: String,
+				required: true,
 			}
 		},
 		methods: {
 			handleAction() {
-				if (this.action) {
-
-				}
+				this.$kaban.dispatch(this.action, {sender: this})
 			}
 		}
 	}

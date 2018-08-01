@@ -14,9 +14,7 @@
 
 		<NewTicketForm v-on:newItem="newItem" />
 
-		<Backlog
-			:backlog="backlog"
-			:tickets="tickets" />
+		<TicketsTable :tickets="tickets" />
 	</div>
 </template>
 

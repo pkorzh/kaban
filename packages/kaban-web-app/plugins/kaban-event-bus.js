@@ -1,7 +1,5 @@
 import Vue from 'vue'
 
-Vue.use({
-	install() {
-		Vue.prototype.$bus = new Vue()
-	}
-})
+export default (_, inject) => {
+	inject('bus', new Vue({}))
+}

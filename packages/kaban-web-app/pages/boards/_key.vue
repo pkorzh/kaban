@@ -12,7 +12,8 @@
 
 				<ActionsNavButton
 					text="Create Issue"
-					action="kaban::issue:create" />
+					action="kaban::issue:create"
+					shortkey="CreateTicketAction" />
 
 				<ActionsNavBoardViewSwitcher v-model="boardView" />
 			</ActionsNav>
@@ -30,8 +31,6 @@
 </template>
 
 <script>
-	import TicketHighlight from '@/components/TicketHighlight';
-
 	import { mapGetters, mapActions } from 'vuex';
 
 	export default {
@@ -62,30 +61,10 @@
 			...mapActions('tickets', [
 				'updateTicketStatus'
 			]),
-
-			openTicketHighlight(ticket) {
-				this.$modal.show(
-					TicketHighlight,
-					{
-						//component props
-						ticket
-					},
-					{
-						//modal params
-						//https://www.npmjs.com/package/vue-js-modal
-						width: '75%'
-					}, {
-						//events
-					})
-			}
 		},
 		mounted() {
 			this.$bus.$on('kaban::board::draggables', ({tickets, mapsTo}) => {
 				this.updateTicketStatus({tickets, mapsTo})
-			})
-
-			this.$bus.$on('kaban::board::ticket::selected', (ticket) => {
-				this.openTicketHighlight(ticket)
 			})
 		},
 		destroyed() {
