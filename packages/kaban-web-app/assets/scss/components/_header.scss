@@ -2,4 +2,24 @@
   border-bottom: 1px solid $gray-300;
   padding: 6px 0;
   margin-bottom: 15px;
+  .dropdown-toggle {
+    padding: 8px;
+  }
+  .dropdown {
+    &.show {
+      .dropdown-toggle{
+        position:relative;
+        z-index: 1005;
+        &::before {
+          content:'';
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          margin-top: -13px;
+          border: 8px solid transparent;
+          border-bottom-color: $secondary;
+        }
+      }
+    }
+  }
 }
