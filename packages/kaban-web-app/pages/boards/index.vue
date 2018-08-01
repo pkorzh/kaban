@@ -5,9 +5,8 @@
 				Boards
 			</template>
 
-			<ActionsNavButton />
-
 			<ActionsNav>
+				<ActionsNavButton />
 				<ActionsNavSimpleSearch />
 			</ActionsNav>
 		</TopBar>

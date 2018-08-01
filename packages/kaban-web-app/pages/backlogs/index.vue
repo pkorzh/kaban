@@ -5,9 +5,8 @@
 				Backlogs
 			</template>
 
-			<ActionsNavButton />
-
 			<ActionsNav>
+				<ActionsNavButton />
 				<ActionsNavSimpleSearch />
 			</ActionsNav>
 		</TopBar>

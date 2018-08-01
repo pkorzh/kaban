@@ -1,5 +1,17 @@
 <template>
 	<div>
+		<TopBar>
+			<template slot="header">
+				{{ backlog.name }}
+			</template>
+
+			<ActionsNav>
+				<ActionsNavAssigned />
+				<ActionsNavQuickFilters />
+				<ActionsNavSimpleSearch />
+			</ActionsNav>
+		</TopBar>
+
 		<NewTicketForm v-on:newItem="newItem" />
 
 		<Backlog

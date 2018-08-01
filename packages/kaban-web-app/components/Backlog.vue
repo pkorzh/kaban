@@ -1,20 +1,6 @@
 <template>
 	<div>
-		<div class="card" v-for="ticket in tickets" :key="ticket.id">
-			<div class="card-block">
-				<h5 class="card-title">
-					<span class="text-muted">
-						#{{ticket.id}}
-					</span>
-
-					{{ticket.name}}
-
-					<span>
-						{{ ticket.status.key }}
-					</span>
-				</h5>
-			</div>
-		</div>
+		<TicketsTable :tickets="tickets" />
 	</div>
 </template>
 

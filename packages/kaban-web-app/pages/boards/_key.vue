@@ -9,6 +9,11 @@
 				<ActionsNavAssigned />
 				<ActionsNavQuickFilters />
 				<ActionsNavSimpleSearch />
+
+				<ActionsNavButton
+					text="Create Issue"
+					action="kaban::issue:create" />
+
 				<ActionsNavBoardViewSwitcher v-model="boardView" />
 			</ActionsNav>
 		</TopBar>

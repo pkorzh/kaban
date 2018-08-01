@@ -11,7 +11,7 @@
 
 				<b-navbar-nav>
 
-					<b-nav-item-dropdown text="Menu">
+					<b-nav-item-dropdown text="Menu" ref="menuDropDown">
 
 						<form action="#" class="form-search">
 							<fieldset>
@@ -19,73 +19,31 @@
 								<button><font-awesome-icon icon="search" /></button>
 							</fieldset>
 						</form>
-						
-						<div class="mb-2">
-							<b-dropdown-item to="/boards">Boards</b-dropdown-item>
-							<b-dropdown-item to="/backlogs">Backlogs</b-dropdown-item>
-						</div>
-
 
 						<div class="dropdown-menu-holder">
 							<ol>
 								<li>
-									<strong class="dropdown-menu-title">Donec risus odio</strong>
+									<strong class="dropdown-menu-title">
+										<nuxt-link to="/boards">Boards</nuxt-link>
+									</strong>
 									<ul>
-										<li><a href="#">Lorem ipsum dolor sit</a></li>
-										<li><a href="#">Amet  consectetur</a></li>
-										<li><a href="#">Adipiscing elit</a></li>
-										<li><a href="#">Sed suscipit</a></li>
-										<li><a href="#">Pellentesque tortornisl</a></li>
+										<li v-for="board in boardList" :key="board.key">
+											<nuxt-link :to="{name: 'boards-key', params: {key: board.key}}">
+												{{ board.name }}
+											</nuxt-link>
+										</li>
 									</ul>
 								</li>
 								<li>
-									<strong class="dropdown-menu-title">Donec risus odio</strong>
+									<strong class="dropdown-menu-title">
+										<nuxt-link to="/backlogs">Backlogs</nuxt-link>
+									</strong>
 									<ul>
-										<li><a href="#">Lorem ipsum dolor sit</a></li>
-										<li><a href="#">Amet  consectetur</a></li>
-										<li><a href="#">Adipiscing elit</a></li>
-										<li><a href="#">Sed suscipit</a></li>
-										<li><a href="#">Pellentesque tortornisl</a></li>
-									</ul>
-								</li>
-								<li>
-									<strong class="dropdown-menu-title">Donec risus odio</strong>
-									<ul>
-										<li><a href="#">Lorem ipsum dolor sit</a></li>
-										<li><a href="#">Amet  consectetur</a></li>
-										<li><a href="#">Adipiscing elit</a></li>
-										<li><a href="#">Sed suscipit</a></li>
-										<li><a href="#">Pellentesque tortornisl</a></li>
-									</ul>
-								</li>
-								<li>
-									<strong class="dropdown-menu-title">Donec risus odio</strong>
-									<ul>
-										<li><a href="#">Lorem ipsum dolor sit</a></li>
-										<li><a href="#">Amet  consectetur</a></li>
-										<li><a href="#">Adipiscing elit</a></li>
-										<li><a href="#">Sed suscipit</a></li>
-										<li><a href="#">Pellentesque tortornisl</a></li>
-									</ul>
-								</li>
-								<li>
-									<strong class="dropdown-menu-title">Donec risus odio</strong>
-									<ul>
-										<li><a href="#">Lorem ipsum dolor sit</a></li>
-										<li><a href="#">Amet  consectetur</a></li>
-										<li><a href="#">Adipiscing elit</a></li>
-										<li><a href="#">Sed suscipit</a></li>
-										<li><a href="#">Pellentesque tortornisl</a></li>
-									</ul>
-								</li>
-								<li>
-									<strong class="dropdown-menu-title">Donec risus odio</strong>
-									<ul>
-										<li><a href="#">Lorem ipsum dolor sit</a></li>
-										<li><a href="#">Amet  consectetur</a></li>
-										<li><a href="#">Adipiscing elit</a></li>
-										<li><a href="#">Sed suscipit</a></li>
-										<li><a href="#">Pellentesque tortornisl</a></li>
+										<li v-for="backlog in backlogList" :key="backlog.key">
+											<nuxt-link :to="{name: 'backlogs-key', params: {key: backlog.key}}">
+												{{ backlog.name }}
+											</nuxt-link>
+										</li>
 									</ul>
 								</li>
 							</ol>
@@ -110,8 +68,24 @@
 </template>
 
 <script>
+	import { mapGetters } from 'vuex';
+
 	export default {
-		name: 'Header'
+		name: 'Header',
+		computed: {
+			...mapGetters('boards', {
+				boardList: 'getList'
+			}),
+
+			...mapGetters('backlogs', {
+				backlogList: 'getList'
+			})
+		},
+		watch: {
+			'$route'() {
+				this.$refs.menuDropDown.hide()
+			}
+		}
 	};
 </script>
 
