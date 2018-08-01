@@ -6,10 +6,6 @@
 			</template>
 
 			<ActionsNav>
-				<ActionsNavButton
-					text="Add"
-					action="CreateTicketAction"
-					shortkey="c" />
 				<ActionsNavSimpleSearch />
 			</ActionsNav>
 		</TopBar>

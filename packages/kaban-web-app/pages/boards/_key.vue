@@ -12,8 +12,8 @@
 
 				<ActionsNavButton
 					text="Create Issue"
-					action="kaban::issue:create"
-					shortkey="CreateTicketAction" />
+					action="CreateTicketAction"
+					shortkey="c" />
 
 				<ActionsNavBoardViewSwitcher v-model="boardView" />
 			</ActionsNav>

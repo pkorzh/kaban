@@ -6,6 +6,11 @@
 			</template>
 
 			<ActionsNav>
+				<ActionsNavButton
+					text="Add"
+					action="CreateTicketAction"
+					shortkey="c" />
+
 				<ActionsNavAssigned />
 				<ActionsNavQuickFilters />
 				<ActionsNavSimpleSearch />

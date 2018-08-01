@@ -6,7 +6,6 @@
 			</template>
 
 			<ActionsNav>
-				<ActionsNavButton />
 				<ActionsNavSimpleSearch />
 			</ActionsNav>
 		</TopBar>
