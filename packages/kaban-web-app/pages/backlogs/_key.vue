@@ -17,8 +17,6 @@
 			</ActionsNav>
 		</TopBar>
 
-		<NewTicketForm v-on:newItem="newItem" />
-
 		<TicketsTable :tickets="tickets" />
 	</b-container>
 </template>
@@ -49,17 +47,6 @@
 			...mapActions('tickets', [
 				'createTicket'
 			]),
-
-			newItem(name) {
-				const ticketCreateSlim = {
-					name,
-					backlog: {
-						key: this.backlog.key
-					}
-				}
-
-				this.createTicket(ticketCreateSlim)
-			}
 		}
 	}
 </script>

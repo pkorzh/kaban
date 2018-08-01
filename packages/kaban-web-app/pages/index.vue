@@ -1,3 +1,4 @@
 <template>
-	<p>Index</p>
+	<b-container fluid>
+	</b-container>
 </template>

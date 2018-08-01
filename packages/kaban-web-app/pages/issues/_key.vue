@@ -1,5 +1,7 @@
 <template>
-	<div>ISSUE KEY</div>
+	<b-container fluid>
+		ISSUE KEY
+	</b-container>
 </template>
 
 <script>

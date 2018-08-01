@@ -1,5 +1,5 @@
 <template>
-	<p>
+	<b-container fluid>
 		issues
-	</p>
+	</b-container>
 </template>

@@ -8,7 +8,6 @@ import Board from './Board'
 import BoardLane from './BoardLane'
 import BoardLaneTicket from './BoardLaneTicket'
 import Header from './Header'
-import NewTicketForm from './NewTicketForm'
 import TicketHighlight from './TicketHighlight'
 import TicketsTable from './TicketsTable'
 import TicketsTableTicket from './TicketsTableTicket'
@@ -25,7 +24,6 @@ export {
 	BoardLane,
 	BoardLaneTicket,
 	Header,
-	NewTicketForm,
 	TicketHighlight,
 	TicketsTable,
 	TicketsTableTicket,
