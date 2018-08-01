@@ -1,6 +1,6 @@
 <template>
 	<button
-		class="btn btn-light"
+		class="btn btn-light ml-3"
 		v-shortkey.once="[this.shortkey]"
 		@shortkey="handleAction()">Add</button>
 </template>

@@ -2,10 +2,11 @@
   overflow: auto;
   border: 1px solid $gray-300;
   border-radius: 6px;
+  width: 100%;
+  display: flex;
   &-wrap {
     display: flex;
     flex-direction: column;
-    min-width: 100%;
   }
   &-sort {
     position: relative;

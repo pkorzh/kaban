@@ -2,7 +2,7 @@
 	<div>
 		<form
 			action="#"
-			class="form"
+			class="form mb-3"
 			method="post"
 			v-on:submit.prevent="submitForm">
 			<input

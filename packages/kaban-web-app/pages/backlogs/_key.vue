@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<b-container fluid>
 		<TopBar>
 			<template slot="header">
 				{{ backlog.name }}
@@ -20,7 +20,7 @@
 		<NewTicketForm v-on:newItem="newItem" />
 
 		<TicketsTable :tickets="tickets" />
-	</div>
+	</b-container>
 </template>
 
 <script>

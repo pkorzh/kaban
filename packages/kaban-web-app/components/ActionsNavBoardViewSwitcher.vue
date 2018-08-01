@@ -1,5 +1,5 @@
 <template>
-	<ul class="switcher">
+	<ul class="switcher ml-3">
 		<li :class="{ active: value }">
 			<a
 				href=""

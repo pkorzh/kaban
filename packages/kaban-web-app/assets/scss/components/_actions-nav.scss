@@ -4,7 +4,6 @@
   font-size: 15px;
   &-link {
     color: $body-color;
-    margin: 0 0 0 25px;
     &::after {
       content: '';
       display: inline-block;
@@ -26,7 +25,7 @@
   }
   .switcher {
     padding: 0;
-    margin: 0 0 0 25px;
+    margin: 0;
     list-style: none;
     display: flex;
     font-size: 17px;
