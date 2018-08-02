@@ -3,14 +3,17 @@
 		<p>
 			{{ ticket.name }}
 		</p>
-		<nuxt-link to="/issues/ama-12">
+		<nuxt-link :to="ticketUrl(ticket)">
 			go
 		</nuxt-link>
 	</div>
 </template>
 
 <script>
+	import {TicketBaseMixin} from '@/mixins'
+
 	export default {
+		mixins: [TicketBaseMixin],
 		props: {
 			ticket: {
 				type: Object,
@@ -19,7 +22,7 @@
 		},
 		data() {
 			return {
-				goBack: true
+				//goBack: true
 			}
 		},
 		methods: {

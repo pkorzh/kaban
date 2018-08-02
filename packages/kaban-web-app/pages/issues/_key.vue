@@ -2,9 +2,9 @@
 	<b-container fluid>
 		<TopBar>
 			<template slot="header">
-				Task
+				{{ ticket.name }}
 			</template>
-			
+
 			<ActionsNav>
 
 				<ActionsNavButton
@@ -50,7 +50,9 @@
 								<ul class="details-options">
 									<li>
 										<h3>Type:</h3>
-										<div>Bug</div>
+										<div>
+											{{ ticket.type.name }}
+										</div>
 									</li>
 									<li>
 										<h3>Priority:</h3>
@@ -59,7 +61,9 @@
 									<li>
 										<h3>Status:</h3>
 										<div>
-											<span class="details-label">IN PROGRESS</span>
+											<span class="details-label">
+												{{ ticket.status.key }}
+											</span>
 										</div>
 									</li>
 								</ul>
@@ -92,6 +96,8 @@
 					</div>
 					<div class="details-section">
 						<h3>Description:</h3>
+
+						{{ ticket.description }}
 					</div>
 					<div class="details-section">
 						<h3>Attachments:</h3>
@@ -114,15 +120,21 @@
 					<ul class="details-options">
 						<li>
 							<h3>Created at:</h3>
-							<div>15/Jan/16 9:28 AM</div>
+							<div>
+								{{ ticket.createdAt | moment('L') }}
+							</div>
 						</li>
 						<li>
 							<h3>Updated at:</h3>
-							<div>15/Jan/16 10:28 AM</div>
+							<div>
+								{{ ticket.updatedAt | moment('L') }}
+							</div>
 						</li>
 						<li>
 							<h3>Resolved at:</h3>
-							<div>12/Jul/18 4:50 AM</div>
+							<div>
+								{{ ticket.resolvedAt | moment('L') }}
+							</div>
 						</li>
 					</ul>
 				</b-col>
@@ -133,6 +145,17 @@
 </template>
 
 <script>
+	import { mapGetters } from 'vuex';
+
 	export default {
+		computed: {
+			...mapGetters('tickets', {
+				getTicket: 'getOne'
+			}),
+
+			ticket() {
+				return this.getTicket(this.$route.params.key)
+			},
+		}
 	}
 </script>

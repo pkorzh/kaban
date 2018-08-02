@@ -28,6 +28,7 @@ export default moduleFactory({
 				createdAt: utc(new Date().toISOString()),
 				updatedAt: utc(new Date().toISOString()),
 				resolvedAt: utc(new Date().toISOString()),
+				description: '',
 			},
 			'cca-2': {
 				id: 2,
@@ -46,6 +47,7 @@ export default moduleFactory({
 				createdAt: utc(new Date().toISOString()),
 				updatedAt: utc(new Date().toISOString()),
 				resolvedAt: utc(new Date().toISOString()),
+				description: '',
 			}
 		}
 	},

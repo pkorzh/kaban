@@ -16,7 +16,7 @@
 			},
 			text: {
 				type: String,
-				required: true,
+				required: false,
 			},
 			shortkey: {
 				type: String,
