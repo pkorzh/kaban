@@ -15,6 +15,7 @@ import TopBar from './TopBar'
 
 import LiveEditTextarea from './LiveEdit/LiveEditTextarea'
 import LiveEditInput from './LiveEdit/LiveEditInput'
+import LiveEditSelect from './LiveEdit/LiveEditSelect'
 
 export {
 	ActionsNav,
@@ -34,4 +35,5 @@ export {
 
 	LiveEditTextarea,
 	LiveEditInput,
+	LiveEditSelect,
 }

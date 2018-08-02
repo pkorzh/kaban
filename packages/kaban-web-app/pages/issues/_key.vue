@@ -51,7 +51,7 @@
 									<li>
 										<h3>Type:</h3>
 										<div>
-											<LiveEditInput :content="ticket.type.name" />
+											<LiveEditSelect :content="ticket.type.name" />
 										</div>
 									</li>
 									<li>
