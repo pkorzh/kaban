@@ -20,6 +20,7 @@
 			<div class="card-col">
 				<div class="card-check">
 					<img
+						style="min-width: 20px"
 						:src="ticket.type.iconUrl"
 						:title="ticket.type.name">
 				</div>

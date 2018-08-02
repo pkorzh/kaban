@@ -17,7 +17,7 @@ export default moduleFactory({
 				},
 				type: {
 					name: 'Story',
-					iconUrl: 'https://elasticmedia.atlassian.net/secure/viewavatar?size=xsmall&avatarId=10318&avatarType=issuetype',
+					iconUrl: '/tickettypes/story.svg',
 				},
 				tags: [
 					{
@@ -40,7 +40,7 @@ export default moduleFactory({
 				},
 				type: {
 					name: 'Story',
-					iconUrl: 'https://elasticmedia.atlassian.net/secure/viewavatar?size=xsmall&avatarId=10318&avatarType=issuetype',
+					iconUrl: '/tickettypes/story.svg',
 				},
 				createdAt: new Date().toISOString(),
 				updatedAt: new Date().toISOString(),

@@ -25,6 +25,28 @@ const mapStatus = ({name}) => {
 	return { key }
 };
 
+const mapIssuetype = ({name}) => {
+	let iconUrl = ''
+
+	switch(name) {
+		case 'Task':
+			iconUrl = '/tickettypes/task.svg'
+			break
+		case 'Story':
+		case 'Improvement':
+			iconUrl = '/tickettypes/story.svg'
+			break
+		case 'Bug':
+			iconUrl = '/tickettypes/bug.svg'
+			break
+	}
+
+	return {
+		name,
+		iconUrl,
+	}
+};
+
 request.get({
 	url: `${host}/rest/api/2/search`,
 	json: true,
@@ -44,10 +66,7 @@ request.get({
 		backlog: {
 			key: 'create-aws-api'
 		},
-		type: {
-			name: issue.fields.issuetype.name,
-			iconUrl: issue.fields.issuetype.iconUrl,
-		},
+		type: mapIssuetype(issue.fields.issuetype),
 		createdAt: new Date().toISOString(),
 		updatedAt: new Date().toISOString(),
 		resolvedAt: new Date().toISOString(),
