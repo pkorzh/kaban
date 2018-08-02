@@ -2,7 +2,9 @@
 	<button
 		class="btn btn-light ml-3"
 		v-shortkey.once="[this.shortkey]"
-		@shortkey="handleAction()">Add</button>
+		@shortkey="handleAction()">
+			<font-awesome-icon v-if="icon" :icon="icon" />
+			{{ text }}</button>
 </template>
 
 <script>
@@ -19,6 +21,10 @@
 			shortkey: {
 				type: String,
 				required: true,
+			},
+			icon: {
+				type: String,
+				required: false
 			}
 		},
 		methods: {

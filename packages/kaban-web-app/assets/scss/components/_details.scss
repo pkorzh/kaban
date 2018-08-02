@@ -1,0 +1,31 @@
+.details {
+  border-top: 1px solid $gray-300;
+  padding: 15px 0 0;
+  &-section {
+    margin-bottom: 30px;
+    &-divider {
+      border-bottom: 1px dashed $gray-200;
+    }
+  }
+  &-options {
+    padding: 0;
+    margin: 0 0 20px;
+    list-style: none;
+    li {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0 0 13px;
+    }
+    h3 {
+      width: 140px;
+      flex-shrink: 0;
+      align-self: center;
+    }
+  }
+  h3 {
+    color: $gray-700;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0;
+  }
+} 

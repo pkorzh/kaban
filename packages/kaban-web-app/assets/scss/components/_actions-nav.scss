@@ -2,6 +2,12 @@
   display: flex;
   align-items: center;
   font-size: 15px;
+  &-separator {
+    height: 27px;
+    width: 1px;
+    background: $gray-200;
+    margin-left: 1rem;
+  }
   &-link {
     color: $body-color;
     &::after {
