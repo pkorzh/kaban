@@ -1,17 +1,28 @@
 <template>
 	<b-dropdown text="Assigned" class="ml-3">
-		<b-dropdown-item>First Action</b-dropdown-item>
-		<b-dropdown-item>Second Action</b-dropdown-item>
-		<b-dropdown-item>Third Action</b-dropdown-item>
-		<b-dropdown-divider></b-dropdown-divider>
-		<b-dropdown-item>Something else here...</b-dropdown-item>
-		<b-dropdown-item disabled>Disabled action</b-dropdown-item>
+		<form action="#" class="form-search">
+			<fieldset>
+				<input type="text" placeholder="Find a user">
+				<button><font-awesome-icon icon="search" /></button>
+			</fieldset>
+		</form>
+
+		<b-dropdown-item v-for="user in userList" :key="user.key">
+			{{ user.name }}
+		</b-dropdown-item>
 	</b-dropdown>
 </template>
 
 <script>
+	import { mapGetters } from 'vuex';
+
 	export default {
 		methods: {
+		},
+		computed: {
+			...mapGetters('users', {
+				userList: 'getList'
+			})
 		}
 	}
 </script>
