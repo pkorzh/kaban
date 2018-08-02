@@ -34,8 +34,7 @@
 					<img
 						v-if="ticket.assignee"
 						:title="ticket.assignee.name"
-						:src="ticket.assignee.avatar"
-						style="width: 20px">
+						:src="ticket.assignee.avatar">
 				</div>
 			</div>
 		</div>

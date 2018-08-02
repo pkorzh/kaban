@@ -24,4 +24,25 @@
       margin: 0 0 15px;
     }
   }
+
+  &-edit {
+    display: flex;
+    select {
+      min-width: 70px;
+      background: none;
+      border: 1px solid $gray-300;
+    }
+  }
+  &-input,
+  &-textarea {
+    border-radius: 6px;
+    font-size: 17px;
+    height: 37px;
+    display: block;
+    padding: 5px 10px;
+    border: 1px solid $gray-300;
+  }
+  &-textarea {
+    height: auto;
+  }
 }

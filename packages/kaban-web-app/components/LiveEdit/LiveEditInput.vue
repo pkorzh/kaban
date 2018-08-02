@@ -1,8 +1,14 @@
 <template>
-	<div>
+	<div class="form-edit">
 		<template v-if="editable">
-			<input type="text" v-model="editableContent" />
-			<button @click="doneEditing">Done Editing</button>
+			<input
+				class="form-input"
+				type="text"
+				v-model="editableContent" />
+			<button 
+				class="btn btn-light"
+				@click="doneEditing">
+				Done Editing</button>
 		</template>
 
 		<template v-else>

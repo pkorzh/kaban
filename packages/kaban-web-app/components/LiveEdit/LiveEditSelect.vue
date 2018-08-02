@@ -1,10 +1,13 @@
 <template>
-	<div>
+	<div class="form-edit">
 		<template v-if="editable">
 			<select>
 				<option>A</option>
 			</select>
-			<button @click="doneEditing">Done Editing</button>
+			<button 
+				class="btn btn-light"
+				@click="doneEditing">
+				Done Editing</button>
 		</template>
 
 		<template v-else>
