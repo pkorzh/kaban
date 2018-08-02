@@ -30,7 +30,13 @@
 					<font-awesome-icon icon="paperclip" />
 					10
 				</span>
-				<div class="card-image"></div>
+				<div class="card-image">
+					<img
+						v-if="ticket.assignee"
+						:title="ticket.assignee.name"
+						:src="ticket.assignee.avatar"
+						style="width: 20px">
+				</div>
 			</div>
 		</div>
 	</div>

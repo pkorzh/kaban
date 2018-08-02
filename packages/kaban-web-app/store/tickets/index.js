@@ -29,6 +29,14 @@ export default moduleFactory({
 				updatedAt: utc(new Date().toISOString()),
 				resolvedAt: utc(new Date().toISOString()),
 				description: '',
+				assignee: {
+					id: 1,
+					key: 'platon.korzh',
+					name: 'Platon Korzh',
+					email: 'platon@korzh.io',
+					avatar: 'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png',
+					active: true,
+				},
 			},
 			'cca-2': {
 				id: 2,
@@ -48,6 +56,14 @@ export default moduleFactory({
 				updatedAt: utc(new Date().toISOString()),
 				resolvedAt: utc(new Date().toISOString()),
 				description: '',
+				assignee: {
+					id: 1,
+					key: 'platon.korzh',
+					name: 'Platon Korzh',
+					email: 'platon@korzh.io',
+					avatar: 'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png',
+					active: true,
+				},
 			}
 		}
 	},
