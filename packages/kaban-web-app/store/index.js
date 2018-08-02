@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import { utc } from 'moment'
+
 import backlogs from './backlogs'
 import boards from './boards'
 import tickets from './tickets'
@@ -15,7 +17,15 @@ const store = () => new Vuex.Store({
 	},
 	actions: {
 		nuxtServerInit({commit}) {
-			const issues = require('../../kaban-importer-jira/issues.json')
+			let issues = require('../../kaban-importer-jira/issues.json').map(issue => {
+				return {
+					...issue,
+					createdAt: utc(issue.createdAt),
+					updatedAt: utc(issue.updatedAt),
+					resolvedAt: utc(issue.resolvedAt),
+				}
+			})
+
 			commit('tickets/CREATE_MULTIPLE', issues)
 		}
 	}

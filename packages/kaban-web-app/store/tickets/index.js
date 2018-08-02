@@ -1,4 +1,5 @@
 import Vue from 'Vue'
+import { utc } from 'moment'
 
 import moduleFactory from '../module-factory'
 
@@ -24,9 +25,9 @@ export default moduleFactory({
 						name: 'P8'
 					}
 				],
-				createdAt: new Date().toISOString(),
-				updatedAt: new Date().toISOString(),
-				resolvedAt: new Date().toISOString(),
+				createdAt: utc(new Date().toISOString()),
+				updatedAt: utc(new Date().toISOString()),
+				resolvedAt: utc(new Date().toISOString()),
 			},
 			'cca-2': {
 				id: 2,
@@ -42,9 +43,9 @@ export default moduleFactory({
 					name: 'Story',
 					iconUrl: '/tickettypes/story.svg',
 				},
-				createdAt: new Date().toISOString(),
-				updatedAt: new Date().toISOString(),
-				resolvedAt: new Date().toISOString(),
+				createdAt: utc(new Date().toISOString()),
+				updatedAt: utc(new Date().toISOString()),
+				resolvedAt: utc(new Date().toISOString()),
 			}
 		}
 	},

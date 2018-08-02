@@ -29,13 +29,21 @@
 		</div>
 		<div class="ticket-line-block">Block</div>
 		<div class="ticket-line-status">
-			{{ ticket.status.name }}
+			{{ ticket.status.key }}
 		</div>
 		<div class="ticket-line-resolution">Unresolved</div>
-		<div class="ticket-line-date">19/07/2018</div>
-		<div class="ticket-line-date">19/07/2018</div>
-		<div class="ticket-line-date">19/07/2018</div>
-		<div class="ticket-line-action"><a href="#"><font-awesome-icon icon="ellipsis-h" /></a></div>
+		<div class="ticket-line-date">
+			{{ ticket.createdAt | moment('L') }}
+		</div>
+		<div class="ticket-line-date">
+			{{ ticket.updatedAt | moment('L') }}
+		</div>
+		<div class="ticket-line-date">
+			{{ ticket.resolvedAt | moment('L') }}
+		</div>
+		<div class="ticket-line-action">
+			<a href="#"><font-awesome-icon icon="ellipsis-h" /></a>
+		</div>
 	</div>
 </template>
 

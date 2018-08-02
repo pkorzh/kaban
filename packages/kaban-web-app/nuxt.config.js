@@ -40,6 +40,7 @@ module.exports = {
 		'~/plugins/kaban-event-bus.js',
 		'~/plugins/kaban-components',
 		{ src: '~/plugins/kaban-actions', ssr: false },
+		'~/plugins/vue-moment',
 	],
 
 	/*
