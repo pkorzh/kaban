@@ -97,7 +97,7 @@
 					<div class="details-section">
 						<h3>Description:</h3>
 
-						{{ ticket.description }}
+						<LiveEditTextarea :content="ticket.description" />
 					</div>
 					<div class="details-section">
 						<h3>Attachments:</h3>

@@ -13,6 +13,8 @@ import TicketsTable from './TicketsTable'
 import TicketsTableTicket from './TicketsTableTicket'
 import TopBar from './TopBar'
 
+import LiveEditTextarea from './LiveEdit/LiveEditTextarea'
+
 export {
 	ActionsNav,
 	ActionsNavAssigned,
@@ -28,4 +30,6 @@ export {
 	TicketsTable,
 	TicketsTableTicket,
 	TopBar,
+
+	LiveEditTextarea,
 }
