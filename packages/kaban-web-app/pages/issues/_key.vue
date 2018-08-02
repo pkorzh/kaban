@@ -2,7 +2,7 @@
 	<b-container fluid>
 		<TopBar>
 			<template slot="header">
-				{{ ticket.name }}
+				<LiveEditInput :content="ticket.name" />
 			</template>
 
 			<ActionsNav>
@@ -51,7 +51,7 @@
 									<li>
 										<h3>Type:</h3>
 										<div>
-											{{ ticket.type.name }}
+											<LiveEditInput :content="ticket.type.name" />
 										</div>
 									</li>
 									<li>
