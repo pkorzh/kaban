@@ -8,6 +8,7 @@
 		</form>
 
 		<b-dropdown-item v-for="user in userList" :key="user.key">
+			<img :src="user.avatar" style="width: 20px">
 			{{ user.name }}
 		</b-dropdown-item>
 	</b-dropdown>
