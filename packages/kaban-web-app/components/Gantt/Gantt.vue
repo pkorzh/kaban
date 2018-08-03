@@ -4,35 +4,40 @@
 			<button
 				type="button"
 				class="btn btn-sm btn-light"
-				@click="setGanttView('Quarter Day')">
+				:class="{'active': activeGanttViewMode == 'Quarter Day'}"
+				@click="setGanttViewMode('Quarter Day')">
 				Quarter Day
 			</button>
 
 			<button
 				type="button"
 				class="btn btn-sm btn-light"
-				@click="setGanttView('Day')">
+				:class="{'active': activeGanttViewMode == 'Day'}"
+				@click="setGanttViewMode('Day')">
 				Day
 			</button>
 
 			<button
 				type="button"
 				class="btn btn-sm btn-light"
-				@click="setGanttView('Half Day')">
+				:class="{'active': activeGanttViewMode == 'Half Day'}"
+				@click="setGanttViewMode('Half Day')">
 				Half Day
 			</button>
 
 			<button
 				type="button"
 				class="btn btn-sm btn-light"
-				@click="setGanttView('Week')">
+				:class="{'active': activeGanttViewMode == 'Week'}"
+				@click="setGanttViewMode('Week')">
 				Week
 			</button>
 
 			<button
 				type="button"
 				class="btn btn-sm btn-light"
-				@click="setGanttView('Month')">
+				:class="{'active': activeGanttViewMode == 'Month'}"
+				@click="setGanttViewMode('Month')">
 				Month
 			</button>
 		</div>
@@ -51,6 +56,11 @@
 				required: true,
 			}
 		},
+		data() {
+			return {
+				activeGanttViewMode: 'Day',
+			}
+		},
 		mounted() {
 			this.gantt = new Gantt(this.$el.querySelector('.gantt'), this.tasks, {
 			    header_height: 50,
@@ -61,14 +71,15 @@
 			    bar_corner_radius: 3,
 			    arrow_curve: 5,
 			    padding: 18,
-			    view_mode: 'Day',
+			    view_mode: this.activeGanttViewMode,
 			    date_format: 'YYYY-MM-DD',
 			    custom_popup_html: null
 			});
 		},
 		methods: {
-			setGanttView(view_mode) {
-				this.gantt.change_view_mode(view_mode)
+			setGanttViewMode(viewMode) {
+				this.gantt.change_view_mode(viewMode)
+				this.activeGanttViewMode = viewMode
 			}
 		}
 	}
