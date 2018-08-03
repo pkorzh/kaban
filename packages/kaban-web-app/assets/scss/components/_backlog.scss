@@ -8,6 +8,9 @@
     overflow: auto;
     //display: flex;
   }
+  &-gantt {
+    border: 0;
+  }
 }
 
 .backlog-table {

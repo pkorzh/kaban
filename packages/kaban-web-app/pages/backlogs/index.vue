@@ -12,8 +12,8 @@
 
 		</TopBar>
 
-		<div class="backlog">
-			<div class="backlog-holder" v-if="tableView">
+		<div class="backlog" v-if="tableView">
+			<div class="backlog-holder">
 				<div class="backlog-table">
 					<div class="backlog-table-line backlog-table-line-head">
 						<div class="backlog-table-line-name">Task Name</div>
@@ -42,16 +42,13 @@
 					</div>
 				</div>
 			</div>
-			<!-- <div class="backlog-column">
-				<div id="gantt"></div>
-			</div> -->
-			
-			<div class="backlog-holder" v-if="!tableView">
+		</div>
+
+		<div class="backlog backlog-gantt" v-if="!tableView">
+			<div class="backlog-holder">
 				<Gantt :tasks="tasks" />
 			</div>
 		</div>
-
-		
 	</b-container>
 </template>
 
