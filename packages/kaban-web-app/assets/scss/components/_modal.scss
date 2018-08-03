@@ -1,0 +1,56 @@
+.modal-box {
+  &-holder {
+    padding: 20px 15px;
+  }
+  &-header {
+    position: relative;
+    padding-bottom: 10px;
+    padding-right: 40px;
+    h1 {
+      text-transform: uppercase;
+      font-size: 25px;
+      a {
+        color: $body-color;
+      }
+    }
+  }
+  &-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: 0;
+    background: none;
+    width: 30px;
+    height: 30px;
+    line-height: 0;
+    font-size: 0;
+    cursor: pointer;
+    &::before,
+    &::after {
+      position: absolute;
+      top: 4px;
+      bottom: 4px;
+      left: 50%;
+      content: '';
+      width: 1px;
+      background: $gray-700;
+      transform: translateX(-50%) rotate(45deg);
+    }
+    &::after {
+      transform: translateX(-50%) rotate(-45deg);
+    }
+    &:hover {
+      opacity: .7;
+    }
+  }
+  &-footer {
+    text-align: right;
+    .btn {
+      text-transform: uppercase;
+      margin-left: 15px;
+    }
+  }
+}
+.v--modal-overlay .v--modal-box {
+  overflow:auto;
+}

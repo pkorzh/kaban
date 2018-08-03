@@ -11,7 +11,9 @@ export default ({app, store}, {payload, sender}) => {
 		{
 			//modal params
 			//https://www.npmjs.com/package/vue-js-modal
-			width: '75%'
+			scrollable: true,
+			width: '75%',
+			height: '90%'
 		}, {
 			//events
 		}
