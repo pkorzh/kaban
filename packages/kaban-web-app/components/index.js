@@ -17,6 +17,8 @@ import LiveEditTextarea from './LiveEdit/LiveEditTextarea'
 import LiveEditInput from './LiveEdit/LiveEditInput'
 import LiveEditSelect from './LiveEdit/LiveEditSelect'
 
+import Gantt from './Gantt/Gantt'
+
 export {
 	ActionsNav,
 	ActionsNavAssigned,
@@ -36,4 +38,6 @@ export {
 	LiveEditTextarea,
 	LiveEditInput,
 	LiveEditSelect,
+
+	Gantt,
 }
