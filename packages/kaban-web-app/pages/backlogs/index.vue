@@ -7,13 +7,13 @@
 
 			<ActionsNav>
 				<ActionsNavSimpleSearch />
+				<ActionsNavBoardViewSwitcher v-model="tableView" />
 			</ActionsNav>
 
-			<ActionsNavBoardViewSwitcher v-model="tableView" />
 		</TopBar>
 
-		<div class="backlog" v-if="tableView">
-			<div class="backlog-column">
+		<div class="backlog">
+			<div class="backlog-holder" v-if="tableView">
 				<div class="backlog-table">
 					<div class="backlog-table-line backlog-table-line-head">
 						<div class="backlog-table-line-name">Task Name</div>
@@ -42,12 +42,16 @@
 					</div>
 				</div>
 			</div>
-			<div class="backlog-column">
+			<!-- <div class="backlog-column">
 				<div id="gantt"></div>
+			</div> -->
+			
+			<div class="backlog-holder" v-if="!tableView">
+				<Gantt :tasks="tasks" />
 			</div>
 		</div>
 
-		<Gantt v-if="!tableView" :tasks="tasks" />
+		
 	</b-container>
 </template>
 

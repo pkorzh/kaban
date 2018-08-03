@@ -3,14 +3,10 @@
   border-radius: 6px;
   width: 100%;
   display: flex;
-  &-column {
-    flex: 1 1 auto;
+  &-holder {
+    width: 100%;
     overflow: auto;
-    width: 50%;
-    display: flex;
-    &:not(:last-child) {
-      border-right: 1px solid $gray-300;
-    }
+    //display: flex;
   }
 }
 
