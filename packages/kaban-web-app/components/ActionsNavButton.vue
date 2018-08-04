@@ -2,7 +2,8 @@
 	<button
 		class="btn btn-light ml-3"
 		v-shortkey.once="[this.shortkey]"
-		@shortkey="handleAction()">
+		@shortkey="handleAction()"
+		@click="handleAction()">
 			<font-awesome-icon v-if="icon" :icon="icon" />
 			{{ text }}</button>
 </template>

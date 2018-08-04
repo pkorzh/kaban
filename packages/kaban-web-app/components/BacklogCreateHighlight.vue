@@ -3,7 +3,7 @@
 		<div class="modal-box-header">
 			<TopBar>
 				<template slot="header">
-					Create ticket
+					Create Backlog
 				</template>
 			</TopBar>
 
@@ -15,21 +15,13 @@
 			<form>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label">
-						Ticket Summary
+						Backlog name
 					</label>
 					<div class="col-sm-10">
 						<input
 							type="text"
 							class="form-control"
-							placeholder="Summary">
-					</div>
-				</div>
-				<div class="form-group row">
-					<label class="col-sm-2 col-form-label">
-						Description
-					</label>
-					<div class="col-sm-10">
-						<textarea class="form-control"></textarea>
+							placeholder="Name">
 					</div>
 				</div>
 			</form>
