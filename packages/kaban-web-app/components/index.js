@@ -19,6 +19,16 @@ import LiveEditSelect from './LiveEdit/LiveEditSelect'
 
 import Gantt from './Gantt/Gantt'
 
+import TicketDetailsSlimStatus from './TicketDetailsSlimStatus'
+import TicketDetailsSlimEstimations from './TicketDetailsSlimEstimations'
+import TicketDetailsSlimAssign from './TicketDetailsSlimAssign'
+import TicketDetailsSlimDates from './TicketDetailsSlimDates'
+import TicketDetailsSlimVersion from './TicketDetailsSlimVersion'
+import TicketDetailsSlimComments from './TicketDetailsSlimComments'
+import TicketDetailsSlimHistory from './TicketDetailsSlimHistory'
+import TicketDetailsSlimDropbox from './TicketDetailsSlimDropbox'
+import TicketDetailsSlimAttachments from './TicketDetailsSlimAttachments'
+
 export {
 	ActionsNav,
 	ActionsNavAssigned,
@@ -40,4 +50,14 @@ export {
 	LiveEditSelect,
 
 	Gantt,
+
+	TicketDetailsSlimStatus,
+	TicketDetailsSlimEstimations,
+	TicketDetailsSlimAssign,
+	TicketDetailsSlimDates,
+	TicketDetailsSlimVersion,
+	TicketDetailsSlimComments,
+	TicketDetailsSlimHistory,
+	TicketDetailsSlimDropbox,
+	TicketDetailsSlimAttachments,
 }
