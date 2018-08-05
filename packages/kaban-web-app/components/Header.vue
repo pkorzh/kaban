@@ -72,6 +72,13 @@
 										</li>
 									</ul>
 								</li>
+								<li>
+									<strong class="dropdown-menu-title">
+										<nuxt-link to="/">Import</nuxt-link>
+									</strong>
+									<ul>
+									</ul>
+								</li>
 							</ol>
 						</div>
 					</b-nav-item-dropdown>
