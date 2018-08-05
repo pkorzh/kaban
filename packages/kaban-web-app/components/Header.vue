@@ -4,7 +4,10 @@
 			<b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
 			<b-navbar-brand to="/">
-				<img src="../assets/images/logo.png" alt="Kaban">
+				<img
+					src="../assets/images/kaban-logo.svg"
+					width="150px"
+					alt="Kaban">
 			</b-navbar-brand>
 
 			<b-collapse is-nav id="nav_collapse">
@@ -13,7 +16,10 @@
 
 					<b-nav-item-dropdown text="Menu" ref="menuDropDown">
 
-						<form action="#" class="form-search">
+						<form
+							action="#"
+							class="form-search"
+							v-if="false">
 							<fieldset>
 								<input type="text" placeholder="Find a service by name or feature">
 								<button><font-awesome-icon icon="search" /></button>
@@ -43,6 +49,26 @@
 											<nuxt-link :to="{name: 'backlogs-key', params: {key: backlog.key}}">
 												{{ backlog.name }}
 											</nuxt-link>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<strong class="dropdown-menu-title">
+										<nuxt-link to="/">Filters</nuxt-link>
+									</strong>
+									<ul>
+									</ul>
+								</li>
+								<li>
+									<strong class="dropdown-menu-title">
+										<nuxt-link to="/">Users</nuxt-link>
+									</strong>
+									<ul>
+										<li>
+											<nuxt-link to="/">Manage Users</nuxt-link>
+										</li>
+										<li>
+											<nuxt-link to="/">Invite team members</nuxt-link>
 										</li>
 									</ul>
 								</li>

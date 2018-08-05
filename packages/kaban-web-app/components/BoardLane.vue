@@ -2,7 +2,11 @@
 	<div class="board-column">
 		<div class="board-column-header">
 			<h3>{{ title }} ({{itemCount}})</h3>
-			<a href="#" class="board-column-actions"><font-awesome-icon icon="ellipsis-h" /></a>
+			<a
+				href="#"
+				class="board-column-actions">
+					<font-awesome-icon icon="cog" size="xs" />
+			</a>
 		</div>
 		<div class="board-column-body">
 
