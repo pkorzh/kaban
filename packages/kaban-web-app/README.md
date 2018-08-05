@@ -12,7 +12,6 @@ $ yarn install
 $ yarn run dev
 
 # build for production and launch server
-$ yarn run build
 $ yarn start
 
 # generate static project
