@@ -44,6 +44,7 @@ module.exports = {
 		{ src: '~/plugins/kaban-actions', ssr: false },
 		'~/plugins/vue-moment',
 		'~/plugins/axios-interceptors.js',
+		'~/plugins/vue-textarea-autosize',
 	],
 
 	/*

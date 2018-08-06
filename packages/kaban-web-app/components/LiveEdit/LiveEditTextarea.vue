@@ -1,10 +1,10 @@
 <template>
 	<div class="form-edit">
 		<template v-if="editable">
-			<textarea
+			<textarea-autosize
 				class="form-textarea"
-				v-model="editableContent"></textarea>
-			<button 
+				v-model="editableContent"></textarea-autosize>
+			<button
 				class="btn btn-light"
 				@click="doneEditing">
 				Done Editing</button>
