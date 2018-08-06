@@ -1,9 +1,10 @@
-import ActionsNav from './ActionsNav'
-import ActionsNavAssigned from './ActionsNavAssigned'
-import ActionsNavBoardViewSwitcher from './ActionsNavBoardViewSwitcher'
-import ActionsNavQuickFilters from './ActionsNavQuickFilters'
-import ActionsNavSimpleSearch from './ActionsNavSimpleSearch'
-import ActionsNavButton from './ActionsNavButton'
+import ActionsNav from './ActionsNav/ActionsNav'
+import ActionsNavAssigned from './ActionsNav/ActionsNavAssigned'
+import ActionsNavBoardViewSwitcher from './ActionsNav/ActionsNavBoardViewSwitcher'
+import ActionsNavQuickFilters from './ActionsNav/ActionsNavQuickFilters'
+import ActionsNavSimpleSearch from './ActionsNav/ActionsNavSimpleSearch'
+import ActionsNavButton from './ActionsNav/ActionsNavButton'
+
 import Board from './Board'
 import BoardLane from './BoardLane'
 import BoardLaneTicket from './BoardLaneTicket'
@@ -36,6 +37,7 @@ export {
 	ActionsNavQuickFilters,
 	ActionsNavSimpleSearch,
 	ActionsNavButton,
+
 	Board,
 	BoardLane,
 	BoardLaneTicket,

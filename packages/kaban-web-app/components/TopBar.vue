@@ -10,7 +10,7 @@
 </template>
 
 <script>
-	import ActionsNav from './ActionsNav';
+	import ActionsNav from './ActionsNav/ActionsNav';
 	import { mapGetters } from 'vuex';
 
 	export default {
