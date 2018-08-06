@@ -6,13 +6,14 @@
 			</template>
 
 			<ActionsNav>
+				<ActionsNavAssigned />
+				<ActionsNavQuickFilters />
+
 				<ActionsNavButton
 					text="Add"
 					action="CreateTicketAction"
 					shortkey="c" />
 
-				<ActionsNavAssigned />
-				<ActionsNavQuickFilters />
 				<ActionsNavSimpleSearch />
 			</ActionsNav>
 		</TopBar>
@@ -25,13 +26,20 @@
 	import { mapGetters, mapActions } from 'vuex';
 
 	export default {
+		async fetch({store, params}) {
+			await store.dispatch('backlogs/fetchOne', params.key)
+
+			await store.dispatch('tickets/fetchList', {
+				backlog: params.key
+			})
+		},
 		computed: {
 			...mapGetters('backlogs', {
 				getBacklog: 'getOne'
 			}),
 
 			...mapGetters('tickets', {
-				queryTicket: 'query'
+				queryTicket: 'queryList'
 			}),
 
 			backlog() {

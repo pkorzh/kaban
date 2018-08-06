@@ -1,6 +1,6 @@
 import moduleFactory from '../module-factory'
 
-export default moduleFactory({
+export default moduleFactory('users', {
 	state: {
 		entities: {
 			'platon.korzh': {

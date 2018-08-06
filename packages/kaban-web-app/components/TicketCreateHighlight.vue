@@ -12,16 +12,16 @@
 				@click="$emit('close')">Close</button>
 		</div>
 		<div class="details">
-			<form>
+			<b-form>
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label">
-						Ticket Summary
+						Summary
 					</label>
 					<div class="col-sm-10">
 						<input
 							type="text"
 							class="form-control"
-							placeholder="Summary">
+							placeholder="Ticket Summary">
 					</div>
 				</div>
 				<div class="form-group row">
@@ -29,22 +29,37 @@
 						Description
 					</label>
 					<div class="col-sm-10">
-						<textarea class="form-control"></textarea>
+						<textarea
+							class="form-control"
+							placeholder="Ticket Description"></textarea>
 					</div>
 				</div>
-			</form>
+			</b-form>
 		</div>
 		<div class="modal-box-footer">
 			<button
 				class="btn btn-outline-danger"
 				@click="$emit('close')">Close</button>
-			<button class="btn btn-primary">Add</button>
+			<button
+				type="submit"
+				form="TicketCreateHighlightForm"
+				class="btn btn-primary">Add</button>
 		</div>
 	</div>
 </template>
 
 <script>
+	import { mapActions } from 'vuex';
+
 	export default {
+		methods: {
+			...mapActions('tickets', {
+				createTicket: 'create'
+			}),
+
+			create() {
+			}
+		}
 	}
 </script>
 

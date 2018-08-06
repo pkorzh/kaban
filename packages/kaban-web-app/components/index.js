@@ -19,15 +19,15 @@ import LiveEditSelect from './LiveEdit/LiveEditSelect'
 
 import Gantt from './Gantt/Gantt'
 
-import TicketDetailsSlimStatus from './TicketDetailsSlimStatus'
-import TicketDetailsSlimEstimations from './TicketDetailsSlimEstimations'
-import TicketDetailsSlimAssign from './TicketDetailsSlimAssign'
-import TicketDetailsSlimDates from './TicketDetailsSlimDates'
-import TicketDetailsSlimVersion from './TicketDetailsSlimVersion'
-import TicketDetailsSlimComments from './TicketDetailsSlimComments'
-import TicketDetailsSlimHistory from './TicketDetailsSlimHistory'
-import TicketDetailsSlimDropbox from './TicketDetailsSlimDropbox'
-import TicketDetailsSlimAttachments from './TicketDetailsSlimAttachments'
+import TicketDetailsSlimStatus from './TicketDetailsSlim/TicketDetailsSlimStatus'
+import TicketDetailsSlimEstimations from './TicketDetailsSlim/TicketDetailsSlimEstimations'
+import TicketDetailsSlimAssign from './TicketDetailsSlim/TicketDetailsSlimAssign'
+import TicketDetailsSlimDates from './TicketDetailsSlim/TicketDetailsSlimDates'
+import TicketDetailsSlimVersion from './TicketDetailsSlim/TicketDetailsSlimVersion'
+import TicketDetailsSlimComments from './TicketDetailsSlim/TicketDetailsSlimComments'
+import TicketDetailsSlimHistory from './TicketDetailsSlim/TicketDetailsSlimHistory'
+import TicketDetailsSlimDropbox from './TicketDetailsSlim/TicketDetailsSlimDropbox'
+import TicketDetailsSlimAttachments from './TicketDetailsSlim/TicketDetailsSlimAttachments'
 
 export {
 	ActionsNav,

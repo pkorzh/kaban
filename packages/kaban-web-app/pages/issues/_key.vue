@@ -94,6 +94,9 @@
 	import { mapGetters } from 'vuex';
 
 	export default {
+		async fetch({store, params}) {
+			await store.dispatch('tickets/fetchOne', params.key)
+		},
 		computed: {
 			...mapGetters('tickets', {
 				getTicket: 'getOne'

@@ -1,3 +1,5 @@
+const bodyParser = require('body-parser')
+
 const pkg = require('./package')
 
 module.exports = {
@@ -41,6 +43,7 @@ module.exports = {
 		'~/plugins/kaban-components',
 		{ src: '~/plugins/kaban-actions', ssr: false },
 		'~/plugins/vue-moment',
+		'~/plugins/axios-interceptors.js',
 	],
 
 	/*
@@ -55,7 +58,7 @@ module.exports = {
 	** Axios module configuration
 	*/
 	axios: {
-		// See https://github.com/nuxt-community/axios-module#options
+		progress: true,
 	},
 
 	/*
@@ -79,6 +82,7 @@ module.exports = {
 	},
 
 	serverMiddleware: [
+		bodyParser.json(),
 		'~/api/index.js'
 	]
 }

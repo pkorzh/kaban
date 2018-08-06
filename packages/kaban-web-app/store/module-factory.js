@@ -1,9 +1,10 @@
 import Vue from 'Vue'
 
-export default ({state, getters, actions, mutations}) => {
+export default (resource, {state, getters, actions, mutations}) => {
 	const moduleState = () => (Object.assign({
-		entities: {}
-	}, state))
+		entities: {},
+
+	}))
 
 	const moduleGetters = Object.assign({
 		getList(state) {
@@ -12,7 +13,7 @@ export default ({state, getters, actions, mutations}) => {
 		getOne(state) {
 			return key => state.entities[key];
 		},
-		query(state) {
+		queryList(state) {
 			return predicate => moduleGetters
 				.getList(state)
 				.filter(predicate)
@@ -20,16 +21,44 @@ export default ({state, getters, actions, mutations}) => {
 	}, getters)
 
 	const moduleMutations = Object.assign({
-		CREATE(state, payload) {
+		STAGE(state, payload) {
 			Vue.set(state.entities, payload.key, payload)
 		},
-		CREATE_MULTIPLE(state, multiple) {
+		STAGE_MULTIPLE(state, multiple) {
 			multiple.forEach(payload =>
-				moduleMutations.CREATE(state, payload))
+				moduleMutations.STAGE(state, payload))
 		}
 	}, mutations)
 
 	const moduleActions = Object.assign({
+		async fetchList({commit}, query = {}) {
+			const rawList = await this.$axios.$get(
+				`/api/${resource}/`,
+				{
+					params: query
+				},
+			)
+
+			commit('STAGE_MULTIPLE', rawList)
+		},
+		async fetchOne({commit}, key) {
+			const rawEntity = await this.$axios.$get(`/api/${resource}/${key}/`)
+			commit('STAGE', rawEntity)
+		},
+		create({commit}, entity) {
+			return this.$axios.$post(`/api/${resource}/`, {
+				data: entity
+			}).then(({data}) => {
+				commit('STAGE', data)
+				return data
+			})
+		},
+		patch({commit}, entity) {
+
+		},
+		delete({commit}, entity) {
+
+		},
 	}, actions)
 
 	return {

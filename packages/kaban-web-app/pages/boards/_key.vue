@@ -39,13 +39,22 @@
 				boardView: true
 			}
 		},
+		async fetch({store, params}) {
+			await store.dispatch('boards/fetchOne', params.key)
+
+			const board = store.getters['boards/getOne'](params.key)
+
+			await store.dispatch('tickets/fetchList', {
+				backlog: board.backlog.key
+			})
+		},
 		computed: {
 			...mapGetters('boards', {
 				getBoard: 'getOne'
 			}),
 
 			...mapGetters('tickets', {
-				queryTicket: 'query',
+				queryTicket: 'queryList',
 			}),
 
 			board() {
