@@ -4,6 +4,10 @@
   align-items: center;
   margin-bottom: 15px;
   color: $gray-600;
+  &-title {
+    flex: 1 1 auto;
+    padding-right: 20px;
+  }
 
   h1 {
     font: 500 20px/1.2 $font-family-sans-serif;

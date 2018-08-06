@@ -1,6 +1,6 @@
 <template>
 	<div class="top-bar">
-		<div>
+		<div class="top-bar-title">
 			<h1>
 				<slot name="header"></slot>
 			</h1>
