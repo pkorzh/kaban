@@ -3,4 +3,15 @@
     background: $gray-200;
     color: $gray-700;
   }
+  &-details {
+    position: absolute;
+    right: 40px;
+    top: 0;
+    font-size: 20px;
+    transform: rotate(45deg);
+    color: $gray-700;
+    &:hover {
+      opacity: .7;
+    }
+  }
 }

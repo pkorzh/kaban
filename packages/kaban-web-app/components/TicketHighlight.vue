@@ -19,6 +19,10 @@
 				</template>
 			</TopBar>
 
+			<nuxt-link class="btn-details" :to="{name: 'issues-key', params: {key: ticket.key}}">
+				<font-awesome-icon icon="arrows-alt-v" />
+			</nuxt-link>
+
 			<button
 				class="modal-box-close"
 				@click="$emit('close')">Close</button>
