@@ -5,6 +5,16 @@
 				{{ backlog.name }}
 			</template>
 
+			<template slot="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<nuxt-link :to="{name: 'backlogs'}">
+							Backlogs
+						</nuxt-link>
+					</li>
+				</ol>
+			</template>
+
 			<ActionsNav>
 				<ActionsNavAssigned />
 				<ActionsNavQuickFilters />

@@ -1,10 +1,13 @@
 <template>
 	<div class="top-bar">
+		<slot name="breadcrumb"></slot>
+
 		<div class="top-bar-title">
 			<h1>
 				<slot name="header"></slot>
 			</h1>
 		</div>
+
 		<slot></slot>
 	</div>
 </template>
