@@ -6,13 +6,9 @@
 			</template>
 
 			<template slot="breadcrumb">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item">
-						<nuxt-link :to="{name: 'backlogs'}">
-							Backlogs
-						</nuxt-link>
-					</li>
-				</ol>
+				<b-breadcrumb>
+					<b-breadcrumb-item :to="{name: 'backlogs'}" text="Backlogs" />
+				</b-breadcrumb>
 			</template>
 
 			<ActionsNav>
