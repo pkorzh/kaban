@@ -3,7 +3,7 @@
 		<div class="modal-box-header">
 			<TopBar>
 				<template slot="header">
-					Create Backlog
+					Create Board
 				</template>
 			</TopBar>
 
@@ -12,13 +12,13 @@
 				@click="$emit('close')">Close</button>
 		</div>
 		<div class="details">
-			<b-form id="BacklogCreateHighlight" @submit.prevent="create">
+			<b-form id="BoardCreateHighlight" @submit.prevent="create">
 				<b-form-group label="Name">
 					<b-form-input
 						type="text"
 						v-model="name"
 						required
-						placeholder="Backlog Name"></b-form-input>
+						placeholder="Board Name"></b-form-input>
 				</b-form-group>
 			</b-form>
 		</div>
@@ -28,7 +28,7 @@
 				@click="$emit('close')">Close</button>
 			<button
 				type="submit"
-				form="BacklogCreateHighlight"
+				form="BoardCreateHighlight"
 				class="btn btn-primary">Add</button>
 		</div>
 	</div>
