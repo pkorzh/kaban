@@ -18,31 +18,31 @@
 
 		<div class="backlog" v-if="tableView">
 			<div class="backlog-holder">
-				<div class="backlog-table">
-					<div class="backlog-table-line backlog-table-line-head">
-						<div class="backlog-table-line-name">Task Name</div>
-						<div class="backlog-table-line-duration">Duration</div>
-						<div class="backlog-table-line-date">
+				<div class="table">
+					<div class="table-line table-line-head">
+						<div class="table-line-name">Task Name</div>
+						<div>Duration</div>
+						<div>
 							<a href="#" class="backlog-table-sort">Start</a>
 						</div>
-						<div class="backlog-table-line-date">
+						<div>
 							<a href="#" class="backlog-table-sort">Finish</a>
 						</div>
-						<div class="backlog-table-line-pred">Predecessors</div>
-						<div class="backlog-table-line-pred">Predecessors</div>
+						<div>Predecessors</div>
+						<div>Predecessors</div>
 					</div>
 
-					<div class="backlog-table-line" v-for="backlog in backlogList" :key="backlog.key">
-						<div class="backlog-table-line-name">
+					<div class="table-line" v-for="backlog in backlogList" :key="backlog.key">
+						<div class="table-line-name">
 							<nuxt-link :to="{name: 'backlogs-key', params: {key: backlog.key}}">
 								{{ backlog.name }}
 							</nuxt-link>
 						</div>
-						<div class="backlog-table-line-duration">1d</div>
-						<div class="backlog-table-line-date">06/07/18</div>
-						<div class="backlog-table-line-date">06/07/18</div>
-						<div class="backlog-table-line-pred">1</div>
-						<div class="backlog-table-line-pred">1</div>
+						<div>1d</div>
+						<div>06/07/18</div>
+						<div>06/07/18</div>
+						<div>1</div>
+						<div>1</div>
 					</div>
 				</div>
 			</div>
