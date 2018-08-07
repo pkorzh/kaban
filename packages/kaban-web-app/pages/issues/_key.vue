@@ -5,6 +5,19 @@
 				<LiveEditInput :content="ticket.name" />
 			</template>
 
+			<template slot="breadcrumb">
+				<b-breadcrumb>
+					<b-breadcrumb-item
+						:to="{name: 'backlogs-key', params: {key: backlog.key}}"
+						:text="backlog.name" />
+
+					<b-breadcrumb-item
+						:to="{name: 'issues-key', params: {key: ticket.key}}"
+						:text="ticket.key"
+						active />
+				</b-breadcrumb>
+			</template>
+
 			<ActionsNav>
 
 				<ActionsNavButton
@@ -96,15 +109,27 @@
 	export default {
 		async fetch({store, params}) {
 			await store.dispatch('tickets/fetchOne', params.key)
+
+			const ticket = store.getters['tickets/getOne'](params.key)
+
+			await store.dispatch('backlogs/fetchOne', ticket.backlog.key)
 		},
 		computed: {
 			...mapGetters('tickets', {
 				getTicket: 'getOne'
 			}),
 
+			...mapGetters('backlogs', {
+				getBacklog: 'getOne'
+			}),
+
 			ticket() {
 				return this.getTicket(this.$route.params.key)
 			},
+
+			backlog() {
+				return this.getBacklog(this.ticket.backlog.key)
+			}
 		}
 	}
 </script>

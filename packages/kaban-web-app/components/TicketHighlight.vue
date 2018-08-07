@@ -5,6 +5,18 @@
 				<template slot="header">
 					<LiveEditInput :content="ticket.name" />
 				</template>
+
+				<template slot="breadcrumb">
+					<b-breadcrumb>
+						<b-breadcrumb-item
+							:to="{name: 'backlogs-key', params: {key: backlog.key}}"
+							:text="backlog.name" />
+
+						<b-breadcrumb-item
+							:to="{name: 'issues-key', params: {key: ticket.key}}"
+							:text="ticket.key" />
+					</b-breadcrumb>
+				</template>
 			</TopBar>
 
 			<button
@@ -102,6 +114,10 @@
 		mixins: [TicketBaseMixin],
 		props: {
 			ticket: {
+				type: Object,
+				required: true,
+			},
+			backlog: {
 				type: Object,
 				required: true,
 			}

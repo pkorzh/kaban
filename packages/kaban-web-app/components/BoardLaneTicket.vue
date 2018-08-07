@@ -7,7 +7,7 @@
 			<a
 				:href="ticketUrl(ticket)"
 				class="card-link"
-				v-on:click.prevent.stop="highlight(ticket)">
+				v-on:click.prevent.stop="highlight(ticket, backlog)">
 				{{ ticket.name }}
 			</a>
 		</h3>
@@ -42,6 +42,7 @@
 </template>
 
 <script>
+	import { mapGetters } from 'vuex'
 	import {TicketBaseMixin} from '@/mixins'
 
 	export default {
@@ -52,7 +53,14 @@
 				required: true,
 			}
 		},
-		methods: {
+		computed: {
+			...mapGetters('backlogs', {
+				getBacklog: 'getOne'
+			}),
+
+			backlog() {
+				return this.getBacklog(this.ticket.backlog.key)
+			}
 		}
 	};
 </script>

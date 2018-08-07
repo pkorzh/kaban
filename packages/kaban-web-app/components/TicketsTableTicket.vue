@@ -12,7 +12,7 @@
 			<span>
 				<a
 					:href="ticketUrl(ticket)"
-					@click.prevent.stop="highlight(ticket)">
+					@click.prevent.stop="highlight(ticket, backlog)">
 					{{ ticket.name }}
 				</a>
 			</span>
@@ -48,6 +48,7 @@
 </template>
 
 <script>
+	import { mapGetters } from 'vuex'
 	import {TicketBaseMixin} from '@/mixins'
 
 	export default {
@@ -58,7 +59,14 @@
 				required: true,
 			},
 		},
-		methods: {
+		computed: {
+			...mapGetters('backlogs', {
+				getBacklog: 'getOne'
+			}),
+
+			backlog() {
+				return this.getBacklog(this.ticket.backlog.key)
+			}
 		}
 	}
 </script>

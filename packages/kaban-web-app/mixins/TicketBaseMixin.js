@@ -1,8 +1,8 @@
 export default {
 	methods: {
-		highlight(ticket) {
+		highlight(ticket, backlog) {
 			this.$kaban.dispatch('HighlightTicketAction', {
-				payload: ticket,
+				payload: {ticket, backlog},
 				sender: this,
 			})
 		},
