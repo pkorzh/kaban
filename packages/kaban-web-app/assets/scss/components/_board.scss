@@ -18,9 +18,6 @@
           text-transform: none;
           opacity: .5;
         }
-        .board-column-actions {
-          display: none;
-        }
       }
     }
   }
@@ -46,7 +43,7 @@
     line-height: 1;
     color: $gray-700;
   }
-  
+
   .row {
     flex-wrap: nowrap;
     margin: 0 -5px;

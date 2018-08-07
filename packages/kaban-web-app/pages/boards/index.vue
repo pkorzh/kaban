@@ -7,6 +7,11 @@
 
 			<ActionsNav>
 				<ActionsNavSimpleSearch />
+
+				<ActionsNavButton
+					text="Create Board"
+					action="CreateBoardAction"
+					shortkey="c" />
 			</ActionsNav>
 		</TopBar>
 
