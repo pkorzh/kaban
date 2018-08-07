@@ -12,28 +12,23 @@
 				@click="$emit('close')">Close</button>
 		</div>
 		<div class="details">
-			<b-form>
-				<div class="form-group row">
-					<label class="col-sm-2 col-form-label">
-						Summary
-					</label>
-					<div class="col-sm-10">
-						<input
-							type="text"
-							class="form-control"
-							placeholder="Ticket Summary">
-					</div>
-				</div>
-				<div class="form-group row">
-					<label class="col-sm-2 col-form-label">
-						Description
-					</label>
-					<div class="col-sm-10">
-						<textarea
-							class="form-control"
-							placeholder="Ticket Description"></textarea>
-					</div>
-				</div>
+			<b-form id="TicketCreateHighlight" @submit.prevent="create">
+				<b-form-group label="Summary">
+					<b-form-input
+						type="text"
+						v-model="summary"
+						required
+						placeholder="Ticket Summary"></b-form-input>
+				</b-form-group>
+
+				<b-form-group label="Discription">
+					<b-form-textarea
+						type="text"
+						v-model="discription"
+						required
+						placeholder="Ticket Discription"
+						:rows="3"></b-form-textarea>
+				</b-form-group>
 			</b-form>
 		</div>
 		<div class="modal-box-footer">
@@ -42,7 +37,7 @@
 				@click="$emit('close')">Close</button>
 			<button
 				type="submit"
-				form="TicketCreateHighlightForm"
+				form="TicketCreateHighlight"
 				class="btn btn-primary">Add</button>
 		</div>
 	</div>
@@ -52,12 +47,19 @@
 	import { mapActions } from 'vuex';
 
 	export default {
+		data() {
+			return {
+				summary: '',
+				discription: '',
+			}
+		},
 		methods: {
 			...mapActions('tickets', {
 				createTicket: 'create'
 			}),
 
-			create() {
+			async create() {
+				await this.createTicket({text: 'qwe'})
 			}
 		}
 	}

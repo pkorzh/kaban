@@ -8,6 +8,11 @@
 			<ActionsNav>
 				<ActionsNavAssigned />
 				<ActionsNavQuickFilters />
+
+				<ActionsNavLink
+					text="Backlog"
+					:to="{name: 'backlogs-key', params: {key: board.backlog.key}}" />
+
 				<ActionsNavSimpleSearch />
 
 				<ActionsNavButton

@@ -46,9 +46,7 @@ export default (resource, {state, getters, actions, mutations}) => {
 			commit('STAGE', rawEntity)
 		},
 		create({commit}, entity) {
-			return this.$axios.$post(`/api/${resource}/`, {
-				data: entity
-			}).then(({data}) => {
+			return this.$axios.$post(`/api/${resource}/`, entity).then(({data}) => {
 				commit('STAGE', data)
 				return data
 			})

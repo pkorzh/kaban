@@ -4,6 +4,7 @@ import ActionsNavBoardViewSwitcher from './ActionsNav/ActionsNavBoardViewSwitche
 import ActionsNavQuickFilters from './ActionsNav/ActionsNavQuickFilters'
 import ActionsNavSimpleSearch from './ActionsNav/ActionsNavSimpleSearch'
 import ActionsNavButton from './ActionsNav/ActionsNavButton'
+import ActionsNavLink from './ActionsNav/ActionsNavLink'
 
 import Board from './Board'
 import BoardLane from './BoardLane'
@@ -37,6 +38,7 @@ export {
 	ActionsNavQuickFilters,
 	ActionsNavSimpleSearch,
 	ActionsNavButton,
+	ActionsNavLink,
 
 	Board,
 	BoardLane,

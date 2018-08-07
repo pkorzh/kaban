@@ -15,8 +15,7 @@ router.get('/tickets', function (req, res, next) {
 })
 
 router.post('/tickets', function (req, res, next) {
-	console.log(req.body.data)
-	res.json(req.body.data)
+	res.json(req.body)
 })
 
 router.get('/tickets/:key', function (req, res, next) {
