@@ -2,7 +2,7 @@ const { Router } = require('express')
 
 const router = Router()
 
-const issues = require('../../../kaban-importer-jira/issues.json')
+const issues = require('../../issues.json')
 
 router.get('/tickets', function (req, res, next) {
 	if (req.query.backlog) {
