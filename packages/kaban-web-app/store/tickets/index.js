@@ -1,4 +1,4 @@
-import Vue from 'Vue'
+import Vue from 'vue'
 import { utc } from 'moment'
 
 import moduleFactory from '../module-factory'

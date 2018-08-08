@@ -1,4 +1,4 @@
-import Vue from 'Vue'
+import Vue from 'vue'
 import TicketCreateHighlight from '@/components/TicketCreateHighlight';
 
 export default ({app, store}, {payload, sender}) => {

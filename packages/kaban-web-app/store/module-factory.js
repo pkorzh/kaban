@@ -1,4 +1,4 @@
-import Vue from 'Vue'
+import Vue from 'vue'
 
 export default (resource, {state, getters, actions, mutations}) => {
 	const moduleState = () => (Object.assign({

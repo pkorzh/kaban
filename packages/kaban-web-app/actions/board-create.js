@@ -1,4 +1,4 @@
-import Vue from 'Vue'
+import Vue from 'vue'
 import BoardCreateHighlight from '@/components/BoardCreateHighlight';
 
 export default ({app, store}, {payload, sender}) => {
