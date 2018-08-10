@@ -3,6 +3,7 @@ const { Router } = require('express')
 const router = Router()
 
 const issues = require('../../issues.json')
+const { notifySubscribers } = require('./sse_clients')
 
 router.get('/tickets', function (req, res, next) {
 	if (req.query.backlog) {
@@ -15,6 +16,7 @@ router.get('/tickets', function (req, res, next) {
 })
 
 router.post('/tickets', function (req, res, next) {
+	notifySubscribers('createTicket', req.body)
 	res.json(req.body)
 })
 

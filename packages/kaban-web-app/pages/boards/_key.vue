@@ -82,12 +82,12 @@
 				'updateTicketStatus'
 			]),
 		},
-		mounted() {
+		async mounted() {
 			this.$bus.$on('kaban::board::draggables', ({tickets, mapsTo}) => {
 				this.updateTicketStatus({tickets, mapsTo})
 			})
 		},
-		destroyed() {
+		beforeDestroy() {
 			this.$bus.$off('kaban::board::draggables')
 			this.$bus.$off('kaban::board::ticket::selected')
 		}

@@ -13,6 +13,10 @@
 		</div>
 		<div class="details">
 			<b-form id="TicketCreateHighlight" @submit.prevent="create">
+				<b-form-group label="Type" horizontal>
+					<v-select :options="['foo','bar']"></v-select>
+				</b-form-group>
+
 				<b-form-group label="Summary">
 					<b-form-input
 						type="text"
@@ -28,6 +32,19 @@
 						required
 						placeholder="Ticket Discription"
 						:rows="3"></b-form-textarea>
+				</b-form-group>
+
+				<b-form-group label="Priority" horizontal>
+					<v-select :options="['foo','bar']"></v-select>
+				</b-form-group>
+
+				<b-form-group label="Resolution" horizontal>
+					<b-form-select v-model="resolution">
+					</b-form-select>
+				</b-form-group>
+
+				<b-form-group label="Assignee" horizontal>
+					<v-select :options="['foo','bar']"></v-select>
 				</b-form-group>
 			</b-form>
 		</div>
@@ -49,8 +66,12 @@
 	export default {
 		data() {
 			return {
-				summary: '',
-				discription: '',
+				summary: null,
+				discription: null,
+				priority: null,
+				type: null,
+				resolution: null,
+				assignee: null,
 			}
 		},
 		methods: {

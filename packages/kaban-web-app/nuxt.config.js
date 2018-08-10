@@ -45,6 +45,9 @@ module.exports = {
 		'~/plugins/vue-moment',
 		'~/plugins/axios-interceptors.js',
 		'~/plugins/vue-textarea-autosize',
+		{ src: '~/plugins/kaban-sse', ssr: false },
+		{ src: '~/plugins/kaban-sse-subscribe', ssr: false },
+		{ src: '~/plugins/vue-select', ssr: false },
 	],
 
 	/*
@@ -60,7 +63,11 @@ module.exports = {
 	*/
 	axios: {
 		progress: true,
-		debug: process.env.NODE_ENV !== 'production'
+		debug: false,
+	},
+
+	env: {
+		SSE_URL: '/api/sse',
 	},
 
 	/*
