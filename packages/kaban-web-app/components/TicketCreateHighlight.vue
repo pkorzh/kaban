@@ -16,13 +16,14 @@
 				<b-form-group label="Type" horizontal>
 					<IconedSelect
 						module="tickettypes"
-						getter="getList" />
+						getter="getList"
+						v-model="ticket.type" />
 				</b-form-group>
 
 				<b-form-group label="Summary">
 					<b-form-input
 						type="text"
-						v-model="summary"
+						v-model="ticket.summary"
 						required
 						placeholder="Ticket Summary"></b-form-input>
 				</b-form-group>
@@ -30,7 +31,7 @@
 				<b-form-group label="Discription">
 					<b-form-textarea
 						type="text"
-						v-model="discription"
+						v-model="ticket.discription"
 						required
 						placeholder="Ticket Discription"
 						:rows="3"></b-form-textarea>
@@ -39,11 +40,12 @@
 				<b-form-group label="Priority" horizontal>
 					<IconedSelect
 						module="priorities"
-						getter="getList" />
+						getter="getList"
+						v-model="ticket.priority" />
 				</b-form-group>
 
 				<b-form-group label="Resolution" horizontal>
-					<b-form-select v-model="resolution">
+					<b-form-select v-model="ticket.resolution">
 					</b-form-select>
 				</b-form-group>
 
@@ -51,7 +53,8 @@
 					<IconedSelect
 						module="users"
 						getter="getList"
-						icon="avatar" />
+						icon="avatar"
+						v-model="ticket.assignee" />
 				</b-form-group>
 			</b-form>
 		</div>
@@ -73,12 +76,14 @@
 	export default {
 		data() {
 			return {
-				summary: null,
-				discription: null,
-				priority: null,
-				type: null,
-				resolution: null,
-				assignee: null,
+				ticket: {
+					summary: null,
+					discription: null,
+					priority: null,
+					type: null,
+					resolution: null,
+					assignee: null,
+				}
 			}
 		},
 		methods: {
@@ -87,7 +92,7 @@
 			}),
 
 			async create() {
-				await this.createTicket({text: 'qwe'})
+				await this.createTicket(this.ticket)
 			}
 		}
 	}

@@ -1,6 +1,7 @@
 <template>
 	<v-select
 		:options="options"
+		v-model="modified"
 		label="name">
 
 		<template slot="option" slot-scope="option">
@@ -32,6 +33,14 @@
 			icon: {
 				type: String,
 				required: false,
+			},
+			value: {
+				required: false
+			}
+		},
+		data() {
+			return {
+				modified: null
 			}
 		},
 		computed: {
@@ -42,6 +51,18 @@
 		methods: {
 			getIcon(option) {
 				return this.icon ? option[this.icon] : option.iconUrl
+			}
+		},
+		mounted() {
+			if ('value' in this) {
+				this.modified = this.value
+			}
+		},
+		watch: {
+			modified(modified) {
+				if (('value' in this) && modified && this.value !== modified) {
+					this.$emit('input', modified)
+				}
 			}
 		}
 	}
