@@ -14,7 +14,9 @@
 		<div class="details">
 			<b-form id="TicketCreateHighlight" @submit.prevent="create">
 				<b-form-group label="Type" horizontal>
-					<v-select :options="['foo','bar']"></v-select>
+					<IconedSelect
+						module="tickettypes"
+						getter="getList" />
 				</b-form-group>
 
 				<b-form-group label="Summary">
@@ -35,7 +37,9 @@
 				</b-form-group>
 
 				<b-form-group label="Priority" horizontal>
-					<v-select :options="['foo','bar']"></v-select>
+					<IconedSelect
+						module="priorities"
+						getter="getList" />
 				</b-form-group>
 
 				<b-form-group label="Resolution" horizontal>
@@ -44,7 +48,10 @@
 				</b-form-group>
 
 				<b-form-group label="Assignee" horizontal>
-					<v-select :options="['foo','bar']"></v-select>
+					<IconedSelect
+						module="users"
+						getter="getList"
+						icon="avatar" />
 				</b-form-group>
 			</b-form>
 		</div>

@@ -31,6 +31,8 @@ import TicketDetailsSlimHistory from './TicketDetailsSlim/TicketDetailsSlimHisto
 import TicketDetailsSlimDropbox from './TicketDetailsSlim/TicketDetailsSlimDropbox'
 import TicketDetailsSlimAttachments from './TicketDetailsSlim/TicketDetailsSlimAttachments'
 
+import IconedSelect from './Fields/IconedSelect.vue'
+
 export {
 	ActionsNav,
 	ActionsNavAssigned,
@@ -64,4 +66,6 @@ export {
 	TicketDetailsSlimHistory,
 	TicketDetailsSlimDropbox,
 	TicketDetailsSlimAttachments,
+
+	IconedSelect,
 }
