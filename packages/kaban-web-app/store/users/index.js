@@ -13,4 +13,4 @@ export default moduleFactory('users', {
 			}
 		}
 	}
-});
+})

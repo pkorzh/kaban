@@ -13,6 +13,13 @@
 		</div>
 		<div class="details">
 			<b-form id="TicketCreateHighlight" @submit.prevent="create">
+				<b-form-group label="Backlog" horizontal>
+					<IconedSelect
+						module="backlogs"
+						getter="getList"
+						v-model="ticket.backlog" />
+				</b-form-group>
+
 				<b-form-group label="Type" horizontal>
 					<IconedSelect
 						module="tickettypes"
@@ -23,7 +30,7 @@
 				<b-form-group label="Summary">
 					<b-form-input
 						type="text"
-						v-model="ticket.summary"
+						v-model="ticket.name"
 						required
 						placeholder="Ticket Summary"></b-form-input>
 				</b-form-group>
@@ -31,7 +38,7 @@
 				<b-form-group label="Discription">
 					<b-form-textarea
 						type="text"
-						v-model="ticket.discription"
+						v-model="ticket.description"
 						required
 						placeholder="Ticket Discription"
 						:rows="3"></b-form-textarea>
@@ -71,18 +78,19 @@
 </template>
 
 <script>
-	import { mapActions } from 'vuex';
+	import { mapActions } from 'vuex'
 
 	export default {
 		data() {
 			return {
 				ticket: {
-					summary: null,
-					discription: null,
+					name: null,
+					description: null,
 					priority: null,
 					type: null,
 					resolution: null,
 					assignee: null,
+					backlog: null,
 				}
 			}
 		},
@@ -93,6 +101,7 @@
 
 			async create() {
 				await this.createTicket(this.ticket)
+				this.$emit('close')
 			}
 		}
 	}

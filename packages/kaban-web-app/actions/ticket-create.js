@@ -5,7 +5,7 @@ export default ({app, store}, {payload, sender}) => {
 	sender.$modal.show(
 		TicketCreateHighlight,
 		{
-			//component props
+			...payload
 		},
 		{
 			//modal params

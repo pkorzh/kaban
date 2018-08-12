@@ -5,7 +5,7 @@
 		</div>
 		<div class="board-column-body">
 
-			<div class="row" v-if="queues && queues.length">
+			<div class="row" v-if="hasQueues">
 				<div class="col-md" v-for="queue in queues" :key="queue.key">
 					<BoardLane
 						:_key="queue.key"
@@ -15,8 +15,8 @@
 				</div>
 			</div>
 
-			<draggable v-model="draggables" :options="{ group: 'default' }" v-if="!queues">
-				<div v-for="item in tickets" :key="item.id">
+			<draggable v-model="draggables" :options="{ group: 'default' }" v-if="!hasQueues">
+				<div v-for="item in tickets" :key="item.key">
 					<BoardLaneTicket :ticket="item" />
 				</div>
 			</draggable>
@@ -61,14 +61,22 @@
 			queueTickets(status) {
 				return this.tickets.filter(ticket =>
 					ticket.status.key === status.key)
-			}
+			},
 		},
 		computed: {
 			itemCount() {
 				if (!this.tickets) return '';
 				return `${this.tickets.length}`;
 			},
-
+			hasQueues() {
+				if (!this.queues) {
+					return false;
+				} else if (!this.queues.length) {
+					return false
+				} else {
+					return true
+				}
+			},
 			draggables: {
 				get() {
 					return this.tickets;

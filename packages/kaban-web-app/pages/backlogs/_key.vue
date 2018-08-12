@@ -15,6 +15,10 @@
 				<ActionsNavAssigned />
 				<ActionsNavQuickFilters />
 
+				<ActionsNavLink
+					text="Board"
+					:to="{name: 'boards-key', params: {key: backlog.key}}" />
+
 				<ActionsNavSimpleSearch />
 
 				<ActionsNavButton

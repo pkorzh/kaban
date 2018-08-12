@@ -9,12 +9,12 @@
 				<ActionsNavSimpleSearch />
 
 				<ActionsNavButton
-					text="Create Board"
-					action="CreateBoardAction"
+					text="Create Backlog"
+					action="CreateBacklogAction"
 					shortkey="c" />
 			</ActionsNav>
 		</TopBar>
-		
+
 		<div class="board-table">
 			<div class="board-table-holder">
 				<div class="table">

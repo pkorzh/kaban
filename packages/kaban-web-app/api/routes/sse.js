@@ -16,8 +16,8 @@ router.get('/sse', function (req, res, next) {
 	clients.push(res)
 
 	req.on('close', function () {
-		console.log('Deleting SSE listener, left ', clients.length)
 		clients.splice(clients.indexOf(res))
+		console.log('Deleting SSE listener, left ', clients.length)
 	})
 })
 

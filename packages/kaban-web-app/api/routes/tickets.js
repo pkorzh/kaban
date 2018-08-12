@@ -2,26 +2,38 @@ const { Router } = require('express')
 
 const router = Router()
 
-const issues = require('../../issues.json')
+const shortid = require('shortid')
+
 const { notifySubscribers } = require('./sse_clients')
+const { tickets: ticketsDal } = require('../dal')
 
-router.get('/tickets', function (req, res, next) {
-	if (req.query.backlog) {
-		res.json(issues.filter(ticket => {
-			return ticket.backlog.key == req.query.backlog
-		}))
-	} else {
-		res.json(issues)
+router.get('/tickets', async function (req, res, next) {
+	const tickets = await ticketsDal.query()
+
+	return res.json(tickets)
+})
+
+router.post('/tickets', async function (req, res, next) {
+	const ticketSlim = req.body
+
+	if (!ticketSlim.key) {
+		ticketSlim.key = shortid.generate()
 	}
+
+	ticketSlim.status = {
+		key: 'todo',
+		name: 'ToDo',
+	}
+
+	const ticket = await ticketsDal.insert(ticketSlim)
+	notifySubscribers('createTicket', ticket)
+
+	return res.json(ticket)
 })
 
-router.post('/tickets', function (req, res, next) {
-	notifySubscribers('createTicket', req.body)
-	res.json(req.body)
-})
-
-router.get('/tickets/:key', function (req, res, next) {
-	res.json(issues.find(ticket => ticket.key === req.params.key))
+router.get('/tickets/:key', async function (req, res, next) {
+	const ticket = await ticketsDal.get({key: req.params.key})
+	return res.json(ticket)
 })
 
 module.exports = router

@@ -13,12 +13,28 @@
 		</div>
 		<div class="details">
 			<b-form id="BacklogCreateHighlight" @submit.prevent="create">
-				<b-form-group label="Name">
+				<b-form-group label="Name" horizontal>
 					<b-form-input
 						type="text"
-						v-model="name"
+						v-model="backlog.name"
 						required
-						placeholder="Backlog Name"></b-form-input>
+						placeholder="Backlog Name" />
+				</b-form-group>
+
+				<b-form-group label="Key" horizontal>
+					<b-form-input
+						readonly
+						type="text"
+						:value="backlog.key"
+						placeholder="Key" />
+				</b-form-group>
+
+				<b-form-group label="Description">
+					<b-form-textarea
+						type="text"
+						v-model="backlog.description"
+						placeholder="Description"
+						:rows="3" />
 				</b-form-group>
 			</b-form>
 		</div>
@@ -35,19 +51,41 @@
 </template>
 
 <script>
+	import { mapActions } from 'vuex'
+
 	export default {
 		data() {
 			return {
-				name: ''
+				backlog: {
+					name: null,
+					key: null,
+					description: null,
+				}
 			}
 		},
 		methods: {
-			create() {
+			...mapActions('backlogs', {
+				createBacklog: 'create'
+			}),
 
+			async create() {
+				await this.createBacklog(this.backlog)
+				this.$emit('close')
+			}
+		},
+		watch: {
+			'backlog.name'(name) {
+				if (/\s/.test(name)) {
+					this.backlog.key = name.split(/\s/)
+						.map(w => w[0])
+						.join('')
+						.toUpperCase()
+				} else {
+					this.backlog.key = name
+						.slice(0, 3)
+						.toUpperCase()
+				}
 			}
 		}
 	}
 </script>
-
-<style>
-</style>

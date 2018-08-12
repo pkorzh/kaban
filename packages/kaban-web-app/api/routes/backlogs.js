@@ -2,25 +2,31 @@ const { Router } = require('express')
 
 const router = Router()
 
-const backlogs = [
-	{
-		id: 1,
-		name: 'Create ☁️ AWS API',
-		key: 'create-aws-api',
-	},
-	{
-		id: 2,
-		name: 'Native Feed & Profile',
-		key: 'native-feed-profile',
-	}
-]
+const shortid = require('shortid')
 
-router.get('/backlogs', function (req, res, next) {
-	res.json(backlogs)
+const { notifySubscribers } = require('./sse_clients')
+const { backlogs: backlogsDal } = require('../dal')
+
+router.get('/backlogs', async function (req, res, next) {
+	const backlogs = await backlogsDal.query()
+
+	return res.json(backlogs)
 })
 
-router.get('/backlogs/:key', function (req, res, next) {
-	res.json(backlogs.find(b => b.key === req.params.key))
+router.post('/backlogs', async function (req, res, next) {
+	const backlogSlim = req.body
+
+	const { backlog, board } = await backlogsDal.insert(backlogSlim)
+
+	notifySubscribers('createBacklog', backlog)
+	notifySubscribers('createBoard', board)
+
+	return res.json(backlog)
+})
+
+router.get('/backlogs/:key', async function (req, res, next) {
+	const backlog = await backlogsDal.get({key: req.params.key})
+	return res.json(backlog)
 })
 
 module.exports = router

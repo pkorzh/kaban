@@ -9,9 +9,12 @@
 			{{ option.name }}
 		</template>
 
-		<template slot="selected-option" scope="option">
+		<template slot="selected-option" slot-scope="option">
 			<div class="selected d-center">
-				<img :src="getIcon(option)" style="width: 20px" />
+				<img
+					:src="getIcon(option)"
+					v-if="hasIcon(option)"
+					style="width: 20px" />
 				{{ option.name }}
 			</div>
 		</template>
@@ -51,6 +54,9 @@
 		methods: {
 			getIcon(option) {
 				return this.icon ? option[this.icon] : option.iconUrl
+			},
+			hasIcon(option) {
+				return !!this.getIcon(option)
 			}
 		},
 		mounted() {

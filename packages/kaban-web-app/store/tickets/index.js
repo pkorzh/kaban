@@ -18,4 +18,4 @@ export default moduleFactory('tickets', {
 			commit('UPDATE_TICKETS_STATUS', {tickets, mapsTo})
 		}
 	}
-});
+})

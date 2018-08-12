@@ -21,6 +21,8 @@ export default (resource, {state, getters, actions, mutations}) => {
 
 	const moduleMutations = Object.assign({
 		STAGE(state, payload) {
+			if (!payload.key)
+				debugger
 			Vue.set(state.entities, payload.key, payload)
 		},
 		STAGE_MULTIPLE(state, multiple) {
@@ -45,12 +47,12 @@ export default (resource, {state, getters, actions, mutations}) => {
 			commit('STAGE', rawEntity)
 		},
 		create({commit}, entity) {
-			return this.$axios.$post(`/api/${resource}/`, entity).then(({data}) => {
+			return this.$axios.$post(`/api/${resource}/`, entity).then((data) => {
 				commit('STAGE', data)
 				return data
 			})
 		},
-		patch({commit}, entity) {
+		patch({commit}, delta) {
 
 		},
 		delete({commit}, entity) {
