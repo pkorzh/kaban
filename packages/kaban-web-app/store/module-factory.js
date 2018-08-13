@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-export default (resource, {state, getters, actions, mutations}) => {
+export default (resource, {state, getters, actions, mutations, patchReducers = {}}) => {
 	const moduleState = () => (Object.assign({
 		entities: {},
 	}, state))
@@ -51,6 +51,16 @@ export default (resource, {state, getters, actions, mutations}) => {
 			})
 		},
 		patch({commit}, {delta, key}) {
+			const reducedDelta = {}
+
+			Object.keys(delta).forEach(deltaKey => {
+				if (deltaKey in patchReducers) {
+					reducedDelta[deltaKey] = patchReducers(delta[reducedDelta])
+				} else {
+					reducedDelta[deltaKey] = delta[reducedDelta]
+				}
+			})
+
 			return this.$axios.$patch(`/api/${resource}/${key}`, delta).then((data) => {
 				commit('STAGE', data)
 				return data

@@ -3,7 +3,12 @@
 		<div class="modal-box-header">
 			<TopBar>
 				<template slot="header">
-					<LiveEditInput :content="ticket.name" />
+					<LiveEditInput
+						:content="ticket.name"
+						:display="ticket.name"
+						action="tickets/patch"
+						path="name"
+						:_key="ticket.key" />
 				</template>
 
 				<template slot="breadcrumb">
@@ -68,7 +73,12 @@
 					<div class="details-section">
 						<h3>Description:</h3>
 
-						<LiveEditTextarea :content="ticket.description" />
+						<LiveEditTextarea
+							:content="ticket.description"
+							:display="ticket.description"
+							action="tickets/patch"
+							path="description"
+							:_key="ticket.key" />
 					</div>
 					<div class="details-section">
 						<h3>Attachments:</h3>
@@ -112,17 +122,18 @@
 </template>
 
 <script>
+	import { mapGetters } from 'vuex'
 	import {TicketBaseMixin} from '@/mixins'
 
 	export default {
 		mixins: [TicketBaseMixin],
 		props: {
-			ticket: {
-				type: Object,
+			ticketKey: {
+				type: String,
 				required: true,
 			},
-			backlog: {
-				type: Object,
+			backlogKey: {
+				type: String,
 				required: true,
 			}
 		},
@@ -136,6 +147,23 @@
 				this.goBack = false
 				this.$emit('close')
 			}*/
+		},
+		computed: {
+			...mapGetters('tickets', {
+				getTicket: 'getOne'
+			}),
+
+			...mapGetters('backlogs', {
+				getBacklog: 'getOne'
+			}),
+
+			ticket() {
+				return this.getTicket(this.ticketKey)
+			},
+
+			backlog() {
+				return this.getBacklog(this.backlogKey)
+			}
 		},
 		mounted() {
 			/*history.pushState(

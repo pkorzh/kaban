@@ -18,5 +18,5 @@ module.exports = (options = {}) => {
 			type: String,
 			required: false,
 		}
-	}, Object.assign({}, options, {timestamps: true}))
+	}, Object.assign({}, options))
 }

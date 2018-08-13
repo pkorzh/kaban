@@ -46,5 +46,5 @@ module.exports = (options = {}) => {
 				]
 			}
 		]
-	}, Object.assign({}, options, {timestamps: true}))
+	}, Object.assign({}, options))
 }
