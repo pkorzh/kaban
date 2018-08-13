@@ -2,10 +2,14 @@
 	<v-select
 		:options="options"
 		v-model="modified"
+		:clearable="false"
 		label="name">
 
 		<template slot="option" slot-scope="option">
-			<img :src="getIcon(option)" style="width: 20px" />
+			<img
+				:src="getIcon(option)"
+				v-if="hasIcon(option)"
+				style="width: 20px" />
 			{{ option.name }}
 		</template>
 
@@ -25,10 +29,6 @@
 <script>
 	export default {
 		props: {
-			module: {
-				type: String,
-				required: true,
-			},
 			getter: {
 				type: String,
 				required: true,
@@ -48,7 +48,7 @@
 		},
 		computed: {
 			options() {
-				return this.$store.getters[`${this.module}/${this.getter}`]
+				return this.$store.getters[`${this.getter}`]
 			}
 		},
 		methods: {

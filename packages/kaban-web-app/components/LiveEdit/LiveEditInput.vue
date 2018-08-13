@@ -23,7 +23,7 @@
 				@mouseout="toggleHover"
 				@mouseover="toggleHover"
 				>
-					<div v-html="content"></div>
+					<div v-html="display"></div>
 					<font-awesome-icon icon="pen" />
 				</div>
 		</template>

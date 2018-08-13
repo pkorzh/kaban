@@ -31,6 +31,19 @@ router.post('/tickets', async function (req, res, next) {
 	return res.json(ticket)
 })
 
+router.patch('/tickets/:key', async function (req, res, next) {
+	const ticketDelta = req.body
+
+	const ticket = await ticketsDal.patch(
+		req.params.key,
+		ticketDelta
+	)
+
+	notifySubscribers('updateTicket', ticket)
+
+	return res.json(ticket)
+})
+
 router.get('/tickets/:key', async function (req, res, next) {
 	const ticket = await ticketsDal.get({key: req.params.key})
 	return res.json(ticket)

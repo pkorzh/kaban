@@ -6,9 +6,10 @@ import ActionsNavSimpleSearch from './ActionsNav/ActionsNavSimpleSearch'
 import ActionsNavButton from './ActionsNav/ActionsNavButton'
 import ActionsNavLink from './ActionsNav/ActionsNavLink'
 
-import Board from './Board'
-import BoardLane from './BoardLane'
-import BoardLaneTicket from './BoardLaneTicket'
+import Board from './Board/Board'
+import BoardLane from './Board/BoardLane'
+import BoardLaneTicket from './Board/BoardLaneTicket'
+
 import Header from './Header'
 import TicketHighlight from './TicketHighlight'
 import TicketsTable from './TicketsTable'

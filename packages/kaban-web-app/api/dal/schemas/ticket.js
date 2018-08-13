@@ -15,6 +15,8 @@ module.exports = new Schema({
 	key: {
 		type: String,
 		required: false,
+		index: true,
+		unique: true,
 	},
 	name: {
 		type: String,

@@ -1,15 +1,30 @@
 export default {
 	props: {
 		content: {
-			type: String,
 			required: true,
-			default: '',
-		}
+			default: null,
+		},
+		display: {
+			required: false,
+			default: null,
+		},
+		action: {
+			type: String,
+			required: false,
+		},
+		path: {
+			type: String,
+			required: false,
+		},
+		_key: {
+			type: String,
+			required: false,
+		},
 	},
 	data() {
 		return {
 			editable: false,
-			editableContent: '',
+			editableContent: null,
 			hovered: false,
 		}
 	},
@@ -23,6 +38,13 @@ export default {
 		doneEditing() {
 			this.editable = false
 			this.hovered = false
+
+			this.$store.dispatch(`${this.action}`, {
+				delta: {
+					[this.path]: this.editableContent
+				},
+				key: this._key
+			})
 		}
 	},
 	mounted() {

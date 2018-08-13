@@ -15,15 +15,13 @@
 			<b-form id="TicketCreateHighlight" @submit.prevent="create">
 				<b-form-group label="Backlog" horizontal>
 					<IconedSelect
-						module="backlogs"
-						getter="getList"
+						getter="backlogs/getList"
 						v-model="ticket.backlog" />
 				</b-form-group>
 
 				<b-form-group label="Type" horizontal>
 					<IconedSelect
-						module="tickettypes"
-						getter="getList"
+						getter="tickettypes/getList"
 						v-model="ticket.type" />
 				</b-form-group>
 
@@ -46,8 +44,7 @@
 
 				<b-form-group label="Priority" horizontal>
 					<IconedSelect
-						module="priorities"
-						getter="getList"
+						getter="priorities/getList"
 						v-model="ticket.priority" />
 				</b-form-group>
 
@@ -58,8 +55,7 @@
 
 				<b-form-group label="Assignee" horizontal>
 					<IconedSelect
-						module="users"
-						getter="getList"
+						getter="users/getList"
 						icon="avatar"
 						v-model="ticket.assignee" />
 				</b-form-group>

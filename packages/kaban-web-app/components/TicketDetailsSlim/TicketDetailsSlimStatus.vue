@@ -3,7 +3,13 @@
 		<li>
 			<h3>Type:</h3>
 			<div>
-				<LiveEditSelect :content="ticket.type.name" />
+				<LiveEditSelect
+					:content="ticket.type"
+					:display="ticket.type.name"
+					action="tickets/patch"
+					getter="tickettypes/getList"
+					path="type"
+					:_key="ticket.key" />
 			</div>
 		</li>
 		<li>

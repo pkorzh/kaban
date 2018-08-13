@@ -2,7 +2,12 @@
 	<b-container fluid>
 		<TopBar>
 			<template slot="header">
-				<LiveEditInput :content="ticket.name" />
+				<LiveEditInput
+					:content="ticket.name"
+					:display="ticket.name"
+					action="tickets/patch"
+					path="name"
+					:_key="ticket.key" />
 			</template>
 
 			<template slot="breadcrumb">
@@ -62,10 +67,10 @@
 							<b-col>
 								<TicketDetailsSlimStatus :ticket="ticket" />
 							</b-col>
-							<b-col>
+							<b-col v-if="false">
 								<TicketDetailsSlimEstimations :ticket="ticket" />
 							</b-col>
-							<b-col>
+							<b-col v-if="false">
 								<TicketDetailsSlimVersion :ticket="ticket" />
 							</b-col>
 						</b-row>
@@ -73,7 +78,12 @@
 					<div class="details-section">
 						<h3>Description:</h3>
 
-						<LiveEditTextarea :content="ticket.description" />
+						<LiveEditTextarea
+							:content="ticket.description"
+							:display="ticket.description"
+							action="tickets/patch"
+							path="description"
+							:_key="ticket.key" />
 					</div>
 					<div class="details-section">
 						<h3>Attachments:</h3>

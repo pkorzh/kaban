@@ -1,13 +1,20 @@
 <template>
 	<div class="form-edit">
 		<template v-if="editable">
-			<select>
-				<option>A</option>
-			</select>
-			<button 
-				class="btn btn-light"
-				@click="doneEditing">
-				Done Editing</button>
+			<IconedSelect
+				:getter="getter"
+				v-model="editableContent" />
+
+			<div class="editor-btns">
+				<button
+					class="btn btn-light"
+					@click="doneEditing">
+					<font-awesome-icon icon="check" /></button>
+				<button
+					class="btn btn-light"
+					@click="doneEditing">
+					<font-awesome-icon icon="times" /></button>
+			</div>
 		</template>
 
 		<template v-else>
@@ -16,7 +23,7 @@
 				@mouseout="toggleHover"
 				@mouseover="toggleHover"
 				>
-					<div v-html="content"></div>
+					<div v-html="display"></div>
 				</div>
 		</template>
 	</div>
@@ -26,6 +33,15 @@
 	import LiveEditMixin from './LiveEditMixin'
 
 	export default {
-		mixins: [LiveEditMixin]
+		mixins: [LiveEditMixin],
+		props: {
+			getter: {
+				type: String,
+				required: true,
+			}
+		},
+		mounted() {
+
+		}
 	}
 </script>
