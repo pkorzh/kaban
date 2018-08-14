@@ -32,10 +32,10 @@
 				</div>
 			</div>
 			<div class="card-col">
-				<span class="card-attach">
+				<!--<span class="card-attach">
 					<font-awesome-icon icon="paperclip" />
 					10
-				</span>
+				</span>-->
 				<div class="card-image">
 					<img
 						v-if="ticket.assignee"

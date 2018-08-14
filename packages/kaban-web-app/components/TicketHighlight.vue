@@ -34,7 +34,7 @@
 		</div>
 		<div class="details">
 			<ActionsNav>
-
+				<!--
 				<ActionsNavButton
 					text="Edit"
 					icon="pen"
@@ -66,6 +66,7 @@
 					icon="ellipsis-h"
 					action=""
 					shortkey="" />
+				-->
 			</ActionsNav>
 
 			<b-row>
@@ -80,14 +81,16 @@
 							path="description"
 							:_key="ticket.key" />
 					</div>
-					<div class="details-section">
+
+					<!--<div class="details-section">
 						<h3>Attachments:</h3>
 
 						<TicketDetailsSlimDropbox  :ticket="ticket" />
 
 						<TicketDetailsSlimAttachments :ticket="ticket" />
-					</div>
-					<div class="details-section">
+					</div>-->
+
+					<!--<div class="details-section">
 						<b-tabs>
 							<b-tab title="Comments" active>
 								<TicketDetailsSlimComments :ticket="ticket" />
@@ -96,18 +99,19 @@
 								<TicketDetailsSlimHistory :ticket="ticket" />
 							</b-tab>
 						</b-tabs>
-					</div>
+					</div>-->
+
 				</b-col>
 				<b-col cols="3">
 					<TicketDetailsSlimStatus :ticket="ticket" />
 
-					<TicketDetailsSlimEstimations :ticket="ticket" />
+					<!--<TicketDetailsSlimEstimations :ticket="ticket" />-->
 
 					<TicketDetailsSlimAssign :ticket="ticket" />
 
 					<TicketDetailsSlimDates :ticket="ticket" />
 
-					<TicketDetailsSlimVersion :ticket="ticket" />
+					<!--<TicketDetailsSlimVersion :ticket="ticket" />-->
 
 				</b-col>
 			</b-row>

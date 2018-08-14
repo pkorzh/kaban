@@ -12,7 +12,7 @@
 				<div class="ticket-line-resolution"><a href="#" class="tickets-table-sort">Resolution</a></div>
 				<div class="ticket-line-date"><a href="#" class="tickets-table-sort">Created</a></div>
 				<div class="ticket-line-date"><a href="#" class="tickets-table-sort">Updated</a></div>
-				<div class="ticket-line-date"><a href="#" class="tickets-table-sort">Due</a></div>
+				<div class="ticket-line-date"><a href="#" class="tickets-table-sort">Resolved</a></div>
 				<div class="ticket-line-action">Action</div>
 			</div>
 			<TicketsTableTicket

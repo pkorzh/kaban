@@ -12,17 +12,17 @@
 			</template>
 
 			<ActionsNav>
-				<ActionsNavAssigned />
-				<ActionsNavQuickFilters />
+				<!--<ActionsNavAssigned />
+				<ActionsNavQuickFilters />-->
 
 				<ActionsNavLink
-					text="Backlog"
+					text="Goto Backlog"
 					:to="{name: 'backlogs-key', params: {key: board.backlog.key}}" />
 
-				<ActionsNavSimpleSearch />
+				<!--<ActionsNavSimpleSearch />-->
 
 				<ActionsNavButton
-					text="Create Issue"
+					text="Create Ticket"
 					action="CreateTicketAction"
 					shortkey="c" />
 

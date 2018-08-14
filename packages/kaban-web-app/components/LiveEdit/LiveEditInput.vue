@@ -11,7 +11,7 @@
 					<font-awesome-icon icon="check" /></button>
 				<button
 					class="btn btn-light"
-					@click="doneEditing">
+					@click="cancelEditing">
 					<font-awesome-icon icon="times" /></button>
 			</div>
 		</template>
@@ -23,7 +23,7 @@
 				@mouseout="toggleHover"
 				@mouseover="toggleHover"
 				>
-					<div v-html="display"></div>
+					<div v-html="content"></div>
 					<font-awesome-icon icon="pen" />
 				</div>
 		</template>

@@ -9,18 +9,48 @@
 					action="tickets/patch"
 					getter="tickettypes/getList"
 					path="type"
-					:_key="ticket.key" />
+					:_key="ticket.key">
+						<template slot="display">
+							<img
+								:src="ticket.type.iconUrl"
+								style="width:20px;">
+							{{ ticket.type.name }}
+						</template>
+					</LiveEditSelect>
 			</div>
 		</li>
 		<li>
 			<h3>Priority:</h3>
-			<div>Low</div>
+			<div>
+				<LiveEditSelect
+					:content="ticket.priority"
+					:display="ticket.priority.name"
+					action="tickets/patch"
+					getter="priorities/getList"
+					path="priority"
+					:_key="ticket.key">
+						<template slot="display">
+							<img
+								:src="ticket.priority.iconUrl"
+								style="width:20px;">
+							{{ ticket.priority.name }}
+						</template>
+					</LiveEditSelect>
+			</div>
 		</li>
 		<li>
 			<h3>Status:</h3>
 			<div>
 				<span class="details-label">
 					{{ ticket.status.key }}
+				</span>
+			</div>
+		</li>
+		<li>
+			<h3>Resolution:</h3>
+			<div>
+				<span>
+					{{ ticket.resolution }}
 				</span>
 			</div>
 		</li>

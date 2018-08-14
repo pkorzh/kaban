@@ -4,10 +4,6 @@ export default {
 			required: true,
 			default: null,
 		},
-		display: {
-			required: false,
-			default: null,
-		},
 		action: {
 			type: String,
 			required: false,
@@ -34,6 +30,10 @@ export default {
 		},
 		edit() {
 			this.editable = true
+		},
+		cancelEditing() {
+			this.editable = false
+			this.hovered = false
 		},
 		doneEditing() {
 			this.editable = false

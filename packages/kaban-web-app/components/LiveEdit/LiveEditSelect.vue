@@ -3,7 +3,8 @@
 		<template v-if="editable">
 			<IconedSelect
 				:getter="getter"
-				v-model="editableContent" />
+				v-model="editableContent"
+				:icon="icon" />
 
 			<div class="editor-btns">
 				<button
@@ -12,18 +13,22 @@
 					<font-awesome-icon icon="check" /></button>
 				<button
 					class="btn btn-light"
-					@click="doneEditing">
+					@click="cancelEditing">
 					<font-awesome-icon icon="times" /></button>
 			</div>
 		</template>
 
 		<template v-else>
 			<div
+				class="editor-holder"
 				@click="edit"
 				@mouseout="toggleHover"
 				@mouseover="toggleHover"
 				>
-					<div v-html="display"></div>
+					<slot name="display">
+						<div v-html="content"></div>
+					</slot>
+					<font-awesome-icon icon="pen" />
 				</div>
 		</template>
 	</div>
@@ -38,7 +43,11 @@
 			getter: {
 				type: String,
 				required: true,
-			}
+			},
+			icon: {
+				type: String,
+				required: false,
+			},
 		},
 		mounted() {
 

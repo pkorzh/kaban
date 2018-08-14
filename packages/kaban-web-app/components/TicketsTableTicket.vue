@@ -29,11 +29,15 @@
 				Platon Korzh
 			</a>
 		</div>
-		<div class="ticket-line-block">Block</div>
-		<div class="ticket-line-status">
-			{{ ticket.status.key }}
+		<div class="ticket-line-block">
+			{{ ticket.priority.name }}
 		</div>
-		<div class="ticket-line-resolution">Unresolved</div>
+		<div class="ticket-line-status">
+			{{ ticket.status.name }}
+		</div>
+		<div class="ticket-line-resolution">
+			{{ ticket.resolution }}
+		</div>
 		<div class="ticket-line-date">
 			{{ ticket.createdAt | moment('L') }}
 		</div>
