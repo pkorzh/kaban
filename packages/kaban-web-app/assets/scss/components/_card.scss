@@ -43,6 +43,30 @@
       text-decoration: none;
       color: $black;
     }
+    .card-estm {
+      width: 8px;
+      height: 20px;
+      margin: 0 4px 0 6px;
+      position: relative;
+      &::before,
+      &::after,
+      span {
+        position: absolute;
+        left: 50%;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: $green;
+        content: '';
+        transform: translateX(-50%);
+      }
+      &::after {
+        top: 16px;
+      }
+      span {
+        top: 8px;
+      }
+    }
   }
   
   .card-list {
@@ -66,5 +90,9 @@
         background: $primary;
       }
     }
+  }
+
+  img {
+    display: block;
   }
 }

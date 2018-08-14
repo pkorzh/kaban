@@ -24,6 +24,7 @@
 						:src="ticket.type.iconUrl"
 						:title="ticket.type.name">
 				</div>
+				<div class="card-estm"><span></span></div>
 				<div class="card-priority">
 					<img
 						style="min-width: 20px"
