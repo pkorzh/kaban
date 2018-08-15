@@ -6,11 +6,13 @@
 			</template>
 
 			<ActionsNav>
-				<ActionsNavSimpleSearch />
+				<!--<ActionsNavSimpleSearch />-->
+
 				<ActionsNavButton
 					text="Create Backlog"
 					action="CreateBacklogAction"
 					shortkey="c" />
+
 				<ActionsNavBoardViewSwitcher v-model="tableView" />
 			</ActionsNav>
 

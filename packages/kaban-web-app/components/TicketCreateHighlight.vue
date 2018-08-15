@@ -82,11 +82,11 @@
 				ticket: {
 					name: null,
 					description: null,
-					priority: null,
-					type: null,
+					priority: this.$store.getters['priorities/getList'][0],
+					type: this.$store.getters['tickettypes/getList'][0],
 					resolution: null,
-					assignee: null,
-					backlog: null,
+					assignee: this.$store.getters['users/getList'][0],
+					backlog: this.$store.getters['backlogs/getList'][0],
 				}
 			}
 		},
