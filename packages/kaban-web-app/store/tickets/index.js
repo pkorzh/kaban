@@ -14,7 +14,7 @@ export default moduleFactory('tickets', {
 		}
 	},
 	actions: {
-		updateTicketStatus({commit}, {tickets, mapsTo}) {
+		transition({commit}, {tickets, mapsTo}) {
 			commit('UPDATE_TICKETS_STATUS', {tickets, mapsTo})
 		}
 	}

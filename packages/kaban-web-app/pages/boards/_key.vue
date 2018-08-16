@@ -79,17 +79,16 @@
 		},
 		methods: {
 			...mapActions('tickets', [
-				'updateTicketStatus'
+				'transition'
 			]),
 		},
 		async mounted() {
 			this.$bus.$on('kaban::board::draggables', ({tickets, mapsTo}) => {
-				this.updateTicketStatus({tickets, mapsTo})
+				this.transition({tickets, mapsTo})
 			})
 		},
 		beforeDestroy() {
 			this.$bus.$off('kaban::board::draggables')
-			this.$bus.$off('kaban::board::ticket::selected')
 		}
 	}
 </script>

@@ -85,7 +85,7 @@
 					this.$bus.$emit('kaban::board::draggables', {
 						tickets,
 						mapsTo: this.mapsTo,
-					});
+					})
 				}
 			}
 		}

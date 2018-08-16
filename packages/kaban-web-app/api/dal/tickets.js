@@ -1,6 +1,8 @@
-const { Ticket } = require('./models')
+const { Ticket, Workflow } = require('./models')
 
 async function insert(ticketSlim) {
+	ticketSlim.status = Workflow.getTicketInitialStatus()
+
 	const ticket = new Ticket(ticketSlim)
 	return await ticket.save()
 }

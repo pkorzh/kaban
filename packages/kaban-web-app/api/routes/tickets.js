@@ -20,11 +20,6 @@ router.post('/tickets', async function (req, res, next) {
 		ticketSlim.key = shortid.generate()
 	}
 
-	ticketSlim.status = {
-		key: 'todo',
-		name: 'ToDo',
-	}
-
 	const ticket = await ticketsDal.insert(ticketSlim)
 	notifySubscribers('createTicket', ticket)
 

@@ -36,11 +36,11 @@ module.exports = new Schema({
 	},
 	assignee: {
 		type: UserSchema,
-		required: false,
+		required: true,
 	},
 	reporter: {
 		type: UserSchema,
-		required: false,
+		required: true,
 	},
 	backlog: {
 		type: BacklogSchema,

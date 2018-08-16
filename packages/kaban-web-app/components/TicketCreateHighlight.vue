@@ -85,7 +85,8 @@
 					priority: this.$store.getters['priorities/getList'][0],
 					type: this.$store.getters['tickettypes/getList'][0],
 					resolution: null,
-					assignee: this.$store.getters['users/getList'][0],
+					assignee: this.$store.getters['users/unassigned'],
+					reporter: this.$store.getters['users/current'],
 					backlog: this.$store.getters['backlogs/getList'][0],
 				}
 			}

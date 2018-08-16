@@ -1,7 +1,7 @@
 <template>
 	<ul class="details-options details-options-assign">
 		<li>
-			<h3>Created By:</h3>
+			<h3>Assignee</h3>
 			<div>
 				<LiveEditSelect
 					:content="ticket.assignee"
@@ -22,7 +22,7 @@
 			</div>
 		</li>
 		<li>
-			<h3>Created By:</h3>
+			<h3>Reporter</h3>
 			<div>
 				<LiveEditSelect
 					:content="ticket.reporter"
