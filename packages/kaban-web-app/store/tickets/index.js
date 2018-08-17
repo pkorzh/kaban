@@ -1,21 +1,28 @@
 import Vue from 'vue'
-import { utc } from 'moment'
 
 import moduleFactory from '../module-factory'
 
 export default moduleFactory('tickets', {
 	mutations: {
-		UPDATE_TICKETS_STATUS(state, {tickets, mapsTo}) {
-			tickets.forEach(ticket => {
-				if (ticket.status.key !== mapsTo.key) {
-					Vue.set(ticket, 'status', mapsTo)
-				}
-			})
+		UPDATE_TICKETS_STATUS(state, {keys, mapsTo}) {
+			keys.forEach(key => Vue.set(state.entities[key], 'status', mapsTo))
 		}
 	},
 	actions: {
 		transition({commit}, {tickets, mapsTo}) {
-			commit('UPDATE_TICKETS_STATUS', {tickets, mapsTo})
+			const keys = tickets.map(ticket => ticket.key)
+
+			const oldMapsTo = JSON.parse(
+				JSON.stringify(tickets[0].status)
+			)
+
+			commit('UPDATE_TICKETS_STATUS', {keys, mapsTo})
+
+			return this.$axios.$post(`/api/workflow/transition/`, {keys, mapsTo: mapsTo.key}).then((data) => {
+				return data
+			}, (error => {
+				commit('UPDATE_TICKETS_STATUS', {keys, mapsTo: oldMapsTo})
+			}))
 		}
 	}
 })

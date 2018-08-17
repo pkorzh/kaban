@@ -35,6 +35,14 @@ function getSoftwareWorkflow() {
 		},
 	}
 
+	const TRANSITION = {
+		[BACKLOG]: [READY_TO_START],
+		[READY_TO_START]: [DEVELOPMENT],
+		[DEVELOPMENT]: [CODE_REVIEW],
+		[CODE_REVIEW]: [READY_TO_VERIFICATION],
+		[READY_TO_VERIFICATION]: [VERIFICATION],
+	}
+
 	const LANES = [
 		{
 			name: 'Ready to Start',
@@ -75,7 +83,7 @@ function getSoftwareWorkflow() {
 		},
 	]
 
-	return { LANES, STATUS }
+	return { LANES, STATUS, TRANSITION }
 }
 
 const SOFTWARE_WORKFLOW = getSoftwareWorkflow()
@@ -90,6 +98,14 @@ module.exports = (options = {}) => {
 
 	WorkflowSchema.statics.getBoardLanes = function _getBoardLanes() {
 		return SOFTWARE_WORKFLOW.LANES
+	}
+
+	WorkflowSchema.statics.hasTransition = function _transition(from, to) {
+		return SOFTWARE_WORKFLOW.TRANSITION[from].indexOf(to) !== -1
+	}
+
+	WorkflowSchema.statics.status = function _status(key) {
+		return SOFTWARE_WORKFLOW.STATUS[key]
 	}
 
 	return WorkflowSchema

@@ -79,11 +79,14 @@
 			},
 			draggables: {
 				get() {
-					return this.tickets;
+					return this.tickets
 				},
 				set(tickets) {
-					this.$bus.$emit('kaban::board::draggables', {
-						tickets,
+					const ticketsToTransition = tickets.filter(ticket =>
+						ticket.status.key !== this.mapsTo.key)
+
+					ticketsToTransition.length && this.$bus.$emit('kaban::board::draggables', {
+						tickets: ticketsToTransition,
 						mapsTo: this.mapsTo,
 					})
 				}
