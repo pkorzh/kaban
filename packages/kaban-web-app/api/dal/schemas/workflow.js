@@ -7,6 +7,7 @@ function getSoftwareWorkflow() {
 	const CODE_REVIEW = 'code-review'
 	const READY_TO_VERIFICATION = 'ready-to-verification'
 	const VERIFICATION = 'verification'
+	const CLOSED = 'closed'
 
 	const STATUS = {
 		[BACKLOG]: {
@@ -33,6 +34,10 @@ function getSoftwareWorkflow() {
 			key: VERIFICATION,
 			name: 'Verification'
 		},
+		[CLOSED]: {
+			key: CLOSED,
+			name: 'Closed'
+		}
 	}
 
 	const TRANSITION = {
@@ -41,7 +46,8 @@ function getSoftwareWorkflow() {
 		[DEVELOPMENT]: [CODE_REVIEW, READY_TO_VERIFICATION],
 		[CODE_REVIEW]: [READY_TO_VERIFICATION, DEVELOPMENT],
 		[READY_TO_VERIFICATION]: [VERIFICATION],
-		[VERIFICATION]: [DEVELOPMENT]
+		[VERIFICATION]: [DEVELOPMENT, CLOSED],
+		[CLOSED]: []
 	}
 
 	const LANES = [

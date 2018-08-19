@@ -9,7 +9,7 @@ module.exports = (options = {}) => {
 		from: {
 			key: {
 				type: String,
-				required: true,
+				required: false,
 			}
 		},
 		to: {
