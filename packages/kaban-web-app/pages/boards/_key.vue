@@ -12,10 +12,12 @@
 			</template>
 
 			<ActionsNav>
-				<!--<ActionsNavAssigned />
-				<ActionsNavQuickFilters />-->
+				<!--<ActionsNavAssigned />-->
+				<ActionsNavQuickFilters
+					:backlogs="board.backlogs"
+					@filter="doQuickFilters" />
 
-				<div class="btn-group" role="group">
+				<div class="btn-group ml-3" role="group">
 					<nuxt-link
 						v-for="backlog in board.backlogs"
 						:key="backlog.key"
@@ -54,7 +56,10 @@
 	export default {
 		data() {
 			return {
-				boardView: true
+				boardView: true,
+				quickFilters: {
+					backlogs: []
+				}
 			}
 		},
 		async fetch({store, params}) {
@@ -80,7 +85,9 @@
 			},
 
 			tickets() {
-				const backlogsKeys = this.board.backlogs.map(b => b.key)
+				const backlogsKeys = this.quickFilters.backlogs.length
+					? this.quickFilters.backlogs
+					: this.board.backlogs.map(b => b.key)
 
 				return this.queryTicket(
 					(ticket) => backlogsKeys.indexOf(ticket.backlog.key) !== -1)
@@ -99,6 +106,10 @@
 						borderTop: `2px solid ${color ? color : ''}`
 					}
 				}
+			},
+
+			doQuickFilters({backlogs}) {
+				this.quickFilters.backlogs = backlogs
 			}
 		},
 		async mounted() {

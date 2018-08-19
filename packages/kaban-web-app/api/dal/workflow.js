@@ -1,4 +1,7 @@
-const { Workflow } = require('./models')
+const {
+	Workflow,
+	WorkflowTransition,
+} = require('./models')
 
 const ticketsDal = require('./tickets')
 
@@ -20,6 +23,14 @@ async function transition(keys, mapsTo) {
 			await ticketsDal.patch(key, {
 				status: Workflow.status(to)
 			})
+
+			const ticketTransition = new WorkflowTransition({
+				key,
+				from: {key: from},
+				to: {key: to},
+			})
+
+			await ticketTransition.save()
 		} else {
 			throw new WorkflowTransitionError({
 				key,
