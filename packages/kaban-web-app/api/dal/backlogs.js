@@ -1,30 +1,20 @@
 const {
 	Backlog,
-	Board,
 	Workflow
 } = require('./models')
 
 async function insert(backlogSlim) {
 	const backlog = new Backlog(backlogSlim)
-
 	await backlog.save()
-
-	const board = new Board({
-		key: backlog.key,
-		name: backlog.name,
-		description: backlog.description,
-		lanes: Workflow.getBoardLanes(),
-		backlog: {
-			key: backlog.key
-		}
-	})
-
-	await board.save()
-
-	return { backlog, board }
+	return backlog
 }
 
-async function query() {
+async function query({board} = {}) {
+
+	if (board) {
+		return Backlog.find({'board.key': board})
+	}
+
 	return await Backlog.find({})
 }
 

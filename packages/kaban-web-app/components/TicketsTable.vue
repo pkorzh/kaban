@@ -3,7 +3,6 @@
 		<div class="tickets-table-wrap">
 			<div class="ticket-line ticket-line-head">
 				<div class="ticket-line-type">T</div>
-				<div class="ticket-line-key">Key</div>
 				<div class="ticket-line-title">Summary</div>
 				<div class="ticket-line-name"><a href="#" class="tickets-table-sort">Assigned</a></div>
 				<div class="ticket-line-name"><a href="#" class="tickets-table-sort">Reporter</a></div>

@@ -9,8 +9,8 @@
 				<ActionsNavSimpleSearch />
 
 				<ActionsNavButton
-					text="Create Backlog"
-					action="CreateBacklogAction"
+					text="Create Board"
+					action="CreateBoardAction"
 					shortkey="c" />
 			</ActionsNav>
 		</TopBar>

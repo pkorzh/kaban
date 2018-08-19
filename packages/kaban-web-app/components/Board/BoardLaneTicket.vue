@@ -1,9 +1,8 @@
 <template>
-	<div class="card card-ticket">
+	<div
+		class="card card-ticket"
+		:style="cardStyle">
 		<h3 class="card-title">
-			<span class="text-muted">
-				{{ ticket.key }}
-			</span>
 			<a
 				:href="ticketUrl(ticket)"
 				class="card-link"
@@ -31,6 +30,7 @@
 						:src="ticket.priority.iconUrl"
 						:title="ticket.priority.name">
 				</div>
+
 			</div>
 			<div class="card-col">
 				<!--<span class="card-attach">
@@ -67,6 +67,16 @@
 
 			backlog() {
 				return this.getBacklog(this.ticket.backlog.key)
+			},
+
+			cardStyle() {
+				const color = this.ticket.backlog.color
+
+				if (color) {
+					return {
+						borderLeft: `2px solid ${color ? color : ''}`
+					}
+				}
 			}
 		}
 	};

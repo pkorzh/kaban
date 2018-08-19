@@ -1,7 +1,5 @@
 const { Schema } = require('mongoose')
 
-const BacklogSchema = require('./backlog')({_id: false})
-
 module.exports = (options = {}) => {
 	return new Schema({
 		key: {
@@ -15,10 +13,6 @@ module.exports = (options = {}) => {
 		description: {
 			type: String,
 			required: false,
-		},
-		backlog: {
-			type: BacklogSchema,
-			required: true,
 		},
 		lanes: [
 			{

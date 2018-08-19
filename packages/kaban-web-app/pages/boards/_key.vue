@@ -15,9 +15,16 @@
 				<!--<ActionsNavAssigned />
 				<ActionsNavQuickFilters />-->
 
-				<ActionsNavLink
-					text="Goto Backlog"
-					:to="{name: 'backlogs-key', params: {key: board.backlog.key}}" />
+				<div class="btn-group" role="group">
+					<nuxt-link
+						v-for="backlog in board.backlogs"
+						:key="backlog.key"
+						:to="{name: 'backlogs-key', params: {key: backlog.key}}"
+						:style="backlogButtonStyle(backlog)"
+						class="btn btn-light">
+						{{ backlog.key }}
+					</nuxt-link>
+				</div>
 
 				<!--<ActionsNavSimpleSearch />-->
 
@@ -56,7 +63,7 @@
 			const board = store.getters['boards/getOne'](params.key)
 
 			await store.dispatch('tickets/fetchList', {
-				backlog: board.backlog.key
+				backlogs: board.backlogs.map(b => b.key)
 			})
 		},
 		computed: {
@@ -73,14 +80,26 @@
 			},
 
 			tickets() {
+				const backlogsKeys = this.board.backlogs.map(b => b.key)
+
 				return this.queryTicket(
-					(ticket) => ticket.backlog.key === this.board.backlog.key)
+					(ticket) => backlogsKeys.indexOf(ticket.backlog.key) !== -1)
 			},
 		},
 		methods: {
 			...mapActions('tickets', [
 				'transition'
 			]),
+
+			backlogButtonStyle(backlog) {
+				const color = backlog.color
+
+				if (color) {
+					return {
+						borderTop: `2px solid ${color ? color : ''}`
+					}
+				}
+			}
 		},
 		async mounted() {
 			this.$bus.$on('kaban::board::draggables', ({tickets, mapsTo}) => {

@@ -17,7 +17,7 @@
 
 				<ActionsNavLink
 					text="Goto Board"
-					:to="{name: 'boards-key', params: {key: backlog.key}}" />
+					:to="{name: 'boards-key', params: {key: backlog.board.key}}" />
 
 				<!--<ActionsNavSimpleSearch />-->
 

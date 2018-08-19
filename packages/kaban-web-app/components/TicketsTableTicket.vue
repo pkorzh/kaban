@@ -5,11 +5,6 @@
 				:src="ticket.type.iconUrl"
 				:title="ticket.type.name">
 		</div>
-		<div class="ticket-line-key">
-			<nuxt-link :to="{name: 'issues-key', params: {key: ticket.key}}">
-				{{ ticket.key }}
-			</nuxt-link>
-		</div>
 		<div class="ticket-line-title">
 			<span>
 				<a

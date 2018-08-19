@@ -16,10 +16,9 @@ router.get('/backlogs', async function (req, res, next) {
 router.post('/backlogs', async function (req, res, next) {
 	const backlogSlim = req.body
 
-	const { backlog, board } = await backlogsDal.insert(backlogSlim)
+	const backlog = await backlogsDal.insert(backlogSlim)
 
 	notifySubscribers('createBacklog', backlog)
-	notifySubscribers('createBoard', board)
 
 	return res.json(backlog)
 })

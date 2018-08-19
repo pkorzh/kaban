@@ -8,11 +8,21 @@ module.exports = (options = {}) => {
 		},
 		name: {
 			type: String,
+			required: true,
+		},
+		color: {
+			type: String,
 			required: false,
 		},
 		description: {
 			type: String,
 			required: false,
 		},
+		board: {
+			key: {
+				type: String,
+				required: true,
+			}
+		}
 	}, Object.assign({}, options))
 }
