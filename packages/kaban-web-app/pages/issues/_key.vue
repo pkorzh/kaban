@@ -120,11 +120,14 @@
 
 	export default {
 		async fetch({store, params}) {
-			await store.dispatch('tickets/fetchOne', params.key)
+			await store.dispatch('tickets/fetchOne', `key = ${params.key}`)
 
 			const ticket = store.getters['tickets/getOne'](params.key)
 
-			await store.dispatch('backlogs/fetchOne', ticket.backlog.key)
+			await store.dispatch(
+				'backlogs/fetchOne',
+				`key = ${ticket.backlog.key}`
+			)
 		},
 		computed: {
 			...mapGetters('tickets', {

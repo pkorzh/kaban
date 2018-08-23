@@ -6,7 +6,7 @@ const { boards: boardsDal } = require('../dal')
 const { notifySubscribers } = require('./sse_clients')
 
 router.get('/boards', async function (req, res, next) {
-	const boards = await boardsDal.query()
+	const boards = await boardsDal.query(req.query.tql)
 	return res.json(boards)
 })
 
@@ -17,11 +17,6 @@ router.post('/boards', async function (req, res, next) {
 
 	notifySubscribers('createBoard', board)
 
-	return res.json(board)
-})
-
-router.get('/boards/:key', async function (req, res, next) {
-	const board = await boardsDal.get({key: req.params.key})
 	return res.json(board)
 })
 

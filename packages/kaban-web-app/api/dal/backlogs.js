@@ -3,27 +3,19 @@ const {
 	Workflow
 } = require('./models')
 
+const generateMql = require('../../tql/mongo')
+
 async function insert(backlogSlim) {
 	const backlog = new Backlog(backlogSlim)
 	await backlog.save()
 	return backlog
 }
 
-async function query({board} = {}) {
-
-	if (board) {
-		return Backlog.find({'board.key': board})
-	}
-
-	return await Backlog.find({})
-}
-
-async function get({key}) {
-	return await Backlog.findOne({key: key})
+async function query(tql) {
+	return await Backlog.find(generateMql(tql))
 }
 
 module.exports = {
 	insert,
 	query,
-	get,
 }

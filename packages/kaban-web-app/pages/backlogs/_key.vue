@@ -37,11 +37,9 @@
 
 	export default {
 		async fetch({store, params}) {
-			await store.dispatch('backlogs/fetchOne', params.key)
+			await store.dispatch('backlogs/fetchOne', `key = ${params.key}`)
 
-			await store.dispatch('tickets/fetchList', {
-				backlog: params.key
-			})
+			await store.dispatch('tickets/fetchList', `backlog = ${params.key}`)
 		},
 		computed: {
 			...mapGetters('backlogs', {

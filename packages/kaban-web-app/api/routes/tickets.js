@@ -8,7 +8,7 @@ const { notifySubscribers } = require('./sse_clients')
 const { tickets: ticketsDal } = require('../dal')
 
 router.get('/tickets', async function (req, res, next) {
-	const tickets = await ticketsDal.query()
+	const tickets = await ticketsDal.query(req.query.tql)
 
 	return res.json(tickets)
 })
@@ -36,11 +36,6 @@ router.patch('/tickets/:key', async function (req, res, next) {
 
 	notifySubscribers('updateTicket', ticket)
 
-	return res.json(ticket)
-})
-
-router.get('/tickets/:key', async function (req, res, next) {
-	const ticket = await ticketsDal.get({key: req.params.key})
 	return res.json(ticket)
 })
 

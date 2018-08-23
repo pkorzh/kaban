@@ -26,8 +26,9 @@ async function transition(keys, mapsTo) {
 
 			const ticketTransition = new WorkflowTransition({
 				key,
-				from: {key: from},
-				to: {key: to},
+				from: { key: from },
+				to: { key: to },
+				backlog: { key: ticket.backlog.key },
 			})
 
 			await ticketTransition.save()

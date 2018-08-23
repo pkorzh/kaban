@@ -6,6 +6,12 @@ module.exports = (options = {}) => {
 			type: String,
 			required: true,
 		},
+		backlog: {
+			key: {
+				type: String,
+				required: true,
+			}
+		},
 		from: {
 			key: {
 				type: String,

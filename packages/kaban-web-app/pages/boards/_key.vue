@@ -63,13 +63,14 @@
 			}
 		},
 		async fetch({store, params}) {
-			await store.dispatch('boards/fetchOne', params.key)
+			await store.dispatch('boards/fetchOne', `key = ${params.key}`)
 
 			const board = store.getters['boards/getOne'](params.key)
 
-			await store.dispatch('tickets/fetchList', {
-				backlogs: board.backlogs.map(b => b.key)
-			})
+			await store.dispatch(
+				'tickets/fetchList',
+				`backlog in [${board.backlogs.map(b => b.key).join(',')}]`
+			)
 		},
 		computed: {
 			...mapGetters('boards', {

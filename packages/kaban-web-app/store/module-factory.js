@@ -30,19 +30,17 @@ export default (resource, {state, getters, actions, mutations, patchReducers = {
 	}, mutations)
 
 	const moduleActions = Object.assign({
-		async fetchList({commit}, query = {}) {
+		async fetchList({commit}, tql) {
 			const rawList = await this.$axios.$get(
 				`/api/${resource}/`,
-				{
-					params: query
-				},
+				{ params: { tql } },
 			)
 
 			commit('STAGE_MULTIPLE', rawList)
 		},
-		async fetchOne({commit}, key) {
-			const rawEntity = await this.$axios.$get(`/api/${resource}/${key}/`)
-			commit('STAGE', rawEntity)
+		async fetchOne({commit}, tql) {
+			const rawEntity = await this.$axios.$get(`/api/${resource}/`, { params: { tql } })
+			commit('STAGE', rawEntity[0])
 		},
 		create({commit}, entity) {
 			return this.$axios.$post(`/api/${resource}/`, entity).then((data) => {

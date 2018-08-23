@@ -23,12 +23,13 @@
 				<div class="table">
 					<div class="table-line table-line-head">
 						<div class="table-line-name">Task Name</div>
+						<div>Board</div>
 						<div>Duration</div>
 						<div>
 							<a href="#" class="backlog-table-sort">Start</a>
 						</div>
 						<div>
-							<a href="#" class="backlog-table-sort">Finish</a>
+							<a href="#" class="backlog-table-sort">Estimated Finish</a>
 						</div>
 						<div>Predecessors</div>
 						<div>Predecessors</div>
@@ -38,6 +39,11 @@
 						<div class="table-line-name">
 							<nuxt-link :to="{name: 'backlogs-key', params: {key: backlog.key}}">
 								{{ backlog.name }}
+							</nuxt-link>
+						</div>
+						<div>
+							<nuxt-link :to="{name: 'boards-key', params: {key: backlog.board.key}}">
+								{{ backlog.board.key }}
 							</nuxt-link>
 						</div>
 						<div>1d</div>

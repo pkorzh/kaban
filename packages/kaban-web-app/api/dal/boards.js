@@ -1,23 +1,27 @@
 const { Board, Workflow } = require('./models')
 
+const generateMql = require('../../tql/mongo')
+
 const backlogsDal = require('./backlogs')
 
-async function query() {
-	return await Board.find({})
-}
+async function query(tql) {
+	const boards = await Board.find(generateMql(tql))
+	const backlogs = await backlogsDal.query(
+		`board in [${boards.map(b => b.key).join(',')}]`
+	)
 
-async function get({key}) {
-	const board = await Board.findOne({key: key})
-	const backlogs = await backlogsDal.query({board: board.key})
-
-	return {
-		...board.toJSON(),
-		backlogs: backlogs.map(b => ({
-			key: b.key,
-			name: b.name,
-			color: b.color,
-		}))
-	}
+	return boards.map(b => b.toJSON()).map(board => {
+		return {
+			...board,
+			backlogs: backlogs
+				.filter(b => b.board.key === board.key)
+				.map(b => ({
+					key: b.key,
+					name: b.name,
+					color: b.color,
+				}))
+		}
+	})
 }
 
 async function insert(boardSlim) {
@@ -33,6 +37,5 @@ async function insert(boardSlim) {
 
 module.exports = {
 	query,
-	get,
 	insert,
 }

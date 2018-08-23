@@ -4,6 +4,8 @@ const {
 	WorkflowTransition,
 } = require('./models')
 
+const generateMql = require('../../tql/mongo')
+
 async function insert(ticketSlim) {
 	ticketSlim.status = Workflow.getTicketInitialStatus()
 
@@ -11,6 +13,9 @@ async function insert(ticketSlim) {
 
 	await new WorkflowTransition({
 		key: ticket.key,
+		backlog: {
+			key: ticket.backlog.key,
+		},
 		to: {
 			key: Workflow.getTicketInitialStatus().key
 		}
@@ -19,22 +24,18 @@ async function insert(ticketSlim) {
 	return await ticket.save()
 }
 
-async function query() {
-	return await Ticket.find({})
-}
-
-async function get({key}) {
-	return await Ticket.findOne({key: key})
+async function query(tql) {
+	return await Ticket.find(generateMql(tql))
 }
 
 async function patch(key, delta) {
 	await Ticket.update({ key }, { $set: delta})
-	return await get({key})
+	const tickets = await query(`key = ${key}`)
+	return tickets[0]
 }
 
 module.exports = {
 	insert,
 	query,
-	get,
 	patch,
 }

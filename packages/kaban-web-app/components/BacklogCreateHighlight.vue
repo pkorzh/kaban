@@ -83,7 +83,11 @@
 			}),
 
 			async create() {
-				await this.createBacklog(this.backlog)
+				await this.createBacklog({
+					...this.backlog,
+					color: this.backlog.color.hex
+				})
+
 				this.$emit('close')
 			}
 		},

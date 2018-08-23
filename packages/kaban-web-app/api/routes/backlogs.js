@@ -8,7 +8,7 @@ const { notifySubscribers } = require('./sse_clients')
 const { backlogs: backlogsDal } = require('../dal')
 
 router.get('/backlogs', async function (req, res, next) {
-	const backlogs = await backlogsDal.query()
+	const backlogs = await backlogsDal.query(req.query.tql)
 
 	return res.json(backlogs)
 })
@@ -20,11 +20,6 @@ router.post('/backlogs', async function (req, res, next) {
 
 	notifySubscribers('createBacklog', backlog)
 
-	return res.json(backlog)
-})
-
-router.get('/backlogs/:key', async function (req, res, next) {
-	const backlog = await backlogsDal.get({key: req.params.key})
 	return res.json(backlog)
 })
 
