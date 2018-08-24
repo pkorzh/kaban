@@ -42,9 +42,6 @@
 		<div class="ticket-line-date">
 			{{ ticket.resolvedAt | moment('L') }}
 		</div>
-		<div class="ticket-line-action">
-			<a href="#"><font-awesome-icon icon="ellipsis-h" /></a>
-		</div>
 	</div>
 </template>
 

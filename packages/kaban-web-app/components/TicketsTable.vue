@@ -3,16 +3,36 @@
 		<div class="tickets-table-wrap">
 			<div class="ticket-line ticket-line-head">
 				<div class="ticket-line-type">T</div>
+
 				<div class="ticket-line-title">Summary</div>
-				<div class="ticket-line-name"><a href="#" class="tickets-table-sort">Assigned</a></div>
+
+				<div class="ticket-line-name">
+					Assigned
+				</div>
+
 				<div class="ticket-line-name"><a href="#" class="tickets-table-sort">Reporter</a></div>
+
 				<div class="ticket-line-block">P</div>
-				<div class="ticket-line-status"><a href="#" class="tickets-table-sort">Status</a></div>
-				<div class="ticket-line-resolution"><a href="#" class="tickets-table-sort">Resolution</a></div>
-				<div class="ticket-line-date"><a href="#" class="tickets-table-sort">Created</a></div>
-				<div class="ticket-line-date"><a href="#" class="tickets-table-sort">Updated</a></div>
-				<div class="ticket-line-date"><a href="#" class="tickets-table-sort">Resolved</a></div>
-				<div class="ticket-line-action">Action</div>
+
+				<div class="ticket-line-status">
+					Status
+				</div>
+
+				<div class="ticket-line-resolution">
+					Resolution
+				</div>
+
+				<div class="ticket-line-date">
+					Created
+				</div>
+
+				<div class="ticket-line-date">
+					Updated
+				</div>
+
+				<div class="ticket-line-date">
+					Resolved
+				</div>
 			</div>
 			<TicketsTableTicket
 				v-for="ticket in tickets"

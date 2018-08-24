@@ -23,13 +23,14 @@
 
 		<div class="backlog" v-if="tableView">
 			<div class="backlog-holder">
-				<div class="table">
+				<div class="backlog-table table">
 					<div class="table-line table-line-head">
 						<div class="table-line-name">Task Name</div>
 						<div>Board</div>
 						<div>
 							Estimated Finish
 						</div>
+						<div class="table-line-action"></div>
 					</div>
 
 					<div class="table-line" v-for="backlog in backlogList" :key="backlog.key">
@@ -45,6 +46,14 @@
 						</div>
 						<div>
 							Not Enough Data
+						</div>
+						<div class="table-line-action">
+							<b-dropdown variant="link" no-caret>
+								<template slot="button-content">
+									<font-awesome-icon icon="ellipsis-v" />
+								</template>
+								<b-dropdown-item href="">Start</b-dropdown-item>
+							</b-dropdown>
 						</div>
 					</div>
 				</div>

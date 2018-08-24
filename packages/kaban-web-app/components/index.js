@@ -22,6 +22,7 @@ import LiveEditInput from './LiveEdit/LiveEditInput'
 import LiveEditSelect from './LiveEdit/LiveEditSelect'
 
 import Gantt from './Gantt/Gantt'
+import Sparkline from './Sparkline'
 
 import TicketDetailsSlimStatus from './TicketDetailsSlim/TicketDetailsSlimStatus'
 import TicketDetailsSlimEstimations from './TicketDetailsSlim/TicketDetailsSlimEstimations'
@@ -59,6 +60,7 @@ export {
 	LiveEditSelect,
 
 	Gantt,
+	Sparkline,
 
 	TicketDetailsSlimStatus,
 	TicketDetailsSlimEstimations,
