@@ -35,7 +35,7 @@
 					action="CreateTicketAction"
 					shortkey="c" />
 
-				<ActionsNavBoardViewSwitcher v-model="boardView" />
+				<ActionsNavViewSwitcher v-model="boardView" />
 			</ActionsNav>
 		</TopBar>
 

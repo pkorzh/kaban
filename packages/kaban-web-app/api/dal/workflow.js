@@ -15,7 +15,10 @@ WorkflowTransitionError.prototype = new Error
 async function transition(keys, mapsTo) {
 	for (var i = 0; i < keys.length; i++) {
 		const key = keys[i]
-		const ticket = await ticketsDal.get({key})
+
+		let ticket = await ticketsDal.query(`key = ${key}`)
+		ticket = ticket[0]
+
 		const from = ticket.status.key
 		const to = mapsTo
 
@@ -42,6 +45,11 @@ async function transition(keys, mapsTo) {
 	}
 }
 
+function transitions() {
+	return Workflow.transitions()
+}
+
 module.exports = {
 	transition,
+	transitions,
 }

@@ -26,6 +26,7 @@ const store = () => new Vuex.Store({
 			return Promise.all([
 				dispatch('boards/fetchList'),
 				dispatch('backlogs/fetchList'),
+				dispatch('workflow/fetchTransitions')
 			])
 		}
 	}

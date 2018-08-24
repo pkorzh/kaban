@@ -6,7 +6,7 @@
 			</template>
 
 			<ActionsNav>
-				<ActionsNavSimpleSearch />
+				<!--<ActionsNavSimpleSearch />-->
 
 				<ActionsNavButton
 					text="Create Board"

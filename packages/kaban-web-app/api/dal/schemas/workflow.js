@@ -115,5 +115,9 @@ module.exports = (options = {}) => {
 		return SOFTWARE_WORKFLOW.STATUS[key]
 	}
 
+	WorkflowSchema.statics.transitions = function _transitions() {
+		return SOFTWARE_WORKFLOW.TRANSITION
+	}
+
 	return WorkflowSchema
 }

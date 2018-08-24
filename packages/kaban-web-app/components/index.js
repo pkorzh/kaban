@@ -1,10 +1,11 @@
 import ActionsNav from './ActionsNav/ActionsNav'
 import ActionsNavAssigned from './ActionsNav/ActionsNavAssigned'
-import ActionsNavBoardViewSwitcher from './ActionsNav/ActionsNavBoardViewSwitcher'
+import ActionsNavViewSwitcher from './ActionsNav/ActionsNavViewSwitcher'
 import ActionsNavQuickFilters from './ActionsNav/ActionsNavQuickFilters'
 import ActionsNavSimpleSearch from './ActionsNav/ActionsNavSimpleSearch'
 import ActionsNavButton from './ActionsNav/ActionsNavButton'
 import ActionsNavLink from './ActionsNav/ActionsNavLink'
+import ActionsAllowedTransitions from './ActionsNav/ActionsAllowedTransitions'
 
 import Board from './Board/Board'
 import BoardLane from './Board/BoardLane'
@@ -37,11 +38,12 @@ import IconedSelect from './Fields/IconedSelect.vue'
 export {
 	ActionsNav,
 	ActionsNavAssigned,
-	ActionsNavBoardViewSwitcher,
+	ActionsNavViewSwitcher,
 	ActionsNavQuickFilters,
 	ActionsNavSimpleSearch,
 	ActionsNavButton,
 	ActionsNavLink,
+	ActionsAllowedTransitions,
 
 	Board,
 	BoardLane,

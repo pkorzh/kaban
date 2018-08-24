@@ -34,13 +34,7 @@
 		</div>
 		<div class="details">
 			<ActionsNav>
-				<!--
-				<ActionsNavButton
-					text="Edit"
-					icon="pen"
-					action=""
-					shortkey="" />
-				<ActionsNavButton
+				<!--<ActionsNavButton
 					text="Comment"
 					icon="comment-alt"
 					action=""
@@ -49,14 +43,10 @@
 					text="Assign"
 					icon=""
 					action=""
-					shortkey="" />
-				<ActionsNavButton
-					text="Closed"
-					icon=""
-					action=""
-					shortkey="" />
+					shortkey="" />-->
 
-				<div class="actions-nav-separator"></div>
+				<ActionsAllowedTransitions :ticket="ticket" />
+				<!--<div class="actions-nav-separator"></div>
 
 				<ActionsNavButton
 					icon="share"
@@ -65,8 +55,8 @@
 				<ActionsNavButton
 					icon="ellipsis-h"
 					action=""
-					shortkey="" />
-				-->
+					shortkey="" />-->
+
 			</ActionsNav>
 
 			<b-row>

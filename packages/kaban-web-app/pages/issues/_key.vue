@@ -24,39 +24,7 @@
 			</template>
 
 			<ActionsNav>
-				<!--
-				<ActionsNavButton
-					text="Edit"
-					icon="pen"
-					action=""
-					shortkey="" />
-				<ActionsNavButton
-					text="Comment"
-					icon="comment-alt"
-					action=""
-					shortkey="" />
-				<ActionsNavButton
-					text="Assign"
-					icon=""
-					action=""
-					shortkey="" />
-				<ActionsNavButton
-					text="Closed"
-					icon=""
-					action=""
-					shortkey="" />
-
-				<div class="actions-nav-separator"></div>
-
-				<ActionsNavButton
-					icon="share"
-					action=""
-					shortkey="" />
-				<ActionsNavButton
-					icon="ellipsis-h"
-					action=""
-					shortkey="" />
-				-->
+				<ActionsAllowedTransitions :ticket="ticket" />
 			</ActionsNav>
 		</TopBar>
 

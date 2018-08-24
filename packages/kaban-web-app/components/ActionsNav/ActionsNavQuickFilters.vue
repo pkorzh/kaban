@@ -1,5 +1,5 @@
 <template>
-	<b-dropdown :text="dropdownText" class="ml-3">
+	<b-dropdown :text="dropdownText" class="">
 		<!--<form action="#" class="form-search">
 			<fieldset>
 				<input type="text" placeholder="Find a service by name or feature">

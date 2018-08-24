@@ -49,6 +49,7 @@ module.exports = {
 		{ src: '~/plugins/kaban-sse-subscribe', ssr: false },
 		{ src: '~/plugins/vue-select', ssr: false },
 		{ src: '~/plugins/vue-color', ssr: false },
+		{ src: '~/plugins/vue-vuelidate', ssr: false },
 	],
 
 	/*

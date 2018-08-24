@@ -54,9 +54,12 @@
 								</li>
 								<li>
 									<strong class="dropdown-menu-title">
-										<nuxt-link to="/">Filters</nuxt-link>
+										Filters
 									</strong>
 									<ul>
+										<li>
+											<nuxt-link to="/issues/search">Search</nuxt-link>
+										</li>
 									</ul>
 								</li>
 								<li>

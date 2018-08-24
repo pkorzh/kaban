@@ -1,8 +1,6 @@
 <template>
 	<button
-		class="btn btn-light ml-3"
-		v-shortkey.once="[this.shortkey]"
-		@shortkey="handleAction()"
+		class="btn btn-light"
 		@click="handleAction()">
 			<font-awesome-icon v-if="icon" :icon="icon" />
 			{{ text }}</button>
@@ -13,7 +11,7 @@
 		props: {
 			action: {
 				type: String,
-				required: true,
+				required: false,
 			},
 			text: {
 				type: String,
@@ -21,7 +19,7 @@
 			},
 			shortkey: {
 				type: String,
-				required: true,
+				required: false,
 			},
 			icon: {
 				type: String,
@@ -30,7 +28,11 @@
 		},
 		methods: {
 			handleAction() {
-				this.$kaban.dispatch(this.action, {sender: this})
+				if (this.action) {
+					this.$kaban.dispatch(this.action, {sender: this})
+				}
+
+				this.$emit('click')
 			}
 		}
 	}

@@ -12,8 +12,12 @@
 				@click="$emit('close')">Close</button>
 		</div>
 		<div class="details">
-			<b-form id="BoardCreateHighlight" @submit.prevent="create">
-				<b-form-group label="Name" horizontal>
+			<b-form id="BoardCreateHighlight" @submit.prevent="create" novalidate>
+				<b-form-group
+					label="Name"
+					horizontal
+					:invalid-feedback="'Name is required'"
+					:state="!$v.board.name.$invalid">
 					<b-form-input
 						type="text"
 						v-model="board.name"
@@ -29,7 +33,10 @@
 						placeholder="Key" />
 				</b-form-group>
 
-				<b-form-group label="Description">
+				<b-form-group
+					label="Description"
+					:invalid-feedback="'Description is required'"
+					:state="!$v.board.description.$invalid">
 					<b-form-textarea
 						type="text"
 						v-model="board.description"
@@ -51,6 +58,7 @@
 </template>
 
 <script>
+	import { required } from 'vuelidate/lib/validators'
 	import { mapActions } from 'vuex'
 
 	export default {
@@ -61,6 +69,13 @@
 					key: null,
 					description: null,
 				}
+			}
+		},
+		validations: {
+			board: {
+				name: { required },
+				key: { required },
+				description: { },
 			}
 		},
 		methods: {

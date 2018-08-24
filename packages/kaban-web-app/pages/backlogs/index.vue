@@ -13,7 +13,10 @@
 					action="CreateBacklogAction"
 					shortkey="c" />
 
-				<ActionsNavBoardViewSwitcher v-model="tableView" />
+				<ActionsNavViewSwitcher
+					v-model="tableView"
+					icon1="bars"
+					icon2="align-left" />
 			</ActionsNav>
 
 		</TopBar>
@@ -24,15 +27,9 @@
 					<div class="table-line table-line-head">
 						<div class="table-line-name">Task Name</div>
 						<div>Board</div>
-						<div>Duration</div>
 						<div>
-							<a href="#" class="backlog-table-sort">Start</a>
+							Estimated Finish
 						</div>
-						<div>
-							<a href="#" class="backlog-table-sort">Estimated Finish</a>
-						</div>
-						<div>Predecessors</div>
-						<div>Predecessors</div>
 					</div>
 
 					<div class="table-line" v-for="backlog in backlogList" :key="backlog.key">
@@ -46,11 +43,9 @@
 								{{ backlog.board.key }}
 							</nuxt-link>
 						</div>
-						<div>1d</div>
-						<div>06/07/18</div>
-						<div>06/07/18</div>
-						<div>1</div>
-						<div>1</div>
+						<div>
+							Not Enough Data
+						</div>
 					</div>
 				</div>
 			</div>
@@ -70,43 +65,24 @@
 
 	export default {
 		data() {
-			var names = [
-			    ["Redesign website", [0, 7]],
-			    ["Write new content", [1, 4]],
-			    ["Apply new styles", [3, 6]],
-			    ["Review", [7, 7]],
-			    ["Deploy", [8, 9]],
-			    ["Go Live!", [10, 10]]
-			];
-
-			var tasks = names.map(function(name, i) {
-			    var today = new Date();
-			    var start = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-			    var end = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-			    start.setDate(today.getDate() + name[1][0]);
-			    end.setDate(today.getDate() + name[1][1]);
-			    return {
-			        start: start,
-			        end: end,
-			        name: name[0],
-			        id: "Task " + i,
-			        progress: parseInt(Math.random() * 100, 10)
-			    }
-			});
-			tasks[1].dependencies = "Task 0"
-			tasks[2].dependencies = "Task 1"
-			tasks[3].dependencies = "Task 2"
-			tasks[5].dependencies = "Task 4"
-
 			return {
-				tableView: true,
-				tasks,
+				tableView: true
 			}
 		},
 		computed: {
 			...mapGetters('backlogs', {
 				backlogList: 'getList'
-			})
+			}),
+
+			tasks() {
+				return this.backlogList.map(backlog => ({
+					name: backlog.name,
+					start: backlog.createdAt,
+					end: null,
+					id: backlog.key,
+					progress: 0,
+				}))
+			}
 		},
 	}
 </script>

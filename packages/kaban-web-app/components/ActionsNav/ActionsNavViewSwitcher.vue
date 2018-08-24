@@ -1,17 +1,17 @@
 <template>
-	<ul class="switcher ml-3">
+	<ul class="switcher">
 		<li :class="{ active: value }">
 			<a
 				href=""
 				@click.prevent.stop="switcher()">
-				<font-awesome-icon icon="th-large" />
+				<font-awesome-icon :icon="ic1 " />
 			</a>
 		</li>
 		<li :class="{ active: !value }">
 			<a
 				href=""
 				@click.prevent.stop="switcher()">
-				<font-awesome-icon icon="bars" />
+				<font-awesome-icon :icon="ic2" />
 			</a>
 		</li>
 	</ul>
@@ -19,10 +19,23 @@
 
 <script>
 	export default {
-		props: ['value'],
+		props: [
+			'value',
+			'icon1',
+			'icon2',
+		],
 		methods: {
 			switcher() {
 				this.$emit('input', !this.value)
+			}
+		},
+		computed: {
+			ic1() {
+				return this.icon1 || 'th-large'
+			},
+
+			ic2() {
+				return this.icon2 || 'bars'
 			}
 		}
 	}

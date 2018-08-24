@@ -1,5 +1,5 @@
 <template>
-	<b-dropdown text="Assigned" class="ml-3">
+	<b-dropdown text="Assigned">
 		<form action="#" class="form-search">
 			<fieldset>
 				<input type="text" placeholder="Find a user">
