@@ -2,9 +2,11 @@ const { Schema } = require('mongoose')
 
 module.exports = (options = {}) => {
 	return new Schema({
-		key: {
-			type: String,
-			required: true,
+		ticket: {
+			key: {
+				type: String,
+				required: true,
+			}
 		},
 		backlog: {
 			key: {
@@ -13,10 +15,14 @@ module.exports = (options = {}) => {
 			}
 		},
 		from: {
-			key: {
-				type: String,
-				required: false,
-			}
+			type: {
+				key: {
+					type: String,
+					required: true,
+				}
+			},
+			required: false,
+			default: null,
 		},
 		to: {
 			key: {

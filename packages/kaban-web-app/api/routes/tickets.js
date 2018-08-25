@@ -5,7 +5,10 @@ const router = Router()
 const shortid = require('shortid')
 
 const { notifySubscribers } = require('./sse_clients')
-const { tickets: ticketsDal } = require('../dal')
+const {
+	tickets: ticketsDal,
+	workflow: workflowDal,
+} = require('../dal')
 
 router.get('/tickets', async function (req, res, next) {
 	const tickets = await ticketsDal.query(req.query.tql)
@@ -21,6 +24,9 @@ router.post('/tickets', async function (req, res, next) {
 	}
 
 	const ticket = await ticketsDal.insert(ticketSlim)
+
+	await workflowDal.zeroTransition(ticket)
+
 	notifySubscribers('createTicket', ticket)
 
 	return res.json(ticket)

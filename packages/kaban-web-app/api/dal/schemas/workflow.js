@@ -90,7 +90,18 @@ function getSoftwareWorkflow() {
 		},
 	]
 
-	return { LANES, STATUS, TRANSITION }
+	return {
+		LANES,
+		STATUS,
+		TRANSITION,
+		BACKLOG,
+		READY_TO_START,
+		DEVELOPMENT,
+		CODE_REVIEW,
+		READY_TO_VERIFICATION,
+		VERIFICATION,
+		CLOSED,
+	}
 }
 
 const SOFTWARE_WORKFLOW = getSoftwareWorkflow()
@@ -100,18 +111,18 @@ module.exports = (options = {}) => {
 	}, Object.assign({}, options, {timestamps: true}))
 
 	WorkflowSchema.statics.getTicketInitialStatus = function _getTicketInitialStatus() {
-		return SOFTWARE_WORKFLOW.LANES[0].mapsTo
+		return SOFTWARE_WORKFLOW.STATUS[SOFTWARE_WORKFLOW.BACKLOG]
 	}
 
 	WorkflowSchema.statics.getBoardLanes = function _getBoardLanes() {
 		return SOFTWARE_WORKFLOW.LANES
 	}
 
-	WorkflowSchema.statics.hasTransition = function _transition(from, to) {
+	WorkflowSchema.statics.hasTransition = function _transition({ key: from }, { key: to }) {
 		return SOFTWARE_WORKFLOW.TRANSITION[from].indexOf(to) !== -1
 	}
 
-	WorkflowSchema.statics.status = function _status(key) {
+	WorkflowSchema.statics.status = function _status({ key }) {
 		return SOFTWARE_WORKFLOW.STATUS[key]
 	}
 

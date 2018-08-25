@@ -3,8 +3,6 @@ const {
 	WorkflowTransition,
 } = require('./models')
 
-const ticketsDal = require('./tickets')
-
 function WorkflowTransitionError({key, from, to}) {
 	this.name = 'WorkflowTransitionError'
 	this.from = from
@@ -12,44 +10,44 @@ function WorkflowTransitionError({key, from, to}) {
 }
 WorkflowTransitionError.prototype = new Error
 
-async function transition(keys, mapsTo) {
-	for (var i = 0; i < keys.length; i++) {
-		const key = keys[i]
+async function transition(ticket, to) {
+	const ticketTransition = new WorkflowTransition({
+		ticket: { key: ticket.key },
+		from: { key: ticket.status.key },
+		to: { key: to.key },
+		backlog: { key: ticket.backlog.key },
+	})
 
-		let ticket = await ticketsDal.query(`key = ${key}`)
-		ticket = ticket[0]
-
-		const from = ticket.status.key
-		const to = mapsTo
-
-		if (Workflow.hasTransition(from, to)) {
-			await ticketsDal.patch(key, {
-				status: Workflow.status(to)
-			})
-
-			const ticketTransition = new WorkflowTransition({
-				key,
-				from: { key: from },
-				to: { key: to },
-				backlog: { key: ticket.backlog.key },
-			})
-
-			await ticketTransition.save()
-		} else {
-			throw new WorkflowTransitionError({
-				key,
-				from,
-				to,
-			})
-		}
-	}
+	await ticketTransition.save()
 }
 
 function transitions() {
 	return Workflow.transitions()
 }
 
+function hasTransition(from, to) {
+	return Workflow.transitions(from, to)
+}
+
+function status(status) {
+	return Workflow.status(status)
+}
+
+async function zeroTransition(ticket) {
+	const ticketTransition = new WorkflowTransition({
+		ticket: { key: ticket.key },
+		from: null,
+		to: { key: Workflow.getTicketInitialStatus().key },
+		backlog: { key: ticket.backlog.key },
+	})
+
+	await ticketTransition.save()
+}
+
 module.exports = {
 	transition,
 	transitions,
+	hasTransition,
+	zeroTransition,
+	status,
 }

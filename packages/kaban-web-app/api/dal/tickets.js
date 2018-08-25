@@ -1,7 +1,6 @@
 const {
 	Ticket,
 	Workflow,
-	WorkflowTransition,
 } = require('./models')
 
 const generateMql = require('../../tql/mongo')
@@ -11,16 +10,6 @@ async function insert(ticketSlim) {
 
 	const ticket = new Ticket(ticketSlim)
 
-	await new WorkflowTransition({
-		key: ticket.key,
-		backlog: {
-			key: ticket.backlog.key,
-		},
-		to: {
-			key: Workflow.getTicketInitialStatus().key
-		}
-	}).save()
-
 	return await ticket.save()
 }
 
@@ -28,14 +17,24 @@ async function query(tql) {
 	return await Ticket.find(generateMql(tql))
 }
 
+async function get(tql) {
+	const tickets = await query(tql)
+
+	if (tickets.length !== 1) {
+		throw new Error('Get returned multiple elements')
+	}
+
+	return tickets[0]
+}
+
 async function patch(key, delta) {
 	await Ticket.update({ key }, { $set: delta})
-	const tickets = await query(`key = ${key}`)
-	return tickets[0]
+	return get(`key = ${key}`)
 }
 
 module.exports = {
 	insert,
 	query,
 	patch,
+	get,
 }
