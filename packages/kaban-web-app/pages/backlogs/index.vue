@@ -25,10 +25,25 @@
 			<div class="backlog-holder">
 				<div class="backlog-table table">
 					<div class="table-line table-line-head">
-						<div class="table-line-name">Task Name</div>
+						<div class="table-line-name">Backlog</div>
 						<div>Board</div>
-						<div>
-							Estimated Finish
+						<div class="text-center">
+							Lead time Trend
+						</div>
+						<div class="text-center">
+							Lead time P99
+						</div>
+						<div class="text-center">
+							Lead time Avrg
+						</div>
+						<div class="text-center">
+							Circle time Trend
+						</div>
+						<div class="text-center">
+							Circle time P99
+						</div>
+						<div class="text-center">
+							Circle time Avrg
 						</div>
 						<div class="table-line-action"></div>
 					</div>
@@ -44,8 +59,23 @@
 								{{ backlog.board.key }}
 							</nuxt-link>
 						</div>
-						<div>
-							Not Enough Data
+						<div class="text-center">
+							<Sparkline />
+						</div>
+						<div class="text-center">
+							8
+						</div>
+						<div class="text-center">
+							10
+						</div>
+						<div class="text-center">
+							<Sparkline />
+						</div>
+						<div class="text-center">
+							8
+						</div>
+						<div class="text-center">
+							10
 						</div>
 						<div class="table-line-action">
 							<b-dropdown variant="link" no-caret>
