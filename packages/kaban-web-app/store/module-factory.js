@@ -35,7 +35,7 @@ export default (resource, {state, getters, actions, mutations, patchReducers = {
 	const moduleActions = Object.assign({
 		async fetchList({commit, getters}, tql) {
 			const rawList = await this.$axios.$get(
-				`http://127.0.0.1:3000/api/${resource}/`,
+				`/api/${resource}/`,
 				{ params: { tql } },
 			)
 
@@ -43,14 +43,13 @@ export default (resource, {state, getters, actions, mutations, patchReducers = {
 			commit('STAGE_MULTIPLE', rawList)
 			return rawList
 		},
-
-		async fetchOne({commit}, getters) {
-			const rawEntity = await this.$axios.$get(`http://127.0.0.1:3000/api/${resource}/`, { params: { tql } })
+		async fetchOne({commit, getters}, tql) {
+			const rawEntity = await this.$axios.$get(`/api/${resource}/`, { params: { tql } })
 			commit('STAGE', rawEntity[0])
 			return rawEntity[0]
 		},
 		create({commit}, entity) {
-			return this.$axios.$post(`http://127.0.0.1:3000/api/${resource}/`, entity).then((data) => {
+			return this.$axios.$post(`/api/${resource}/`, entity).then((data) => {
 				commit('STAGE', data)
 				return data
 			})
@@ -66,7 +65,7 @@ export default (resource, {state, getters, actions, mutations, patchReducers = {
 				}
 			})
 
-			return this.$axios.$patch(`http://127.0.0.1:3000/api/${resource}/${key}`, delta).then((data) => {
+			return this.$axios.$patch(`/api/${resource}/${key}`, delta).then((data) => {
 				commit('STAGE', data)
 				return data
 			})
