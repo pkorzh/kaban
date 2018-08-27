@@ -4,7 +4,8 @@ import moduleFactory from '../module-factory'
 
 export default moduleFactory('workflow', {
 	state: {
-		transitions: {}
+		transitions: {},
+		status: {}
 	},
 	mutations: {
 		STAGE_TRANSITIONS(state, payload) {
@@ -13,14 +14,14 @@ export default moduleFactory('workflow', {
 		}
 	},
 	actions: {
-		async fetchTransitions({commit}) {
+		async fetchTransitions({commit, getters}) {
 			const rawList = await this.$axios.$get(`/api/workflow/transition`)
 			commit('STAGE_TRANSITIONS', rawList)
-		}
+		},
 	},
 	getters: {
 		allowedTransitions(state) {
-			return ({key}) => state.transitions[key]
+			return ({key}) => state.transitions[key] || []
 		}
 	}
 })

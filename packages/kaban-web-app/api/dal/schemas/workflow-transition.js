@@ -1,34 +1,25 @@
 const { Schema } = require('mongoose')
 
-module.exports = (options = {}) => {
-	return new Schema({
-		ticket: {
-			key: {
-				type: String,
-				required: true,
-			}
-		},
-		backlog: {
-			key: {
-				type: String,
-				required: true,
-			}
-		},
-		from: {
-			type: {
-				key: {
-					type: String,
-					required: true,
-				}
-			},
-			required: false,
-			default: null,
-		},
-		to: {
-			key: {
-				type: String,
-				required: true,
-			}
-		},
-	}, Object.assign({}, options))
-}
+const KeySchema = require('./key')
+
+module.exports = new Schema({
+	ticket: {
+		type: KeySchema,
+		required: true
+	},
+	backlog: {
+		type: KeySchema,
+		required: true
+	},
+	from: {
+		type: KeySchema,
+		required: false,
+		default: null,
+	},
+	to: {
+		type: KeySchema,
+		required: true
+	},
+}, {
+	timestamps: true
+})

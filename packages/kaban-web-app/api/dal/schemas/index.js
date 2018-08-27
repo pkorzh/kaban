@@ -1,8 +1,8 @@
 const TicketSchema = require('./ticket')
-const BacklogSchema = require('./backlog')({timestamps: true})
-const BoardSchema = require('./board')({timestamps: true})
-const WorkflowSchema = require('./workflow')({timestamps: true})
-const WorkflowTransitionSchema = require('./workflow-transition')({timestamps: true})
+const BacklogSchema = require('./backlog')
+const BoardSchema = require('./board')
+const WorkflowSchema = require('./workflow')
+const WorkflowTransitionSchema = require('./workflow-transition')
 
 module.exports = {
 	TicketSchema,

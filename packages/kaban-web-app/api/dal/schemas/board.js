@@ -1,48 +1,48 @@
 const { Schema } = require('mongoose')
 
-module.exports = (options = {}) => {
-	return new Schema({
-		key: {
-			type: String,
-			required: true,
-		},
-		name: {
-			type: String,
-			required: false,
-		},
-		description: {
-			type: String,
-			required: false,
-		},
-		tql: {
-			type: String,
-			required: true,
-		},
-		lanes: [
-			{
-				name: {
-					type: String,
-					required: false,
-				},
-				key: {
-					type: String,
-					required: false,
-				},
-				mapsTo: {},
-				queues: [
-					{
-						name: {
-							type: String,
-							required: false,
-						},
-						key: {
-							type: String,
-							required: false,
-						},
-						mapsTo: {},
+module.exports = new Schema({
+	key: {
+		type: String,
+		required: true,
+	},
+	name: {
+		type: String,
+		required: false,
+	},
+	description: {
+		type: String,
+		required: false,
+	},
+	tql: {
+		type: String,
+		required: true,
+	},
+	lanes: [
+		{
+			name: {
+				type: String,
+				required: false,
+			},
+			key: {
+				type: String,
+				required: false,
+			},
+			mapsTo: {},
+			queues: [
+				{
+					name: {
+						type: String,
+						required: false,
 					},
-				]
-			}
-		]
-	}, Object.assign({}, options))
-}
+					key: {
+						type: String,
+						required: false,
+					},
+					mapsTo: {},
+				},
+			]
+		}
+	]
+}, {
+	timestamps: true
+})

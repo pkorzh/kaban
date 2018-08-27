@@ -12,6 +12,10 @@ router.get('/workflow/transition', function(req, res, next) {
 	return res.json(workflowDal.transitions())
 })
 
+router.get('/workflow/status', function(req, res, next) {
+	return res.json(workflowDal.status())
+})
+
 router.post('/workflow/transition', async function(req, res, next) {
 	const keys = req.body.keys || []
 	const mapsTo = req.body.mapsTo || {}
@@ -46,10 +50,6 @@ router.post('/workflow/transition', async function(req, res, next) {
 	notifySubscribers('workflowTransition', {})
 
 	return res.json({})
-})
-
-router.get('/workflow/status', async function(req, res, next) {
-
 })
 
 module.exports = router

@@ -2,9 +2,9 @@
 	<div class="btn-group">
 		<ActionsNavButton
 			v-for="status in transitions"
-			@click="transition({tickets: [ticket], mapsTo: { key: status }})"
-			:text="status"
-			:key="status" />
+			@click="transition({tickets: [ticket], mapsTo: status})"
+			:text="status.name"
+			:key="status.key" />
 	</div>
 </template>
 
@@ -28,8 +28,13 @@
 				'allowedTransitions'
 			]),
 
+			...mapGetters('status', {
+				getStatus: 'getOne'
+			}),
+
 			transitions() {
-				return this.allowedTransitions(this.ticket.status)
+				return this.allowedTransitions(this.ticket.status).map(t =>
+					this.getStatus(t))
 			}
 		}
 	}

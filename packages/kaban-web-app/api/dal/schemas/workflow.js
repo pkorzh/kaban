@@ -106,33 +106,35 @@ function getSoftwareWorkflow() {
 
 const SOFTWARE_WORKFLOW = getSoftwareWorkflow()
 
-module.exports = (options = {}) => {
-	const WorkflowSchema = new Schema({
-	}, Object.assign({}, options, {timestamps: true}))
+const WorkflowSchema = module.exports = new Schema({
+}, {
+	timestamps: true
+})
 
-	WorkflowSchema.statics.getTicketInitialStatus = function _getTicketInitialStatus() {
-		return SOFTWARE_WORKFLOW.STATUS[SOFTWARE_WORKFLOW.BACKLOG]
+WorkflowSchema.statics.getTicketInitialStatus = function _getTicketInitialStatus() {
+	return SOFTWARE_WORKFLOW.STATUS[SOFTWARE_WORKFLOW.BACKLOG]
+}
+
+WorkflowSchema.statics.getTicketFinalStatus = function _getTicketFinalStatus() {
+	return SOFTWARE_WORKFLOW.STATUS[SOFTWARE_WORKFLOW.CLOSED]
+}
+
+WorkflowSchema.statics.getBoardLanes = function _getBoardLanes() {
+	return SOFTWARE_WORKFLOW.LANES
+}
+
+WorkflowSchema.statics.hasTransition = function _transition({ key: from }, { key: to }) {
+	return SOFTWARE_WORKFLOW.TRANSITION[from].indexOf(to) !== -1
+}
+
+WorkflowSchema.statics.status = function _status(optionalStatus) {
+	if (!!optionalStatus) {
+		return SOFTWARE_WORKFLOW.STATUS[optionalStatus.key]
+	} else {
+		return Object.keys(SOFTWARE_WORKFLOW.STATUS).map(key => SOFTWARE_WORKFLOW.STATUS[key])
 	}
+}
 
-	WorkflowSchema.statics.getTicketFinalStatus = function _getTicketFinalStatus() {
-		return SOFTWARE_WORKFLOW.STATUS[SOFTWARE_WORKFLOW.CLOSED]
-	}
-
-	WorkflowSchema.statics.getBoardLanes = function _getBoardLanes() {
-		return SOFTWARE_WORKFLOW.LANES
-	}
-
-	WorkflowSchema.statics.hasTransition = function _transition({ key: from }, { key: to }) {
-		return SOFTWARE_WORKFLOW.TRANSITION[from].indexOf(to) !== -1
-	}
-
-	WorkflowSchema.statics.status = function _status({ key }) {
-		return SOFTWARE_WORKFLOW.STATUS[key]
-	}
-
-	WorkflowSchema.statics.transitions = function _transitions() {
-		return SOFTWARE_WORKFLOW.TRANSITION
-	}
-
-	return WorkflowSchema
+WorkflowSchema.statics.transitions = function _transitions() {
+	return SOFTWARE_WORKFLOW.TRANSITION
 }

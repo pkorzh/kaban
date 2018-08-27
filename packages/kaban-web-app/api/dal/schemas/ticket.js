@@ -1,15 +1,6 @@
 const { Schema } = require('mongoose')
 
-const childSchemaOptions = {
-	_id: false,
-}
-
-const StatusSchema = require('./status')(childSchemaOptions)
-const PrioritySchema = require('./priority')(childSchemaOptions)
-const UserSchema = require('./user')(childSchemaOptions)
-const BacklogSchema = require('./backlog')(childSchemaOptions)
-const TickettypeSchema = require('./tickettype')(childSchemaOptions)
-const ResolutionSchema = require('./resolution')(childSchemaOptions)
+const KeySchema = require('./key')
 
 module.exports = new Schema({
 	key: {
@@ -27,34 +18,38 @@ module.exports = new Schema({
 		required: false,
 	},
 	status: {
-		type: StatusSchema,
+		type: KeySchema,
 		required: true,
 	},
 	priority: {
-		type: PrioritySchema,
+		type: KeySchema,
 		required: true,
 	},
 	assignee: {
-		type: UserSchema,
+		type: KeySchema,
 		required: true,
 	},
 	reporter: {
-		type: UserSchema,
+		type: KeySchema,
 		required: true,
 	},
 	backlog: {
-		type: BacklogSchema,
+		type: KeySchema,
 		required: true,
 	},
 	type: {
-		type: TickettypeSchema,
+		type: KeySchema,
 		required: true,
 	},
 	resolvedAt: {
 		type: Date,
 		required: false,
 	},
-	resolution: ResolutionSchema
+	resolution: {
+		type: KeySchema,
+		required: false,
+	}
 }, {
-	timestamps: true
+	timestamps: true,
+	strict: true,
 })

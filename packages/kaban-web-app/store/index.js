@@ -8,6 +8,7 @@ import users from './users'
 import tickettypes from './tickettypes'
 import priorities from './priorities'
 import workflow from './workflow'
+import status from './status'
 
 Vue.use(Vuex)
 
@@ -20,13 +21,15 @@ const store = () => new Vuex.Store({
 		tickettypes,
 		priorities,
 		workflow,
+		status,
 	},
 	actions: {
 		async nuxtServerInit({dispatch}) {
 			return Promise.all([
 				dispatch('boards/fetchList'),
 				dispatch('backlogs/fetchList'),
-				dispatch('workflow/fetchTransitions')
+				dispatch('workflow/fetchTransitions'),
+				dispatch('status/fetchList'),
 			])
 		}
 	}

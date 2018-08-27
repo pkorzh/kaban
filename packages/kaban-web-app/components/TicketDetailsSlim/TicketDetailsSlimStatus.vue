@@ -42,7 +42,7 @@
 			<h3>Status:</h3>
 			<div>
 				<span class="details-label">
-					{{ ticket.status.key }}
+					{{ ticket.status.name }}
 				</span>
 			</div>
 		</li>
