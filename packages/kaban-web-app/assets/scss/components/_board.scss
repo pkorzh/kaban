@@ -66,16 +66,4 @@
       padding-right: 5px;
     }
   }
-  
-  &-table {
-    border: 1px solid $gray-300;
-    border-radius: 6px;
-    width: 100%;
-    display: flex;
-    &-holder {
-      width: 100%;
-      overflow: auto;
-      //display: flex;
-    }
-  }
 }
