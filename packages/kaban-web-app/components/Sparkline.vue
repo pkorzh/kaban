@@ -4,7 +4,7 @@
 			ref="sparkline"
 			class="sparkline sparkline--blue sparkline--filled"
 			width="100"
-			height="15"
+			height="30"
 			stroke-width="1"></svg>
 
 		<span ref="tooltip" class="sparkline-tooltip" hidden="true"></span>

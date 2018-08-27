@@ -32,6 +32,15 @@
 						{{ data.item.name }}
 					</nuxt-link>
 				</template>
+
+				<template slot="action" slot-scope="row">
+					<b-button variant="link" size="sm" @click="row.toggleDetails">
+						{{ row.detailsShowing ? 'Collapse' : 'Expand'}}
+					</b-button>
+				</template>
+
+				<template slot="row-details" slot-scope="row">
+				</template>
 			</b-table>
 
 		<Gantt
@@ -55,6 +64,10 @@
 					},
 					description: {
 						label: 'Description',
+						sortable: false,
+					},
+					action: {
+						label: '',
 						sortable: false,
 					}
 				}
