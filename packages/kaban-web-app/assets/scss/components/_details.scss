@@ -30,6 +30,9 @@
       flex-shrink: 0;
       align-self: center;
       margin: 0;
+      .col-3 & {
+        width: 110px;
+      }
     }
     &-assign {
       li {
