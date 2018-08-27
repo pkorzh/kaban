@@ -10,8 +10,7 @@
 
 				<ActionsNavButton
 					text="Create Backlog"
-					action="CreateBacklogAction"
-					shortkey="c" />
+					action="CreateBacklogAction" />
 
 				<ActionsNavViewSwitcher
 					v-model="tableView"

@@ -21,7 +21,7 @@
 			:items="boardList"
 			:fields="boardFields">
 				<template slot="name" slot-scope="data">
-					<nuxt-link :to="{name: 'backlogs-key', params: {key: data.item.key}}">
+					<nuxt-link :to="{name: 'boards-key', params: {key: data.item.key}}">
 						{{ data.item.name }}
 					</nuxt-link>
 				</template>

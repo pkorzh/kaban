@@ -20,6 +20,9 @@ export default (resource, {state, getters, actions, mutations, patchReducers = {
 	}, getters)
 
 	const moduleMutations = Object.assign({
+		EMPTY(state) {
+			state.entities = {}
+		},
 		STAGE(state, payload) {
 			Vue.set(state.entities, payload.key, payload)
 		},
@@ -36,6 +39,7 @@ export default (resource, {state, getters, actions, mutations, patchReducers = {
 				{ params: { tql } },
 			)
 
+			commit('EMPTY')
 			commit('STAGE_MULTIPLE', rawList)
 			return rawList
 		},
