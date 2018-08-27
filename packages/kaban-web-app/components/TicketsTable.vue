@@ -1,59 +1,77 @@
 <template>
-	<div class="tickets-table">
-		<div class="tickets-table-wrap">
-			<div class="ticket-line ticket-line-head">
-				<div class="ticket-line-type">T</div>
-
-				<div class="ticket-line-title">Summary</div>
-
-				<div class="ticket-line-name">
-					Assigned
-				</div>
-
-				<div class="ticket-line-name"><a href="#" class="tickets-table-sort">Reporter</a></div>
-
-				<div class="ticket-line-block">P</div>
-
-				<div class="ticket-line-status">
-					Status
-				</div>
-
-				<div class="ticket-line-resolution">
-					Resolution
-				</div>
-
-				<div class="ticket-line-date">
-					Created
-				</div>
-
-				<div class="ticket-line-date">
-					Updated
-				</div>
-
-				<div class="ticket-line-date">
-					Resolved
-				</div>
-			</div>
-			<TicketsTableTicket
-				v-for="ticket in tickets"
-				:ticket="ticket"
-				:key="ticket.key" />
-		</div>
-	</div>
+	<b-table
+		striped
+		hover
+		:items="tickets"
+		:fields="ticketFields">
+			<template slot="name" slot-scope="data">
+				<a
+					:href="ticketUrl(data.item)"
+					@click.prevent.stop="highlight(data.item)">
+					{{ data.item.name }}
+				</a>
+			</template>
+			<template slot="type.iconUrl" slot-scope="data">
+				<img :src="data.item.type.iconUrl" style="max-width:20px;">
+			</template>
+			<template slot="priority.iconUrl" slot-scope="data">
+				<img :src="data.item.priority.iconUrl" style="max-width:20px;">
+			</template>
+		</b-table>
 </template>
 
 <script>
-	import TicketsTableTicket from './TicketsTableTicket'
+	import {TicketBaseMixin} from '@/mixins'
 
 	export default {
+		mixins: [TicketBaseMixin],
+		data() {
+			return {
+				ticketFields: {
+					'type.iconUrl': {
+						label: 'T',
+						sortable: false,
+					},
+					name: {
+						label: 'Name',
+						sortable: true,
+					},
+					'assignee.name': {
+						label: 'Assignee',
+						sortable: true,
+					},
+					'reporter.name': {
+						label: 'Reporter',
+						sortable: true,
+					},
+					'priority.iconUrl': {
+						label: 'P',
+						sortable: true,
+					},
+					'status.name': {
+						label: 'Status',
+						sortable: true,
+					},
+					'createdAt': {
+						label: 'Created',
+						sortable: true,
+					},
+					'updatedAt': {
+						label: 'Updated',
+						sortable: true,
+					},
+					'resolvedAt': {
+						label: 'Resolved',
+						sortable: true,
+					},
+				}
+			}
+		},
 		props: {
 			tickets: {
 				type: Array,
 				required: true,
 			},
 		},
-		components: {
-			TicketsTableTicket
-		}
 	}
 </script>

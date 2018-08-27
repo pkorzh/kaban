@@ -13,8 +13,8 @@
 			<template slot="breadcrumb">
 				<b-breadcrumb>
 					<b-breadcrumb-item
-						:to="{name: 'backlogs-key', params: {key: backlog.key}}"
-						:text="backlog.name" />
+						:to="{name: 'backlogs-key', params: {key: ticket.backlog.key}}"
+						:text="ticket.backlog.name" />
 
 					<b-breadcrumb-item
 						:to="{name: 'issues-key', params: {key: ticket.key}}"
@@ -88,13 +88,9 @@
 
 	export default {
 		async fetch({store, params}) {
-			await store.dispatch('tickets/fetchOne', `key = ${params.key}`)
-
-			const ticket = store.getters['tickets/getOne'](params.key)
-
-			await store.dispatch(
-				'backlogs/fetchOne',
-				`key = ${ticket.backlog.key}`
+			const ticket = await store.dispatch(
+				'tickets/fetchOne',
+				`key = ${params.key}`
 			)
 		},
 		computed: {
@@ -102,17 +98,9 @@
 				getTicket: 'getOne'
 			}),
 
-			...mapGetters('backlogs', {
-				getBacklog: 'getOne'
-			}),
-
 			ticket() {
 				return this.getTicket(this.$route.params.key)
 			},
-
-			backlog() {
-				return this.getBacklog(this.ticket.backlog.key)
-			}
 		}
 	}
 </script>

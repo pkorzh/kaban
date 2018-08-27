@@ -5,23 +5,17 @@ const generateMql = require('../../tql/mongo')
 const backlogsDal = require('./backlogs')
 
 async function query(tql) {
-	const boards = await Board.find(generateMql(tql))
-	const backlogs = await backlogsDal.query(
-		`board in [${boards.map(b => b.key).join(',')}]`
-	)
+	return await Board.find(generateMql(tql))
+}
 
-	return boards.map(b => b.toJSON()).map(board => {
-		return {
-			...board,
-			backlogs: backlogs
-				.filter(b => b.board.key === board.key)
-				.map(b => ({
-					key: b.key,
-					name: b.name,
-					color: b.color,
-				}))
-		}
-	})
+async function get(tql) {
+	const boards = await query(tql)
+
+	if (boards.length !== 1) {
+		throw new Error('Get returned multiple elements')
+	}
+
+	return boards[0]
 }
 
 async function insert(boardSlim) {

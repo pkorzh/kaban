@@ -1,0 +1,35 @@
+#!/usr/bin/env node
+
+require('../dal/connect')
+const { Workflow, WorkflowTransition } = require('../dal/models');
+
+async function calcStats({key}) {
+	const transitions = await WorkflowTransition.find(
+		{'ticket.key': key},
+		null,
+		{ sort: '-createdAt' }
+	);
+
+	const zero = transitions.find(t =>
+		t.from === null);
+
+	const finish = transitions.find(t =>
+		t.to.key === Workflow.getTicketFinalStatus().key);
+
+	for(let transition of transitions) {
+		if (transition.from == null) {
+
+		} else {
+
+		}
+	}
+
+	return {
+		leadTime: finish.createdAt - zero.createdAt
+	}
+}
+
+(async function() {
+	const stats = await calcStats({ key: 'xNJVg88Y3' })
+	console.log(stats)
+})()

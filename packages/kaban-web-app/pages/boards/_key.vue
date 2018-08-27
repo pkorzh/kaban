@@ -13,20 +13,6 @@
 
 			<ActionsNav>
 				<!--<ActionsNavAssigned />-->
-				<ActionsNavQuickFilters
-					:backlogs="board.backlogs"
-					@filter="doQuickFilters" />
-
-				<div class="btn-group ml-3" role="group">
-					<nuxt-link
-						v-for="backlog in board.backlogs"
-						:key="backlog.key"
-						:to="{name: 'backlogs-key', params: {key: backlog.key}}"
-						:style="backlogButtonStyle(backlog)"
-						class="btn btn-light">
-						{{ backlog.key }}
-					</nuxt-link>
-				</div>
 
 				<!--<ActionsNavSimpleSearch />-->
 
@@ -57,20 +43,11 @@
 		data() {
 			return {
 				boardView: true,
-				quickFilters: {
-					backlogs: []
-				}
 			}
 		},
 		async fetch({store, params}) {
-			await store.dispatch('boards/fetchOne', `key = ${params.key}`)
-
-			const board = store.getters['boards/getOne'](params.key)
-
-			await store.dispatch(
-				'tickets/fetchList',
-				`backlog in [${board.backlogs.map(b => b.key).join(',')}]`
-			)
+			const board = await store.getters['boards/getOne'](params.key)
+			await store.dispatch('tickets/fetchList', board.tql)
 		},
 		computed: {
 			...mapGetters('boards', {
@@ -78,40 +55,17 @@
 			}),
 
 			...mapGetters('tickets', {
-				queryTicket: 'queryList',
+				tickets: 'getList',
 			}),
 
 			board() {
 				return this.getBoard(this.$route.params.key)
-			},
-
-			tickets() {
-				const backlogsKeys = this.quickFilters.backlogs.length
-					? this.quickFilters.backlogs
-					: this.board.backlogs.map(b => b.key)
-
-				return this.queryTicket(
-					(ticket) => backlogsKeys.indexOf(ticket.backlog.key) !== -1)
 			},
 		},
 		methods: {
 			...mapActions('tickets', [
 				'transition'
 			]),
-
-			backlogButtonStyle(backlog) {
-				const color = backlog.color
-
-				if (color) {
-					return {
-						borderTop: `2px solid ${color ? color : ''}`
-					}
-				}
-			},
-
-			doQuickFilters({backlogs}) {
-				this.quickFilters.backlogs = backlogs
-			}
 		},
 		async mounted() {
 			this.$bus.$on('kaban::board::draggables', ({tickets, mapsTo}) => {

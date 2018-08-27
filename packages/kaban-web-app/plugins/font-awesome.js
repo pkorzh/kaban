@@ -20,6 +20,7 @@ import {
 	faTimes,
 	faArrowsAltV,
 	faAlignLeft,
+	faTable,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -42,6 +43,7 @@ library.add(
 	faTimes,
 	faArrowsAltV,
 	faAlignLeft,
+	faTable,
 )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

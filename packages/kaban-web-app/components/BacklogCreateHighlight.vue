@@ -34,16 +34,6 @@
 				</b-form-group>
 
 				<b-form-group
-					label="Board"
-					horizontal
-					:invalid-feedback="'Board is required'"
-					:state="!$v.backlog.board.$invalid">
-					<b-form-select
-						v-model="backlog.board"
-						:options="boards" />
-				</b-form-group>
-
-				<b-form-group
 					label="Color"
 					:invalid-feedback="'Color is required'"
 					:state="!$v.backlog.color.$invalid">
@@ -87,7 +77,6 @@
 					name: null,
 					key: null,
 					description: null,
-					board: null,
 					color: { hex: '#D33115' },
 				}
 			}
@@ -97,7 +86,6 @@
 				name: { required },
 				key: { required },
 				description: { },
-				board: { required },
 				color: { required }
 			}
 		},
@@ -107,6 +95,12 @@
 			}),
 
 			async create() {
+				this.$v.$touch()
+
+				if (this.$v.$invalid) {
+					return
+				}
+
 				await this.createBacklog({
 					...this.backlog,
 					color: this.backlog.color.hex
@@ -116,18 +110,6 @@
 			}
 		},
 		computed: {
-			...mapGetters('boards', {
-				boardList: 'getList'
-			}),
-
-			boards() {
-				return this.boardList.map(board => ({
-					text: board.name,
-					value: {
-						key: board.key
-					}
-				}))
-			}
 		},
 		watch: {
 			'backlog.name'(name) {

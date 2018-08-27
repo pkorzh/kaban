@@ -14,6 +14,10 @@ module.exports = (options = {}) => {
 			type: String,
 			required: false,
 		},
+		tql: {
+			type: String,
+			required: true,
+		},
 		lanes: [
 			{
 				name: {

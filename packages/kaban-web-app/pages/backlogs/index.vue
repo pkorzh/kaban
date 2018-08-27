@@ -15,86 +15,28 @@
 
 				<ActionsNavViewSwitcher
 					v-model="tableView"
-					icon1="bars"
+					icon1="table"
 					icon2="align-left" />
 			</ActionsNav>
 
 		</TopBar>
 
-		<div class="backlog" v-if="tableView">
-			<div class="backlog-holder">
-				<div class="backlog-table table">
-					<div class="table-line table-line-head">
-						<div class="table-line-name">Backlog</div>
-						<div>Board</div>
-						<div class="text-center">
-							Lead time Trend
-						</div>
-						<div class="text-center">
-							Lead time P99
-						</div>
-						<div class="text-center">
-							Lead time Avrg
-						</div>
-						<div class="text-center">
-							Circle time Trend
-						</div>
-						<div class="text-center">
-							Circle time P99
-						</div>
-						<div class="text-center">
-							Circle time Avrg
-						</div>
-						<div class="table-line-action"></div>
-					</div>
+		<b-table
+			striped
+			hover
+			:items="backlogList"
+			:fields="backlogFields"
+			v-if="tableView">
+				<template slot="name" slot-scope="data">
+					<nuxt-link :to="{name: 'backlogs-key', params: {key: data.item.key}}">
+						{{ data.item.name }}
+					</nuxt-link>
+				</template>
+			</b-table>
 
-					<div class="table-line" v-for="backlog in backlogList" :key="backlog.key">
-						<div class="table-line-name">
-							<nuxt-link :to="{name: 'backlogs-key', params: {key: backlog.key}}">
-								{{ backlog.name }}
-							</nuxt-link>
-						</div>
-						<div>
-							<nuxt-link :to="{name: 'boards-key', params: {key: backlog.board.key}}">
-								{{ backlog.board.key }}
-							</nuxt-link>
-						</div>
-						<div class="text-center">
-							<Sparkline />
-						</div>
-						<div class="text-center">
-							8
-						</div>
-						<div class="text-center">
-							10
-						</div>
-						<div class="text-center">
-							<Sparkline />
-						</div>
-						<div class="text-center">
-							8
-						</div>
-						<div class="text-center">
-							10
-						</div>
-						<div class="table-line-action">
-							<b-dropdown variant="link" no-caret>
-								<template slot="button-content">
-									<font-awesome-icon icon="ellipsis-v" />
-								</template>
-								<b-dropdown-item href="">Start</b-dropdown-item>
-							</b-dropdown>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="backlog backlog-gantt" v-if="!tableView">
-			<div class="backlog-holder">
-				<Gantt :tasks="tasks" />
-			</div>
-		</div>
+		<Gantt
+			:tasks="tasks"
+			v-if="!tableView" />
 	</b-container>
 </template>
 
@@ -105,7 +47,17 @@
 	export default {
 		data() {
 			return {
-				tableView: true
+				tableView: true,
+				backlogFields: {
+					name: {
+						label: 'Name',
+						sortable: true,
+					},
+					description: {
+						label: 'Description',
+						sortable: false,
+					}
+				}
 			}
 		},
 		computed: {

@@ -114,6 +114,10 @@ module.exports = (options = {}) => {
 		return SOFTWARE_WORKFLOW.STATUS[SOFTWARE_WORKFLOW.BACKLOG]
 	}
 
+	WorkflowSchema.statics.getTicketFinalStatus = function _getTicketFinalStatus() {
+		return SOFTWARE_WORKFLOW.STATUS[SOFTWARE_WORKFLOW.CLOSED]
+	}
+
 	WorkflowSchema.statics.getBoardLanes = function _getBoardLanes() {
 		return SOFTWARE_WORKFLOW.LANES
 	}

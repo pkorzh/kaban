@@ -37,10 +37,12 @@ export default (resource, {state, getters, actions, mutations, patchReducers = {
 			)
 
 			commit('STAGE_MULTIPLE', rawList)
+			return rawList
 		},
 		async fetchOne({commit}, tql) {
 			const rawEntity = await this.$axios.$get(`/api/${resource}/`, { params: { tql } })
 			commit('STAGE', rawEntity[0])
+			return rawEntity[0]
 		},
 		create({commit}, entity) {
 			return this.$axios.$post(`/api/${resource}/`, entity).then((data) => {

@@ -34,6 +34,16 @@
 				</b-form-group>
 
 				<b-form-group
+					label="TQL"
+					:invalid-feedback="'TQL is required'"
+					:state="!$v.board.tql.$invalid">
+					<b-form-input
+						type="text"
+						v-model="board.tql"
+						placeholder="TQL" />
+				</b-form-group>
+
+				<b-form-group
 					label="Description"
 					:invalid-feedback="'Description is required'"
 					:state="!$v.board.description.$invalid">
@@ -67,6 +77,7 @@
 				board: {
 					name: null,
 					key: null,
+					tql: null,
 					description: null,
 				}
 			}
@@ -75,6 +86,7 @@
 			board: {
 				name: { required },
 				key: { required },
+				tql: { required },
 				description: { },
 			}
 		},
@@ -84,6 +96,12 @@
 			}),
 
 			async create() {
+				this.$v.$touch()
+
+				if (this.$v.$invalid) {
+					return
+				}
+
 				await this.createBoard(this.board)
 				this.$emit('close')
 			}

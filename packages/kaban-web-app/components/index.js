@@ -14,7 +14,6 @@ import BoardLaneTicket from './Board/BoardLaneTicket'
 import Header from './Header'
 import TicketHighlight from './TicketHighlight'
 import TicketsTable from './TicketsTable'
-import TicketsTableTicket from './TicketsTableTicket'
 import TopBar from './TopBar'
 
 import LiveEditTextarea from './LiveEdit/LiveEditTextarea'
@@ -52,7 +51,6 @@ export {
 	Header,
 	TicketHighlight,
 	TicketsTable,
-	TicketsTableTicket,
 	TopBar,
 
 	LiveEditTextarea,

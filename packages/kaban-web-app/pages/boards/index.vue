@@ -15,39 +15,17 @@
 			</ActionsNav>
 		</TopBar>
 
-		<div class="board-table">
-			<div class="board-table-holder">
-				<div class="table">
-					<div class="table-line table-line-head">
-						<div>Name</div>
-						<div class="table-line-name">Description</div>
-						<div class="table-line-action"></div>
-					</div>
-
-					<div
-						class="table-line"
-						v-for="board in boardList"
-						:key="board.key">
-						<div>
-							<nuxt-link :to="{name: 'boards-key', params: {key: board.key}}">
-								{{ board.name }}
-							</nuxt-link>
-						</div>
-						<div class="table-line-name">
-							{{ board.description }}
-						</div>
-						<div class="table-line-action">
-							<b-dropdown variant="link" no-caret>
-								<template slot="button-content">
-									<font-awesome-icon icon="ellipsis-v" />
-								</template>
-								<b-dropdown-item href="">Start</b-dropdown-item>
-							</b-dropdown>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		<b-table
+			striped
+			hover
+			:items="boardList"
+			:fields="boardFields">
+				<template slot="name" slot-scope="data">
+					<nuxt-link :to="{name: 'backlogs-key', params: {key: data.item.key}}">
+						{{ data.item.name }}
+					</nuxt-link>
+				</template>
+			</b-table>
 	</b-container>
 </template>
 
@@ -55,7 +33,23 @@
 	import { mapGetters } from 'vuex';
 
 	export default {
-		components: {
+		data() {
+			return {
+				boardFields: {
+					name: {
+						label: 'Name',
+						sortable: true,
+					},
+					tql: {
+						label: 'TQL',
+						sortable: false,
+					},
+					description: {
+						label: 'Description',
+						sortable: false,
+					}
+				}
+			}
 		},
 		computed: {
 			...mapGetters('boards', {

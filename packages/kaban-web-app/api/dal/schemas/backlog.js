@@ -17,12 +17,6 @@ module.exports = (options = {}) => {
 		description: {
 			type: String,
 			required: false,
-		},
-		board: {
-			key: {
-				type: String,
-				required: true,
-			}
 		}
 	}, Object.assign({}, options))
 }

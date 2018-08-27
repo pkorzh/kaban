@@ -62,7 +62,8 @@
 										</li>
 									</ul>
 								</li>
-								<li>
+
+								<!--<li>
 									<strong class="dropdown-menu-title">
 										<nuxt-link to="/">Users</nuxt-link>
 									</strong>
@@ -74,14 +75,15 @@
 											<nuxt-link to="/">Invite team members</nuxt-link>
 										</li>
 									</ul>
-								</li>
-								<li>
+								</li>-->
+
+								<!--<li>
 									<strong class="dropdown-menu-title">
 										<nuxt-link to="/">Import</nuxt-link>
 									</strong>
 									<ul>
 									</ul>
-								</li>
+								</li>-->
 							</ol>
 						</div>
 					</b-nav-item-dropdown>

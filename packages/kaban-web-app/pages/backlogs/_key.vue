@@ -15,10 +15,6 @@
 				<!--<ActionsNavAssigned />
 				<ActionsNavQuickFilters />-->
 
-				<ActionsNavLink
-					text="Goto Board"
-					:to="{name: 'boards-key', params: {key: backlog.board.key}}" />
-
 				<!--<ActionsNavSimpleSearch />-->
 
 				<ActionsNavButton
@@ -37,8 +33,6 @@
 
 	export default {
 		async fetch({store, params}) {
-			await store.dispatch('backlogs/fetchOne', `key = ${params.key}`)
-
 			await store.dispatch('tickets/fetchList', `backlog = ${params.key}`)
 		},
 		computed: {
@@ -47,17 +41,12 @@
 			}),
 
 			...mapGetters('tickets', {
-				queryTicket: 'queryList'
+				tickets: 'getList'
 			}),
 
 			backlog() {
 				return this.getBacklog(this.$route.params.key)
 			},
-
-			tickets() {
-				return this.queryTicket(
-					(ticket) => ticket.backlog.key === this.backlog.key)
-			}
 		},
 		methods: {
 			...mapActions('tickets', [
