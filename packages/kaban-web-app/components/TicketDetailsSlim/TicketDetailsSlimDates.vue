@@ -3,19 +3,19 @@
 		<li>
 			<h3>Created at:</h3>
 			<div>
-				{{ ticket.createdAt | moment('L') }}
+				{{ ticket.createdAt | moment('LL') }}
 			</div>
 		</li>
 		<li>
 			<h3>Updated at:</h3>
 			<div>
-				{{ ticket.updatedAt | moment('L') }}
+				{{ ticket.updatedAt | moment('LL') }}
 			</div>
 		</li>
 		<li>
 			<h3>Resolved at:</h3>
 			<div>
-				{{ ticket.resolvedAt | moment('L') }}
+				{{ ticket.resolvedAt | moment('LL') }}
 			</div>
 		</li>
 	</ul>

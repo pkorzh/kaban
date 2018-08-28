@@ -42,16 +42,19 @@ export default {
 					key: 'resolvedAt',
 					label: 'Resolved',
 					sortable: true,
+					formatter: (date) => date && this.$moment(date).format('LL'),
 				},
 				{
 					key: 'createdAt',
 					label: 'Created',
 					sortable: true,
+					formatter: (date) => this.$moment(date).format('LL'),
 				},
 				{
 					key: 'updatedAt',
 					label: 'Updated',
 					sortable: true,
+					formatter: (date) => this.$moment(date).format('LL'),
 				},
 			]
 		}

@@ -29,6 +29,18 @@ export default function ({ $axios, redirect, store }) {
 			if (item.priority && item.priority.key) {
 				item.priority = store.getters['priorities/getOne'](item.priority.key)
 			}
+
+			if (item.createdAt) {
+				item.createdAt = utc(item.createdAt)
+			}
+
+			if (item.updatedAt) {
+				item.updatedAt = utc(item.updatedAt)
+			}
+
+			if (item.resolvedAt) {
+				item.resolvedAt = utc(item.resolvedAt)
+			}
 		}
 
 		if (Array.isArray(data)) {
