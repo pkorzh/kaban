@@ -41,6 +41,10 @@ export default function ({ $axios, redirect, store }) {
 			if (item.resolvedAt) {
 				item.resolvedAt = utc(item.resolvedAt)
 			}
+
+			if (item.lastTransitionAt) {
+				item.lastTransitionAt = utc(item.lastTransitionAt)
+			}
 		}
 
 		if (Array.isArray(data)) {

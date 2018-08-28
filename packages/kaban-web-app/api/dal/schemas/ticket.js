@@ -48,6 +48,14 @@ module.exports = new Schema({
 	resolution: {
 		type: KeySchema,
 		required: false,
+	},
+	lastTransitionAt: {
+		type: Date,
+		required: true,
+	},
+	spentIn: {
+		type: {},
+		required: false,
 	}
 }, {
 	timestamps: true,

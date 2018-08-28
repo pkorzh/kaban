@@ -6,6 +6,7 @@ const {
 	BoardSchema,
 	WorkflowSchema,
 	WorkflowTransitionSchema,
+	TicketSpentInSchema,
 } = require('./schemas')
 
 const Ticket = mongoose.model('Ticket', TicketSchema)
@@ -16,6 +17,7 @@ const WorkflowTransition = mongoose.model(
 	'WorkflowTransition',
 	WorkflowTransitionSchema
 )
+const TicketSpentIn = mongoose.model('TicketSpentIn', TicketSpentInSchema)
 
 module.exports = {
 	Ticket,
@@ -23,4 +25,5 @@ module.exports = {
 	Board,
 	Workflow,
 	WorkflowTransition,
+	TicketSpentIn,
 }

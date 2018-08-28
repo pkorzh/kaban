@@ -1,6 +1,7 @@
 const {
 	Workflow,
 	WorkflowTransition,
+	TicketSpentIn,
 } = require('./models')
 
 function WorkflowTransitionError({key, from, to}) {
@@ -18,6 +19,13 @@ async function transition(ticket, to) {
 		backlog: { key: ticket.backlog.key },
 	})
 
+	const ticketSpentIn = new TicketSpentIn({
+		ticket,
+		status: to,
+		ms: new Date() - ticket.lastTransitionAt,
+	})
+
+	await ticketSpentIn.save()
 	await ticketTransition.save()
 }
 

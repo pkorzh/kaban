@@ -23,7 +23,10 @@ router.post('/tickets', async function (req, res, next) {
 		ticketSlim.key = shortid.generate()
 	}
 
-	const ticket = await ticketsDal.insert(ticketSlim)
+	const ticket = await ticketsDal.insert({
+		...ticketSlim,
+		lastTransitionAt: new Date()
+	})
 
 	await workflowDal.zeroTransition(ticket)
 

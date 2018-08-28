@@ -23,7 +23,11 @@
 						:src="ticket.type.iconUrl"
 						:title="ticket.type.name">
 				</div>
-				<div class="card-estm"><span></span></div>
+
+				<div
+					class="card-estm card-estm-1"
+					title="Less than a day"></div>
+
 				<div class="card-priority">
 					<img
 						style="max-width: 20px;min-width: 20px;"
