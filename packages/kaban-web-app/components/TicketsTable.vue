@@ -20,11 +20,15 @@
 			</template>
 
 			<template slot="type.iconUrl" slot-scope="data">
-				<img :src="data.item.type.iconUrl" style="max-width:20px;">
+				<img
+					:src="data.item.type.iconUrl"
+					style="max-width: 20px;min-width: 20px;">
 			</template>
 
 			<template slot="priority.iconUrl" slot-scope="data">
-				<img :src="data.item.priority.iconUrl" style="max-width:20px;">
+				<img
+					:src="data.item.priority.iconUrl"
+					style="max-width: 20px;min-width: 20px;">
 			</template>
 		</b-table>
 </template>
