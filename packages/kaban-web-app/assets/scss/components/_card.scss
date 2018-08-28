@@ -71,12 +71,12 @@
       &-1 {
         &::before,
         span {
-          display: none;
+          opacity: .2;
         }
       }
       &-2 {
         &::before {
-          display: none;
+          opacity: .2;
         }
       }
       &-alot {
