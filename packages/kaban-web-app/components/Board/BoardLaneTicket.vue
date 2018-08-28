@@ -19,14 +19,14 @@
 			<div class="card-col">
 				<div class="card-type">
 					<img
-						style="min-width: 20px"
+						style="max-width: 20px;min-width: 20px;"
 						:src="ticket.type.iconUrl"
 						:title="ticket.type.name">
 				</div>
 				<div class="card-estm"><span></span></div>
 				<div class="card-priority">
 					<img
-						style="min-width: 20px"
+						style="max-width: 20px;min-width: 20px;"
 						:src="ticket.priority.iconUrl"
 						:title="ticket.priority.name">
 				</div>
