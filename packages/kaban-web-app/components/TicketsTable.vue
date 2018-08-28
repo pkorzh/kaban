@@ -4,7 +4,13 @@
 		hover
 		caption-top
 		:items="tickets"
-		:fields="fields">
+		:fields="ticketFields">
+			<template slot="table-caption">
+				<ActionsNavColumns
+					:fields="originalTicketFields"
+					@columns="applyColumns" />
+			</template>
+
 			<template slot="name" slot-scope="data">
 				<a
 					:href="ticketUrl(data.item)"
@@ -24,10 +30,10 @@
 </template>
 
 <script>
-	import {TicketBaseMixin} from '@/mixins'
+	import { TicketBaseMixin, TicketsTableBaseMixin } from '@/mixins'
 
 	export default {
-		mixins: [TicketBaseMixin],
+		mixins: [TicketBaseMixin, TicketsTableBaseMixin],
 		data() {
 			return {
 			}
@@ -41,10 +47,6 @@
 				type: Array,
 				required: true,
 			},
-			fields: {
-				type: Array,
-				required: true,
-			}
 		},
 	}
 </script>
