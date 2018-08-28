@@ -17,21 +17,28 @@
 
 				<!--<ActionsNavSimpleSearch />-->
 
+				<ActionsNavColumns
+					:fields="originalTicketFields"
+					@columns="applyColumns" />
+
 				<ActionsNavButton
 					text="Create Ticket"
-					action="CreateTicketAction"
-					shortkey="c" />
+					action="CreateTicketAction" />
 			</ActionsNav>
 		</TopBar>
 
-		<TicketsTable :tickets="tickets" />
+		<TicketsTable
+			:tickets="tickets"
+			:fields="ticketFields" />
 	</b-container>
 </template>
 
 <script>
+	import TicketsTableBaseMixin from '@/mixins/TicketsTableBaseMixin';
 	import { mapGetters, mapActions } from 'vuex';
 
 	export default {
+		mixins: [TicketsTableBaseMixin],
 		async fetch({store, params}) {
 			await store.dispatch('tickets/fetchList', `backlog = ${params.key}`)
 		},

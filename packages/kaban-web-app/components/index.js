@@ -6,6 +6,7 @@ import ActionsNavSimpleSearch from './ActionsNav/ActionsNavSimpleSearch'
 import ActionsNavButton from './ActionsNav/ActionsNavButton'
 import ActionsNavLink from './ActionsNav/ActionsNavLink'
 import ActionsAllowedTransitions from './ActionsNav/ActionsAllowedTransitions'
+import ActionsNavColumns from './ActionsNav/ActionsNavColumns'
 
 import Board from './Board/Board'
 import BoardLane from './Board/BoardLane'
@@ -44,6 +45,7 @@ export {
 	ActionsNavButton,
 	ActionsNavLink,
 	ActionsAllowedTransitions,
+	ActionsNavColumns,
 
 	Board,
 	BoardLane,
