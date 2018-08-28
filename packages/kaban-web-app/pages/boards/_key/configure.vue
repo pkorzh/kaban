@@ -15,6 +15,17 @@
 
 		<b-row>
 			<b-col cols="2">
+				<b-nav vertical pills>
+					<b-nav-item
+						:to="{name: 'boards-key-configure-general', params: {key: board.key}}">
+						General
+					</b-nav-item>
+
+					<b-nav-item
+						:to="{name: 'boards-key-configure-card-colors', params: {key: board.key}}">
+						Card Colors
+					</b-nav-item>
+				</b-nav>
 			</b-col>
 
 			<b-col>
