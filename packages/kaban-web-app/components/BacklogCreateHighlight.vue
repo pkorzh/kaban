@@ -67,10 +67,12 @@
 </template>
 
 <script>
+	import { KeyGenerationMixin } from '@/mixins'
 	import { required } from 'vuelidate/lib/validators'
 	import { mapActions, mapGetters } from 'vuex'
 
 	export default {
+		mixins: [KeyGenerationMixin],
 		data() {
 			return {
 				backlog: {
@@ -113,16 +115,7 @@
 		},
 		watch: {
 			'backlog.name'(name) {
-				if (/\s/.test(name)) {
-					this.backlog.key = name.split(/\s/)
-						.map(w => w[0])
-						.join('')
-						.toUpperCase()
-				} else {
-					this.backlog.key = name
-						.slice(0, 3)
-						.toUpperCase()
-				}
+				this.backlog.key = this.makeKey(name)
 			}
 		}
 	}

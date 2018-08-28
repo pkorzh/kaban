@@ -68,10 +68,12 @@
 </template>
 
 <script>
+	import { KeyGenerationMixin } from '@/mixins'
 	import { required } from 'vuelidate/lib/validators'
 	import { mapActions } from 'vuex'
 
 	export default {
+		mixins: [KeyGenerationMixin],
 		data() {
 			return {
 				board: {
@@ -108,16 +110,7 @@
 		},
 		watch: {
 			'board.name'(name) {
-				if (/\s/.test(name)) {
-					this.board.key = name.split(/\s/)
-						.map(w => w[0])
-						.join('')
-						.toUpperCase()
-				} else {
-					this.board.key = name
-						.slice(0, 3)
-						.toUpperCase()
-				}
+				this.board.key =  this.makeKey(name)
 			}
 		}
 	}
