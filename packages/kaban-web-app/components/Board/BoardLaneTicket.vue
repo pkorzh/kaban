@@ -74,13 +74,7 @@
 			},
 
 			cardStyle() {
-				const color = this.ticket.backlog.color
-
-				if (color) {
-					return {
-						borderLeft: `2px solid ${color ? color : ''}`
-					}
-				}
+				return {}
 			}
 		}
 	};

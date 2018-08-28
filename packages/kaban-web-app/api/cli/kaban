@@ -1,35 +1,82 @@
 #!/usr/bin/env node
 
 require('../dal/connect')
-const { Workflow, WorkflowTransition } = require('../dal/models');
+const { tickets: ticketsDal } = require('../dal')
 
-async function calcStats({key}) {
-	const transitions = await WorkflowTransition.find(
-		{'ticket.key': key},
-		null,
-		{ sort: '-createdAt' }
-	);
+const shortid = require('shortid')
 
-	const zero = transitions.find(t =>
-		t.from === null);
+random_verb_parts = [
+	'interrupt',
+	'tour',
+	'rejoice',
+	'tempt',
+	'smoke',
+	'smash',
+	'match',
+	'flood',
+	'fix',
+	'untidy',
+	'develop',
+	'hum'
+]
 
-	const finish = transitions.find(t =>
-		t.to.key === Workflow.getTicketFinalStatus().key);
+random_role_parts = ['User', 'Admin', 'Developer', 'Manager']
 
-	for(let transition of transitions) {
-		if (transition.from == null) {
+random_status_parts = ['backlog', 'ready-to-start', 'development', 'code-review', 'ready-to-verification', 'verification']
 
-		} else {
+random_priority_parts = ['high', 'low', 'trivial']
 
-		}
-	}
+random_type_parts = ['story', 'bug']
 
-	return {
-		leadTime: finish.createdAt - zero.createdAt
-	}
+random_unicorn_parts = [
+	'Quince Bonny Hooves',
+	'Windy Velvet Horse',
+	'Acorn Candy Nostrils',
+	'Elm Dainty Ears',
+	'Dandelion Dainty Lord',
+	'Chestnut Pied Nose',
+]
+
+const skeleton = {
+	name: 'Test',
+	description: 'pofk',
+	priority: { key: 'high' },
+	type: { key: 'story' },
+	resolution: null,
+	assignee: { key: 'platon.korzh' },
+	reporter: { key: 'platon.korzh' },
+	backlog: { key: 'AMA'},
+	status: { key: 'backlog' },
+	lastTransitionAt: new Date(),
 }
 
-(async function() {
-	const stats = await calcStats({ key: 'xNJVg88Y3' })
-	console.log(stats)
-})()
+async function main() {
+	for (var i = 100; i >= 0; i--) {
+		const role = random_role_parts[Math.floor(Math.random()*random_role_parts.length)]
+		const verb = random_verb_parts[Math.floor(Math.random()*random_verb_parts.length)]
+		const unicorn = random_unicorn_parts[Math.floor(Math.random()*random_unicorn_parts.length)]
+
+		const ticketSlim = {
+			...skeleton,
+			key: shortid.generate(),
+			name: `As a ${role} i want to ${verb} ${unicorn}`,
+			type: {
+				key: random_type_parts[Math.floor(Math.random()*random_type_parts.length)]
+			},
+			priority: {
+				key: random_priority_parts[Math.floor(Math.random()*random_priority_parts.length)]
+			},
+			//status: {
+			//	key: random_status_parts[Math.floor(Math.random()*random_status_parts.length)]
+			//}
+		}
+
+		console.log(ticketSlim.name)
+
+		await ticketsDal.insert(ticketSlim)
+	}
+
+	console.log('Done.')
+}
+
+main()

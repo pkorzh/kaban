@@ -9,10 +9,6 @@ module.exports = new Schema({
 		type: String,
 		required: true,
 	},
-	color: {
-		type: String,
-		required: false,
-	},
 	description: {
 		type: String,
 		required: false,

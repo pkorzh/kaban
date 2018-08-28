@@ -34,15 +34,6 @@
 				</b-form-group>
 
 				<b-form-group
-					label="Color"
-					:invalid-feedback="'Color is required'"
-					:state="!$v.backlog.color.$invalid" horizontal>
-					<compact-picker
-						v-model="backlog.color"
-						:palette="['#e1d276', '#99ea86', '#83d6b7', '#e4a8f9', '#faf0e6']" />
-				</b-form-group>
-
-				<b-form-group
 					label="Description"
 					:invalid-feedback="'Description is required'"
 					:state="!$v.backlog.description.$invalid">
@@ -79,7 +70,6 @@
 					name: null,
 					key: null,
 					description: null,
-					color: { hex: '#D33115' },
 				}
 			}
 		},
@@ -88,7 +78,6 @@
 				name: { required },
 				key: { required },
 				description: { },
-				color: { required }
 			}
 		},
 		methods: {
@@ -103,10 +92,7 @@
 					return
 				}
 
-				await this.createBacklog({
-					...this.backlog,
-					color: this.backlog.color.hex
-				})
+				await this.createBacklog(this.backlog)
 
 				this.$emit('close')
 			}
