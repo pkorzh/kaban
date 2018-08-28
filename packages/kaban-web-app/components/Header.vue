@@ -62,6 +62,13 @@
 										</li>
 									</ul>
 								</li>
+								<li>
+									<strong class="dropdown-menu-title">
+										<nuxt-link to="/flatpages">Flatpages</nuxt-link>
+									</strong>
+									<ul>
+									</ul>
+								</li>
 
 								<!--<li>
 									<strong class="dropdown-menu-title">
