@@ -36,7 +36,7 @@
 				<b-form-group
 					label="Color"
 					:invalid-feedback="'Color is required'"
-					:state="!$v.backlog.color.$invalid">
+					:state="!$v.backlog.color.$invalid" horizontal>
 					<compact-picker
 						v-model="backlog.color"
 						:palette="['#e1d276', '#99ea86', '#83d6b7', '#e4a8f9', '#faf0e6']" />

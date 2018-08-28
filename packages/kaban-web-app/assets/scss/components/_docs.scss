@@ -1,0 +1,57 @@
+.docs {
+  height: 100vh;
+  display: flex;
+  
+  &-side {
+    height: 100% !important;
+    width: 20%;
+    overflow: auto;
+    flex: 0 0 auto;
+    box-sizing: border-box;
+    padding: 15px;
+    border-right: 1px solid $gray-300; 
+  }
+  &-bar {
+    height: 40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    button {
+      margin: 0 5px;
+    }
+  }
+  &-content {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 50px 0 50px;
+  }
+  &-content-holder {
+    max-width: 800px;
+    margin: 0 auto;
+    height: 100%;
+    overflow: auto;
+  }
+  ol {
+    padding: 0;
+    list-style: none;
+    counter-reset: li;
+    li {
+      position: relative;
+      padding: 0;
+      counter-increment: li;
+      &::before {
+        display: inline-block;
+        font-weight: bold;
+        margin-right: 5px;
+        content: counters(li, ".") ".";
+      }
+    }
+    ol {
+      margin-left: 20px;
+    }
+  }
+}
