@@ -22,6 +22,20 @@
 					shortkey="c" />
 
 				<ActionsNavViewSwitcher v-model="boardView" />
+
+				<b-dropdown variant="light" right no-caret>
+					<template slot="button-content">
+						<font-awesome-icon icon="cog" />
+					</template>
+					<b-dropdown-item
+						:to="{name: 'boards-key-configure-general', params: { key: board.key }}">
+						Configure
+					</b-dropdown-item>
+					<b-dropdown-divider />
+					<b-dropdown-item-button class="text-danger">
+						Delete
+					</b-dropdown-item-button>
+				</b-dropdown>
 			</ActionsNav>
 		</TopBar>
 

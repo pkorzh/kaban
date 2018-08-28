@@ -25,6 +25,22 @@
 						{{ data.item.name }}
 					</nuxt-link>
 				</template>
+
+				<template slot="action" slot-scope="data">
+					<b-dropdown variant="link" size="sm" right no-caret>
+						<template slot="button-content">
+							<font-awesome-icon icon="ellipsis-v" />
+						</template>
+						<b-dropdown-item
+							:to="{name: 'boards-key-configure-general', params: { key: data.item.key }}">
+							Configure
+						</b-dropdown-item>
+						<b-dropdown-divider />
+						<b-dropdown-item-button class="text-danger">
+							Delete
+						</b-dropdown-item-button>
+					</b-dropdown>
+				</template>
 			</b-table>
 	</b-container>
 </template>
@@ -46,6 +62,10 @@
 					},
 					description: {
 						label: 'Description',
+						sortable: false,
+					},
+					action: {
+						label: '',
 						sortable: false,
 					}
 				}
