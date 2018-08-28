@@ -1,5 +1,5 @@
 .board {
-  overflow: auto;
+  //overflow: auto;
 
   &-column {
     border-radius: 6px;
@@ -65,6 +65,9 @@
       padding-left: 5px;
       padding-right: 5px;
       flex-grow: 0;
+      + .col-md {
+        flex-grow: 1;
+      }
     }
   }
 }

@@ -26,7 +26,7 @@
 
 				<div
 					class="card-estm card-estm-1"
-					title="Less than a day"></div>
+					title="Less than a day"><span></span></div>
 
 				<div class="card-priority">
 					<img
