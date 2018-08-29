@@ -15,7 +15,9 @@
 
 		<b-row>
 			<b-col cols="2">
-				<b-nav vertical pills>
+				<b-nav
+					vertical
+					class="section-nav">
 					<b-nav-item
 						:to="{name: 'boards-key-configure-general', params: {key: board.key}}">
 						General
