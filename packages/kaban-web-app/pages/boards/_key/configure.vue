@@ -2,13 +2,13 @@
 	<b-container fluid>
 		<TopBar>
 			<template slot="header">
-				Configure Board
+				<span v-t="'configureBoard'"></span>
 			</template>
 
 			<template slot="breadcrumb">
 				<b-breadcrumb>
-					<b-breadcrumb-item :to="{name: 'boards'}" text="Boards" />
-					<b-breadcrumb-item :to="{name: 'boards-key', params: {key: board.key}}" :text="board.name" />
+					<b-breadcrumb-item :to="localePath({name: 'boards'})" text="Boards" />
+					<b-breadcrumb-item :to="localePath({name: 'boards-key', params: {key: board.key}})" :text="board.name" />
 				</b-breadcrumb>
 			</template>
 		</TopBar>
@@ -19,12 +19,12 @@
 					vertical
 					class="section-nav">
 					<b-nav-item
-						:to="{name: 'boards-key-configure-general', params: {key: board.key}}">
+						:to="localePath({name: 'boards-key-configure-general', params: {key: board.key}})">
 						General
 					</b-nav-item>
 
 					<b-nav-item
-						:to="{name: 'boards-key-configure-card-colors', params: {key: board.key}}">
+						:to="localePath({name: 'boards-key-configure-card-colors', params: {key: board.key}})">
 						Card Colors
 					</b-nav-item>
 				</b-nav>
@@ -41,6 +41,11 @@
 	import { mapGetters } from 'vuex';
 
 	export default {
+		head() {
+			return {
+				title: `${this.board.name} Configuration`
+			}
+		},
 		computed: {
 			...mapGetters('boards', {
 				getBoard: 'getOne'

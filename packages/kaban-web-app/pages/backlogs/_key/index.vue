@@ -7,7 +7,7 @@
 
 			<template slot="breadcrumb">
 				<b-breadcrumb>
-					<b-breadcrumb-item :to="{name: 'backlogs'}" text="Backlogs" />
+					<b-breadcrumb-item :to="localePath({name: 'backlogs'})" text="Backlogs" />
 				</b-breadcrumb>
 			</template>
 
@@ -20,6 +20,25 @@
 				<ActionsNavButton
 					text="Create Ticket"
 					action="CreateTicketAction" />
+
+				<nuxt-link :to="localePath({name: 'backlogs-key-reports-cumulative', params: {key: backlog.key}})">
+					Reports
+				</nuxt-link>
+
+				<div class="actions-nav-separator"></div>
+
+				<b-dropdown variant="light" right no-caret>
+					<template slot="button-content">
+						<font-awesome-icon icon="cog" />
+					</template>
+					<b-dropdown-item>
+						Archive
+					</b-dropdown-item>
+					<b-dropdown-divider />
+					<b-dropdown-item-button class="text-danger">
+						Delete
+					</b-dropdown-item-button>
+				</b-dropdown>
 			</ActionsNav>
 		</TopBar>
 
@@ -32,8 +51,13 @@
 	import { mapGetters, mapActions } from 'vuex';
 
 	export default {
-		async fetch({store, params}) {
+		async fetch({store, params, error}) {
 			await store.dispatch('tickets/fetchList', `backlog = ${params.key}`)
+		},
+		head() {
+			return {
+				title: this.backlog.name
+			}
 		},
 		computed: {
 			...mapGetters('backlogs', {

@@ -14,17 +14,17 @@
 				<template slot="breadcrumb">
 					<b-breadcrumb>
 						<b-breadcrumb-item
-							:to="{name: 'backlogs-key', params: {key: backlog.key}}"
+							:to="localePath({name: 'backlogs-key', params: {key: backlog.key}})"
 							:text="backlog.name" />
 
 						<b-breadcrumb-item
-							:to="{name: 'issues-key', params: {key: ticket.key}}"
+							:to="ticketUrl(ticket)"
 							:text="ticket.key" />
 					</b-breadcrumb>
 				</template>
 			</TopBar>
 
-			<nuxt-link class="btn-details" :to="{name: 'issues-key', params: {key: ticket.key}}">
+			<nuxt-link class="btn-details" :to="ticketUrl(ticket)">
 				<font-awesome-icon icon="arrows-alt-v" />
 			</nuxt-link>
 

@@ -2,7 +2,7 @@
 	<b-container fluid>
 		<TopBar>
 			<template slot="header">
-				Boards
+				<span v-t="'boards'"></span>
 			</template>
 
 			<ActionsNav>
@@ -21,7 +21,7 @@
 			:items="boardList"
 			:fields="boardFields">
 				<template slot="name" slot-scope="data">
-					<nuxt-link :to="{name: 'boards-key', params: {key: data.item.key}}">
+					<nuxt-link :to="localePath({name: 'boards-key', params: { key: data.item.key }})">
 						{{ data.item.name }}
 					</nuxt-link>
 				</template>
@@ -32,7 +32,7 @@
 							<font-awesome-icon icon="ellipsis-v" />
 						</template>
 						<b-dropdown-item
-							:to="{name: 'boards-key-configure-general', params: { key: data.item.key }}">
+							:to="localePath({name: 'boards-key-configure-general', params: { key: data.item.key }})">
 							Configure
 						</b-dropdown-item>
 						<b-dropdown-divider />
@@ -49,19 +49,24 @@
 	import { mapGetters } from 'vuex';
 
 	export default {
+		head() {
+			return {
+				title: 'Boards'
+			}
+		},
 		data() {
 			return {
 				boardFields: {
 					name: {
-						label: 'Name',
+						label: this.$t('name'),
 						sortable: true,
 					},
 					tql: {
-						label: 'TQL',
+						label: this.$t('tql'),
 						sortable: false,
 					},
 					description: {
-						label: 'Description',
+						label: this.$t('description'),
 						sortable: false,
 					},
 					action: {

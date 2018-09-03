@@ -1,10 +1,5 @@
 <template>
 	<div>
-		<TopBar>
-			<template slot="header">
-				General & Filters
-			</template>
-		</TopBar>
 		<div>
 			<b-form-group
 				label="Name"

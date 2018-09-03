@@ -16,12 +16,13 @@
 				<b-form-group
 					label="Name"
 					horizontal
-					:invalid-feedback="'Name is required'"
-					:state="!$v.backlog.name.$invalid">
+					:invalid-feedback="errors.first('backlog.name')"
+					:state="!errors.has('backlog.name')">
 					<b-form-input
 						type="text"
 						v-model="backlog.name"
-						required
+						name="backlog.name"
+						v-validate="'required'"
 						placeholder="Backlog Name" />
 				</b-form-group>
 
@@ -34,11 +35,8 @@
 				</b-form-group>
 
 				<b-form-group
-					label="Description"
-					:invalid-feedback="'Description is required'"
-					:state="!$v.backlog.description.$invalid">
+					label="Description">
 					<b-form-textarea
-						type="text"
 						v-model="backlog.description"
 						placeholder="Description"
 						:rows="3" />
@@ -59,7 +57,6 @@
 
 <script>
 	import { KeyGenerationMixin } from '@/mixins'
-	import { required } from 'vuelidate/lib/validators'
 	import { mapActions, mapGetters } from 'vuex'
 
 	export default {
@@ -73,25 +70,12 @@
 				}
 			}
 		},
-		validations: {
-			backlog: {
-				name: { required },
-				key: { required },
-				description: { },
-			}
-		},
 		methods: {
 			...mapActions('backlogs', {
 				createBacklog: 'create'
 			}),
 
 			async create() {
-				this.$v.$touch()
-
-				if (this.$v.$invalid) {
-					return
-				}
-
 				await this.createBacklog(this.backlog)
 
 				this.$emit('close')

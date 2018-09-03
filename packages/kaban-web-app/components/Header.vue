@@ -30,11 +30,13 @@
 							<ol>
 								<li>
 									<strong class="dropdown-menu-title">
-										<nuxt-link to="/boards">Boards</nuxt-link>
+										<nuxt-link :to="localePath({name: 'boards'})">
+											<span v-t="'boards'"></span>
+										</nuxt-link>
 									</strong>
 									<ul>
 										<li v-for="board in boardList" :key="board.key">
-											<nuxt-link :to="{name: 'boards-key', params: {key: board.key}}">
+											<nuxt-link :to="localePath({name: 'boards-key', params: {key: board.key}})">
 												{{ board.name }}
 											</nuxt-link>
 										</li>
@@ -42,11 +44,13 @@
 								</li>
 								<li>
 									<strong class="dropdown-menu-title">
-										<nuxt-link to="/backlogs">Backlogs</nuxt-link>
+										<nuxt-link :to="localePath({name: 'backlogs'})">
+											<span v-t="'backlogs'"></span>
+										</nuxt-link>
 									</strong>
 									<ul>
 										<li v-for="backlog in backlogList" :key="backlog.key">
-											<nuxt-link :to="{name: 'backlogs-key', params: {key: backlog.key}}">
+											<nuxt-link :to="localePath({name: 'backlogs-key', params: {key: backlog.key}})">
 												{{ backlog.name }}
 											</nuxt-link>
 										</li>
@@ -54,17 +58,21 @@
 								</li>
 								<li>
 									<strong class="dropdown-menu-title">
-										Filters
+										<span v-t="'filters'"></span>
 									</strong>
 									<ul>
 										<li>
-											<nuxt-link to="/issues/search">Search</nuxt-link>
+											<nuxt-link :to="localePath({name: 'issues-search'})">
+												<span v-t="'search'"></span>
+											</nuxt-link>
 										</li>
 									</ul>
 								</li>
 								<li>
 									<strong class="dropdown-menu-title">
-										<nuxt-link to="/flatpages">Flatpages</nuxt-link>
+										<nuxt-link :to="localePath({name: 'flatpages'})">
+											<span v-t="'flatpages'"></span>
+										</nuxt-link>
 									</strong>
 									<ul>
 									</ul>
@@ -130,7 +138,7 @@
 			'$route'() {
 				this.$refs.menuDropDown.hide()
 			}
-		}
+		},
 	};
 </script>
 

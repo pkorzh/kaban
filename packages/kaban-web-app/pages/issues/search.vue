@@ -2,13 +2,13 @@
 	<b-container fluid>
 		<TopBar>
 			<template slot="header">
-				Search
+				<span v-t="'search'"></span>
 			</template>
 
 			<template slot="breadcrumb">
 				<b-breadcrumb>
 					<b-breadcrumb-item
-						:to="{name: 'issues-search'}"
+						:to="localePath({name: 'issues-search'})"
 						text="Issues"
 						active />
 				</b-breadcrumb>
@@ -45,6 +45,12 @@
 	export default {
 		async fetch({store, params}) {
 			await store.dispatch('tickets/fetchList')
+		},
+
+		head() {
+			return {
+				title: 'Search Tickets'
+			}
 		},
 
 		data() {

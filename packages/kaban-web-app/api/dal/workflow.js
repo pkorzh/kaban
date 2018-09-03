@@ -21,6 +21,7 @@ async function transition(ticket, to) {
 
 	const ticketSpentIn = new TicketSpentIn({
 		ticket,
+		backlog: ticket.backlog,
 		status: to,
 		ms: new Date() - ticket.lastTransitionAt,
 	})

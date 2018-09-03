@@ -9,6 +9,7 @@ import tickettypes from './tickettypes'
 import priorities from './priorities'
 import workflow from './workflow'
 import status from './status'
+import flatpages from './flatpages'
 
 Vue.use(Vuex)
 
@@ -22,6 +23,7 @@ const store = () => new Vuex.Store({
 		priorities,
 		workflow,
 		status,
+		flatpages,
 	},
 	actions: {
 		async nuxtServerInit({dispatch}) {

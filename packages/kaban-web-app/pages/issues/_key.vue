@@ -13,11 +13,11 @@
 			<template slot="breadcrumb">
 				<b-breadcrumb>
 					<b-breadcrumb-item
-						:to="{name: 'backlogs-key', params: {key: ticket.backlog.key}}"
+						:to="localePath({name: 'backlogs-key', params: {key: ticket.backlog.key}})"
 						:text="ticket.backlog.name" />
 
 					<b-breadcrumb-item
-						:to="{name: 'issues-key', params: {key: ticket.key}}"
+						:to="localePath({name: 'issues-key', params: {key: ticket.key}})"
 						:text="ticket.key"
 						active />
 				</b-breadcrumb>
@@ -45,7 +45,7 @@
 						</b-row>
 					</div>
 					<div class="details-section">
-						<h3>Description:</h3>
+						<h3 v-t="'description'"></h3>
 
 						<LiveEditTextarea
 							:content="ticket.description"
@@ -92,6 +92,11 @@
 				'tickets/fetchOne',
 				`key = ${params.key}`
 			)
+		},
+		head() {
+			return {
+				title: this.ticket.name
+			}
 		},
 		computed: {
 			...mapGetters('tickets', {

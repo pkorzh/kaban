@@ -23,7 +23,8 @@ import {
 	faTable,
 	faPrint,
 	faAlignJustify,
-	faAngleDoubleRight
+	faAngleDoubleRight,
+	faFile,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -49,7 +50,8 @@ library.add(
 	faTable,
 	faPrint,
 	faAlignJustify,
-	faAngleDoubleRight
+	faAngleDoubleRight,
+	faFile
 )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

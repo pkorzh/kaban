@@ -49,7 +49,8 @@ module.exports = {
 		{ src: '~/plugins/kaban-sse-subscribe', ssr: false },
 		{ src: '~/plugins/vue-select', ssr: false },
 		{ src: '~/plugins/vue-color', ssr: false },
-		{ src: '~/plugins/vue-vuelidate', ssr: false },
+		`~/plugins/vue-vuelidate`,
+		{ src: '~plugins/vue-simplemde', ssr: false }
 	],
 
 	/*
@@ -58,7 +59,20 @@ module.exports = {
 	modules: [
 		// Doc: https://github.com/nuxt-community/axios-module#usage
 		'@nuxtjs/axios',
-		['bootstrap-vue/nuxt', { css: false }],
+
+		['nuxt-i18n', {
+			locales: [
+				{ code: 'en', iso: 'en-US', file: 'en-US.js' },
+				{ code: 'uk', iso: 'uk-UA', file: 'uk-UA.js' }
+			],
+			defaultLocale: 'en',
+			lazy: true,
+			langDir: 'lang/'
+		}],
+
+		['bootstrap-vue/nuxt', {
+			css: false
+		}],
 	],
 	/*
 	** Axios module configuration
@@ -95,5 +109,5 @@ module.exports = {
 	serverMiddleware: [
 		bodyParser.json(),
 		'~/api/index.js'
-	]
+	],
 }

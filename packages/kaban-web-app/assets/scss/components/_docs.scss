@@ -1,7 +1,7 @@
 .docs {
   height: 100vh;
   display: flex;
-  
+
   &-side {
     height: 100% !important;
     width: 20%;
@@ -9,7 +9,7 @@
     flex: 0 0 auto;
     box-sizing: border-box;
     padding: 15px;
-    border-right: 1px solid $gray-300; 
+    border-right: 1px solid $gray-300;
   }
   &-bar {
     height: 40px;
@@ -21,7 +21,6 @@
     justify-content: space-between;
     padding: 0 20px;
     button {
-      margin: 0 5px;
     }
   }
   &-content {
@@ -30,7 +29,8 @@
     padding: 50px 0 50px;
   }
   &-content-holder {
-    max-width: 800px;
+    max-width: 100%;
+    padding: 0 20px;
     margin: 0 auto;
     height: 100%;
     overflow: auto;

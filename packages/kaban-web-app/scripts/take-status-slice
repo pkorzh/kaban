@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+
+require('../api/dal/connect')
+const { Ticket, TicketStatusSlice } = require('../api/dal/models')
+
+async function main() {
+	let stats = await Ticket.aggregate([
+		{
+			$group: {
+				_id: {
+					status: "$status.key",
+					backlog: "$backlog.key",
+				},
+				count: {
+					$sum: 1
+				}
+			},
+		},
+	])
+
+	stats = stats.reduce((acc, stat) => {
+		acc[stat._id.backlog] = acc[stat._id.backlog] || {}
+		acc[stat._id.backlog][stat._id.status] = stat.count
+		return acc
+	}, {})
+
+	stats = Object.keys(stats).map(backlogKey => ({
+		backlog: { key: backlogKey },
+		slice: stats[backlogKey]
+	}))
+
+	console.debug(stats)
+
+	for(let stat of stats) {
+		const ticketStatusSlice = new TicketStatusSlice(stat)
+		await ticketStatusSlice.save()
+	}
+
+	process.exit()
+}
+
+main()

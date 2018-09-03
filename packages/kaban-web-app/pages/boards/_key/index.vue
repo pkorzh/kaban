@@ -7,7 +7,7 @@
 
 			<template slot="breadcrumb">
 				<b-breadcrumb>
-					<b-breadcrumb-item :to="{name: 'boards'}" text="Boards" />
+					<b-breadcrumb-item :to="localePath({name: 'boards'})" text="Boards" />
 				</b-breadcrumb>
 			</template>
 
@@ -23,12 +23,14 @@
 
 				<ActionsNavViewSwitcher v-model="boardView" />
 
+				<div class="actions-nav-separator"></div>
+
 				<b-dropdown variant="light" right no-caret>
 					<template slot="button-content">
 						<font-awesome-icon icon="cog" />
 					</template>
 					<b-dropdown-item
-						:to="{name: 'boards-key-configure-general', params: { key: board.key }}">
+						:to="localePath({name: 'boards-key-configure-general', params: { key: board.key }})">
 						Configure
 					</b-dropdown-item>
 					<b-dropdown-divider />
@@ -54,6 +56,11 @@
 	import { mapGetters, mapActions } from 'vuex';
 
 	export default {
+		head() {
+			return {
+				title: this.board.name
+			}
+		},
 		data() {
 			return {
 				boardView: true,

@@ -2,7 +2,7 @@
 	<b-container fluid>
 		<TopBar>
 			<template slot="header">
-				Backlogs
+				<span v-t="'backlogs'"></span>
 			</template>
 
 			<ActionsNav>
@@ -27,18 +27,28 @@
 			:fields="backlogFields"
 			v-if="tableView">
 				<template slot="name" slot-scope="data">
-					<nuxt-link :to="{name: 'backlogs-key', params: {key: data.item.key}}">
+					<nuxt-link :to="localePath({name: 'backlogs-key', params: {key: data.item.key}})">
 						{{ data.item.name }}
 					</nuxt-link>
 				</template>
 
 				<template slot="action" slot-scope="row">
-					<b-button variant="link" size="sm" @click="row.toggleDetails">
-						{{ row.detailsShowing ? 'Collapse' : 'Expand'}}
-					</b-button>
-				</template>
-
-				<template slot="row-details" slot-scope="row">
+					<b-dropdown variant="link" size="sm" right no-caret>
+						<template slot="button-content">
+							<font-awesome-icon icon="ellipsis-v" />
+						</template>
+						<b-dropdown-item
+							:to="localePath({name: 'backlogs-key-reports-cumulative', params: {key: row.item.key}})">
+							Reports
+						</b-dropdown-item>
+						<b-dropdown-item>
+							Archive
+						</b-dropdown-item>
+						<b-dropdown-divider />
+						<b-dropdown-item-button class="text-danger">
+							Delete
+						</b-dropdown-item-button>
+					</b-dropdown>
 				</template>
 			</b-table>
 
@@ -53,16 +63,21 @@
 	import { mapGetters } from 'vuex';
 
 	export default {
+		head() {
+			return {
+				title: 'Backlogs'
+			}
+		},
 		data() {
 			return {
 				tableView: true,
 				backlogFields: {
 					name: {
-						label: 'Name',
+						label: this.$t('name'),
 						sortable: true,
 					},
 					description: {
-						label: 'Description',
+						label: this.$t('description'),
 						sortable: false,
 					},
 					action: {

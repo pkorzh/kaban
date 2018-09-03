@@ -5,4 +5,6 @@ const dbName = process.env.DB_NAME
 const dbUser = process.env.DB_USER
 const dbPass = process.env.DB_PASS
 
-mongoose.connect(`mongodb://${dbUser}:${dbPass}@${dbHost}/${dbName}`)
+mongoose.connect(`mongodb://${dbUser}:${dbPass}@${dbHost}/${dbName}`, {
+	useNewUrlParser: true
+})

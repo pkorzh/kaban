@@ -3,93 +3,93 @@
 		<div class="modal-box-header">
 			<TopBar>
 				<template slot="header">
-					Create Board
+					<span v-t="'createBoard'"></span>
 				</template>
 			</TopBar>
 
 			<button
 				class="modal-box-close"
-				@click="$emit('close')">Close</button>
+				@click="$emit('close')"
+				v-t="'close'">
+				</button>
 		</div>
 		<div class="details">
 			<b-form id="BoardCreateHighlight" @submit.prevent="create" novalidate>
 				<b-form-group
 					label="Name"
 					horizontal
-					:invalid-feedback="'Name is required'"
-					:state="!$v.board.name.$invalid">
-					<b-form-input
+					:invalid-feedback="errors.first('board.name')"
+					:state="!errors.has('board.name')">
+					<input
 						type="text"
 						v-model="board.name"
-						required
+						name="board.name"
+						v-validate="'required'"
+						class="form-control"
 						placeholder="Board Name" />
 				</b-form-group>
 
 				<b-form-group label="Key" horizontal>
-					<b-form-input
+					<input
 						readonly
 						type="text"
 						:value="board.key"
+						class="form-control"
 						placeholder="Key" />
 				</b-form-group>
 
 				<b-form-group
 					label="TQL"
-					:invalid-feedback="'TQL is required'"
-					:state="!$v.board.tql.$invalid">
-					<b-form-input
+					:invalid-feedback="errors.first('board.tql')"
+					:state="!errors.has('board.tql')">
+					<input
 						type="text"
 						v-model="board.tql"
+						name="board.tql"
+						v-validate="'required'"
+						class="form-control"
 						placeholder="TQL" />
 				</b-form-group>
 
 				<b-form-group
-					label="Description"
-					:invalid-feedback="'Description is required'"
-					:state="!$v.board.description.$invalid">
-					<b-form-textarea
-						type="text"
-						v-model="board.description"
-						placeholder="Description"
-						:rows="3" />
+					label="Description">
+						<textarea
+							class="form-control"
+							rows="3"
+							v-model="board.description"></textarea>
 				</b-form-group>
 			</b-form>
 		</div>
 		<div class="modal-box-footer">
 			<button
 				class="btn btn-outline-danger"
-				@click="$emit('close')">Close</button>
+				@click="$emit('close')"
+				v-t="'close'"></button>
 			<button
 				type="submit"
 				form="BoardCreateHighlight"
-				class="btn btn-primary">Add</button>
+				class="btn btn-primary"
+				v-t="'add'"></button>
 		</div>
 	</div>
 </template>
 
 <script>
 	import { KeyGenerationMixin } from '@/mixins'
-	import { required } from 'vuelidate/lib/validators'
 	import { mapActions } from 'vuex'
 
 	export default {
-		mixins: [KeyGenerationMixin],
+		mixins: [
+			KeyGenerationMixin,
+		],
 		data() {
 			return {
 				board: {
-					name: null,
-					key: null,
-					tql: null,
-					description: null,
+					name: '',
+					key: '',
+					tql: '',
+					description: '',
 				}
-			}
-		},
-		validations: {
-			board: {
-				name: { required },
-				key: { required },
-				tql: { required },
-				description: { },
 			}
 		},
 		methods: {
@@ -98,11 +98,8 @@
 			}),
 
 			async create() {
-				this.$v.$touch()
-
-				if (this.$v.$invalid) {
-					return
-				}
+				const valid = await this.$validator.validateAll()
+				if (!valid) return
 
 				await this.createBoard(this.board)
 				this.$emit('close')
@@ -110,8 +107,9 @@
 		},
 		watch: {
 			'board.name'(name) {
-				this.board.key =  this.makeKey(name)
-			}
-		}
+				this.board.key = this.makeKey(name)
+			},
+		},
+		computed: {}
 	}
 </script>

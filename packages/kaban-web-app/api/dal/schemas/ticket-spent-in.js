@@ -7,6 +7,10 @@ module.exports = new Schema({
 		type: KeySchema,
 		required: true,
 	},
+	backlog: {
+		type: KeySchema,
+		required: true,
+	},
 	status: {
 		type: KeySchema,
 		required: true,
