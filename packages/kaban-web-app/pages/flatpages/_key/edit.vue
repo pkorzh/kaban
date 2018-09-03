@@ -15,6 +15,12 @@
 					v-t="'save'">
 				</button>
 			</div>
+
+			<button
+				class="btn btn-danger"
+				@click="del"
+				v-t="'delete'">
+			</button>
 		</div>
 
 		<div class="docs-content-holder">
@@ -64,7 +70,8 @@
 		},
 		methods: {
 			...mapActions('flatpages', {
-				patchFlatpage: 'patch'
+				patchFlatpage: 'patch',
+				deleteFlatpage: 'delete',
 			}),
 
 			async patch() {
@@ -78,6 +85,10 @@
 					},
 					key: this.flatpage.key
 				})
+			},
+
+			async del() {
+				await this.deleteFlatpage(this.flatpage.key)
 			}
 		},
 	}

@@ -70,8 +70,8 @@ export default (resource, {state, getters, actions, mutations, patchReducers = {
 				return data
 			})
 		},
-		delete({commit}, entity) {
-
+		delete({commit}, tql) {
+			return Promise.resolve()
 		},
 	}, actions)
 

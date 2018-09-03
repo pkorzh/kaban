@@ -13,4 +13,5 @@ export default {
 	flatpages: 'Flatpages',
 	reports: 'Reports',
 	save: 'Save',
+	delete: 'Delete',
 }
