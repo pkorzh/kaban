@@ -8,10 +8,11 @@
 					<font-awesome-icon icon="align-justify" />
 				</button>
 
-				<button
-					class="btn btn-light">
+				<nuxt-link
+					class="btn btn-light"
+					:to="localePath({name: 'flatpages-key-edit', params: { key: flatpage.key }})">
 					<font-awesome-icon icon="pen" />
-				</button>
+				</nuxt-link>
 			</div>
 
 				<nuxt-link
@@ -30,11 +31,17 @@
 
 <script>
 	import { mapGetters } from 'vuex'
+	import marked from 'marked'
 
 	export default {
-		async asyncData({store}) {
+		async asyncData({store, params}) {
+			const md = await store.dispatch(
+				'flatpages/getContent',
+				params.key,
+			)
+
 			return {
-				content: await store.dispatch('flatpages/getContent')
+				content: marked(md)
 			}
 		},
 		computed: {

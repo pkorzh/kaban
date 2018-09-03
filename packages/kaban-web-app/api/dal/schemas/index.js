@@ -5,6 +5,7 @@ const WorkflowSchema = require('./workflow')
 const WorkflowTransitionSchema = require('./workflow-transition')
 const TicketSpentInSchema = require('./ticket-spent-in')
 const TicketStatusSliceSchema = require('./ticket-status-slice')
+const FlatpageSchema = require('./flatpage')
 
 module.exports = {
 	TicketSchema,
@@ -14,4 +15,5 @@ module.exports = {
 	WorkflowTransitionSchema,
 	TicketSpentInSchema,
 	TicketStatusSliceSchema,
+	FlatpageSchema,
 }

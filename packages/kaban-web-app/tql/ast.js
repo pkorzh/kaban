@@ -15,8 +15,10 @@ function tokens(source) {
 		const d = parseInt(lexeme)
 		return /^\d+$/.test(lexeme) && !isNaN(d) && isFinite(d)
 	}
+	const isOperator = (w) => ['>', '<', '=', '!=', '<=', '>=', 'in'].indexOf(w) !== -1
 	const isOperatorPart = (w) => ['>', '<', '=', '!=', '<=', '>=', 'in']
 		.find(op => op.indexOf(w) !==-1)
+
 	const isWhiteSpace = (ch) => /\s/.test(ch)
 	const isIdentifierStart = (ch) =>
 		/([$_a-zA-Z]|[0-9])/.test(ch) || regex.NonAsciiIdentifierStart.test(ch)
@@ -46,6 +48,8 @@ function tokens(source) {
 		if (isOperatorPart(peek()) && !token.tag) {
 			let operator = []
 
+			const stash = pos
+
 			do {
 				operator.push(peek())
 				consume()
@@ -53,8 +57,12 @@ function tokens(source) {
 
 			operator = operator.join('')
 
-			token.lexeme = operator
-			token.tag = 'op'
+			if (!isOperator(operator)) {
+				pos = stash
+			} else {
+				token.lexeme = operator
+				token.tag = 'op'
+			}
 		}
 
 		if (isIdentifierStart(peek()) && !token.tag) {

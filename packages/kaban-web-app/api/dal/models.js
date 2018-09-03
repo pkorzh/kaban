@@ -8,6 +8,7 @@ const {
 	WorkflowTransitionSchema,
 	TicketSpentInSchema,
 	TicketStatusSliceSchema,
+	FlatpageSchema,
 } = require('./schemas')
 
 const Ticket = mongoose.model('Ticket', TicketSchema)
@@ -20,6 +21,7 @@ const WorkflowTransition = mongoose.model(
 )
 const TicketSpentIn = mongoose.model('TicketSpentIn', TicketSpentInSchema)
 const TicketStatusSlice = mongoose.model('TicketStatusSlice', TicketStatusSliceSchema)
+const Flatpage = mongoose.model('Flatpage', FlatpageSchema)
 
 module.exports = {
 	Ticket,
@@ -29,4 +31,5 @@ module.exports = {
 	WorkflowTransition,
 	TicketSpentIn,
 	TicketStatusSlice,
+	Flatpage,
 }

@@ -10,7 +10,7 @@
 
 				<button
 					class="btn btn-light"
-					@click="create"
+					@click="patch"
 					:disabled="errors.any()"
 					v-t="'save'">
 				</button>
@@ -18,7 +18,7 @@
 		</div>
 
 		<div class="docs-content-holder">
-			<b-form @submit="create">
+			<b-form @submit="patch">
 				<b-form-group
 					label="Name"
 					:invalid-feedback="errors.first('flatpage.name')"
@@ -46,26 +46,40 @@
 	import { mapActions } from 'vuex'
 
 	export default {
-		data() {
+		async asyncData({store, params}) {
+			const md = await store.dispatch(
+				'flatpages/getContent',
+				params.key,
+			)
+
+			const flatpage = await store.getters['flatpages/getOne'](params.key)
+
 			return {
 				flatpage: {
-					name: '',
-					content: '',
+					key: flatpage.key,
+					content: md,
+					name: flatpage.name,
 				}
 			}
 		},
 		methods: {
 			...mapActions('flatpages', {
-				createFlatpage: 'create'
+				patchFlatpage: 'patch'
 			}),
 
-			async create() {
+			async patch() {
 				const valid = await this.$validator.validateAll();
 				if (!valid) return;
 
-				await this.createFlatpage(this.flatpage)
+				await this.patchFlatpage({
+					delta: {
+						'name': this.flatpage.name,
+						'content': this.flatpage.content,
+					},
+					key: this.flatpage.key
+				})
 			}
-		}
+		},
 	}
 </script>
 

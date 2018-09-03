@@ -5,4 +5,5 @@ module.exports = {
 	backlogs: require('./backlogs'),
 	boards: require('./boards'),
 	workflow: require('./workflow'),
+	flatpages: require('./flatpages'),
 }

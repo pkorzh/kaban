@@ -18,13 +18,16 @@
 </template>
 
 <script>
-	import { mapGetters } from 'vuex'
+	import { mapGetters, mapActions } from 'vuex'
 
 	export default {
+		async fetch({store}) {
+			await store.dispatch('flatpages/fetchList')
+		},
 		computed: {
 			...mapGetters('flatpages', {
 				flatpages: 'getList'
 			})
-		}
+		},
 	}
 </script>

@@ -9,6 +9,7 @@ app.use(require('./routes/backlogs'))
 app.use(require('./routes/ping'))
 app.use(require('./routes/sse'))
 app.use(require('./routes/workflow'))
+app.use(require('./routes/flatpages'))
 
 module.exports = {
   path: '/api',

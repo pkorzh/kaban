@@ -2,7 +2,6 @@
 	<div>
 		<div>
 			<b-form-group
-				label="Name"
 				description="Board name">
 				<LiveEditInput
 					:content="board.name"
@@ -13,7 +12,6 @@
 			</b-form-group>
 
 			<b-form-group
-				label="TQL"
 				description="Board query">
 				<LiveEditInput
 					:content="board.tql"
@@ -24,7 +22,6 @@
 			</b-form-group>
 
 			<b-form-group
-				label="Description"
 				description="Board description">
 				<LiveEditTextarea
 					:content="board.description"
