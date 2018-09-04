@@ -1,3 +1,3 @@
 <template>
-	<p>cumulative</p>
+	<p>forecast</p>
 </template>

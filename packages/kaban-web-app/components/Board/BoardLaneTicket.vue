@@ -56,8 +56,22 @@
 	import { mapGetters } from 'vuex'
 	import {TicketBaseMixin} from '@/mixins'
 
+	/*import * as generatePredicate from '../../tql/predicate'
+
+	const colors = [
+		{
+			color: 'red',
+			tql: 'backlog = AMA',
+		}
+	]*/
+
 	export default {
 		mixins: [TicketBaseMixin],
+		data() {
+			return {
+				colorPredicateMap: []
+			}
+		},
 		props: {
 			ticket: {
 				type: Object,
@@ -74,8 +88,22 @@
 			},
 
 			cardStyle() {
+				/*for(let color of colorPredicateMap) {
+					if (color.p(this.ticket)) {
+						return {
+							'border-left': '2px',
+							'border-color': color.color,
+						}
+					}
+				}*/
 				return {}
 			}
+		},
+		mounted() {
+			/*this.colorPredicateMap = colors.map(color => ({
+				...color,
+				p: generatePredicate(color.tql),
+			}))*/
 		}
 	};
 </script>

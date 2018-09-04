@@ -19,9 +19,15 @@
 					vertical
 					class="section-nav">
 					<b-nav-item
+						:to="localePath({name: 'backlogs-key-reports-forecast', params: {key: backlog.key}})">
+						Forecast
+					</b-nav-item>
+
+					<b-nav-item
 						:to="localePath({name: 'backlogs-key-reports-cumulative', params: {key: backlog.key}})">
 						Cumulative Flow Diagram
 					</b-nav-item>
+
 					<b-nav-item
 						:to="localePath({name: 'backlogs-key-reports-workload', params: {key: backlog.key}})">
 						Workload Report

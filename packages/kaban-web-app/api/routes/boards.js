@@ -20,4 +20,17 @@ router.post('/boards', async function (req, res, next) {
 	return res.json(board)
 })
 
+router.patch('/boards/:key', async function (req, res, next) {
+	const boardDelta = req.body
+
+	const board = await boardsDal.patch(
+		req.params.key,
+		boardDelta
+	)
+
+	notifySubscribers('updateBoard', board)
+
+	return res.json(board)
+})
+
 module.exports = router

@@ -1,3 +1,3 @@
 <template>
-	<p></p>
+	<p>workload</p>
 </template>

@@ -21,7 +21,7 @@
 					text="Create Ticket"
 					action="CreateTicketAction" />
 
-				<nuxt-link :to="localePath({name: 'backlogs-key-reports-cumulative', params: {key: backlog.key}})">
+				<nuxt-link :to="localePath({name: 'backlogs-key-reports-forecast', params: {key: backlog.key}})">
 					Reports
 				</nuxt-link>
 

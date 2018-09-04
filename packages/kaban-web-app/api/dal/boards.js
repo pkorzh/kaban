@@ -29,7 +29,14 @@ async function insert(boardSlim) {
 	return board
 }
 
+async function patch(key, delta) {
+	await Board.update({ key }, { $set: delta})
+	return get(`key = ${key}`)
+}
+
 module.exports = {
 	query,
 	insert,
+	patch,
+	get,
 }

@@ -36,17 +36,8 @@ async function main() {
 				avg: { $floor: { $avg: '$ms' } },
 				p50: {'$arrayElemAt': ['$ms', {'$floor': {'$multiply': [0.5, {'$size': '$ms'}]}}]},
 				p99: {'$arrayElemAt': ['$ms', {'$floor': {'$multiply': [0.99, {'$size': '$ms'}]}}]},
-				ms: { $push: '$ms' },
 			}
 		},
-		{
-			$group: {
-				_id: '$_id',
-				s: {
-					$push: { $subtract: [ '$ms', '$avg' ] }
-				}
-			}
-		}
 	])
 
 	//console.debug('total tickets ', Object.keys(stats).length)

@@ -1,3 +1,8 @@
-const generate = require('./mongo')
+const generateMongo = require('./mongo')
+const generatePredicate = require('./predicate')
 
-console.dir(generate('key = nzWkQiTtX', false, null))
+const tql = 'key  = nzWkQiTtX'
+
+//console.dir(generateMongo(tql, false, null))
+
+console.log(generatePredicate(tql)({key: 'nzWkQiTtX'}))

@@ -256,6 +256,7 @@ function tree(tokens) {
 				':id',
 				':string',
 				':decimal',
+				':field',
 				() => {
 					consume('[')
 

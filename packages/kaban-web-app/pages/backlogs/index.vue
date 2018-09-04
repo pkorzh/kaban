@@ -38,7 +38,7 @@
 							<font-awesome-icon icon="ellipsis-v" />
 						</template>
 						<b-dropdown-item
-							:to="localePath({name: 'backlogs-key-reports-cumulative', params: {key: row.item.key}})">
+							:to="localePath({name: 'backlogs-key-reports-forecast', params: {key: row.item.key}})">
 							Reports
 						</b-dropdown-item>
 						<b-dropdown-item>
