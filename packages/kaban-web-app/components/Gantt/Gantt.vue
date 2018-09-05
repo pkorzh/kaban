@@ -4,30 +4,6 @@
 			<button
 				type="button"
 				class="btn btn-sm btn-light"
-				:class="{'active': activeGanttViewMode == 'Quarter Day'}"
-				@click="setGanttViewMode('Quarter Day')">
-				Quarter Day
-			</button>
-
-			<button
-				type="button"
-				class="btn btn-sm btn-light"
-				:class="{'active': activeGanttViewMode == 'Day'}"
-				@click="setGanttViewMode('Day')">
-				Day
-			</button>
-
-			<button
-				type="button"
-				class="btn btn-sm btn-light"
-				:class="{'active': activeGanttViewMode == 'Half Day'}"
-				@click="setGanttViewMode('Half Day')">
-				Half Day
-			</button>
-
-			<button
-				type="button"
-				class="btn btn-sm btn-light"
 				:class="{'active': activeGanttViewMode == 'Week'}"
 				@click="setGanttViewMode('Week')">
 				Week
@@ -58,7 +34,7 @@
 		},
 		data() {
 			return {
-				activeGanttViewMode: 'Day',
+				activeGanttViewMode: 'Week',
 			}
 		},
 		mounted() {
@@ -66,7 +42,7 @@
 			    header_height: 50,
 			    column_width: 30,
 			    step: 24,
-			    view_modes: ['Quarter Day', 'Half Day', 'Day', 'Week', 'Month'],
+			    view_modes: ['Week', 'Month'],
 			    bar_height: 20,
 			    bar_corner_radius: 3,
 			    arrow_curve: 5,

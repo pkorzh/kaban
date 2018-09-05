@@ -45,7 +45,7 @@
 			</ActionsNav>
 		</TopBar>
 
-		<TicketsTable
+		<TicketsList
 			:tickets="tickets" />
 	</b-container>
 </template>

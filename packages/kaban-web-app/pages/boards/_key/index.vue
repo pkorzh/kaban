@@ -48,7 +48,7 @@
 			:board="board"
 			:tickets="tickets" />
 
-		<TicketsTable
+		<TicketsList
 			v-if="!boardView"
 			:tickets="tickets" />
 	</b-container>

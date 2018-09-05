@@ -1,0 +1,37 @@
+.table-list {
+  margin: 0;
+  cursor: default;
+  border: 1px solid $gray-300;
+  border-radius: 6px;
+  &-line {
+    padding: 6px 0;
+    display: flex;
+    &:not(:last-child) {
+      border-bottom: 1px solid $gray-300;
+    }
+    &:nth-child(even) {
+      background: $gray-100;
+    }
+
+    > div {
+      flex-shrink: 0;
+      padding: 0 10px;
+      width: 130px;
+      &:not(:last-child) {
+        //border-right: 1px solid $gray-300;
+      }
+    }
+    &-name {
+      flex: 1 1 auto;
+      min-width: 300px;
+      a {
+        color: $body-color;
+      }
+    }
+    &-type, &-priority, &-user {
+      width: 30px!important;
+      text-align: center;
+      padding: 0 5px;
+    }
+  }
+}
