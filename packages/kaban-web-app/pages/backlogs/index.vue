@@ -97,12 +97,14 @@
 			}),
 
 			tasks() {
+				const date = new Date()
+				date.setDate(date.getDate() + 10)
 				return this.backlogList.map(backlog => ({
 					name: backlog.name,
 					start: backlog.createdAt,
-					end: null,
+					end: date,
 					id: backlog.key,
-					progress: 0,
+					progress: 40,
 				}))
 			}
 		},
