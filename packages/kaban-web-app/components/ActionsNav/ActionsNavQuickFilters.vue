@@ -7,6 +7,14 @@
 			</fieldset>
 		</form>-->
 
+		<div>
+			<b-dropdown-header>Status</b-dropdown-header>
+		</div>
+
+		<div>
+			<b-dropdown-header>Type</b-dropdown-header>
+		</div>
+
 	</b-dropdown>
 </template>
 
@@ -16,6 +24,7 @@
 		},
 		data() {
 			return {
+				dropdownText: 'Quick Filters'
 			}
 		},
 		computed: {

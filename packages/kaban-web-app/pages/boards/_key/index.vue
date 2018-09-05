@@ -12,7 +12,9 @@
 			</template>
 
 			<ActionsNav>
-				<!--<ActionsNavAssigned />-->
+				<ActionsNavAssigned />
+
+				<ActionsNavQuickFilters />
 
 				<!--<ActionsNavSimpleSearch />-->
 

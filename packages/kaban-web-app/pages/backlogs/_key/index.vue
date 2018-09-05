@@ -12,8 +12,8 @@
 			</template>
 
 			<ActionsNav>
-				<!--<ActionsNavAssigned />
-				<ActionsNavQuickFilters />-->
+				<ActionsNavAssigned />
+				<ActionsNavQuickFilters />
 
 				<!--<ActionsNavSimpleSearch />-->
 
@@ -21,16 +21,15 @@
 					text="Create Ticket"
 					action="CreateTicketAction" />
 
-				<nuxt-link :to="localePath({name: 'backlogs-key-reports-forecast', params: {key: backlog.key}})">
-					Reports
-				</nuxt-link>
-
 				<div class="actions-nav-separator"></div>
 
 				<b-dropdown variant="light" right no-caret>
 					<template slot="button-content">
 						<font-awesome-icon icon="cog" />
 					</template>
+					<b-dropdown-item :to="localePath({name: 'backlogs-key-reports-forecast', params: {key: backlog.key}})">
+						Reports
+					</b-dropdown-item>
 					<b-dropdown-item>
 						Archive
 					</b-dropdown-item>
