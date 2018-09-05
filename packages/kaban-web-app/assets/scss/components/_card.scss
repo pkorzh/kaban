@@ -43,60 +43,8 @@
       text-decoration: none;
       color: $black;
     }
-    .card-estm {
-      width: 8px;
-      height: 20px;
-      margin: 0 4px 0 6px;
-      position: relative;
-      &::before,
-      &::after,
-      span {
-        position: absolute;
-        left: 50%;
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-        background: $green;
-        content: '';
-        transform: translateX(-50%);
-      }
-      &::after {
-        top: 16px;
-      }
-      span {
-        top: 8px;
-      }
-      
-      &-1 {
-        &::before,
-        span {
-          opacity: .2;
-        }
-      }
-      &-2 {
-        &::before {
-          opacity: .2;
-        }
-      }
-      &-alot {
-        &::before,
-        &::after,
-        span {
-          background: $red;
-        }
-        &::before {
-          width: 8px;
-          height: 8px;
-        }
-        span {
-          width: 6px;
-          height: 6px;
-          top: 9px;
-        }
-      }
-    }
   }
-  
+
   .card-list {
     padding: 0;
     margin: 0;
@@ -122,5 +70,58 @@
 
   img {
     display: block;
+  }
+}
+
+.ticket-estm {
+  width: 8px;
+  height: 20px;
+  margin: 0 4px 0 6px;
+  position: relative;
+  &::before,
+  &::after,
+  span {
+    position: absolute;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: $green;
+    content: '';
+    transform: translateX(-50%);
+  }
+  &::after {
+    top: 16px;
+  }
+  span {
+    top: 8px;
+  }
+
+  &-1 {
+    &::before,
+    span {
+      opacity: .2;
+    }
+  }
+  &-2 {
+    &::before {
+      opacity: .2;
+    }
+  }
+  &-alot {
+    &::before,
+    &::after,
+    span {
+      background: $red;
+    }
+    &::before {
+      width: 8px;
+      height: 8px;
+    }
+    span {
+      width: 6px;
+      height: 6px;
+      top: 9px;
+    }
   }
 }

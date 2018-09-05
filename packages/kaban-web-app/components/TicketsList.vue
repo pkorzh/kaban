@@ -16,6 +16,10 @@
 				<span>{{ ticket.name }}</span>
 			</div>
 
+			<div class="table-list-line-status">
+				{{ ticket.status.name }}
+			</div>
+
 			<div class="table-list-line-user">
 					<img
 						:src="ticket.assignee.avatar"
@@ -28,10 +32,12 @@
 						style="max-width: 20px;min-width: 20px;">
 			</div>
 
-			<div>
-				<span class="">
-					{{ ticket.status.name }}
-				</span>
+			<div class="table-list-line-estm">
+				<div
+					class="ticket-estm ticket-estm-1"
+					title="Less than a day">
+					<span></span>
+				</div>
 			</div>
 		</div>
 	</div>

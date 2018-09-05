@@ -28,10 +28,14 @@
         color: $body-color;
       }
     }
-    &-type, &-priority, &-user {
+    &-type, &-priority, &-user, &-estm {
       width: 30px!important;
       text-align: center;
       padding: 0 5px;
+    }
+
+    &-status {
+    	text-align: right;
     }
   }
 }
