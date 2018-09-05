@@ -14,4 +14,6 @@ export default {
 	reports: 'Reports',
 	save: 'Save',
 	delete: 'Delete',
+	configureBacklog: 'Configure Backlog',
+
 }

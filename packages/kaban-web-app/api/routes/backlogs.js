@@ -23,4 +23,17 @@ router.post('/backlogs', async function (req, res, next) {
 	return res.json(backlog)
 })
 
+router.patch('/backlogs/:key', async function (req, res, next) {
+	const backlogDelta = req.body
+
+	const backlog = await backlogsDal .patch(
+		req.params.key,
+		backlogDelta
+	)
+
+	notifySubscribers('updateBacklog', backlog)
+
+	return res.json(backlog)
+})
+
 module.exports = router

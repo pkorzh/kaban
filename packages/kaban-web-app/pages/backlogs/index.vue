@@ -41,6 +41,10 @@
 							:to="localePath({name: 'backlogs-key-reports-forecast', params: {key: row.item.key}})">
 							Reports
 						</b-dropdown-item>
+						<b-dropdown-item
+							:to="localePath({name: 'backlogs-key-configure-general', params: { key: row.item.key }})">
+							Configure
+						</b-dropdown-item>
 						<b-dropdown-item>
 							Archive
 						</b-dropdown-item>
