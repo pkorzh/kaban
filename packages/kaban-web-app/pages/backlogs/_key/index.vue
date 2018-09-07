@@ -12,10 +12,10 @@
 			</template>
 
 			<ActionsNav>
-				<ActionsNavAssigned />
+				<!--<ActionsNavAssigned />
 				<ActionsNavQuickFilters />
 
-				<!--<ActionsNavSimpleSearch />-->
+				<ActionsNavSimpleSearch />-->
 
 				<ActionsNavButton
 					text="Create Ticket"

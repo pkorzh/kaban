@@ -12,6 +12,7 @@
 				@click="$emit('close')">Close</button>
 		</div>
 		<div class="details">
+			{{backlog}}
 			<b-form id="BacklogCreateHighlight" @submit.prevent="create" novalidate>
 				<b-form-group
 					label="Name"
@@ -32,6 +33,18 @@
 						type="text"
 						:value="backlog.key"
 						placeholder="Key" />
+				</b-form-group>
+
+				<b-form-group
+					label="Hard deadline"
+					description="Leave empty if your backlog doesn't have a hard deadline."
+					horizontal>
+					<input
+						type="date"
+						class="form-control"
+						placeholder="Hard Deadline Date"
+						:value="backlog.hardDeadlineAt && backlog.hardDeadlineAt.toISOString().split('T')[0]"
+						@input="backlog.hardDeadlineAt = $event.target.valueAsDate" />
 				</b-form-group>
 
 				<b-form-group
@@ -67,6 +80,7 @@
 					name: null,
 					key: null,
 					description: null,
+					hardDeadlineAt: null,
 				}
 			}
 		},

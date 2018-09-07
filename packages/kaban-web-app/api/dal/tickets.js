@@ -14,6 +14,10 @@ async function insert(ticketSlim) {
 	return await ticket.save()
 }
 
+async function count(tql) {
+	return await Ticket.find(generateMql(tql)).count()
+}
+
 async function query(tql) {
 	const tickets = await Ticket.find(generateMql(tql))
 
@@ -68,4 +72,5 @@ module.exports = {
 	query,
 	patch,
 	get,
+	count,
 }

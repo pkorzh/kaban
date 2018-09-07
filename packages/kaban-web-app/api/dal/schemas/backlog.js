@@ -12,6 +12,10 @@ module.exports = new Schema({
 	description: {
 		type: String,
 		required: false,
+	},
+	hardDeadlineAt: {
+		type: Date,
+		required: false,
 	}
 }, {
 	timestamps: true

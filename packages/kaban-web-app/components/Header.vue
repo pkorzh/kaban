@@ -105,7 +105,7 @@
 
 				</b-navbar-nav>
 
-				<b-nav class="profile ml-auto">
+				<!--<b-nav class="profile ml-auto">
 					<b-nav-item active><font-awesome-icon icon="cog" /></b-nav-item>
 					<b-nav-item>
 						<font-awesome-icon icon="bell" />
@@ -113,7 +113,7 @@
 					</b-nav-item>
 					<b-nav-item class="profile-avatar">
 					</b-nav-item>
-				</b-nav>
+				</b-nav>-->
 
 			</b-collapse>
 		</b-navbar>

@@ -15,6 +15,10 @@ async function query(tql) {
 	return await Backlog.find(generateMql(tql))
 }
 
+async function count(tql) {
+	return await Backlog.find(generateMql(tql)).count()
+}
+
 async function get(tql) {
 	const backlogs = await query(tql)
 
@@ -33,5 +37,6 @@ async function patch(key, delta) {
 module.exports = {
 	insert,
 	query,
-	patch
+	patch,
+	count,
 }

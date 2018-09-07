@@ -17,6 +17,9 @@
       flex-shrink: 0;
       padding: 0 10px;
       width: 130px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
       &:not(:last-child) {
         //border-right: 1px solid $gray-300;
       }

@@ -84,6 +84,11 @@
 						label: this.$t('description'),
 						sortable: false,
 					},
+					hardDeadlineAt: {
+						label: 'Hard Deadline',
+						sortable: true,
+						formatter: (date) => date && this.$moment(date).format('LL'),
+					},
 					action: {
 						label: '',
 						sortable: false,
@@ -99,12 +104,13 @@
 			tasks() {
 				const date = new Date()
 				date.setDate(date.getDate() + 10)
+
 				return this.backlogList.map(backlog => ({
 					name: backlog.name,
 					start: backlog.createdAt,
 					end: date,
 					id: backlog.key,
-					progress: 40,
+					progress: backlog.progress,
 				}))
 			}
 		},
