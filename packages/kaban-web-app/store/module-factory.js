@@ -10,7 +10,11 @@ export default (resource, {state, getters, actions, mutations, patchReducers = {
 			return Object.keys(state.entities).map(key => state.entities[key]);
 		},
 		getOne(state) {
-			return key => state.entities[key];
+			return key => {
+				const e = state.entities[key]
+				console.debug(`${resource}/getOne`, e)
+				return e
+			};
 		},
 		queryList(state) {
 			return predicate => moduleGetters
@@ -24,6 +28,7 @@ export default (resource, {state, getters, actions, mutations, patchReducers = {
 			state.entities = {}
 		},
 		STAGE(state, payload) {
+			console.debug(`${resource}/STAGE`, payload)
 			Vue.set(state.entities, payload.key, payload)
 		},
 		STAGE_MULTIPLE(state, multiple) {

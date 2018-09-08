@@ -2,6 +2,7 @@ const {
 	Workflow,
 	WorkflowTransition,
 	TicketSpentIn,
+	TicketLeadTime,
 } = require('./models')
 
 function WorkflowTransitionError({key, from, to}) {
@@ -11,7 +12,7 @@ function WorkflowTransitionError({key, from, to}) {
 }
 WorkflowTransitionError.prototype = new Error
 
-async function transition(ticket, to) {
+function transition(ticket, to) {
 	const ticketTransition = new WorkflowTransition({
 		ticket: { key: ticket.key },
 		from: { key: ticket.status.key },
@@ -26,8 +27,22 @@ async function transition(ticket, to) {
 		ms: new Date() - ticket.lastTransitionAt,
 	})
 
-	await ticketSpentIn.save()
-	await ticketTransition.save()
+	const promises = [
+		ticketSpentIn.save(),
+		ticketTransition.save(),
+	]
+
+	if (to.key === Workflow.getTicketFinalStatus().key) {
+		const ticketLeadTime = new TicketLeadTime({
+			ticket,
+			backlog: ticket.backlog,
+			ms: new Date() - ticket.createdAt,
+		})
+
+		promises.push(ticketLeadTime.save())
+	}
+
+	return Promise.all(promises)
 }
 
 function transitions() {

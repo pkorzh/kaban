@@ -42,18 +42,24 @@ export default function ({ $axios, redirect, store }) {
 				item.resolvedAt = utc(item.resolvedAt)
 			}
 
+			if (item.hardDeadlineAt) {
+				item.hardDeadlineAt = utc(item.hardDeadlineAt)
+			}
+
 			if (item.lastTransitionAt) {
 				item.lastTransitionAt = utc(item.lastTransitionAt)
 			}
 		}
 
 		if (Array.isArray(data)) {
-			for(let item of data) {
+			for (let item of data) {
 				enrich(item)
 			}
 		} else {
 			enrich(data)
 		}
+
+		console.debug(data)
 	})
 
 	$axios.onError(error => {

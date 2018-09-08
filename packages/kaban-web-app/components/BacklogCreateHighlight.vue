@@ -12,7 +12,6 @@
 				@click="$emit('close')">Close</button>
 		</div>
 		<div class="details">
-			{{backlog}}
 			<b-form id="BacklogCreateHighlight" @submit.prevent="create" novalidate>
 				<b-form-group
 					label="Name"

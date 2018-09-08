@@ -5,22 +5,21 @@ const KeySchema = require('./key')
 module.exports = new Schema({
 	ticket: {
 		type: KeySchema,
-		required: true
+		required: true,
 	},
 	backlog: {
 		type: KeySchema,
-		required: true
+		required: true,
 	},
-	from: {
-		type: KeySchema,
-		required: false,
-		default: null,
-	},
-	to: {
-		type: KeySchema,
-		required: true
-	},
+	ms: {
+		type: Number,
+		required: true,
+	}
 }, {
 	timestamps: true,
 	strict: true,
+	capped: {
+		size: 512 * 1000,
+		max: 1000,
+	}
 })

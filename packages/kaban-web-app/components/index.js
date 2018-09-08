@@ -22,6 +22,7 @@ import TopBar from './TopBar'
 import LiveEditTextarea from './LiveEdit/LiveEditTextarea'
 import LiveEditInput from './LiveEdit/LiveEditInput'
 import LiveEditSelect from './LiveEdit/LiveEditSelect'
+import LiveEditDate from './LiveEdit/LiveEditDate'
 
 import Gantt from './Gantt/Gantt'
 import Sparkline from './Sparkline'
@@ -62,6 +63,7 @@ export {
 	LiveEditTextarea,
 	LiveEditInput,
 	LiveEditSelect,
+	LiveEditDate,
 
 	Gantt,
 	Sparkline,

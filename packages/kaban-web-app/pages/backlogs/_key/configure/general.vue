@@ -5,7 +5,6 @@
 				description="Backlog name">
 				<LiveEditInput
 					:content="backlog.name"
-					:display="backlog.name"
 					action="backlogs/patch"
 					path="name"
 					:_key="backlog.key" />
@@ -15,10 +14,20 @@
 				description="Backlog description">
 				<LiveEditTextarea
 					:content="backlog.description"
-					:display="backlog.description"
 					action="backlogs/patch"
 					path="description"
 					:_key="backlog.key" />
+			</b-form-group>
+
+			<b-form-group>
+				<LiveEditDate
+					:content="backlog.hardDeadlineAt"
+					action="backlogs/patch"
+					path="hardDeadlineAt"
+					:_key="backlog.key"></LiveEditDate>
+					<small class="text-danger form-text">
+						Hard deadline
+					</small>
 			</b-form-group>
 		</div>
 	</div>
@@ -34,7 +43,8 @@
 			}),
 
 			backlog() {
-				return this.getBacklog(this.$route.params.key)
+				const b = this.getBacklog(this.$route.params.key)
+				return b
 			},
 		},
 	}
