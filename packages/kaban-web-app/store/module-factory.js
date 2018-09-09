@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-export default (resource, {state, getters, actions, mutations, patchReducers = {}}) => {
+export default (resource, {state, getters, actions, mutations, modules = {}, patchReducers = {}}) => {
 	const moduleState = () => (Object.assign({
 		entities: {},
 	}, state))
@@ -86,5 +86,6 @@ export default (resource, {state, getters, actions, mutations, patchReducers = {
 		getters: moduleGetters,
 		mutations: moduleMutations,
 		actions: moduleActions,
+		modules,
 	}
 }

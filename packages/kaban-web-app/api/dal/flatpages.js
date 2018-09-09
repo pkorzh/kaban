@@ -1,6 +1,6 @@
 const { Flatpage } = require('./models')
 
-const generateMql = require('../../tql/mongo')
+const { mongo: generateMql } = require('../../tql/dist')
 
 async function query(tql, includeContent) {
 	return await Flatpage.find(generateMql(tql), { content: 0 })

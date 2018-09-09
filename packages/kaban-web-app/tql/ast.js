@@ -9,7 +9,7 @@ function tokens(source) {
 	let pos = 0
 
 	const isBool = (lexeme) => ['and', 'or'].indexOf(lexeme) !== -1
-	const isField = (lexeme) => ['key', 'assignee', 'reporter', 'status', 'backlog', 'type', 'priority', 'resolution']
+	const isField = (lexeme) => ['board', 'key', 'assignee', 'reporter', 'status', 'backlog', 'type', 'priority', 'resolution']
 		.indexOf(lexeme) !== -1
 	const isDecimal = (lexeme) => {
 		const d = parseInt(lexeme)
@@ -300,7 +300,7 @@ function tree(tokens) {
 	return consume(criterias())
 }
 
-module.exports = {
+export {
 	tokens,
 	tree,
 }

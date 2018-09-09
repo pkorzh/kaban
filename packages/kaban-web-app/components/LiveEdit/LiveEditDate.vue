@@ -29,7 +29,7 @@
 				>
 					<slot name="display">
 						<div>
-							{{ content | moment('LL') }}
+							{{ displayContent }}
 						</div>
 					</slot>
 					<font-awesome-icon icon="pen" />
@@ -59,6 +59,13 @@
 					return this.$moment(this.editableContent).format('YYYY-MM-DD')
 				}
 			},
+			displayContent() {
+				if (this.content) {
+					return this.$moment(this.content).format('LL')
+				} else {
+					return this.$t('noDate')
+				}
+			}
 		},
 		methods: {
 			updateDate(date) {

@@ -7,6 +7,7 @@
 					:title="lane.name"
 					:mapsTo="lane.mapsTo"
 					:queues="lane.queues"
+					:colorPredicateMap="colorPredicateMap"
 					:tickets="laneTickets(lane.mapsTo)"></BoardLane>
 			</div>
 		</div>
@@ -16,6 +17,8 @@
 <script>
 	import { mapState, mapGetters } from 'vuex';
 	import BoardLane from './BoardLane';
+
+	import { predicate } from '../../tql'
 
 	export default {
 		name: 'KanbanBoard',
@@ -40,6 +43,18 @@
 			tickets: {
 				type: Array,
 				required: true,
+			},
+			cardColor: {
+				type: Array,
+				required: true,
+			}
+		},
+		computed: {
+			colorPredicateMap() {
+				return this.cardColor.map(color => ({
+					...color,
+					p: predicate(color.tql),
+				}))
 			}
 		}
 	};

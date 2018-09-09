@@ -23,10 +23,10 @@
 						General
 					</b-nav-item>
 
-					<!--<b-nav-item
+					<b-nav-item
 						:to="localePath({name: 'boards-key-configure-card-colors', params: {key: board.key}})">
 						Card Colors
-					</b-nav-item>-->
+					</b-nav-item>
 				</b-nav>
 			</b-col>
 

@@ -10,6 +10,7 @@ const {
 	TicketStatusSliceSchema,
 	FlatpageSchema,
 	TicketLeadTimeSchema,
+	BoardCardColorSchema,
 } = require('./schemas')
 
 const Ticket = mongoose.model('Ticket', TicketSchema)
@@ -24,6 +25,7 @@ const TicketSpentIn = mongoose.model('TicketSpentIn', TicketSpentInSchema)
 const TicketStatusSlice = mongoose.model('TicketStatusSlice', TicketStatusSliceSchema)
 const Flatpage = mongoose.model('Flatpage', FlatpageSchema)
 const TicketLeadTime = mongoose.model('TicketLeadTime', TicketLeadTimeSchema)
+const BoardCardColor = mongoose.model('BoardCardColor', BoardCardColorSchema)
 
 module.exports = {
 	Ticket,
@@ -35,4 +37,5 @@ module.exports = {
 	TicketStatusSlice,
 	Flatpage,
 	TicketLeadTime,
+	BoardCardColor,
 }

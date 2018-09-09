@@ -48,7 +48,7 @@ function generate(astb) {
 	return `return ${code};`
 }
 
-module.exports = function(source) {
+function predicate(source) {
 	if (!source || source.length == 0) {
 		return new Function('obj', 'return false')
 	}
@@ -59,5 +59,6 @@ module.exports = function(source) {
 	const fnCode = generate(_tree)
 
 	return new Function('obj', fnCode);
-
 }
+
+export default predicate

@@ -56,7 +56,7 @@ function generate(astb) {
 	}
 }
 
-module.exports = function(source) {
+export default function(source) {
 	if (!source || source.length == 0) {
 		return {}
 	}

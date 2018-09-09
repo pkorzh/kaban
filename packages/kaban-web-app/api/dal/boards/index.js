@@ -1,8 +1,12 @@
-const { Board, Workflow } = require('./models')
+const {
+	Board,
+	Workflow,
+} = require('../models')
 
-const generateMql = require('../../tql/mongo')
+const { mongo: generateMql } = require('../../../tql/dist')
 
-const backlogsDal = require('./backlogs')
+const backlogsDal = require('../backlogs')
+const cardColor = require('./card-color')
 
 async function query(tql) {
 	return await Board.find(generateMql(tql))
@@ -29,14 +33,17 @@ async function insert(boardSlim) {
 	return board
 }
 
+
 async function patch(key, delta) {
 	await Board.update({ key }, { $set: delta})
 	return get(`key = ${key}`)
 }
+
 
 module.exports = {
 	query,
 	insert,
 	patch,
 	get,
+	cardColor,
 }

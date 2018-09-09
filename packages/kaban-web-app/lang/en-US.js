@@ -15,5 +15,6 @@ export default {
 	save: 'Save',
 	delete: 'Delete',
 	configureBacklog: 'Configure Backlog',
-
+	noDate: 'No date set',
+	color: 'Color',
 }

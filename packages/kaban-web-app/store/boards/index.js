@@ -1,3 +1,9 @@
 import moduleFactory from '../module-factory'
 
-export default moduleFactory('boards', {})
+import cardColor from './card-color'
+
+export default moduleFactory('boards', {
+	modules: {
+		cardColor,
+	}
+})

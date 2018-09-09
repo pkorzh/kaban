@@ -11,13 +11,16 @@
 						:_key="queue.key"
 						:title="queue.name"
 						:mapsTo="queue.mapsTo"
+						:colorPredicateMap="colorPredicateMap"
 						:tickets="queueTickets(queue.mapsTo)"></BoardLane>
 				</div>
 			</div>
 
 			<draggable v-model="draggables" :options="{ group: 'default' }" v-if="!hasQueues">
 				<div v-for="item in tickets" :key="item.key">
-					<BoardLaneTicket :ticket="item" />
+					<BoardLaneTicket
+						:ticket="item"
+						:cardColor="ticketCardColor(item)" />
 				</div>
 			</draggable>
 
@@ -51,6 +54,10 @@
 			queues: {
 				type: Array,
 				required: false,
+			},
+			colorPredicateMap: {
+				type: Array,
+				required: true,
 			}
 		},
 		components: {
@@ -62,6 +69,13 @@
 				return this.tickets.filter(ticket =>
 					ticket.status.key === status.key)
 			},
+			ticketCardColor(ticket) {
+				for (let color of this.colorPredicateMap) {
+					if (color.p(ticket)) {
+						return color.color
+					}
+				}
+			}
 		},
 		computed: {
 			itemCount() {
@@ -91,8 +105,8 @@
 					})
 				}
 			}
-		}
-	};
+		},
+	}
 </script>
 
 <style>

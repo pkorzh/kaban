@@ -3,7 +3,7 @@ const {
 	Workflow
 } = require('./models')
 
-const generateMql = require('../../tql/mongo')
+const { mongo: generateMql } = require('../../tql/dist')
 
 async function insert(backlogSlim) {
 	const backlog = new Backlog(backlogSlim)

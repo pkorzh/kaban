@@ -46,7 +46,8 @@
 		<Board
 			v-if="boardView"
 			:board="board"
-			:tickets="tickets" />
+			:tickets="tickets"
+			:cardColor="cardColor" />
 
 		<TicketsList
 			v-if="!boardView"
@@ -71,6 +72,16 @@
 		async fetch({store, params}) {
 			const board = await store.getters['boards/getOne'](params.key)
 			await store.dispatch('tickets/fetchList', board.tql)
+		},
+		async asyncData({store, params}) {
+			const cardColor = await store.dispatch(
+				'boards/cardColor/fetchList',
+				`board = ${params.key}`
+			)
+
+			return {
+				cardColor
+			}
 		},
 		computed: {
 			...mapGetters('boards', {
