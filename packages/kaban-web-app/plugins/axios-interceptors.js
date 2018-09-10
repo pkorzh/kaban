@@ -55,7 +55,7 @@ export default function ({ $axios, redirect, store }) {
 			for (let item of data) {
 				enrich(item)
 			}
-		} else {
+		} else if (data) {
 			enrich(data)
 		}
 
