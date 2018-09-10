@@ -5,6 +5,7 @@ const router = Router()
 const shortid = require('shortid')
 
 const { notifySubscribers } = require('./sse_clients')
+
 const {
 	backlogs: backlogsDal,
 	tickets: ticketsDal
@@ -43,7 +44,7 @@ router.post('/backlogs', async function (req, res, next) {
 router.patch('/backlogs/:key', async function (req, res, next) {
 	const backlogDelta = req.body
 
-	const backlog = await backlogsDal .patch(
+	const backlog = await backlogsDal.patch(
 		req.params.key,
 		backlogDelta
 	)
@@ -51,6 +52,11 @@ router.patch('/backlogs/:key', async function (req, res, next) {
 	notifySubscribers('updateBacklog', backlog)
 
 	return res.json(backlog)
+})
+
+router.get('/backlogs/:key/forecast', async function (req, res, next) {
+	const forecast = await backlogsDal.forecast(req.params.key)
+	return res.json(forecast)
 })
 
 module.exports = router

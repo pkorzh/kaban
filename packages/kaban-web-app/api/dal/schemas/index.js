@@ -8,6 +8,7 @@ const TicketStatusSliceSchema = require('./ticket-status-slice')
 const FlatpageSchema = require('./flatpage')
 const TicketLeadTimeSchema = require('./ticket-lead-time')
 const BoardCardColorSchema = require('./board-card-color')
+const BacklogForecastSchema = require('./backlog-forecast')
 
 module.exports = {
 	TicketSchema,
@@ -20,4 +21,5 @@ module.exports = {
 	FlatpageSchema,
 	TicketLeadTimeSchema,
 	BoardCardColorSchema,
+	BacklogForecastSchema,
 }

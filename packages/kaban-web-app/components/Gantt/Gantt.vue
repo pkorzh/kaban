@@ -27,7 +27,7 @@
 
 	export default {
 		props: {
-			tasks: {
+			backlogs: {
 				type: Array,
 				required: true,
 			}
@@ -35,6 +35,20 @@
 		data() {
 			return {
 				activeGanttViewMode: 'Week',
+			}
+		},
+		computed: {
+			tasks() {
+				const date = new Date()
+				date.setDate(date.getDate() + 10)
+
+				return this.backlogs.map(backlog => ({
+					name: backlog.name,
+					start: backlog.createdAt,
+					end: date,
+					id: backlog.key,
+					progress: backlog.progress,
+				}))
 			}
 		},
 		mounted() {

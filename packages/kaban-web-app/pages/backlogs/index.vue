@@ -57,7 +57,7 @@
 			</b-table>
 
 		<Gantt
-			:tasks="tasks"
+			:backlogs="backlogList"
 			v-if="!tableView" />
 	</b-container>
 </template>
@@ -100,19 +100,6 @@
 			...mapGetters('backlogs', {
 				backlogList: 'getList'
 			}),
-
-			tasks() {
-				const date = new Date()
-				date.setDate(date.getDate() + 10)
-
-				return this.backlogList.map(backlog => ({
-					name: backlog.name,
-					start: backlog.createdAt,
-					end: date,
-					id: backlog.key,
-					progress: backlog.progress,
-				}))
-			}
 		},
 	}
 </script>

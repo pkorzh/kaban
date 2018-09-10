@@ -23,7 +23,7 @@
 						Forecast
 					</b-nav-item>
 
-					<b-nav-item
+					<!--<b-nav-item
 						:to="localePath({name: 'backlogs-key-reports-cumulative', params: {key: backlog.key}})">
 						Cumulative Flow Diagram
 					</b-nav-item>
@@ -31,7 +31,7 @@
 					<b-nav-item
 						:to="localePath({name: 'backlogs-key-reports-workload', params: {key: backlog.key}})">
 						Workload Report
-					</b-nav-item>
+					</b-nav-item>-->
 				</b-nav>
 			</b-col>
 

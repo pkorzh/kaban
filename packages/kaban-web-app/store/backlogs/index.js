@@ -1,3 +1,9 @@
 import moduleFactory from '../module-factory'
 
-export default moduleFactory('backlogs', {})
+import reports from './reports'
+
+export default moduleFactory('backlogs', {
+	modules: {
+		reports
+	}
+})

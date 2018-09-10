@@ -2,38 +2,76 @@
 const util = require('util')
 
 require('../api/dal/connect')
-const { TicketSpentIn } = require('../api/dal/models')
+
+const {
+	TicketLeadTime,
+	Backlog,
+	BacklogForecast,
+} = require('../api/dal/models')
+
+const {
+	tickets: ticketsDal
+} = require('../api/dal')
 
 async function main() {
-	//await TicketSpentIn.update({}, {$set: {backlog: {key: 'AMA'}}}, {multi:true})
+	const backlogs = await Backlog.find()
 
-	let stats = await TicketSpentIn.aggregate([
-		{
-			$group: {
-				_id: '$status.key',
-				ms: {
-					$push: '$ms'
-				},
+	for (let backlog of backlogs) {
+		const ticketLeadTimeSamples = await TicketLeadTime.find({'backlog.key': backlog.key}).sort({ms: 1})
+
+		const samplesCount = ticketLeadTimeSamples.length
+
+		if (samplesCount == 0) {
+			continue
+		}
+
+		const p50Index = Math.ceil(samplesCount * (50 / 100)) - 1
+		const p99Index = Math.ceil(samplesCount * (99 / 100)) - 1
+
+		const p50 = ticketLeadTimeSamples[p50Index].ms
+		const p99 = ticketLeadTimeSamples[p99Index].ms
+
+		let summ = 0
+
+		for (let ticketLeadTimeSample of ticketLeadTimeSamples) {
+			summ += ticketLeadTimeSample.ms || 0
+		}
+
+		let avg = summ / samplesCount
+		let sigma = 0
+
+		for (let ticketLeadTimeSample of ticketLeadTimeSamples) {
+			sigma += Math.pow((ticketLeadTimeSample.ms || 0) - avg, 2)
+		}
+
+		sigma = Math.sqrt(sigma / samplesCount)
+
+		const v = (sigma / avg) * 100
+
+		const totalTickets = await ticketsDal.count(`backlog = ${backlog.key}`)
+		const closedTickets = await ticketsDal.count(`backlog = ${backlog.key} and status = closed`)
+		const todo = totalTickets - closedTickets
+		const todoDuration = todo * avg
+
+		const lowerBound = todoDuration * 0.6
+		const upperBound = todoDuration * 1.2
+
+		await BacklogForecast.findOneAndUpdate(
+			{ 'backlog.key': backlog.key },
+			{
+				var: v,
+				p50,
+				p99,
+				avg,
+				backlog,
+				forecastEndAt: [
+					new Date(Date.now() + lowerBound),
+					new Date(Date.now() + upperBound),
+				]
 			},
-		},
-		{
-			$unwind: '$ms'
-		},
-		{
-			$sort: {'ms': 1}
-		},
-		{
-			$group: {
-				_id: '$_id',
-				ms: {
-					$push: '$ms'
-				}
-			}
-		},
-	])
-
-	//console.debug('total tickets ', Object.keys(stats).length)
-	console.debug(util.inspect(stats, false, null))
+			{ upsert: true }
+		)
+	}
 
 	process.exit()
 }

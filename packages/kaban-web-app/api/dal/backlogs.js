@@ -1,6 +1,7 @@
 const {
 	Backlog,
-	Workflow
+	Workflow,
+	BacklogForecast,
 } = require('./models')
 
 const { mongo: generateMql } = require('../../tql/dist')
@@ -34,9 +35,14 @@ async function patch(key, delta) {
 	return get(`key = ${key}`)
 }
 
+async function forecast(key) {
+	return await BacklogForecast.findOne({'backlog.key': key})
+}
+
 module.exports = {
 	insert,
 	query,
 	patch,
 	count,
+	forecast,
 }
