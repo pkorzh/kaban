@@ -40,6 +40,7 @@
 
 				<b-form-group
 					label="TQL"
+					description="e.g. backlog = BACKLOG-KEY or backlog in [BACKLOG-KEY-1, BACKLOG-KEY-2, ...]"
 					:invalid-feedback="errors.first('board.tql')"
 					:state="!errors.has('board.tql')">
 					<input
