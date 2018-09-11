@@ -9,6 +9,7 @@ npm-debug.log
 
 # Nuxt generate
 dist
+!tql/dist
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
