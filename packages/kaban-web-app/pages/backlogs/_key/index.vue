@@ -46,7 +46,8 @@
 		</TopBar>
 
 		<TicketsList
-			:tickets="tickets" />
+			:tickets="tickets"
+			@loadmore="loadMore"/>
 	</b-container>
 </template>
 
@@ -55,7 +56,10 @@
 
 	export default {
 		async fetch({store, params, error}) {
-			await store.dispatch('tickets/fetchList', `backlog = ${params.key}`)
+			await store.dispatch('tickets/fetchList', {
+				tql: `backlog = ${params.key}`,
+				limit: 10
+			})
 		},
 		head() {
 			return {
@@ -80,21 +84,14 @@
 				'createTicket',
 				'fetchMore'
 			]),
-			async loadMore() {
+			async loadMore(amount) {
 				const lastTicketKey = this.tickets[this.tickets.length - 1].key
 
-				await this.fetchMore(`backlog = ${this.backlog.key} and key > ${lastTicketKey}`)
+				await this.fetchMore({
+					tql: `backlog = ${this.backlog.key} and key > ${lastTicketKey}`,
+					limit: amount
+				})
 			}
-		},
-		mounted() {
-			window.onscroll = () => {
-				const bottomOfWindow =
-						document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight
-
-				if (bottomOfWindow) {
-					this.loadMore()
-				}
-			};
 		}
 	}
 </script>

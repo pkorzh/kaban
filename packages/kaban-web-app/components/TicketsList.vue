@@ -50,7 +50,9 @@
 		mixins: [TicketBaseMixin],
 		data() {
 			return {
-				selectedTickets: []
+				selectedTickets: [],
+				ticketsPerScreen: 0,
+				disableLoadMoreUntilLoaded: false
 			}
 		},
 		computed: {
@@ -63,5 +65,40 @@
 				required: true,
 			},
 		},
+		watch: {
+			tickets: {
+				handler(val) {
+					this.disableLoadMoreUntilLoaded = false;
+				},
+				deep: false
+			}
+		},
+		mounted() {
+			const ticket = this.$el.querySelector('.table-list-line');
+
+			if(!ticket) {
+				return;
+			}
+
+			const pixelsToTheBottom = window.innerHeight - (this.$el.offsetTop + this.$el.offsetHeight)
+			const ticketsToTheBottom = Math.floor((pixelsToTheBottom < 0 ? 0 : pixelsToTheBottom) / ticket.offsetHeight)
+
+			this.ticketsPerScreen = this.tickets.length + ticketsToTheBottom;
+
+			this.$emit('loadmore', ticketsToTheBottom + this.ticketsPerScreen);
+
+			window.addEventListener('scroll', () => {
+				const heightOfOneScreen = ticket.offsetHeight * this.ticketsPerScreen;
+
+				const itsTimeToLoad =
+						document.documentElement.scrollTop + window.innerHeight >=
+						document.documentElement.offsetHeight - heightOfOneScreen
+
+				if (itsTimeToLoad && !this.disableLoadMoreUntilLoaded) {
+					this.disableLoadMoreUntilLoaded = true;
+					this.$emit('loadmore', this.ticketsPerScreen)
+				}
+			})
+		}
 	}
 </script>

@@ -64,7 +64,9 @@
 
 	export default {
 		async fetch({store, params, error}) {
-			await store.dispatch('boards/cardColor/fetchList', `board = ${params.key}`)
+			await store.dispatch('boards/cardColor/fetchList', {
+				tql: `board = ${params.key}`
+			})
 		},
 		data() {
 			return {
