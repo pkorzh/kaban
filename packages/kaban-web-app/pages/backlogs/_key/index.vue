@@ -77,8 +77,24 @@
 		},
 		methods: {
 			...mapActions('tickets', [
-				'createTicket'
+				'createTicket',
+				'fetchMore'
 			]),
+			async loadMore() {
+				const lastTicketKey = this.tickets[this.tickets.length - 1].key
+
+				await this.fetchMore(`backlog = ${this.backlog.key} and key > ${lastTicketKey}`)
+			}
+		},
+		mounted() {
+			window.onscroll = () => {
+				const bottomOfWindow =
+						document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight
+
+				if (bottomOfWindow) {
+					this.loadMore()
+				}
+			};
 		}
 	}
 </script>

@@ -20,6 +20,7 @@ async function count(tql) {
 
 async function query(tql) {
 	const tickets = await Ticket.find(generateMql(tql))
+		.limit(20)
 
 	let allSpentIns = await TicketSpentIn.find({
 		'ticket.key': {$in: tickets.map(t => t.key)}
