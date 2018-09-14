@@ -85,10 +85,10 @@
 				'fetchMore'
 			]),
 			async loadMore(amount) {
-				const lastTicketKey = this.tickets[this.tickets.length - 1].key
+				const lastTicketCreatedAt = this.tickets[this.tickets.length - 1].createdAt
 
 				await this.fetchMore({
-					tql: `backlog = ${this.backlog.key} and key > ${lastTicketKey}`,
+					tql: `backlog = ${this.backlog.key} and createdAt > "${lastTicketCreatedAt}"`,
 					limit: amount
 				})
 			}
