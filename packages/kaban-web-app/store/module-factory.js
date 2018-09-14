@@ -38,14 +38,25 @@ export default (resource, {state, getters, actions, mutations, modules = {}, pat
 	}, mutations)
 
 	const moduleActions = Object.assign({
-		async fetchList({commit, getters}, tql) {
+		async fetchList({commit, getters}, payload) {
 			const rawList = await this.$axios.$get(
 				`/api/${resource}/`,
-				{ params: { tql } },
+				{ params: payload },
 			)
 
 			commit('EMPTY')
 			commit('STAGE_MULTIPLE', rawList)
+
+			return rawList
+		},
+		async fetchMore({commit, getters}, payload) {
+			const rawList = await this.$axios.$get(
+				`/api/${resource}/`,
+				{ params: payload },
+			)
+
+			commit('STAGE_MULTIPLE', rawList)
+
 			return rawList
 		},
 		async fetchOne({commit, getters}, tql) {

@@ -9,12 +9,18 @@ function tokens(source) {
 	let pos = 0
 
 	const isBool = (lexeme) => ['and', 'or'].indexOf(lexeme) !== -1
-	const isField = (lexeme) => ['board', 'key', 'assignee', 'reporter', 'status', 'backlog', 'type', 'priority', 'resolution']
+	const isField = (lexeme) => ['board', 'key', 'assignee', 'reporter', 'status', 'backlog', 'type', 'priority', 'resolution', 'createdAt', 'updatedAt']
 		.indexOf(lexeme) !== -1
 	const isDecimal = (lexeme) => {
 		const d = parseInt(lexeme)
 		return /^\d+$/.test(lexeme) && !isNaN(d) && isFinite(d)
 	}
+
+	const isDate = (lexeme) => {
+		return /\b[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z\b/
+			.test(lexeme)
+	}
+
 	const isOperator = (w) => ['>', '<', '=', '!=', '<=', '>=', 'in'].indexOf(w) !== -1
 	const isOperatorPart = (w) => ['>', '<', '=', '!=', '<=', '>=', 'in']
 		.find(op => op.indexOf(w) !==-1)
@@ -75,7 +81,10 @@ function tokens(source) {
 
 			token.lexeme = identifier.join('');
 
-			if (isDecimal(token.lexeme)) {
+			if (isDate(token.lexeme)) {
+				token.lexeme = ISODate(token.lexeme)
+				token.tag = 'date';
+			} else if (isDecimal(token.lexeme)) {
 				token.lexeme = parseInt(token.lexeme)
 				token.tag = 'decimal';
 			} else if (isBool(token.lexeme)) {

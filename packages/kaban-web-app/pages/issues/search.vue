@@ -65,7 +65,7 @@
 			}),
 
 			search() {
-				this.fetchTickets(this.tql)
+				this.fetchTickets({tql: this.tql})
 			}
 		},
 

@@ -46,7 +46,8 @@
 		</TopBar>
 
 		<TicketsList
-			:tickets="tickets" />
+			:tickets="tickets"
+			@loadmore="loadMore"/>
 	</b-container>
 </template>
 
@@ -55,7 +56,10 @@
 
 	export default {
 		async fetch({store, params, error}) {
-			await store.dispatch('tickets/fetchList', `backlog = ${params.key}`)
+			await store.dispatch('tickets/fetchList', {
+				tql: `backlog = ${params.key}`,
+				limit: 10
+			})
 		},
 		head() {
 			return {
@@ -77,8 +81,17 @@
 		},
 		methods: {
 			...mapActions('tickets', [
-				'createTicket'
+				'createTicket',
+				'fetchMore'
 			]),
+			async loadMore(amount) {
+				const lastTicketCreatedAt = this.tickets[this.tickets.length - 1].createdAt
+
+				await this.fetchMore({
+					tql: `backlog = ${this.backlog.key} and createdAt > "${lastTicketCreatedAt}"`,
+					limit: amount
+				})
+			}
 		}
 	}
 </script>

@@ -11,7 +11,7 @@ const {
 } = require('../dal')
 
 router.get('/tickets', async function (req, res, next) {
-	const tickets = await ticketsDal.query(req.query.tql)
+	const tickets = await ticketsDal.query(req.query.tql, req.query.limit)
 
 	return res.json(tickets)
 })
