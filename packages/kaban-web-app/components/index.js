@@ -38,6 +38,7 @@ import TicketDetailsSlimDropbox from './TicketDetailsSlim/TicketDetailsSlimDropb
 import TicketDetailsSlimAttachments from './TicketDetailsSlim/TicketDetailsSlimAttachments'
 
 import IconedSelect from './Fields/IconedSelect.vue'
+import InfiniteScroll from './InfiniteScroll'
 
 export {
 	ActionsNav,
@@ -79,4 +80,5 @@ export {
 	TicketDetailsSlimAttachments,
 
 	IconedSelect,
+	InfiniteScroll
 }

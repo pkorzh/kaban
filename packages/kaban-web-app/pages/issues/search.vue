@@ -34,8 +34,13 @@
 			</div>
 		</b-form>
 
-		<TicketsTable
-			:tickets="tickets" />
+		<InfiniteScroll
+				:list="tickets"
+				@loadmore="loadMore"
+				item-selector="tbody tr">
+			<TicketsTable
+					:tickets="tickets" />
+		</InfiniteScroll>
 	</b-container>
 </template>
 
@@ -44,7 +49,9 @@
 
 	export default {
 		async fetch({store, params}) {
-			await store.dispatch('tickets/fetchList')
+			await store.dispatch('tickets/fetchList', {
+				limit: 20
+			})
 		},
 
 		head() {
@@ -61,11 +68,23 @@
 
 		methods: {
 			...mapActions('tickets', {
-				fetchTickets: 'fetchList'
+				fetchTickets: 'fetchList',
+				fetchMoreTickets: 'fetchMore'
 			}),
 
 			search() {
-				this.fetchTickets({tql: this.tql})
+				this.fetchTickets({
+					tql: this.tql,
+					limit: 20
+				})
+			},
+			async loadMore(amount) {
+				const lastTicketCreatedAt = this.tickets[this.tickets.length - 1].createdAt
+
+				await this.fetchMoreTickets({
+					tql: `${this.tql ? this.tql + ' and ' : ''}createdAt > "${lastTicketCreatedAt}"`,
+					limit: amount
+				})
 			}
 		},
 
