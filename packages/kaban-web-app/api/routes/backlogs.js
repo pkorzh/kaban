@@ -54,6 +54,14 @@ router.patch('/backlogs/:key', async function (req, res, next) {
 	return res.json(backlog)
 })
 
+router.delete('/backlogs/:key', async function (req, res, next) {
+	await backlogsDal.remove(req.params.key)
+
+	notifySubscribers('deleteBacklog', req.params.key)
+
+	return res.send(200)
+})
+
 router.get('/backlogs/:key/forecast', async function (req, res, next) {
 	const forecast = await backlogsDal.forecast(req.params.key)
 	return res.json(forecast)

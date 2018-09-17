@@ -49,7 +49,7 @@
 							Archive
 						</b-dropdown-item>
 						<b-dropdown-divider />
-						<b-dropdown-item-button class="text-danger">
+						<b-dropdown-item-button class="text-danger" @click="deleteBacklog(row.item.key)">
 							Delete
 						</b-dropdown-item-button>
 					</b-dropdown>
@@ -64,7 +64,7 @@
 
 <script>
 	import Gantt from '@/components/Gantt'
-	import { mapGetters } from 'vuex';
+	import { mapGetters, mapActions } from 'vuex';
 
 	export default {
 		head() {
@@ -101,6 +101,11 @@
 				backlogList: 'getList'
 			}),
 		},
+		methods: {
+			...mapActions('backlogs', {
+				deleteBacklog: 'delete'
+			})
+		}
 	}
 </script>
 

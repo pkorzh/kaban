@@ -35,6 +35,10 @@ async function patch(key, delta) {
 	return get(`key = ${key}`)
 }
 
+async function remove(key) {
+	await Backlog.deleteOne({ key })
+}
+
 async function forecast(key) {
 	return await BacklogForecast.findOne({'backlog.key': key})
 }
@@ -45,4 +49,5 @@ module.exports = {
 	patch,
 	count,
 	forecast,
+	remove
 }
