@@ -1,17 +1,17 @@
-import {TicketHighlight} from '@/components';
+import {BacklogDeleteHighlight} from '@/components';
 
 export default ({app, store}, {payload, sender}) => {
 	sender.$modal.show(
-		TicketHighlight,
+		BacklogDeleteHighlight,
 		{
-			//component props
 			...payload
+			//component props
 		},
 		{
 			//modal params
 			//https://www.npmjs.com/package/vue-js-modal
 			scrollable: true,
-			width: '75%',
+			width: '50%',
 			height: 'auto'
 		}, {
 			//events

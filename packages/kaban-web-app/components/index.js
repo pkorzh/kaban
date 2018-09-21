@@ -9,12 +9,19 @@ import ActionsAllowedTransitions from './ActionsNav/ActionsAllowedTransitions'
 import ActionsNavColumns from './ActionsNav/ActionsNavColumns'
 import ActionsNavMultipleEdit from './ActionsNav/ActionsNavMultipleEdit'
 
+import BacklogCreateHighlight from './BacklogCreateHighlight'
+import BacklogDeleteHighlight from './BacklogDeleteHighlight'
+
 import Board from './Board/Board'
 import BoardLane from './Board/BoardLane'
 import BoardLaneTicket from './Board/BoardLaneTicket'
 
+import BoardCreateHighlight from './BoardCreateHighlight'
+import BoardDeleteHighlight from './BoardDeleteHighlight'
+
 import Header from './Header'
 import TicketHighlight from './TicketHighlight'
+import TicketCreateHighlight from './TicketCreateHighlight'
 import TicketsTable from './TicketsTable'
 import TicketsList from './TicketsList'
 import TopBar from './TopBar'
@@ -23,6 +30,8 @@ import LiveEditTextarea from './LiveEdit/LiveEditTextarea'
 import LiveEditInput from './LiveEdit/LiveEditInput'
 import LiveEditSelect from './LiveEdit/LiveEditSelect'
 import LiveEditDate from './LiveEdit/LiveEditDate'
+
+import MultipleEditHighlight from './MultipleEditHighlight'
 
 import Gantt from './Gantt/Gantt'
 import Sparkline from './Sparkline'
@@ -51,11 +60,19 @@ export {
 	ActionsNavColumns,
 	ActionsNavMultipleEdit,
 
+	BacklogCreateHighlight,
+	BacklogDeleteHighlight,
+
 	Board,
 	BoardLane,
 	BoardLaneTicket,
+
+	BoardCreateHighlight,
+	BoardDeleteHighlight,
+
 	Header,
 	TicketHighlight,
+	TicketCreateHighlight,
 	TicketsTable,
 	TicketsList,
 	TopBar,
@@ -64,6 +81,8 @@ export {
 	LiveEditInput,
 	LiveEditSelect,
 	LiveEditDate,
+
+	MultipleEditHighlight,
 
 	Gantt,
 	Sparkline,

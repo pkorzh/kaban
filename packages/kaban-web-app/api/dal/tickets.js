@@ -2,6 +2,7 @@ const {
 	Ticket,
 	Workflow,
 	TicketSpentIn,
+	TicketLeadTime
 } = require('./models')
 
 const { mongo: generateMql } = require('../../tql/dist')
@@ -69,10 +70,15 @@ async function patch(key, delta) {
 	return get(`key = ${key}`)
 }
 
+Ticket.schema.pre('remove', async function() {
+	await TicketLeadTime.remove(generateMql(`ticket = ${this.key}`))
+	await TicketSpentIn.remove(generateMql(`ticket = ${this.key}`))
+})
+
 module.exports = {
 	insert,
 	query,
 	patch,
 	get,
-	count,
+	count
 }

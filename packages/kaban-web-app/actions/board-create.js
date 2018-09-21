@@ -1,5 +1,4 @@
-import Vue from 'vue'
-import BoardCreateHighlight from '@/components/BoardCreateHighlight';
+import {BoardCreateHighlight} from '@/components';
 
 export default ({app, store}, {payload, sender}) => {
 	sender.$modal.show(

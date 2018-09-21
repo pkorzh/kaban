@@ -22,6 +22,14 @@ router.post('/boards', async function (req, res, next) {
 	return res.json(board)
 })
 
+router.delete('/boards/:key', async function (req, res, next) {
+	await boardsDal.remove(req.params.key)
+
+	notifySubscribers('deleteBoard', req.params.key)
+
+	return res.send(200)
+})
+
 router.patch('/boards/:key', async function (req, res, next) {
 	const boardDelta = req.body
 

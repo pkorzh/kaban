@@ -55,7 +55,11 @@ router.patch('/backlogs/:key', async function (req, res, next) {
 })
 
 router.delete('/backlogs/:key', async function (req, res, next) {
-	await backlogsDal.remove(req.params.key)
+	if (req.query.migrateTo) {
+		await backlogsDal.removeAndMigrate(req.params.key, req.query.migrateTo)
+	} else {
+		await backlogsDal.remove(req.params.key)
+	}
 
 	notifySubscribers('deleteBacklog', req.params.key)
 

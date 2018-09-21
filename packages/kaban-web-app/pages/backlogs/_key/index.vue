@@ -38,7 +38,7 @@
 						Archive
 					</b-dropdown-item>
 					<b-dropdown-divider />
-					<b-dropdown-item-button class="text-danger">
+					<b-dropdown-item-button class="text-danger" @click="deleteBacklog(backlog.key)">
 						Delete
 					</b-dropdown-item-button>
 				</b-dropdown>
@@ -90,6 +90,14 @@
 				await this.fetchMore({
 					tql: `backlog = ${this.backlog.key} and createdAt > "${lastTicketCreatedAt}"`,
 					limit: amount
+				})
+			},
+			deleteBacklog(key) {
+				this.$kaban.dispatch('DeleteBacklogAction', {
+					sender: this,
+					payload: {
+						backlogKey: key
+					}
 				})
 			}
 		}

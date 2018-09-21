@@ -1,5 +1,4 @@
-import Vue from 'vue'
-import TicketCreateHighlight from '@/components/TicketCreateHighlight';
+import {TicketCreateHighlight} from '@/components';
 
 export default ({app, store}, {payload, sender}) => {
 	sender.$modal.show(

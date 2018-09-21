@@ -89,8 +89,10 @@ export default (resource, {state, getters, actions, mutations, modules = {}, pat
 				return data
 			})
 		},
-		delete({commit}, key) {
-			this.$axios.$delete(`/api/${resource}/${key}`).then(() => {
+		delete({commit}, {key, migrateTo}) {
+			this.$axios.$delete(`/api/${resource}/${key}`, {
+				params: { migrateTo }
+			}).then(() => {
 				commit('REMOVE', key)
 			})
 		},

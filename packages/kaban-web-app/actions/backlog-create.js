@@ -1,5 +1,4 @@
-import Vue from 'vue'
-import BacklogCreateHighlight from '@/components/BacklogCreateHighlight';
+import {BacklogCreateHighlight} from '@/components';
 
 export default ({app, store}, {payload, sender}) => {
 	sender.$modal.show(

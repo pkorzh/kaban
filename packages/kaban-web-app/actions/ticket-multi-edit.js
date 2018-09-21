@@ -1,5 +1,4 @@
-import Vue from 'vue'
-import MultipleEditHighlight from '@/components/MultipleEditHighlight';
+import {MultipleEditHighlight} from '@/components';
 
 export default ({app, store}, {payload, sender}) => {
 	sender.$modal.show(

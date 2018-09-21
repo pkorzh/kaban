@@ -102,9 +102,14 @@
 			}),
 		},
 		methods: {
-			...mapActions('backlogs', {
-				deleteBacklog: 'delete'
-			})
+			deleteBacklog(key) {
+				this.$kaban.dispatch('DeleteBacklogAction', {
+					sender: this,
+					payload: {
+						backlogKey: key
+					}
+				})
+			}
 		}
 	}
 </script>
