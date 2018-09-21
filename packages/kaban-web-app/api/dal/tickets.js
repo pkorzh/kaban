@@ -11,7 +11,7 @@ async function insert(ticketSlim) {
 }
 
 async function count(tql) {
-	return await Ticket.find(generateMql(tql)).count()
+	return await Ticket.find(generateMql(tql)).countDocuments()
 }
 
 async function query(tql, limit) {
@@ -61,7 +61,7 @@ async function get(tql) {
 }
 
 async function patch(key, delta) {
-	await Ticket.update({ key }, { $set: delta})
+	await Ticket.updateOne({ key }, { $set: delta})
 	return get(`key = ${key}`)
 }
 

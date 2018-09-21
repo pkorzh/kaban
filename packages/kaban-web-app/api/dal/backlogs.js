@@ -13,7 +13,7 @@ async function query(tql) {
 }
 
 async function count(tql) {
-	return await Backlog.find(generateMql(tql)).count()
+	return await Backlog.find(generateMql(tql)).countDocuments()
 }
 
 async function get(tql) {
@@ -27,7 +27,7 @@ async function get(tql) {
 }
 
 async function patch(key, delta) {
-	await Backlog.update({ key }, { $set: delta})
+	await Backlog.updateOne({ key }, { $set: delta})
 	return get(`key = ${key}`)
 }
 

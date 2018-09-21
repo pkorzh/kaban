@@ -23,7 +23,7 @@ async function insert(flatpageSlim) {
 }
 
 async function patch(key, delta) {
-	await Flatpage.update({ key }, { $set: delta})
+	await Flatpage.updateOne({ key }, { $set: delta})
 	return get(`key = ${key}`)
 }
 
