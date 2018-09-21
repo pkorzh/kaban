@@ -17,7 +17,9 @@
 			</div>
 
 			<div class="table-list-line-status">
-				{{ ticket.status.name }}
+				<div class="details-label" :title="ticket.status.name">
+					{{ ticket.status.name }}
+				</div>
 			</div>
 
 			<div class="table-list-line-user">
