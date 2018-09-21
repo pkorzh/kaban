@@ -71,12 +71,15 @@
 		},
 		async fetch({store, params}) {
 			const board = await store.getters['boards/getOne'](params.key)
-			await store.dispatch('tickets/fetchList', {tql: board.tql})
+			await store.dispatch('tickets/fetchList', {
+				tql: board.tql,
+				board: params.key,
+			})
 		},
 		async asyncData({store, params}) {
 			const cardColor = await store.dispatch(
-					'boards/cardColor/fetchList',
-					{tql: `board = ${params.key}`}
+				'boards/cardColor/fetchList',
+				{tql: `board = ${params.key}`}
 			)
 
 			return {

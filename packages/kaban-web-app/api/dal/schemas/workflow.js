@@ -119,6 +119,12 @@ WorkflowSchema.statics.getTicketFinalStatus = function _getTicketFinalStatus() {
 	return SOFTWARE_WORKFLOW.STATUS[SOFTWARE_WORKFLOW.CLOSED]
 }
 
+WorkflowSchema.statics.getBoardStatus = function _getBoardStatus() {
+	return Object.keys(SOFTWARE_WORKFLOW.STATUS)
+		.filter(status => [SOFTWARE_WORKFLOW.BACKLOG, SOFTWARE_WORKFLOW.CLOSED].indexOf(status) == -1)
+		.map(key => SOFTWARE_WORKFLOW.STATUS[key])
+}
+
 WorkflowSchema.statics.getBoardLanes = function _getBoardLanes() {
 	return SOFTWARE_WORKFLOW.LANES
 }

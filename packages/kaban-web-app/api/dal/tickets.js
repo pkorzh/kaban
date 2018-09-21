@@ -14,8 +14,17 @@ async function count(tql) {
 	return await Ticket.find(generateMql(tql)).countDocuments()
 }
 
-async function query(tql, limit) {
-	const tickets = await Ticket.find(generateMql(tql))
+async function query(tql, limit, context = { board: null }) {
+	const kwargs = generateMql(tql)
+
+	if (!!context.board) {
+		delete kwargs['status.key']
+		kwargs['status.key'] = {
+			$in: Workflow.getBoardStatus().map(s => s.key)
+		}
+	}
+
+	const tickets = await Ticket.find(kwargs)
 		.limit(Number(limit))
 		.sort({createdAt: 1})
 
