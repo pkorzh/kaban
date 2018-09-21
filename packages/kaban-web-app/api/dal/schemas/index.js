@@ -1,16 +1,16 @@
-const TicketSchema = require('./ticket')
-const BacklogSchema = require('./backlog')
-const BoardSchema = require('./board')
-const WorkflowSchema = require('./workflow')
-const WorkflowTransitionSchema = require('./workflow-transition')
-const TicketSpentInSchema = require('./ticket-spent-in')
-const TicketStatusSliceSchema = require('./ticket-status-slice')
-const FlatpageSchema = require('./flatpage')
-const TicketLeadTimeSchema = require('./ticket-lead-time')
-const BoardCardColorSchema = require('./board-card-color')
-const BacklogForecastSchema = require('./backlog-forecast')
+import TicketSchema from './ticket'
+import BacklogSchema from './backlog'
+import BoardSchema from './board'
+import WorkflowSchema from './workflow'
+import WorkflowTransitionSchema from './workflow-transition'
+import TicketSpentInSchema from './ticket-spent-in'
+import TicketStatusSliceSchema from './ticket-status-slice'
+import FlatpageSchema from './flatpage'
+import TicketLeadTimeSchema from './ticket-lead-time'
+import BoardCardColorSchema from './board-card-color'
+import BacklogForecastSchema from './backlog-forecast'
 
-module.exports = {
+export {
 	TicketSchema,
 	BacklogSchema,
 	BoardSchema,

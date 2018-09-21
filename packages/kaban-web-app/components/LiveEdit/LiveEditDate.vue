@@ -48,7 +48,6 @@
 				required: true,
 				default: null,
 				validator(value) {
-					console.debug('validator/LiveEditDate', value)
 					return true
 				}
 			}

@@ -58,8 +58,6 @@ export default function ({ $axios, redirect, store }) {
 		} else if (data) {
 			enrich(data)
 		}
-
-		console.debug(data)
 	})
 
 	$axios.onError(error => {

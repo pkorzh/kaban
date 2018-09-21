@@ -106,7 +106,7 @@ function getSoftwareWorkflow() {
 
 const SOFTWARE_WORKFLOW = getSoftwareWorkflow()
 
-const WorkflowSchema = module.exports = new Schema({
+const WorkflowSchema = new Schema({
 }, {
 	timestamps: true
 })
@@ -138,3 +138,5 @@ WorkflowSchema.statics.status = function _status(optionalStatus) {
 WorkflowSchema.statics.transitions = function _transitions() {
 	return SOFTWARE_WORKFLOW.TRANSITION
 }
+
+export default WorkflowSchema

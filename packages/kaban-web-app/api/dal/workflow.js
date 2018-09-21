@@ -1,9 +1,9 @@
-const {
+import {
 	Workflow,
 	WorkflowTransition,
 	TicketSpentIn,
 	TicketLeadTime,
-} = require('./models')
+} from './models'
 
 function WorkflowTransitionError({key, from, to}) {
 	this.name = 'WorkflowTransitionError'
@@ -68,7 +68,7 @@ async function zeroTransition(ticket) {
 	await ticketTransition.save()
 }
 
-module.exports = {
+export {
 	transition,
 	transitions,
 	hasTransition,

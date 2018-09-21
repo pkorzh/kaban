@@ -1,8 +1,8 @@
 const { Schema } = require('mongoose')
 
-const KeySchema = require('./key')
+import KeySchema from './key'
 
-module.exports = new Schema({
+export default new Schema({
 	backlog: {
 		type: KeySchema,
 		required: true,

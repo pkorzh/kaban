@@ -1,6 +1,6 @@
-const { Flatpage } = require('./models')
+import { Flatpage } from './models'
 
-const { mongo: generateMql } = require('../../tql/dist')
+import { mongo as generateMql } from '../../tql'
 
 async function query(tql, includeContent) {
 	return await Flatpage.find(generateMql(tql), { content: 0 })
@@ -37,7 +37,7 @@ async function content(key) {
 	return flatpages[0]
 }
 
-module.exports = {
+export {
 	query,
 	insert,
 	get,

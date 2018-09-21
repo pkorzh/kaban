@@ -1,11 +1,10 @@
-const { Router } = require('express')
+import { Router } from 'express'
+import shortid from 'shortid'
+
+import { boards as boardsDal } from '../dal'
+import { notifySubscribers } from './sse_clients'
 
 const router = Router()
-
-const shortid = require('shortid')
-
-const { boards: boardsDal } = require('../dal')
-const { notifySubscribers } = require('./sse_clients')
 
 router.get('/boards', async function (req, res, next) {
 	const boards = await boardsDal.query(req.query.tql)
@@ -62,4 +61,4 @@ router.patch('/card-color/:key', async function (req, res, next) {
 	return res.json(cm)
 })
 
-module.exports = router
+export default router

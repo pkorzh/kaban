@@ -1,14 +1,12 @@
-const {
-	BoardCardColor,
-} = require('../models')
+import { BoardCardColor } from '../models'
 
-const { mongo: generateMql } = require('../../../tql/dist')
+import { mongo as generateMql } from '../../../tql'
 
-async function query(tql) {
+export async function query(tql) {
 	return await BoardCardColor.find(generateMql(tql))
 }
 
-async function get(tql) {
+export async function get(tql) {
 	const cardColors = await query(tql)
 
 	if (cardColors.length !== 1) {
@@ -19,21 +17,14 @@ async function get(tql) {
 }
 
 
-async function insert(cardColorSlim) {
+export async function insert(cardColorSlim) {
 	const cardColor = new BoardCardColor(cardColorSlim)
 	await cardColor.save()
 	return cardColor
 }
 
 
-async function patch(key, delta) {
+export async function patch(key, delta) {
 	await BoardCardColor.update({ key }, { $set: delta})
 	return get(`key = ${key}`)
-}
-
-module.exports = {
-	query,
-	insert,
-	patch,
-	get,
 }

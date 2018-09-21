@@ -1,10 +1,10 @@
-const { Router } = require('express')
+import { Router } from 'express'
 
-const { notifySubscribers } = require('./sse_clients')
-const {
-	workflow: workflowDal,
-	tickets: ticketsDal
-} = require('../dal')
+import { notifySubscribers } from './sse_clients'
+import {
+	workflow as workflowDal,
+	tickets as ticketsDal
+} from '../dal'
 
 const router = Router()
 
@@ -53,4 +53,5 @@ router.post('/workflow/transition', async function(req, res, next) {
 	return res.json({})
 })
 
-module.exports = router
+export default router
+

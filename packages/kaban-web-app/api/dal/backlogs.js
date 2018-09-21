@@ -1,10 +1,6 @@
-const {
-	Backlog,
-	Workflow,
-	BacklogForecast,
-} = require('./models')
+import { Backlog, Workflow, BacklogForecast, } from './models'
 
-const { mongo: generateMql } = require('../../tql/dist')
+import { mongo as generateMql } from '../../tql'
 
 async function insert(backlogSlim) {
 	const backlog = new Backlog(backlogSlim)
@@ -39,7 +35,7 @@ async function forecast(key) {
 	return await BacklogForecast.findOne({'backlog.key': key})
 }
 
-module.exports = {
+export {
 	insert,
 	query,
 	patch,

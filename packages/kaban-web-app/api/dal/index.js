@@ -1,9 +1,16 @@
-require('./connect')
+import './connect'
 
-module.exports = {
-	tickets: require('./tickets'),
-	backlogs: require('./backlogs'),
-	boards: require('./boards'),
-	workflow: require('./workflow'),
-	flatpages: require('./flatpages'),
+import * as tickets from './tickets'
+import * as backlogs from './backlogs'
+import * as boards from './boards'
+import * as workflow from'./workflow'
+import * as flatpages from './flatpages'
+
+
+export {
+	tickets,
+	backlogs,
+	boards,
+	workflow,
+	flatpages,	
 }

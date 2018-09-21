@@ -7,5 +7,7 @@ function notifySubscribers(event, data) {
 	}
 }
 
-module.exports.clients = clients
-module.exports.notifySubscribers = notifySubscribers
+export {
+	clients,
+	notifySubscribers,
+}

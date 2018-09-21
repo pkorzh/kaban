@@ -1,10 +1,6 @@
-const {
-	Ticket,
-	Workflow,
-	TicketSpentIn,
-} = require('./models')
+import { Ticket, Workflow, TicketSpentIn, } from './models'
 
-const { mongo: generateMql } = require('../../tql/dist')
+import { mongo as generateMql } from '../../tql'
 
 async function insert(ticketSlim) {
 	ticketSlim.status = Workflow.getTicketInitialStatus()
@@ -69,7 +65,7 @@ async function patch(key, delta) {
 	return get(`key = ${key}`)
 }
 
-module.exports = {
+export {
 	insert,
 	query,
 	patch,
