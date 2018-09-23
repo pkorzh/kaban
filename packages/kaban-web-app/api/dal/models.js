@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
-const {
+import {
 	TicketSchema,
 	BacklogSchema,
 	BoardSchema,
@@ -12,7 +12,7 @@ const {
 	TicketLeadTimeSchema,
 	BoardCardColorSchema,
 	BacklogForecastSchema,
-} = require('./schemas')
+} from './schemas'
 
 const Ticket = mongoose.model('Ticket', TicketSchema)
 const Backlog = mongoose.model('Backlog', BacklogSchema)
@@ -29,7 +29,7 @@ const TicketLeadTime = mongoose.model('TicketLeadTime', TicketLeadTimeSchema)
 const BoardCardColor = mongoose.model('BoardCardColor', BoardCardColorSchema)
 const BacklogForecast = mongoose.model('BacklogForecast', BacklogForecastSchema)
 
-module.exports = {
+export {
 	Ticket,
 	Backlog,
 	Board,

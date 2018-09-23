@@ -1,17 +1,18 @@
-const { Router } = require('express')
+import { Router } from 'express'
+import shortid from 'shortid'
+
+import { notifySubscribers } from './sse_clients'
+import {
+	tickets as ticketsDal,
+	workflow as workflowDal,
+} from '../dal'
 
 const router = Router()
 
-const shortid = require('shortid')
-
-const { notifySubscribers } = require('./sse_clients')
-const {
-	tickets: ticketsDal,
-	workflow: workflowDal,
-} = require('../dal')
-
 router.get('/tickets', async function (req, res, next) {
-	const tickets = await ticketsDal.query(req.query.tql, req.query.limit)
+	const tickets = await ticketsDal.query(req.query.tql, req.query.limit, {
+		board: req.query.board
+	})
 
 	return res.json(tickets)
 })
@@ -48,4 +49,5 @@ router.patch('/tickets/:key', async function (req, res, next) {
 	return res.json(ticket)
 })
 
-module.exports = router
+export default router
+

@@ -1,13 +1,10 @@
-const {
-	Board,
-	BoardCardColor,
-	Workflow,
-} = require('../models')
+import { Board, BoardCardColor,
+	Workflow} from '../models'
 
-const { mongo: generateMql } = require('../../../tql/dist')
+import { mongo as generateMql } from '../../../tql'
 
-const backlogsDal = require('../backlogs')
-const cardColor = require('./card-color')
+import * as backlogsDal from '../backlogs'
+import * as cardColor from './card-color'
 
 async function query(tql) {
 	return await Board.find(generateMql(tql))
@@ -48,7 +45,7 @@ Board.schema.pre('remove', async function() {
 })
 
 
-module.exports = {
+export {
 	query,
 	insert,
 	patch,

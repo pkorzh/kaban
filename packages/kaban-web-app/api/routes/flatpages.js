@@ -1,10 +1,9 @@
-const { Router } = require('express')
+import { Router } from 'express'
+import shortid from 'shortid'
+
+import { flatpages as flatpagesDal } from '../dal'
 
 const router = Router()
-
-const shortid = require('shortid')
-
-const { flatpages: flatpagesDal } = require('../dal')
 
 router.get('/flatpages', async function (req, res, next) {
 	const flatpages = await flatpagesDal.query(req.query.tql)
@@ -39,4 +38,4 @@ router.patch('/flatpages/:key', async function (req, res, next) {
 	return res.json(flatpage)
 })
 
-module.exports = router
+export default router

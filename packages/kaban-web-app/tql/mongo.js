@@ -62,13 +62,8 @@ export default function(source) {
 	}
 
 	const _tokens = tokens(source)
-	console.debug('tokens', _tokens)
-
 	const _tree = tree(_tokens)
-	console.debug('tree', _tree)
-
 	const query = generate(_tree)
-	console.debug('query', query)
 
 	return query
 }

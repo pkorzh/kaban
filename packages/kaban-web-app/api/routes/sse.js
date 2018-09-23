@@ -1,8 +1,8 @@
-const { Router } = require('express')
+import { Router } from 'express'
+
+import { clients } from './sse_clients'
 
 const router = Router()
-
-const { clients } = require('./sse_clients')
 
 router.get('/sse', function (req, res, next) {
 	req.socket.setTimeout(Number.MAX_VALUE);
@@ -21,4 +21,4 @@ router.get('/sse', function (req, res, next) {
 	})
 })
 
-module.exports = router
+export default router

@@ -5,7 +5,7 @@ const {
 	TicketLeadTime
 } = require('./models')
 
-const { mongo: generateMql } = require('../../tql/dist')
+import { mongo as generateMql } from '../../tql'
 
 async function insert(ticketSlim) {
 	ticketSlim.status = Workflow.getTicketInitialStatus()
@@ -16,11 +16,20 @@ async function insert(ticketSlim) {
 }
 
 async function count(tql) {
-	return await Ticket.find(generateMql(tql)).count()
+	return await Ticket.find(generateMql(tql)).countDocuments()
 }
 
-async function query(tql, limit) {
-	const tickets = await Ticket.find(generateMql(tql))
+async function query(tql, limit, context = { board: null }) {
+	const kwargs = generateMql(tql)
+
+	if (!!context.board) {
+		delete kwargs['status.key']
+		kwargs['status.key'] = {
+			$in: Workflow.getBoardStatus().map(s => s.key)
+		}
+	}
+
+	const tickets = await Ticket.find(kwargs)
 		.limit(Number(limit))
 		.sort({createdAt: 1})
 
@@ -66,7 +75,7 @@ async function get(tql) {
 }
 
 async function patch(key, delta) {
-	await Ticket.update({ key }, { $set: delta})
+	await Ticket.updateOne({ key }, { $set: delta})
 	return get(`key = ${key}`)
 }
 
@@ -75,10 +84,10 @@ Ticket.schema.pre('remove', async function() {
 	await TicketSpentIn.remove(generateMql(`ticket = ${this.key}`))
 })
 
-module.exports = {
+export {
 	insert,
 	query,
 	patch,
 	get,
-	count
+	count,
 }

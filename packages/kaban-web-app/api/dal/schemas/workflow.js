@@ -106,7 +106,7 @@ function getSoftwareWorkflow() {
 
 const SOFTWARE_WORKFLOW = getSoftwareWorkflow()
 
-const WorkflowSchema = module.exports = new Schema({
+const WorkflowSchema = new Schema({
 }, {
 	timestamps: true
 })
@@ -117,6 +117,12 @@ WorkflowSchema.statics.getTicketInitialStatus = function _getTicketInitialStatus
 
 WorkflowSchema.statics.getTicketFinalStatus = function _getTicketFinalStatus() {
 	return SOFTWARE_WORKFLOW.STATUS[SOFTWARE_WORKFLOW.CLOSED]
+}
+
+WorkflowSchema.statics.getBoardStatus = function _getBoardStatus() {
+	return Object.keys(SOFTWARE_WORKFLOW.STATUS)
+		.filter(status => [SOFTWARE_WORKFLOW.BACKLOG, SOFTWARE_WORKFLOW.CLOSED].indexOf(status) == -1)
+		.map(key => SOFTWARE_WORKFLOW.STATUS[key])
 }
 
 WorkflowSchema.statics.getBoardLanes = function _getBoardLanes() {
@@ -138,3 +144,5 @@ WorkflowSchema.statics.status = function _status(optionalStatus) {
 WorkflowSchema.statics.transitions = function _transitions() {
 	return SOFTWARE_WORKFLOW.TRANSITION
 }
+
+export default WorkflowSchema

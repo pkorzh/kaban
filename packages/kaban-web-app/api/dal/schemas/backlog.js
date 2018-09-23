@@ -1,6 +1,6 @@
 const { Schema } = require('mongoose')
 
-const BacklogSchema = new Schema({
+module.exports = new Schema({
 	key: {
 		type: String,
 		required: true,
@@ -22,5 +22,3 @@ const BacklogSchema = new Schema({
 }, {
 	timestamps: true
 })
-
-module.exports = BacklogSchema

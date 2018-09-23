@@ -37,6 +37,7 @@
 						type="text"
 						v-model="ticket.name"
 						name="ticket.name"
+						v-validate="'required'"
 						placeholder="Ticket Summary"></b-form-input>
 				</b-form-group>
 
@@ -92,8 +93,8 @@
 		data() {
 			return {
 				ticket: {
-					name: null,
-					description: null,
+					name: '',
+					description: '',
 					priority: this.$store.getters['priorities/getList'][0],
 					type: this.$store.getters['tickettypes/getList'][0],
 					resolution: null,
@@ -109,13 +110,12 @@
 			}),
 
 			async create() {
+				const valid = await this.$validator.validateAll()
+				if (!valid) return
+
 				await this.createTicket(this.ticket)
 				this.$emit('close')
 			},
-
-			hasError(path) {
-				return this.$v.ticket[path].$error
-			}
 		}
 	}
 </script>

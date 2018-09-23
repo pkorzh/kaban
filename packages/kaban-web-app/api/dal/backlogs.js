@@ -1,13 +1,9 @@
-const {
-	Backlog,
-	WorkFlowTransition,
+import { Backlog, WorkFlowTransition,
 	Ticket,
 	TicketLeadTime,
-	TicketSpentIn,
-	BacklogForecast,
-} = require('./models')
+	TicketSpentIn, BacklogForecast, } from './models'
 
-const { mongo: generateMql } = require('../../tql/dist')
+import { mongo as generateMql } from '../../tql'
 
 async function insert(backlogSlim) {
 	const backlog = new Backlog(backlogSlim)
@@ -20,7 +16,7 @@ async function query(tql) {
 }
 
 async function count(tql) {
-	return await Backlog.find(generateMql(tql)).count()
+	return await Backlog.find(generateMql(tql)).countDocuments()
 }
 
 async function get(tql) {
@@ -34,7 +30,7 @@ async function get(tql) {
 }
 
 async function patch(key, delta) {
-	await Backlog.update({ key }, { $set: delta})
+	await Backlog.updateOne({ key }, { $set: delta})
 	return get(`key = ${key}`)
 }
 
@@ -67,6 +63,7 @@ async function forecast(key) {
 	return await BacklogForecast.findOne({'backlog.key': key})
 }
 
+export {
 Backlog.schema.pre('remove', async function() {
 	await BacklogForecast.remove(generateMql(`backlog = ${this.key}`))
  	await WorkFlowTransition.remove(generateMql(`backlog = ${this.key}`))

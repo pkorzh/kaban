@@ -12,7 +12,6 @@ export default (resource, {state, getters, actions, mutations, modules = {}, pat
 		getOne(state) {
 			return key => {
 				const e = state.entities[key]
-				console.debug(`${resource}/getOne`, e)
 				return e
 			};
 		},
@@ -31,7 +30,6 @@ export default (resource, {state, getters, actions, mutations, modules = {}, pat
 			Vue.delete(state.entities, payload)
 		},
 		STAGE(state, payload) {
-			console.debug(`${resource}/STAGE`, payload)
 			Vue.set(state.entities, payload.key, payload)
 		},
 		STAGE_MULTIPLE(state, multiple) {

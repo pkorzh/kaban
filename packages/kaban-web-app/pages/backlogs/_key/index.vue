@@ -45,9 +45,13 @@
 			</ActionsNav>
 		</TopBar>
 
-		<TicketsList
-			:tickets="tickets"
-			@loadmore="loadMore"/>
+		<InfiniteScroll
+				@loadmore="loadMore"
+				:list="tickets"
+				item-selector=".table-list-line">
+			<TicketsList
+					:tickets="tickets"/>
+		</InfiniteScroll>
 	</b-container>
 </template>
 
@@ -58,7 +62,7 @@
 		async fetch({store, params, error}) {
 			await store.dispatch('tickets/fetchList', {
 				tql: `backlog = ${params.key}`,
-				limit: 10
+				limit: 20
 			})
 		},
 		head() {

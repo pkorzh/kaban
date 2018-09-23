@@ -1,15 +1,14 @@
-const { Router } = require('express')
+import { Router } from 'express'
+import shortid from 'shortid'
+
+import { notifySubscribers } from './sse_clients'
+
+import {
+	backlogs as backlogsDal,
+	tickets as ticketsDal
+} from '../dal'
 
 const router = Router()
-
-const shortid = require('shortid')
-
-const { notifySubscribers } = require('./sse_clients')
-
-const {
-	backlogs: backlogsDal,
-	tickets: ticketsDal
-} = require('../dal')
 
 router.get('/backlogs', async function (req, res, next) {
 	const backlogs = await backlogsDal.query(req.query.tql)
@@ -71,4 +70,4 @@ router.get('/backlogs/:key/forecast', async function (req, res, next) {
 	return res.json(forecast)
 })
 
-module.exports = router
+export default router

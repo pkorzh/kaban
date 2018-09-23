@@ -1,6 +1,6 @@
 const { Schema } = require('mongoose')
 
-module.exports = new Schema({
+export default new Schema({
 	key: {
 		type: String,
 		required: true,
