@@ -19,6 +19,7 @@
 
 				<ActionsNavButton
 					text="Create Ticket"
+					:disabled="!backlog.isArchived"
 					action="CreateTicketAction" />
 
 				<div class="actions-nav-separator"></div>
@@ -34,8 +35,8 @@
 						:to="localePath({name: 'backlogs-key-configure-general', params: { key: backlog.key }})">
 						Configure
 					</b-dropdown-item>
-					<b-dropdown-item>
-						Archive
+					<b-dropdown-item @click="toggleBacklogIsArchive(backlog)">
+						{{backlog.isArchived ? 'Unarchive' : 'Archive'}}
 					</b-dropdown-item>
 					<b-dropdown-divider />
 					<b-dropdown-item-button class="text-danger" @click="deleteBacklog(backlog.key)">
@@ -88,6 +89,9 @@
 				'createTicket',
 				'fetchMore'
 			]),
+			...mapActions('backlogs', {
+				patchBacklog: 'patch'
+			}),
 			async loadMore(amount) {
 				const lastTicketCreatedAt = this.tickets[this.tickets.length - 1].createdAt
 
@@ -102,6 +106,14 @@
 					payload: {
 						backlogKey: key,
 						goBack: true
+					}
+				})
+			},
+			toggleBacklogIsArchive(backlog) {
+				this.patchBacklog({
+					key: backlog.key,
+					delta: {
+						isArchived: !backlog.isArchived
 					}
 				})
 			}

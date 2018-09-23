@@ -45,8 +45,8 @@
 							:to="localePath({name: 'backlogs-key-configure-general', params: { key: row.item.key }})">
 							Configure
 						</b-dropdown-item>
-						<b-dropdown-item>
-							Archive
+						<b-dropdown-item @click="toggleBacklogIsArchive(row.item)">
+							{{row.item.isArchived ? 'Unarchive' : 'Archive'}}
 						</b-dropdown-item>
 						<b-dropdown-divider />
 						<b-dropdown-item-button class="text-danger" @click="deleteBacklog(row.item.key)">
@@ -102,11 +102,22 @@
 			}),
 		},
 		methods: {
+			...mapActions('backlogs', {
+				patchBacklog: 'patch'
+			}),
 			deleteBacklog(key) {
 				this.$kaban.dispatch('DeleteBacklogAction', {
 					sender: this,
 					payload: {
 						backlogKey: key
+					}
+				})
+			},
+			toggleBacklogIsArchive(backlog) {
+				this.patchBacklog({
+					key: backlog.key,
+					delta: {
+						isArchived: !backlog.isArchived
 					}
 				})
 			}

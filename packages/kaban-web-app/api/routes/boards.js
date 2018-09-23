@@ -26,7 +26,7 @@ router.delete('/boards/:key', async function (req, res, next) {
 
 	notifySubscribers('deleteBoard', req.params.key)
 
-	return res.send(200)
+	return res.sendStatus(200)
 })
 
 router.patch('/boards/:key', async function (req, res, next) {

@@ -62,7 +62,7 @@ router.delete('/backlogs/:key', async function (req, res, next) {
 
 	notifySubscribers('deleteBacklog', req.params.key)
 
-	return res.send(200)
+	return res.sendStatus(200)
 })
 
 router.get('/backlogs/:key/forecast', async function (req, res, next) {

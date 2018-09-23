@@ -18,6 +18,11 @@ module.exports = new Schema({
 	hardDeadlineAt: {
 		type: Date,
 		required: false,
+	},
+	isArchived: {
+		type: Boolean,
+		required: true,
+		default: false
 	}
 }, {
 	timestamps: true
