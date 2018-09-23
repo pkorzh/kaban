@@ -43,6 +43,8 @@
 				await this.deleteBoard({ key: this.boardKey })
 
 				this.$emit('close')
+
+				this.goBack && this.$router.go(-1)
 			}
 		}
 	}

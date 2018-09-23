@@ -51,6 +51,10 @@
 				type: String,
 				required: true,
 			},
+			goBack: {
+				type: Boolean,
+				required: false
+			}
 		},
 		methods: {
 			...mapActions('backlogs', {
@@ -64,12 +68,16 @@
 				})
 
 				this.$emit('close')
+
+				this.goBack && this.$router.go(-1)
 			},
 
 			async justDelete() {
 				await this.deleteBacklog({ key: this.backlogKey })
 
 				this.$emit('close')
+
+				this.goBack && this.$router.go(-1)
 			}
 		},
 		computed: {

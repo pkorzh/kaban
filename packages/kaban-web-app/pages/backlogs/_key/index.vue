@@ -100,7 +100,8 @@
 				this.$kaban.dispatch('DeleteBacklogAction', {
 					sender: this,
 					payload: {
-						backlogKey: key
+						backlogKey: key,
+						goBack: true
 					}
 				})
 			}

@@ -1,7 +1,11 @@
-import { Backlog, WorkFlowTransition,
+import {
+	Backlog,
+	WorkflowTransition,
 	Ticket,
 	TicketLeadTime,
-	TicketSpentIn, BacklogForecast, } from './models'
+	TicketSpentIn,
+	BacklogForecast,
+} from './models'
 
 import { mongo as generateMql } from '../../tql'
 
@@ -63,13 +67,13 @@ async function forecast(key) {
 	return await BacklogForecast.findOne({'backlog.key': key})
 }
 
-export {
+
 Backlog.schema.pre('remove', async function() {
 	await BacklogForecast.remove(generateMql(`backlog = ${this.key}`))
- 	await WorkFlowTransition.remove(generateMql(`backlog = ${this.key}`))
+ 	await WorkflowTransition.remove(generateMql(`backlog = ${this.key}`))
 });
 
-module.exports = {
+export {
 	insert,
 	query,
 	patch,
