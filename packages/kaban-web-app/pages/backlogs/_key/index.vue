@@ -19,7 +19,7 @@
 
 				<ActionsNavButton
 					text="Create Ticket"
-					:disabled="!backlog.isArchived"
+					:disabled="backlog.isArchived"
 					action="CreateTicketAction" />
 
 				<div class="actions-nav-separator"></div>
