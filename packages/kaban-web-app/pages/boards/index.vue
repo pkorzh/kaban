@@ -36,7 +36,7 @@
 							Configure
 						</b-dropdown-item>
 						<b-dropdown-divider />
-						<b-dropdown-item-button class="text-danger">
+						<b-dropdown-item-button class="text-danger" @click="deleteBoard(data.item.key)">
 							Delete
 						</b-dropdown-item-button>
 					</b-dropdown>
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-	import { mapGetters } from 'vuex';
+	import { mapGetters, mapActions } from 'vuex';
 
 	export default {
 		head() {
@@ -81,6 +81,17 @@
 				boardList: 'getList'
 			})
 		},
+		methods: {
+			deleteBoard(key) {
+				this.$kaban.dispatch('DeleteBoardAction', {
+					sender: this,
+					payload: {
+						boardKey: key,
+						goBack: true
+					}
+				})
+			}
+		}
 	}
 </script>
 

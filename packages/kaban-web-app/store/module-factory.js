@@ -26,6 +26,9 @@ export default (resource, {state, getters, actions, mutations, modules = {}, pat
 		EMPTY(state) {
 			state.entities = {}
 		},
+		REMOVE(state, payload) {
+			Vue.delete(state.entities, payload)
+		},
 		STAGE(state, payload) {
 			Vue.set(state.entities, payload.key, payload)
 		},
@@ -84,8 +87,12 @@ export default (resource, {state, getters, actions, mutations, modules = {}, pat
 				return data
 			})
 		},
-		delete({commit}, tql) {
-			return Promise.resolve()
+		delete({commit}, {key, migrateTo}) {
+			this.$axios.$delete(`/api/${resource}/${key}`, {
+				params: { migrateTo }
+			}).then(() => {
+				commit('REMOVE', key)
+			})
 		},
 	}, actions)
 

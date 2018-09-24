@@ -3,6 +3,8 @@ import CreateBacklogAction from './backlog-create'
 import CreateBoardAction from './board-create'
 import HighlightTicketAction from './ticket-highlight'
 import TicketMultipleEdit from './ticket-multi-edit'
+import DeleteBacklogAction from './backlog-delete'
+import DeleteBoardAction from './board-delete'
 
 export {
 	CreateTicketAction,
@@ -10,4 +12,6 @@ export {
 	CreateBacklogAction,
 	CreateBoardAction,
 	TicketMultipleEdit,
+	DeleteBacklogAction,
+	DeleteBoardAction
 }

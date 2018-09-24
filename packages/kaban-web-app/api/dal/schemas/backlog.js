@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose')
+import { Schema } from 'mongoose'
 
 export default new Schema({
 	key: {
@@ -18,6 +18,11 @@ export default new Schema({
 	hardDeadlineAt: {
 		type: Date,
 		required: false,
+	},
+	isArchived: {
+		type: Boolean,
+		required: true,
+		default: false
 	}
 }, {
 	timestamps: true

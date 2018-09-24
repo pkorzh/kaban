@@ -1,4 +1,5 @@
-import { Board, Workflow } from '../models'
+import { Board, BoardCardColor,
+	Workflow} from '../models'
 
 import { mongo as generateMql } from '../../../tql'
 
@@ -30,11 +31,18 @@ async function insert(boardSlim) {
 	return board
 }
 
-
 async function patch(key, delta) {
 	await Board.update({ key }, { $set: delta})
 	return get(`key = ${key}`)
 }
+
+async function remove(key) {
+	return await Board.remove({ key })
+}
+
+Board.schema.pre('remove', async function() {
+	await BoardCardColor.remove(generateMql(`board = ${this.key}`))
+})
 
 
 export {
@@ -42,5 +50,6 @@ export {
 	insert,
 	patch,
 	get,
+	remove,
 	cardColor,
 }

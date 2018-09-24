@@ -36,7 +36,7 @@
 						Configure
 					</b-dropdown-item>
 					<b-dropdown-divider />
-					<b-dropdown-item-button class="text-danger">
+					<b-dropdown-item-button class="text-danger" @click="deleteBoard(board.key)">
 						Delete
 					</b-dropdown-item-button>
 				</b-dropdown>
@@ -103,6 +103,14 @@
 			...mapActions('tickets', [
 				'transition'
 			]),
+			deleteBoard(key) {
+				this.$kaban.dispatch('DeleteBoardAction', {
+					sender: this,
+					payload: {
+						boardKey: key
+					}
+				})
+			}
 		},
 		async mounted() {
 			this.$bus.$on('kaban::board::draggables', ({tickets, mapsTo}) => {

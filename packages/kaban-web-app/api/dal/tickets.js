@@ -1,4 +1,11 @@
-import { Ticket, Workflow, TicketSpentIn, } from './models'
+import {Backlog} from "./models";
+
+const {
+	Ticket,
+	Workflow,
+	TicketSpentIn,
+	TicketLeadTime
+} = require('./models')
 
 import { mongo as generateMql } from '../../tql'
 
@@ -73,6 +80,20 @@ async function patch(key, delta) {
 	await Ticket.updateOne({ key }, { $set: delta})
 	return get(`key = ${key}`)
 }
+
+Ticket.schema.pre('remove', async function() {
+	await TicketLeadTime.remove(generateMql(`ticket = ${this.key}`))
+	await TicketSpentIn.remove(generateMql(`ticket = ${this.key}`))
+})
+
+Ticket.schema.pre('save', async function() {
+	console.log('works', this)
+	const backlog = await Backlog.findOne(generateMql(`key = ${this.backlog.key}`))
+
+	if (backlog.isArchived) {
+		throw new Error('Can\'t create ticket, backlog is archived')
+	}
+})
 
 export {
 	insert,

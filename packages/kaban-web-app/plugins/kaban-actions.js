@@ -6,7 +6,7 @@ export default ({app, store}, inject) => {
 			if (action in actions) {
 				actions[action]({app, store}, {payload, sender})
 			} else {
-				throw new Error(`${action} in unknown`)
+				throw new Error(`${action} is unknown`)
 			}
 		}
 	}
