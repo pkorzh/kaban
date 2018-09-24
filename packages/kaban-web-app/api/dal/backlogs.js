@@ -44,11 +44,6 @@ async function removeAndMigrate(key, migrateKey) {
 			{multi: true}
 		)
 
-	await TicketLeadTime.update(generateMql(`backlog = ${key}`),
-		{$set: { backlog: {key: migrateKey}}},
-		{multi: true}
-	)
-
 	await TicketSpentIn.update(generateMql(`backlog = ${key}`),
 		{$set: { backlog: {key: migrateKey}}},
 		{multi: true}
