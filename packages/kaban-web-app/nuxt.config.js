@@ -59,6 +59,7 @@ module.exports = {
 	modules: [
 		// Doc: https://github.com/nuxt-community/axios-module#usage
 		'@nuxtjs/axios',
+		'@nuxtjs/auth',
 
 		['nuxt-i18n', {
 			locales: [
@@ -86,6 +87,23 @@ module.exports = {
 		SSE_URL: '/api/sse',
 	},
 
+	auth: {
+		redirect: {
+			callback: '/callback'
+		},
+		strategies: {
+			local: {
+				endpoints: {
+					login: { propertyName: 'token.accessToken' }
+				}
+			}
+		}
+	},
+
+	router: {
+		middleware: ['auth']
+	},
+
 	/*
 	** Build configuration
 	*/
@@ -108,6 +126,7 @@ module.exports = {
 
 	serverMiddleware: [
 		bodyParser.json(),
-		'~/api/index.js'
+		'~/api/auth',
+		'~/api',
 	],
 }
