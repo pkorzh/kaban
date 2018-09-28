@@ -89,7 +89,7 @@ module.exports = {
 
 	auth: {
 		redirect: {
-			callback: '/callback'
+			home: '/'
 		},
 		strategies: {
 			local: {

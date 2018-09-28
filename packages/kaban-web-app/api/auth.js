@@ -35,8 +35,6 @@ app.post('/login', (req, res, next) => {
 		'dummy'
 	)
 
-	console.log(accessToken)
-
 	res.json({
 		token: {
 			accessToken
