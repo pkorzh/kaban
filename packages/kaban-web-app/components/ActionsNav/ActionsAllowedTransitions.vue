@@ -4,7 +4,8 @@
 			v-for="status in transitions"
 			@click="transition({tickets: [ticket], mapsTo: status})"
 			:text="status.name"
-			:key="status.key" />
+			:key="status.key"
+			:disabled="readonly"/>
 	</div>
 </template>
 
@@ -16,6 +17,10 @@
 			ticket: {
 				type: Object,
 				required: true,
+			},
+			readonly: {
+				type: Boolean,
+				default: false
 			}
 		},
 		methods: {

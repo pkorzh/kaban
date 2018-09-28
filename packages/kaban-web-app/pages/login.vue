@@ -9,7 +9,6 @@
 		<b-row align-h="center" align-v="center">
 			<b-col md="4">
 				<b-card bg-variant="light">
-					<!--<busy-overlay />-->
 					<form @keydown.enter="login">
 						<b-form-group label="Username">
 							<b-input v-model="username" placeholder="anything" ref="username" />
@@ -31,20 +30,11 @@
 
 <script>
 	export default {
-		auth: false,
 		data() {
 			return {
 				username: '',
 				password: '',
 				error: null
-			}
-		},
-		computed: {
-			redirect() {
-				return (
-						this.$route.query.redirect &&
-						decodeURIComponent(this.$route.query.redirect)
-				)
 			}
 		},
 		methods: {

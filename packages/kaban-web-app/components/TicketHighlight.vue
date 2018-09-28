@@ -8,6 +8,7 @@
 						:display="ticket.name"
 						action="tickets/patch"
 						path="name"
+						:readonly="backlog.isArchived"
 						:_key="ticket.key" />
 				</template>
 
@@ -45,7 +46,7 @@
 					action=""
 					shortkey="" />-->
 
-				<ActionsAllowedTransitions :ticket="ticket" />
+				<ActionsAllowedTransitions :ticket="ticket" :readonly="backlog.isArchived"/>
 				<!--<div class="actions-nav-separator"></div>
 
 				<ActionsNavButton
@@ -69,6 +70,7 @@
 							:display="ticket.description"
 							action="tickets/patch"
 							path="description"
+							:readonly="backlog.isArchived"
 							:_key="ticket.key" />
 					</div>
 
@@ -93,11 +95,11 @@
 
 				</b-col>
 				<b-col cols="3">
-					<TicketDetailsSlimStatus :ticket="ticket" />
+					<TicketDetailsSlimStatus :ticket="ticket" :readonly="backlog.isArchived"/>
 
 					<!--<TicketDetailsSlimEstimations :ticket="ticket" />-->
 
-					<TicketDetailsSlimAssign :ticket="ticket" />
+					<TicketDetailsSlimAssign :ticket="ticket" :readonly="backlog.isArchived"/>
 
 					<TicketDetailsSlimDates :ticket="ticket" />
 
@@ -110,7 +112,7 @@
 			<button
 				class="btn btn-outline-danger"
 				@click="$emit('close')">Close</button>
-			<button class="btn btn-primary">Add</button>
+			<!--<button class="btn btn-primary">Add</button>-->
 		</div>
 	</div>
 </template>

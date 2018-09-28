@@ -23,6 +23,7 @@
 		<template v-else>
 			<div
 				class="editor-holder"
+				:class="{readonly}"
 				@click="edit"
 				@mouseout="toggleHover"
 				@mouseover="toggleHover"
