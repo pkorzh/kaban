@@ -1,11 +1,8 @@
-import {Backlog} from "./models";
-
-const {
+import {
 	Ticket,
 	Workflow,
-	TicketSpentIn,
-	TicketLeadTime
-} = require('./models')
+	TicketSpentIn
+} from './models'
 
 import { mongo as generateMql } from '../../tql'
 

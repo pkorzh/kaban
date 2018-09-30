@@ -12,6 +12,7 @@ import {
 	TicketLeadTimeSchema,
 	BoardCardColorSchema,
 	BacklogForecastSchema,
+	UserSchema
 } from './schemas'
 
 const Ticket = mongoose.model('Ticket', TicketSchema)
@@ -28,6 +29,7 @@ const Flatpage = mongoose.model('Flatpage', FlatpageSchema)
 const TicketLeadTime = mongoose.model('TicketLeadTime', TicketLeadTimeSchema)
 const BoardCardColor = mongoose.model('BoardCardColor', BoardCardColorSchema)
 const BacklogForecast = mongoose.model('BacklogForecast', BacklogForecastSchema)
+const User = mongoose.model('User', UserSchema)
 
 export {
 	Ticket,
@@ -41,4 +43,5 @@ export {
 	TicketLeadTime,
 	BoardCardColor,
 	BacklogForecast,
+	User,
 }

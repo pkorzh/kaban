@@ -9,6 +9,7 @@ import FlatpageSchema from './flatpage'
 import TicketLeadTimeSchema from './ticket-lead-time'
 import BoardCardColorSchema from './board-card-color'
 import BacklogForecastSchema from './backlog-forecast'
+import UserSchema from './user'
 
 export {
 	TicketSchema,
@@ -22,4 +23,5 @@ export {
 	TicketLeadTimeSchema,
 	BoardCardColorSchema,
 	BacklogForecastSchema,
+	UserSchema
 }

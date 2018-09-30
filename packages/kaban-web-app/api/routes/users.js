@@ -1,27 +1,85 @@
-import { Router } from 'express'
+import {Router} from 'express'
+import util from 'util'
+import {users as usersDal} from '../dal'
+import {notifySubscribers} from './sse_clients'
+import jsonwebtoken from 'jsonwebtoken'
+import bcrypt from 'bcrypt'
+
+const compare = util.promisify(bcrypt.compare)
 
 const router = Router()
 
-// Mock Users
-const users = [
-  { name: 'Alexandre' },
-  { name: 'Pooya' },
-  { name: 'Sébastien' }
-]
+router.get('/users', async function (req, res, next) {
+	const users = await usersDal.query(req.query.tql)
 
-/* GET users listing. */
-router.get('/users', function (req, res, next) {
-  res.json(users)
+	return res.json(users)
 })
 
-/* GET user by ID. */
-router.get('/users/:id', function (req, res, next) {
-  const id = parseInt(req.params.id)
-  if (id >= 0 && id < users.length) {
-    res.json(users[id])
-  } else {
-    res.sendStatus(404)
-  }
+router.post('/users', async function (req, res, next) {
+	const userSlim = req.body
+
+	const user = await usersDal.insert(userSlim)
+
+	notifySubscribers('createUser', user)
+
+	return res.json(user)
 })
+
+router.patch('/users/:key', async function (req, res, next) {
+	const userDelta = req.body
+
+	const user = await usersDal.patch(
+		req.params.key,
+		userDelta,
+	)
+
+	notifySubscribers('updateUser', user)
+
+	return res.json(user)
+})
+
+router.delete('/users/:key', async function (req, res, next) {
+	await usersDal.remove(req.params.key)
+
+	notifySubscribers('deleteUser', req.params.key)
+
+	return res.sendStatus(200)
+})
+
+router.post('/users/login', async function (req, res, next) {
+	const {email, password} = req.body
+
+	// tql update needed
+	const user = await usersDal.get({
+		email: {
+			$eq: email,
+		},
+	})
+
+	const valid = await compare(password, user.password)
+
+	if (valid) {
+		const token = jsonwebtoken.sign({
+				key: user.key,
+			},
+			req.app.get('secret'),
+			{expiresIn: '24h'})
+
+		res.json({token})
+	} else {
+		throw Error('Password is wrong!')
+	}
+})
+
+router.post('/users/logout', (req, res, next) => {
+	res.json({status: 'OK'})
+})
+
+router.get('/users/me', async (req, res, next) => {
+	const user = await usersDal.get({key: {$eq: req.user.key}})
+
+	res.json({user})
+})
+
 
 export default router

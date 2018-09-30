@@ -113,7 +113,7 @@
 						<b-nav-item-dropdown :text="$auth.user.name" right>
 							<b-dropdown-item @click="$auth.logout()">Logout</b-dropdown-item>
 						</b-nav-item-dropdown>
-						<b-img :src="$auth.user.picture" class="mt-1" rounded="circle" width="30px" height="30px" />
+						<b-img :src="$auth.user.avatar" class="mt-1" rounded="circle" width="30px" height="30px" />
 					</template>
 					<template v-else>
 						<b-dropdown-item to="/login">Login</b-dropdown-item>

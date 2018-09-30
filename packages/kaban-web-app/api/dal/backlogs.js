@@ -1,8 +1,6 @@
 import {
 	Backlog,
-	WorkflowTransition,
 	Ticket,
-	TicketLeadTime,
 	TicketSpentIn,
 	BacklogForecast,
 } from './models'

@@ -11,7 +11,7 @@
 				<b-card bg-variant="light">
 					<form @keydown.enter="login">
 						<b-form-group label="Username">
-							<b-input v-model="username" placeholder="anything" ref="username" />
+							<b-input v-model="email" placeholder="anything" type="email" />
 						</b-form-group>
 
 						<b-form-group label="Password">
@@ -29,24 +29,46 @@
 </template>
 
 <script>
+	import {mapActions} from 'vuex'
+
 	export default {
 		data() {
 			return {
-				username: '',
+				email: '',
 				password: '',
 				error: null
 			}
 		},
 		methods: {
+			...mapActions('boards', {
+				fetchBoards: 'fetchList'
+			}),
+			...mapActions('backlogs', {
+				fetchBacklogs: 'fetchList'
+			}),
+			...mapActions('workflow', {
+				fetchWorkflows: 'fetchList'
+			}),
+			...mapActions('status', {
+				fetchStatuses: 'fetchList'
+			}),
 			async login() {
 				this.error = null
 
 				return this.$auth
 						.loginWith('local', {
 							data: {
-								username: this.username,
+								email: this.email,
 								password: this.password
 							}
+						})
+						.then((res) => {
+							return Promise.all([
+								this.fetchBoards(),
+								this.fetchBacklogs(),
+								this.fetchWorkflows(),
+								this.fetchStatuses()
+							])
 						})
 						.catch(e => {
 							this.error = e + ''

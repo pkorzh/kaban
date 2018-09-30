@@ -1,4 +1,5 @@
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 
 const pkg = require('./package')
 
@@ -94,7 +95,9 @@ module.exports = {
 		strategies: {
 			local: {
 				endpoints: {
-					login: { propertyName: 'token.accessToken' }
+					login: { url: '/api/users/login', method: 'post', propertyName: 'token' },
+					logout: { url: '/api/users/logout', method: 'post' },
+					user: { url: '/api/users/me', method: 'get', propertyName: 'user' }
 				}
 			}
 		}
@@ -126,7 +129,7 @@ module.exports = {
 
 	serverMiddleware: [
 		bodyParser.json(),
-		'~/api/auth',
+		cookieParser(),
 		'~/api',
 	],
 }
