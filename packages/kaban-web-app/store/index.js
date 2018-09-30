@@ -32,7 +32,8 @@ const store = () => new Vuex.Store({
 					dispatch('boards/fetchList'),
 					dispatch('backlogs/fetchList'),
 					dispatch('workflow/fetchTransitions'),
-					dispatch('status/fetchList')
+					dispatch('status/fetchList'),
+					dispatch('users/fetchList')
 				])
 			} else {
 				return Promise.resolve()

@@ -1,8 +1,8 @@
-import {BacklogCreateHighlight} from '@/components';
+import {UserCreateHighlight} from '@/components';
 
 export default ({app, store}, {payload, sender}) => {
 	sender.$modal.show(
-		BacklogCreateHighlight,
+		UserCreateHighlight,
 		{
 			//component props
 		},
@@ -13,7 +13,7 @@ export default ({app, store}, {payload, sender}) => {
 			width: '50%',
 			height: 'auto'
 		}, {
-			//eventsa
+			//events
 		}
 	)
 }

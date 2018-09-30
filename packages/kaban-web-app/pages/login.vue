@@ -1,30 +1,31 @@
 <template>
-	<div>
-		<h2 class="text-center">Login</h2>
-		<hr>
-		<b-alert v-if="error" show variant="danger">{{ error + '' }}</b-alert>
-		<b-alert show v-if="$auth.$state.redirect">
-			You have to login before accessing to <strong>{{ $auth.$state.redirect }}</strong>
-		</b-alert>
-		<b-row align-h="center" align-v="center">
-			<b-col md="4">
-				<b-card bg-variant="light">
-					<form @keydown.enter="login">
-						<b-form-group label="Username">
-							<b-input v-model="email" placeholder="anything" type="email" />
-						</b-form-group>
+	<div class="row">
+		<div class="col-12">
+			<h2 class="text-center">Login</h2>
+			<b-alert v-if="error" show variant="danger">{{ error + '' }}</b-alert>
+			<b-alert show v-if="$auth.$state.redirect">
+				You have to login before accessing to <strong>{{ $auth.$state.redirect }}</strong>
+			</b-alert>
+			<b-row align-h="center" align-v="center">
+				<b-col md="4">
+					<b-card bg-variant="light">
+						<form @keydown.enter="login">
+							<b-form-group label="Email">
+								<b-input v-model="email" placeholder="Your Email" type="email" />
+							</b-form-group>
 
-						<b-form-group label="Password">
-							<b-input type="password" v-model="password" placeholder="123" />
-						</b-form-group>
+							<b-form-group label="Password">
+								<b-input type="password" v-model="password" placeholder="Password" />
+							</b-form-group>
 
-						<div class="text-center">
-							<b-btn @click="login" variant="primary" block>Login</b-btn>
-						</div>
-					</form>
-				</b-card>
-			</b-col>
-		</b-row>
+							<div class="text-center">
+								<b-btn @click="login" variant="primary" block>Login</b-btn>
+							</div>
+						</form>
+					</b-card>
+				</b-col>
+			</b-row>
+		</div>
 	</div>
 </template>
 
@@ -52,6 +53,9 @@
 			...mapActions('status', {
 				fetchStatuses: 'fetchList'
 			}),
+			...mapActions('users', {
+				fetchUsers: 'fetchList'
+			}),
 			async login() {
 				this.error = null
 
@@ -67,7 +71,8 @@
 								this.fetchBoards(),
 								this.fetchBacklogs(),
 								this.fetchWorkflows(),
-								this.fetchStatuses()
+								this.fetchStatuses(),
+								this.fetchUsers()
 							])
 						})
 						.catch(e => {

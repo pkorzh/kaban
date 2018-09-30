@@ -24,8 +24,6 @@ app.use(
 				return req.query.token;
 			}
 
-			console.log('auth error on route', req.url)
-
 			return null;
 		}
 	}).unless({
@@ -46,8 +44,12 @@ app.use(workflow)
 app.use(flatpages)
 
 app.use(function (err, req, res, next) {
+	if (err.code === 'permission_denied') {
+		res.status(403).send(err.message);
+	}
+
 	if (err.name === 'UnauthorizedError') {
-		res.status(401).send('invalid token...')
+		res.status(401).send(err.message)
 	}
 })
 

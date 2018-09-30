@@ -4,9 +4,11 @@ import {users as usersDal} from '../dal'
 import {notifySubscribers} from './sse_clients'
 import jsonwebtoken from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
+import shortid from 'shortid'
+import jwtPerm from 'express-jwt-permissions'
 
+const guard = jwtPerm()
 const compare = util.promisify(bcrypt.compare)
-
 const router = Router()
 
 router.get('/users', async function (req, res, next) {
@@ -15,8 +17,12 @@ router.get('/users', async function (req, res, next) {
 	return res.json(users)
 })
 
-router.post('/users', async function (req, res, next) {
+router.post('/users', guard.check('admin'), async function (req, res, next) {
 	const userSlim = req.body
+
+	if (!userSlim.key) {
+		userSlim.key = shortid.generate()
+	}
 
 	const user = await usersDal.insert(userSlim)
 
@@ -25,7 +31,7 @@ router.post('/users', async function (req, res, next) {
 	return res.json(user)
 })
 
-router.patch('/users/:key', async function (req, res, next) {
+router.patch('/users/:key', guard.check('admin'), async function (req, res, next) {
 	const userDelta = req.body
 
 	const user = await usersDal.patch(
@@ -38,7 +44,7 @@ router.patch('/users/:key', async function (req, res, next) {
 	return res.json(user)
 })
 
-router.delete('/users/:key', async function (req, res, next) {
+router.delete('/users/:key', guard.check('admin'), async function (req, res, next) {
 	await usersDal.remove(req.params.key)
 
 	notifySubscribers('deleteUser', req.params.key)
@@ -61,6 +67,7 @@ router.post('/users/login', async function (req, res, next) {
 	if (valid) {
 		const token = jsonwebtoken.sign({
 				key: user.key,
+				permissions: user.permissions
 			},
 			req.app.get('secret'),
 			{expiresIn: '24h'})

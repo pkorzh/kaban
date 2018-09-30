@@ -18,17 +18,22 @@ const schema = new Schema({
 	},
 	email: {
 		type: String,
-		required: true,
+		required: false,
 	},
 	avatar: {
 		type: String,
 		required: false,
-		default: '/_nuxt/assets/images/kaban-logo.svg'
+		default: 'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png'
 	},
 	password: {
 		type: String,
-		trim: true,
-		required: true
+
+		required: false
+	},
+	permissions: {
+		type: String,
+		required: false,
+		default: 'user'
 	}
 }, {
 	timestamps: true

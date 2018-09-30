@@ -81,19 +81,19 @@
 									</ul>
 								</li>
 
-								<!--<li>
+								<li>
 									<strong class="dropdown-menu-title">
-										<nuxt-link to="/">Users</nuxt-link>
+										Users
 									</strong>
 									<ul>
 										<li>
-											<nuxt-link to="/">Manage Users</nuxt-link>
+											<nuxt-link :to="localePath({name: 'users'})">Manage Users</nuxt-link>
 										</li>
 										<li>
 											<nuxt-link to="/">Invite team members</nuxt-link>
 										</li>
 									</ul>
-								</li>-->
+								</li>
 
 								<!--<li>
 									<strong class="dropdown-menu-title">
