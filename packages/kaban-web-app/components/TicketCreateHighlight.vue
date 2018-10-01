@@ -99,7 +99,7 @@
 					type: this.$store.getters['tickettypes/getList'][0],
 					resolution: null,
 					assignee: this.$store.getters['users/unassigned'],
-					reporter: this.$store.getters['users/current'],
+					reporter: this.$auth.user,
 					backlog: this.$store.getters['backlogs/getList'][0],
 				}
 			}

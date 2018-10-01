@@ -14,7 +14,10 @@
 
 				<b-navbar-nav>
 
-					<b-nav-item-dropdown text="Menu" ref="menuDropDown">
+					<b-nav-item-dropdown
+							v-if="$auth.$state.loggedIn"
+							text="Menu"
+							ref="menuDropDown">
 
 						<form
 							action="#"
@@ -78,19 +81,19 @@
 									</ul>
 								</li>
 
-								<!--<li>
+								<li>
 									<strong class="dropdown-menu-title">
-										<nuxt-link to="/">Users</nuxt-link>
+										Users
 									</strong>
 									<ul>
 										<li>
-											<nuxt-link to="/">Manage Users</nuxt-link>
+											<nuxt-link :to="localePath({name: 'users'})">Manage Users</nuxt-link>
 										</li>
 										<li>
 											<nuxt-link to="/">Invite team members</nuxt-link>
 										</li>
 									</ul>
-								</li>-->
+								</li>
 
 								<!--<li>
 									<strong class="dropdown-menu-title">
@@ -105,16 +108,17 @@
 
 				</b-navbar-nav>
 
-				<!--<b-nav class="profile ml-auto">
-					<b-nav-item active><font-awesome-icon icon="cog" /></b-nav-item>
-					<b-nav-item>
-						<font-awesome-icon icon="bell" />
-						<span class="profile-mark"></span>
-					</b-nav-item>
-					<b-nav-item class="profile-avatar">
-					</b-nav-item>
-				</b-nav>-->
-
+				<b-navbar-nav class="ml-auto">
+					<template v-if="$auth.$state.loggedIn">
+						<b-nav-item-dropdown :text="$auth.user.name" right>
+							<b-dropdown-item @click="$auth.logout()">Logout</b-dropdown-item>
+						</b-nav-item-dropdown>
+						<b-img :src="$auth.user.avatar" class="mt-1" rounded="circle" width="30px" height="30px" />
+					</template>
+					<template v-else>
+						<b-dropdown-item to="/login">Login</b-dropdown-item>
+					</template>
+				</b-navbar-nav>
 			</b-collapse>
 		</b-navbar>
 	</b-container>

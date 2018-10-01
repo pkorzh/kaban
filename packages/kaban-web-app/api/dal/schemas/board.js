@@ -1,6 +1,9 @@
+import {BoardCardColor} from "../models";
+import {mongo as generateMql} from "../../../tql";
+
 const { Schema } = require('mongoose')
 
-export default new Schema({
+const schema = new Schema({
 	key: {
 		type: String,
 		required: true,
@@ -48,3 +51,9 @@ export default new Schema({
 }, {
 	timestamps: true
 })
+
+schema.pre('remove', async function() {
+	await BoardCardColor.remove(generateMql(`board = ${this.key}`))
+})
+
+export default schema
