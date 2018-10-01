@@ -1,6 +1,9 @@
+import {BacklogForecast, WorkflowTransition} from "../models";
+import {mongo as generateMql} from "../../../tql";
+
 const { Schema } = require('mongoose')
 
-export default new Schema({
+const schema = new Schema({
 	key: {
 		type: String,
 		required: true,
@@ -27,3 +30,10 @@ export default new Schema({
 }, {
 	timestamps: true
 })
+
+schema.pre('remove', async function() {
+	await BacklogForecast.remove(generateMql(`backlog = ${this.key}`))
+	await WorkflowTransition.remove(generateMql(`backlog = ${this.key}`))
+})
+
+export default schema

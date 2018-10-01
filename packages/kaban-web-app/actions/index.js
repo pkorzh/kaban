@@ -5,6 +5,7 @@ import HighlightTicketAction from './ticket-highlight'
 import TicketMultipleEdit from './ticket-multi-edit'
 import DeleteBacklogAction from './backlog-delete'
 import DeleteBoardAction from './board-delete'
+import CreateUserAction from './user-create'
 
 export {
 	CreateTicketAction,
@@ -13,5 +14,6 @@ export {
 	CreateBoardAction,
 	TicketMultipleEdit,
 	DeleteBacklogAction,
-	DeleteBoardAction
+	DeleteBoardAction,
+	CreateUserAction
 }

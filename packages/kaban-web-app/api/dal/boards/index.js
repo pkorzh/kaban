@@ -40,10 +40,6 @@ async function remove(key) {
 	return await Board.remove({ key })
 }
 
-Board.schema.pre('remove', async function() {
-	await BoardCardColor.remove(generateMql(`board = ${this.key}`))
-})
-
 
 export {
 	query,

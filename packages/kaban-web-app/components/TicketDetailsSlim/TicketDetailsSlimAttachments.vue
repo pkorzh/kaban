@@ -12,6 +12,10 @@
 			ticket: {
 				type: Object,
 				required: true,
+			},
+			readonly: {
+				type: Boolean,
+				default: false
 			}
 		}
 	}

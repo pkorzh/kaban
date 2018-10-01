@@ -16,6 +16,10 @@ export default {
 			type: String,
 			required: false,
 		},
+		readonly: {
+			type: Boolean,
+			default: false
+		}
 	},
 	data() {
 		return {
@@ -26,9 +30,17 @@ export default {
 	},
 	methods: {
 		toggleHover() {
+			if (this.readonly) {
+				return;
+			}
+
 			this.hovered = !this.hovered
 		},
 		edit() {
+			if (this.readonly) {
+				return;
+			}
+
 			this.editable = true
 		},
 		cancelEditing() {

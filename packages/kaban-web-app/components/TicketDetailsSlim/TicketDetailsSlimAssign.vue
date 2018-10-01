@@ -10,6 +10,7 @@
 					getter="users/getList"
 					path="assignee"
 					icon="avatar"
+					:readonly="readonly"
 					:_key="ticket.key">
 						<template slot="display">
 							<img
@@ -27,6 +28,7 @@
 				<LiveEditSelect
 					:content="ticket.reporter"
 					:display="ticket.reporter.name"
+					:readonly="readonly"
 					action="tickets/patch"
 					getter="users/getList"
 					path="reporter"
@@ -51,6 +53,10 @@
 			ticket: {
 				type: Object,
 				required: true,
+			},
+			readonly: {
+				type: Boolean,
+				default: false
 			}
 		}
 	}

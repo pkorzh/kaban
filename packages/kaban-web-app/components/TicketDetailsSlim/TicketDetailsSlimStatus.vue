@@ -9,6 +9,7 @@
 					action="tickets/patch"
 					getter="tickettypes/getList"
 					path="type"
+					:readonly="readonly"
 					:_key="ticket.key">
 						<template slot="display">
 							<img
@@ -28,6 +29,7 @@
 					action="tickets/patch"
 					getter="priorities/getList"
 					path="priority"
+					:readonly="readonly"
 					:_key="ticket.key">
 						<template slot="display">
 							<img
@@ -63,6 +65,10 @@
 			ticket: {
 				type: Object,
 				required: true,
+			},
+			readonly: {
+				type: Boolean,
+				default: false
 			}
 		}
 	}

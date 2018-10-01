@@ -1,8 +1,6 @@
 import {
 	Backlog,
-	WorkflowTransition,
 	Ticket,
-	TicketLeadTime,
 	TicketSpentIn,
 	BacklogForecast,
 } from './models'
@@ -61,12 +59,6 @@ async function remove(key) {
 async function forecast(key) {
 	return await BacklogForecast.findOne({'backlog.key': key})
 }
-
-
-Backlog.schema.pre('remove', async function() {
-	await BacklogForecast.remove(generateMql(`backlog = ${this.key}`))
- 	await WorkflowTransition.remove(generateMql(`backlog = ${this.key}`))
-});
 
 export {
 	insert,

@@ -5,6 +5,7 @@ import * as backlogs from './backlogs'
 import * as boards from './boards'
 import * as workflow from'./workflow'
 import * as flatpages from './flatpages'
+import * as users from './users'
 
 
 export {
@@ -12,5 +13,6 @@ export {
 	backlogs,
 	boards,
 	workflow,
-	flatpages,	
+	flatpages,
+	users
 }

@@ -1,4 +1,5 @@
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 
 const pkg = require('./package')
 
@@ -59,6 +60,7 @@ module.exports = {
 	modules: [
 		// Doc: https://github.com/nuxt-community/axios-module#usage
 		'@nuxtjs/axios',
+		'@nuxtjs/auth',
 
 		['nuxt-i18n', {
 			locales: [
@@ -86,6 +88,25 @@ module.exports = {
 		SSE_URL: '/api/sse',
 	},
 
+	auth: {
+		redirect: {
+			home: '/'
+		},
+		strategies: {
+			local: {
+				endpoints: {
+					login: { url: '/api/users/login', method: 'post', propertyName: 'token' },
+					logout: { url: '/api/users/logout', method: 'post' },
+					user: { url: '/api/users/me', method: 'get', propertyName: 'user' }
+				}
+			}
+		}
+	},
+
+	router: {
+		middleware: ['auth']
+	},
+
 	/*
 	** Build configuration
 	*/
@@ -108,6 +129,7 @@ module.exports = {
 
 	serverMiddleware: [
 		bodyParser.json(),
-		'~/api/index.js'
+		cookieParser(),
+		'~/api',
 	],
 }
