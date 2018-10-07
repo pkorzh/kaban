@@ -113,6 +113,9 @@
 			}),
 
 			async create() {
+				const valid = await this.$validator.validateAll()
+				if (!valid) return
+
 				await this.createUser(this.user)
 
 				this.$emit('close')
