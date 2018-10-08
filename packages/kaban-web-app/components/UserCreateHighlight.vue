@@ -40,6 +40,18 @@
 				</b-form-group>
 
 				<b-form-group
+						label="Scope"
+						horizontal
+						:invalid-feedback="errors.first('user.scope')"
+						:state="!errors.has('user.scope')">
+					<b-form-input
+							type="text"
+							v-model="user.scope"
+							name="user.scope"
+							placeholder="User Scope" />
+				</b-form-group>
+
+				<b-form-group
 						label="Email"
 						horizontal
 						:invalid-feedback="errors.first('user.email')"
@@ -90,6 +102,7 @@
 					name: null,
 					description: null,
 					email: null,
+					scope: 'user',
 					password: null,
 				}
 			}
@@ -100,6 +113,9 @@
 			}),
 
 			async create() {
+				const valid = await this.$validator.validateAll()
+				if (!valid) return
+
 				await this.createUser(this.user)
 
 				this.$emit('close')

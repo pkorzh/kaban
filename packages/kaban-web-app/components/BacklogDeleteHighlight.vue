@@ -52,7 +52,7 @@
 				required: true,
 			},
 			goBack: {
-				type: Boolean,
+				type: String,
 				required: false
 			}
 		},
@@ -69,7 +69,7 @@
 
 				this.$emit('close')
 
-				this.goBack && this.$router.go(-1)
+				this.goBack && this.$router.go(this.goBack)
 			},
 
 			async justDelete() {
@@ -77,7 +77,7 @@
 
 				this.$emit('close')
 
-				this.goBack && this.$router.go(-1)
+				this.goBack && this.$router.go(this.goBack)
 			}
 		},
 		computed: {

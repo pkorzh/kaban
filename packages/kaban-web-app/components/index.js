@@ -20,6 +20,7 @@ import BoardCreateHighlight from './BoardCreateHighlight'
 import BoardDeleteHighlight from './BoardDeleteHighlight'
 
 import UserCreateHighlight from './UserCreateHighlight'
+import UserDeleteHighlight from './UserDeleteHighlight'
 
 import Header from './Header'
 import TicketHighlight from './TicketHighlight'
@@ -74,6 +75,7 @@ export {
 	BoardDeleteHighlight,
 
 	UserCreateHighlight,
+	UserDeleteHighlight,
 
 	Header,
 	TicketHighlight,
