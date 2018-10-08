@@ -67,7 +67,7 @@ router.post('/users/login', async function (req, res, next) {
 	if (valid) {
 		const token = jsonwebtoken.sign({
 				key: user.key,
-				permissions: user.permissions
+				permissions: user.scope
 			},
 			req.app.get('secret'),
 			{expiresIn: '24h'})

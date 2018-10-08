@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt'
 const { Schema } = require('mongoose')
 
-const saltRounds = 10;
+const saltRounds = 10
 
 const schema = new Schema({
 	key: {
@@ -27,10 +27,11 @@ const schema = new Schema({
 	},
 	password: {
 		type: String,
-
-		required: false
+		required: false,
+		select: false,
+		trim: true
 	},
-	permissions: {
+	scope: {
 		type: String,
 		required: false,
 		default: 'user'
@@ -45,4 +46,4 @@ schema.pre('save', function(next){
 	next();
 });
 
-export default schema;
+export default schema

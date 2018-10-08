@@ -5,6 +5,11 @@
 
 <script>
 	export default {
+		fetch({app, redirect}) {
+			if(!app.$auth.loggedIn) {
+				redirect('/login')
+			}
+		},
 		head() {
 			return {
 				title: 'Kaban Project Management'

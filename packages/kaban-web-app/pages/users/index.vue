@@ -35,6 +35,7 @@
 							:to="localePath({name: 'users-key-configure-general', params: { key: row.item.key }})">
 							Configure
 						</b-dropdown-item>
+						<b-dropdown-divider />
 						<b-dropdown-item-button class="text-danger" @click="deleteUser(row.item.key)">
 							Delete
 						</b-dropdown-item-button>

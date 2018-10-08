@@ -26,8 +26,8 @@ const store = () => new Vuex.Store({
 		flatpages,
 	},
 	actions: {
-		async nuxtServerInit({dispatch}, {req}) {
-			if (req.cookies['auth._token.local'] && req.cookies['auth._token.local'] !== 'false') {
+		async nuxtServerInit({dispatch, state}) {
+			if (state.auth.loggedIn) {
 				return Promise.all([
 					dispatch('boards/fetchList'),
 					dispatch('backlogs/fetchList'),

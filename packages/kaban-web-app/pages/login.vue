@@ -9,19 +9,22 @@
 			<b-row align-h="center" align-v="center">
 				<b-col md="4">
 					<b-card bg-variant="light">
-						<form @keydown.enter="login">
-							<b-form-group label="Email">
-								<b-input v-model="email" placeholder="Your Email" type="email" />
+						<b-form id="LoginForm" @submit.prevent="login" novalidate>
+							<b-form-group label="Email"
+										  :invalid-feedback="errors.first('form.email')"
+										  :state="!errors.has('form.email')">
+								<b-form-input v-model="form.email" name="form.email" placeholder="Your Email" v-validate="'required|email'"/>
 							</b-form-group>
 
-							<b-form-group label="Password">
-								<b-input type="password" v-model="password" placeholder="Password" />
+							<b-form-group label="Password"
+										  :invalid-feedback="errors.first('form.password')"
+										  :state="!errors.has('form.password')">
+								<b-form-input type="password" name="form.password" v-model="form.password" placeholder="Password" v-validate="'required'"/>
 							</b-form-group>
-
 							<div class="text-center">
-								<b-btn @click="login" variant="primary" block>Login</b-btn>
+								<b-btn type="submit" variant="primary" block form="LoginForm">Login</b-btn>
 							</div>
-						</form>
+						</b-form>
 					</b-card>
 				</b-col>
 			</b-row>
@@ -35,8 +38,10 @@
 	export default {
 		data() {
 			return {
-				email: '',
-				password: '',
+				form: {
+					email: '',
+					password: ''
+				},
 				error: null
 			}
 		},
@@ -59,11 +64,14 @@
 			async login() {
 				this.error = null
 
+				const valid = await this.$validator.validateAll()
+				if (!valid) return
+
 				return this.$auth
 						.loginWith('local', {
 							data: {
-								email: this.email,
-								password: this.password
+								email: this.form.email,
+								password: this.form.password
 							}
 						})
 						.then((res) => {

@@ -1,4 +1,4 @@
-import {User} from './models'
+import {Ticket, User} from './models'
 import {mongo as generateMql} from "../../tql"
 
 async function insert (userSlim) {
@@ -18,7 +18,7 @@ async function count(tql) {
 }
 
 async function get(query) {
-	return await User.findOne(query)
+	return await User.findOne(query).select('+password')
 }
 
 async function patch(key, delta) {
@@ -28,7 +28,11 @@ async function patch(key, delta) {
 }
 
 async function remove(key) {
-	return await User.remove({ key })
+	const res = await Ticket.updateMany(generateMql(`assignee = ${key}`),
+		{$set: { assignee: {key: 'unassigned'}}}
+	)
+
+	return await User.deleteOne({ key })
 }
 
 
