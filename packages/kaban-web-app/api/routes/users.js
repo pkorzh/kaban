@@ -6,6 +6,7 @@ import jsonwebtoken from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import shortid from 'shortid'
 import jwtPerm from 'express-jwt-permissions'
+import {UnauthorizedError} from 'express-jwt'
 
 const guard = jwtPerm()
 const compare = util.promisify(bcrypt.compare)
@@ -62,6 +63,12 @@ router.post('/users/login', async function (req, res, next) {
 		},
 	})
 
+	if (!user) {
+		throw UnauthorizedError('login_error', {
+			message: 'No user found'
+		})
+	}
+
 	const valid = await compare(password, user.password)
 
 	if (valid) {
@@ -74,7 +81,9 @@ router.post('/users/login', async function (req, res, next) {
 
 		res.json({token})
 	} else {
-		throw Error('Password is wrong!')
+		throw UnauthorizedError('login_error', {
+			message: 'Wrong password'
+		})
 	}
 })
 
