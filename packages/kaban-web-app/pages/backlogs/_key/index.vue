@@ -105,7 +105,7 @@
 					sender: this,
 					payload: {
 						backlogKey: key,
-						goBack: true
+						goBack: 'backlogs'
 					}
 				})
 			},

@@ -86,8 +86,7 @@
 				this.$kaban.dispatch('DeleteBoardAction', {
 					sender: this,
 					payload: {
-						boardKey: key,
-						goBack: true
+						boardKey: key
 					}
 				})
 			}

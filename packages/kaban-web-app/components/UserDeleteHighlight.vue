@@ -3,7 +3,7 @@
 		<div class="modal-box-header">
 			<TopBar>
 				<template slot="header">
-					Delete Board
+					Delete User
 				</template>
 			</TopBar>
 
@@ -12,7 +12,7 @@
 					@click="$emit('close')">Close</button>
 		</div>
 		<div class="details">
-			Are you sure you want delete this board?
+			Are you sure you want delete this user? All tasks will be unassigned.
 		</div>
 		<div class="modal-box-footer">
 			<button
@@ -25,30 +25,29 @@
 
 <script>
 	import { KeyGenerationMixin } from '@/mixins'
-	import { mapActions, mapGetters } from 'vuex'
+	import { mapActions } from 'vuex'
 
 	export default {
 		props: {
-			boardKey: {
+			userKey: {
 				type: String,
 				required: true,
 			},
 			goBack: {
 				type: String,
-				required: true
+				required: false
 			}
 		},
 		methods: {
-			...mapActions('boards', {
-				deleteBoard: 'delete'
+			...mapActions('users', {
+				deleteUser: 'delete'
 			}),
 
 			async justDelete() {
-				await this.deleteBoard({ key: this.boardKey })
-
-				this.$emit('close')
+				await this.deleteUser({ key: this.userKey })
 
 				this.goBack && this.$router.go(this.goBack)
+				this.$emit('close')
 			}
 		}
 	}
