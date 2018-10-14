@@ -59,6 +59,7 @@
     "vue-shortkey": "^3.1.6",
     "vue-simplemde": "^0.4.8",
     "vue-textarea-autosize": "^1.0.4",
+    "vue-toasted": "^1.1.25",
     "vuedraggable": "^2.16.0"
   },
   "devDependencies": {

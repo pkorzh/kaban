@@ -10,6 +10,7 @@ import priorities from './priorities'
 import workflow from './workflow'
 import status from './status'
 import flatpages from './flatpages'
+import errors from './errors'
 
 Vue.use(Vuex)
 
@@ -24,6 +25,7 @@ const store = () => new Vuex.Store({
 		workflow,
 		status,
 		flatpages,
+		errors
 	},
 	actions: {
 		async nuxtServerInit({dispatch, state}) {

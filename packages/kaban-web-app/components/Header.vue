@@ -15,6 +15,7 @@
 				<b-navbar-nav>
 
 					<b-nav-item-dropdown
+							class="site-menu"
 							v-if="$auth.$state.loggedIn"
 							text="Menu"
 							ref="menuDropDown">
@@ -137,7 +138,7 @@
 		},
 		watch: {
 			'$route'() {
-				this.$refs.menuDropDown.hide()
+				this.$refs.menuDropDown && this.$refs.menuDropDown.hide()
 			}
 		},
 		methods: {

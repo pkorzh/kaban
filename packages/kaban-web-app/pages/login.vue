@@ -2,10 +2,6 @@
 	<div class="row">
 		<div class="col-12">
 			<h2 class="text-center">Login</h2>
-			<b-alert v-if="error" show variant="danger">{{ error + '' }}</b-alert>
-			<b-alert show v-if="$auth.$state.redirect">
-				You have to login before accessing to <strong>{{ $auth.$state.redirect }}</strong>
-			</b-alert>
 			<b-row align-h="center" align-v="center">
 				<b-col md="4">
 					<b-card bg-variant="light">
@@ -53,7 +49,7 @@
 				fetchBacklogs: 'fetchList'
 			}),
 			...mapActions('workflow', {
-				fetchWorkflows: 'fetchList'
+				fetchTransitions: 'etchTransitions'
 			}),
 			...mapActions('status', {
 				fetchStatuses: 'fetchList'
@@ -78,7 +74,7 @@
 							return Promise.all([
 								this.fetchBoards(),
 								this.fetchBacklogs(),
-								this.fetchWorkflows(),
+								this.fetchTransitions(),
 								this.fetchStatuses(),
 								this.fetchUsers()
 							])

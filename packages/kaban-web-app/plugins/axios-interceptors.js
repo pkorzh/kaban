@@ -1,4 +1,6 @@
 import { utc } from 'moment'
+import Vue from 'vue'
+
 
 export default function ({ $axios, redirect, store }) {
 	$axios.onRequest(config => {
@@ -60,6 +62,26 @@ export default function ({ $axios, redirect, store }) {
 		}
 	})
 
-	$axios.onError(error => {
+	$axios.onError(async (error) => {
+		const entity = await store.dispatch('errors/create', error.response.data)
+		
+		Vue.toasted.error(entity.message, {
+			action : [
+				{
+					text : 'Details',
+					onClick : (e, toastObject) => {
+						redirect(`/errors/${entity.key}`)
+
+						toastObject.goAway(0)
+					}
+				},
+				{
+					text : 'Cancel',
+					onClick : (e, toastObject) => {
+						toastObject.goAway(0)
+					}
+				}
+			]
+		})
 	})
 }

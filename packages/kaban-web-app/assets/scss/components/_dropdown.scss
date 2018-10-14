@@ -38,19 +38,21 @@
     a {
       color: $body-color;
     }
-    .header & {
+	.header & {
+	  &::after {
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 0;
+		height: 4px;
+		content: '';
+		background: $secondary;
+	  }
+	}
+    .site-menu & {
       min-width: 900px;
       overflow: hidden;
       left: -100px;
-      &::after {
-        position: absolute;
-        left: 0;
-        top: 0;
-        right: 0;
-        height: 4px;
-        content: '';
-        background: $secondary;
-      }
     }
     ol {
       padding: 0;
