@@ -1,6 +1,10 @@
 import Vue from 'vue'
+import shortid from 'shortid'
 
-export default (resource, {state, getters, actions, mutations, modules = {}, patchReducers = {}}) => {
+export default (
+		resource,
+		{state, getters, actions, mutations, modules = {}, patchReducers = {}, local = false}
+	) => {
 	const moduleState = () => (Object.assign({
 		entities: {},
 	}, state))
@@ -38,63 +42,89 @@ export default (resource, {state, getters, actions, mutations, modules = {}, pat
 		}
 	}, mutations)
 
-	const moduleActions = Object.assign({
-		async fetchList({commit, getters}, payload) {
-			const rawList = await this.$axios.$get(
-				`/api/${resource}/`,
-				{ params: payload },
-			)
+	let moduleActions
 
-			commit('EMPTY')
-			commit('STAGE_MULTIPLE', rawList)
+	if (local) {
+		moduleActions = Object.assign({
+			create({commit}, entity) {
+						if (!entity.key) {
+							entity.key = shortid.generate()
+						}
 
-			return rawList
-		},
-		async fetchMore({commit, getters}, payload) {
-			const rawList = await this.$axios.$get(
-				`/api/${resource}/`,
-				{ params: payload },
-			)
+						commit('STAGE', entity)
 
-			commit('STAGE_MULTIPLE', rawList)
+						return Promise.resolve(entity)
+			},
+			patch({commit}, {delta}) {
+					commit('STAGE', delta)
 
-			return rawList
-		},
-		async fetchOne({commit, getters}, tql) {
-			const rawEntity = await this.$axios.$get(`/api/${resource}/`, { params: { tql } })
-			commit('STAGE', rawEntity[0])
-			return rawEntity[0]
-		},
-		create({commit}, entity) {
-			return this.$axios.$post(`/api/${resource}/`, entity).then((data) => {
-				commit('STAGE', data)
-				return data
-			})
-		},
-		patch({commit}, {delta, key}) {
-			const reducedDelta = {}
-
-			Object.keys(delta).forEach(deltaKey => {
-				if (deltaKey in patchReducers) {
-					reducedDelta[deltaKey] = patchReducers(delta[reducedDelta])
-				} else {
-					reducedDelta[deltaKey] = delta[reducedDelta]
-				}
-			})
-
-			return this.$axios.$patch(`/api/${resource}/${key}`, delta).then((data) => {
-				commit('STAGE', data)
-				return data
-			})
-		},
-		delete({commit}, {key, migrateTo}) {
-			this.$axios.$delete(`/api/${resource}/${key}`, {
-				params: { migrateTo }
-			}).then(() => {
+					return Promise.resolve(delta)
+			},
+			delete({commit}, {key}) {
 				commit('REMOVE', key)
-			})
-		},
-	}, actions)
+
+				return Promise.resolve()
+			},
+		}, actions)
+	} else {
+		moduleActions = Object.assign({
+			async fetchList({commit, getters}, payload) {
+				const rawList = await this.$axios.$get(
+					`/api/${resource}/`,
+					{ params: payload },
+				)
+
+				commit('EMPTY')
+				commit('STAGE_MULTIPLE', rawList)
+
+				return rawList
+			},
+			async fetchMore({commit, getters}, payload) {
+				const rawList = await this.$axios.$get(
+					`/api/${resource}/`,
+					{ params: payload },
+				)
+
+				commit('STAGE_MULTIPLE', rawList)
+
+				return rawList
+			},
+			async fetchOne({commit, getters}, tql) {
+				const rawEntity = await this.$axios.$get(`/api/${resource}/`, { params: { tql } })
+				commit('STAGE', rawEntity[0])
+				return rawEntity[0]
+			},
+			create({commit}, entity) {
+				return this.$axios.$post(`/api/${resource}/`, entity).then((data) => {
+					commit('STAGE', data)
+					return data
+				})
+			},
+			patch({commit}, {delta, key}) {
+				const reducedDelta = {}
+
+				Object.keys(delta).forEach(deltaKey => {
+					if (deltaKey in patchReducers) {
+						reducedDelta[deltaKey] = patchReducers(delta[reducedDelta])
+					} else {
+						reducedDelta[deltaKey] = delta[reducedDelta]
+					}
+				})
+
+				return this.$axios.$patch(`/api/${resource}/${key}`, delta).then((data) => {
+					commit('STAGE', data)
+					return data
+				})
+			},
+			delete({commit}, {key, migrateTo}) {
+				this.$axios.$delete(`/api/${resource}/${key}`, {
+					params: { migrateTo }
+				}).then(() => {
+					commit('REMOVE', key)
+				})
+			},
+		}, actions)
+	}
 
 	return {
 		namespaced: true,

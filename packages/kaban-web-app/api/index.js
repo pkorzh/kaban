@@ -1,3 +1,5 @@
+import 'express-async-errors'
+
 import express from 'express'
 import jwt from 'express-jwt'
 
@@ -9,6 +11,7 @@ import ping from './routes/ping'
 import sse from './routes/sse'
 import workflow from './routes/workflow'
 import flatpages from './routes/flatpages'
+import {authErrorHandler, errorHandler, dbErrorHandler} from './error-handlers'
 
 const app = express()
 
@@ -35,15 +38,9 @@ app.use(sse)
 app.use(workflow)
 app.use(flatpages)
 
-app.use(function (err, req, res, next) {
-	if (err.code === 'permission_denied') {
-		res.status(403).send(err.message);
-	}
-
-	if (err.name === 'UnauthorizedError') {
-		res.status(401).send(err.message)
-	}
-})
+app.use(authErrorHandler)
+app.use(dbErrorHandler)
+app.use(errorHandler)
 
 export default {
   path: '/api',

@@ -6,6 +6,7 @@ import {
 } from './models'
 
 import { mongo as generateMql } from '../../tql'
+import {DataBaseError} from '../error-handlers'
 
 async function insert(backlogSlim) {
 	const backlog = new Backlog(backlogSlim)
@@ -25,7 +26,9 @@ async function get(tql) {
 	const backlogs = await query(tql)
 
 	if (backlogs.length !== 1) {
-		throw new Error('Get returned multiple elements')
+		throw new DataBaseError('bad_query', {
+			message: 'More than one found'
+		})
 	}
 
 	return backlogs[0]
@@ -33,6 +36,7 @@ async function get(tql) {
 
 async function patch(key, delta) {
 	await Backlog.updateOne({ key }, { $set: delta})
+
 	return get(`key = ${key}`)
 }
 
