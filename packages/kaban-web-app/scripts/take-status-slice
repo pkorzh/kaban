@@ -1,7 +1,5 @@
-#!/usr/bin/env node
-
-require('../api/dal/connect')
-const { Ticket, TicketStatusSlice } = require('../api/dal/models')
+import '../api/dal/connect';
+import { Ticket, TicketStatusSlice } from '../api/dal/models';
 
 async function main() {
 	let stats = await Ticket.aggregate([

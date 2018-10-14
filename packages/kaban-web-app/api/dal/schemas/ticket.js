@@ -1,4 +1,10 @@
-import {Backlog, Ticket, TicketSpentIn} from "../models"
+import {
+	Backlog, 
+	Ticket, 
+	TicketSpentIn, 
+	TicketLeadTime,
+	TicketStatusSlice,
+} from "../models"
 
 const { Schema } = require('mongoose')
 
@@ -67,6 +73,8 @@ const schema = new Schema({
 
 schema.pre('remove', async function() {
 	await TicketSpentIn.remove(generateMql(`ticket = ${this.key}`))
+	await TicketLeadTime.remove(generateMql(`backlog = ${this.key}`))
+	await TicketStatusSlice.remove(generateMql(`backlog = ${this.key}`))
 })
 
 schema.pre('save', async function() {

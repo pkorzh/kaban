@@ -1,11 +1,14 @@
-#!/usr/bin/env node
+import '../api/dal/connect';
+import { tickets as ticketsDal } from '../api/dal';
+import { 
+	TicketSpentIn,
+	TicketLeadTime,
+	TicketStatusSlice,
+ } from '../api/dal/models';
 
-require('./api/dal/connect')
-const { tickets: ticketsDal } = require('./api/dal')
+import shortid from 'shortid';
 
-const shortid = require('shortid')
-
-random_verb_parts = [
+const random_verb_parts = [
 	'interrupt',
 	'tour',
 	'rejoice',
@@ -20,15 +23,15 @@ random_verb_parts = [
 	'hum'
 ]
 
-random_role_parts = ['User', 'Admin', 'Developer', 'Manager']
+const random_role_parts = ['User', 'Admin', 'Developer', 'Manager']
 
-random_status_parts = ['backlog', 'ready-to-start', 'development', 'code-review', 'ready-to-verification', 'verification']
+const random_status_parts = ['backlog', 'ready-to-start', 'development', 'code-review', 'ready-to-verification', 'verification']
 
-random_priority_parts = ['high', 'low', 'trivial']
+const random_priority_parts = ['high', 'low', 'trivial']
 
-random_type_parts = ['story', 'bug']
+const random_type_parts = ['story', 'bug']
 
-random_unicorn_parts = [
+const random_unicorn_parts = [
 	'Quince Bonny Hooves',
 	'Windy Velvet Horse',
 	'Acorn Candy Nostrils',
@@ -37,7 +40,7 @@ random_unicorn_parts = [
 	'Chestnut Pied Nose',
 ]
 
-random_parts = [
+const random_parts = [
 	'want to',
 	'need to',
 	'require',
@@ -74,9 +77,6 @@ async function main() {
 			priority: {
 				key: random_priority_parts[Math.floor(Math.random()*random_priority_parts.length)]
 			},
-			//status: {
-			//	key: random_status_parts[Math.floor(Math.random()*random_status_parts.length)]
-			//}
 		}
 
 		console.log(ticketSlim.name)

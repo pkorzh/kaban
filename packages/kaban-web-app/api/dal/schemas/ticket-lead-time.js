@@ -2,7 +2,7 @@ const { Schema } = require('mongoose')
 
 import KeySchema from './key'
 
-export default new Schema({
+const schema = new Schema({
 	ticket: {
 		type: KeySchema,
 		required: true,
@@ -23,3 +23,24 @@ export default new Schema({
 		max: 1000,
 	}
 })
+
+schema.statics.migrate = async function _migrate(from, to) {
+	const oldItems = await this.find(from)
+	const promises = []
+
+	for (var i = oldItems.length - 1; i >= 0; i--) {
+		const oldItem = oldItems[i].toJSON()
+
+		const ticketLeadTime = new this({
+			ticket: oldItem.ticket,
+			backlog: to,
+			ms: oldItem.ms || 0,
+		})
+
+		promises.push(ticketLeadTime.save())
+	}
+
+	return Promise.all(promises)
+}
+
+export default schema;

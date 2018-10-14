@@ -2,6 +2,7 @@ import {
 	Backlog,
 	Ticket,
 	TicketSpentIn,
+	TicketLeadTime,
 	BacklogForecast,
 } from './models'
 
@@ -42,11 +43,21 @@ async function patch(key, delta) {
 
 async function removeAndMigrate(key, migrateKey) {
 	await Ticket.update(generateMql(`backlog = ${key}`),
-			{$set: { backlog: {key: migrateKey}}},
-			{multi: true}
-		)
+		{$set: { backlog: {key: migrateKey}}},
+		{multi: true}
+	)
 
 	await TicketSpentIn.update(generateMql(`backlog = ${key}`),
+		{$set: { backlog: {key: migrateKey}}},
+		{multi: true}
+	)
+
+	await TicketLeadTime.migrate(
+		{'backlog.key': key}, 
+		{key: migrateKey},
+	)
+
+	await TicketStatusSlice.update(generateMql(`backlog = ${key}`),
 		{$set: { backlog: {key: migrateKey}}},
 		{multi: true}
 	)
