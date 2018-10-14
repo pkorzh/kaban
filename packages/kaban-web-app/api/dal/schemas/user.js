@@ -41,9 +41,15 @@ const schema = new Schema({
 })
 
 schema.pre('save', function(next){
-	this.password = bcrypt.hashSync(this.password, saltRounds);
+	this.password = bcrypt.hashSync(this.password, saltRounds)
 
-	next();
-});
+	next()
+})
+
+schema.path('email').validate(async function(value, respond) {
+	const count = await this.model('User').count({ email: value });
+
+	respond(count === 0)
+}, 'Email already exists');
 
 export default schema

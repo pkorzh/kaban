@@ -51,7 +51,8 @@ module.exports = {
 		{ src: '~/plugins/vue-select', ssr: false },
 		{ src: '~/plugins/vue-color', ssr: false },
 		`~/plugins/vue-vuelidate`,
-		{ src: '~plugins/vue-simplemde', ssr: false }
+		{ src: '~plugins/vue-simplemde', ssr: false },
+		{ src: '~plugins/vue-toasted', ssr: false}
 	],
 
 	/*

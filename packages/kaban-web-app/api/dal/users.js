@@ -1,4 +1,4 @@
-import {Ticket, User} from './models'
+import {User} from './models'
 import {mongo as generateMql} from "../../tql"
 
 async function insert (userSlim) {
