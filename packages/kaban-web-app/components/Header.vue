@@ -30,81 +30,7 @@
 							</fieldset>
 						</form>
 
-						<div class="dropdown-menu-holder">
-							<ol>
-								<li>
-									<strong class="dropdown-menu-title">
-										<nuxt-link :to="localePath({name: 'boards'})">
-											<span v-t="'boards'"></span>
-										</nuxt-link>
-									</strong>
-									<ul>
-										<li v-for="board in boardList" :key="board.key">
-											<nuxt-link :to="localePath({name: 'boards-key', params: {key: board.key}})">
-												{{ board.name }}
-											</nuxt-link>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<strong class="dropdown-menu-title">
-										<nuxt-link :to="localePath({name: 'backlogs'})">
-											<span v-t="'backlogs'"></span>
-										</nuxt-link>
-									</strong>
-									<ul>
-										<li v-for="backlog in backlogList" :key="backlog.key">
-											<nuxt-link :to="localePath({name: 'backlogs-key', params: {key: backlog.key}})">
-												{{ backlog.name }}
-											</nuxt-link>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<strong class="dropdown-menu-title">
-										<span v-t="'filters'"></span>
-									</strong>
-									<ul>
-										<li>
-											<nuxt-link :to="localePath({name: 'issues-search'})">
-												<span v-t="'search'"></span>
-											</nuxt-link>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<strong class="dropdown-menu-title">
-										<nuxt-link :to="localePath({name: 'flatpages'})">
-											<span v-t="'flatpages'"></span>
-										</nuxt-link>
-									</strong>
-									<ul>
-									</ul>
-								</li>
-
-								<li v-if="$auth.user.scope.includes('admin')">
-									<strong class="dropdown-menu-title">
-										Users
-									</strong>
-									<ul>
-										<li>
-											<nuxt-link :to="localePath({name: 'users'})">Manage Users</nuxt-link>
-										</li>
-										<li>
-											<nuxt-link to="/">Invite team members</nuxt-link>
-										</li>
-									</ul>
-								</li>
-
-								<!--<li>
-									<strong class="dropdown-menu-title">
-										<nuxt-link to="/">Import</nuxt-link>
-									</strong>
-									<ul>
-									</ul>
-								</li>-->
-							</ol>
-						</div>
+						<AppMenu />
 					</b-nav-item-dropdown>
 
 				</b-navbar-nav>
@@ -124,22 +50,12 @@
 
 <script>
 	import { mapGetters } from 'vuex';
+	import AppMenu from './AppMenu';
 
 	export default {
 		name: 'Header',
-		computed: {
-			...mapGetters('boards', {
-				boardList: 'getList'
-			}),
-
-			...mapGetters('backlogs', {
-				backlogList: 'getList'
-			})
-		},
-		watch: {
-			'$route'() {
-				this.$refs.menuDropDown && this.$refs.menuDropDown.hide()
-			}
+		components: {
+			AppMenu,
 		},
 		methods: {
 			logout() {
@@ -148,7 +64,12 @@
 							this.$router.go('login')
 						})
 			}
-		}
+		},
+		watch: {
+			'$route'() {
+				this.$refs.menuDropDown && this.$refs.menuDropDown.hide()
+			}
+		},
 	};
 </script>
 

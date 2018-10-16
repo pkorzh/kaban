@@ -23,6 +23,8 @@ import UserCreateHighlight from './UserCreateHighlight'
 import UserDeleteHighlight from './UserDeleteHighlight'
 
 import Header from './Header'
+import AppMenu from './AppMenu'
+
 import TicketHighlight from './TicketHighlight'
 import TicketCreateHighlight from './TicketCreateHighlight'
 import TicketsTable from './TicketsTable'
@@ -78,6 +80,8 @@ export {
 	UserDeleteHighlight,
 
 	Header,
+	AppMenu,
+
 	TicketHighlight,
 	TicketCreateHighlight,
 	TicketsTable,

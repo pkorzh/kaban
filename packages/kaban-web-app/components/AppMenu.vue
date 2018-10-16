@@ -1,0 +1,91 @@
+<template>
+	<div class="dropdown-menu-holder">
+		<ol>
+			<li>
+				<strong class="dropdown-menu-title">
+					<nuxt-link :to="localePath({name: 'boards'})">
+						<span v-t="'boards'"></span>
+					</nuxt-link>
+				</strong>
+				<ul>
+					<li v-for="board in boardList" :key="board.key">
+						<nuxt-link :to="localePath({name: 'boards-key', params: {key: board.key}})">
+							{{ board.name }}
+						</nuxt-link>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<strong class="dropdown-menu-title">
+					<nuxt-link :to="localePath({name: 'backlogs'})">
+						<span v-t="'backlogs'"></span>
+					</nuxt-link>
+				</strong>
+				<ul>
+					<li v-for="backlog in backlogList" :key="backlog.key">
+						<nuxt-link :to="localePath({name: 'backlogs-key', params: {key: backlog.key}})">
+							{{ backlog.name }}
+						</nuxt-link>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<strong class="dropdown-menu-title">
+					<nuxt-link :to="localePath({name: 'issues-search'})">
+						<span v-t="'search'"></span>
+					</nuxt-link>
+				</strong>
+			</li>
+			<li>
+				<strong class="dropdown-menu-title">
+					<nuxt-link :to="localePath({name: 'flatpages'})">
+						<span v-t="'flatpages'"></span>
+					</nuxt-link>
+				</strong>
+				<ul>
+				</ul>
+			</li>
+
+			<li v-if="$auth.user.scope.includes('admin')">
+				<strong class="dropdown-menu-title">
+					<nuxt-link :to="localePath({name: 'users'})">
+						<span v-t="'users'"></span>
+					</nuxt-link>
+				</strong>
+				<ul>
+					<li>
+						<nuxt-link to="/">Invite team members</nuxt-link>
+					</li>
+				</ul>
+			</li>
+
+			<!--<li>
+				<strong class="dropdown-menu-title">
+					<nuxt-link to="/">Import</nuxt-link>
+				</strong>
+				<ul>
+				</ul>
+			</li>-->
+		</ol>
+	</div>
+</template>
+
+<script>
+	import { mapGetters } from 'vuex';
+
+	export default {
+		name: 'AppMenu',
+		computed: {
+			...mapGetters('boards', {
+				boardList: 'getList'
+			}),
+
+			...mapGetters('backlogs', {
+				backlogList: 'getList'
+			})
+		}
+	};
+</script>
+
+<style>
+</style>
