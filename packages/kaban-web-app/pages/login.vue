@@ -49,7 +49,7 @@
 				fetchBacklogs: 'fetchList'
 			}),
 			...mapActions('workflow', {
-				fetchTransitions: 'etchTransitions'
+				fetchTransitions: 'fetchTransitions'
 			}),
 			...mapActions('status', {
 				fetchStatuses: 'fetchList'
