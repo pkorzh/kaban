@@ -24,6 +24,12 @@
 			</template>
 
 			<ActionsNav>
+				<!--<ActionsNavButton
+					text="Comment"
+					icon="comment-alt"
+					action=""
+					shortkey="" />-->
+
 				<ActionsAllowedTransitions :ticket="ticket" />
 			</ActionsNav>
 		</TopBar>
@@ -62,16 +68,16 @@
 						<TicketDetailsSlimAttachments :ticket="ticket" />
 					</div>-->
 
-					<!--<div class="details-section">
+					<div class="details-section">
 						<b-tabs>
 							<b-tab title="Comments" active>
 								<TicketDetailsSlimComments :ticket="ticket" />
 							</b-tab>
-							<b-tab title="History">
+							<!--<b-tab title="History">
 								<TicketDetailsSlimHistory :ticket="ticket" />
-							</b-tab>
+							</b-tab>-->
 						</b-tabs>
-					</div>-->
+					</div>
 				</b-col>
 				<b-col cols="3">
 					<TicketDetailsSlimAssign :ticket="ticket" />
