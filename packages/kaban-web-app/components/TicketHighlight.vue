@@ -39,15 +39,16 @@
 					text="Comment"
 					icon="comment-alt"
 					action=""
-					shortkey="" />
-				<ActionsNavButton
+					shortkey="" />-->
+
+				<!--<ActionsNavButton
 					text="Assign"
 					icon=""
 					action=""
 					shortkey="" />-->
 
 				<ActionsAllowedTransitions :ticket="ticket" :readonly="backlog.isArchived"/>
-				<!--<div class="actions-nav-separator"></div>
+				<!--
 
 				<ActionsNavButton
 					icon="share"
@@ -82,26 +83,31 @@
 						<TicketDetailsSlimAttachments :ticket="ticket" />
 					</div>-->
 
-					<!--<div class="details-section">
+					<div class="details-section">
 						<b-tabs>
 							<b-tab title="Comments" active>
 								<TicketDetailsSlimComments :ticket="ticket" />
 							</b-tab>
-							<b-tab title="History">
+							<!--<b-tab title="History">
 								<TicketDetailsSlimHistory :ticket="ticket" />
-							</b-tab>
+							</b-tab>-->
 						</b-tabs>
-					</div>-->
+					</div>
 
 				</b-col>
 				<b-col cols="3">
-					<TicketDetailsSlimStatus :ticket="ticket" :readonly="backlog.isArchived"/>
+					<TicketDetailsSlimStatus 
+						:ticket="ticket" 
+						:readonly="backlog.isArchived"/>
 
 					<!--<TicketDetailsSlimEstimations :ticket="ticket" />-->
 
-					<TicketDetailsSlimAssign :ticket="ticket" :readonly="backlog.isArchived"/>
+					<TicketDetailsSlimAssign 
+						:ticket="ticket" 
+						:readonly="backlog.isArchived"/>
 
-					<TicketDetailsSlimDates :ticket="ticket" />
+					<TicketDetailsSlimDates 
+						:ticket="ticket" />
 
 					<!--<TicketDetailsSlimVersion :ticket="ticket" />-->
 
@@ -109,10 +115,6 @@
 			</b-row>
 		</div>
 		<div class="modal-box-footer">
-			<button
-				class="btn btn-outline-danger"
-				@click="$emit('close')">Close</button>
-			<!--<button class="btn btn-primary">Add</button>-->
 		</div>
 	</div>
 </template>

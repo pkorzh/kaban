@@ -20,6 +20,10 @@ export default function ({ $axios, redirect, store }) {
 				item.reporter = store.getters['users/getOne'](item.reporter.key)
 			}
 
+			if (item.author && item.author.key) {
+				item.author = store.getters['users/getOne'](item.author.key)	
+			}
+
 			if (item.backlog && item.backlog.key) {
 				item.backlog = store.getters['backlogs/getOne'](item.backlog.key)
 			}

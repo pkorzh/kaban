@@ -12,7 +12,8 @@ import {
 	TicketLeadTimeSchema,
 	BoardCardColorSchema,
 	BacklogForecastSchema,
-	UserSchema
+	UserSchema,
+	TicketCommentSchema,
 } from './schemas'
 
 const Ticket = mongoose.model('Ticket', TicketSchema)
@@ -30,6 +31,7 @@ const TicketLeadTime = mongoose.model('TicketLeadTime', TicketLeadTimeSchema)
 const BoardCardColor = mongoose.model('BoardCardColor', BoardCardColorSchema)
 const BacklogForecast = mongoose.model('BacklogForecast', BacklogForecastSchema)
 const User = mongoose.model('User', UserSchema)
+const TicketComment = mongoose.model('TicketComment', TicketCommentSchema)
 
 export {
 	Ticket,
@@ -44,4 +46,5 @@ export {
 	BoardCardColor,
 	BacklogForecast,
 	User,
+	TicketComment,
 }

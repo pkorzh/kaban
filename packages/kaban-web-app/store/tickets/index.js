@@ -2,7 +2,12 @@ import Vue from 'vue'
 
 import moduleFactory from '../module-factory'
 
+import comments from './comments'
+
 export default moduleFactory('tickets', {
+	modules: {
+		comments,
+	},
 	mutations: {
 		UPDATE_TICKETS_STATUS(state, {keys, mapsTo}) {
 			keys.forEach(key => Vue.set(state.entities[key], 'status', mapsTo))

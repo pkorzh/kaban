@@ -2,9 +2,11 @@ import {
 	Ticket,
 	Workflow,
 	TicketSpentIn
-} from './models'
+} from '../models'
 
-import { mongo as generateMql } from '../../tql'
+import { mongo as generateMql } from '../../../tql'
+
+import * as comments from './comments'
 
 async function insert(ticketSlim) {
 	ticketSlim.status = Workflow.getTicketInitialStatus()
@@ -85,4 +87,5 @@ export {
 	patch,
 	get,
 	count,
+	comments,
 }
