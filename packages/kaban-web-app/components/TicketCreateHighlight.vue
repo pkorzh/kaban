@@ -60,8 +60,9 @@
 				<b-form-group
 					label="Resolution"
 					horizontal>
-					<b-form-select v-model="ticket.resolution">
-					</b-form-select>
+					<IconedSelect
+						getter="resolutions/getList"
+						v-model="ticket.resolution" />
 				</b-form-group>
 
 				<b-form-group
@@ -97,7 +98,7 @@
 					description: '',
 					priority: this.$store.getters['priorities/getList'][0],
 					type: this.$store.getters['tickettypes/getList'][0],
-					resolution: null,
+					resolution: this.$store.getters['resolutions/getOne']('unresolved'),
 					assignee: this.$store.getters['users/unassigned'],
 					reporter: this.$auth.user,
 					backlog: this.$store.getters['backlogs/getList'][0],

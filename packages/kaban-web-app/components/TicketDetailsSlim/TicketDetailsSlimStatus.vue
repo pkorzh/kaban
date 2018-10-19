@@ -51,9 +51,18 @@
 		<li>
 			<h3>Resolution:</h3>
 			<div>
-				<span>
-					{{ ticket.resolution }}
-				</span>
+				<LiveEditSelect
+					:content="ticket.resolution"
+					:display="ticket.resolution.name"
+					action="tickets/patch"
+					getter="resolutions/getList"
+					path="resolution"
+					:readonly="readonly"
+					:_key="ticket.key">
+						<template slot="display">
+							{{ ticket.resolution.name }}
+						</template>
+					</LiveEditSelect>
 			</div>
 		</li>
 	</ul>

@@ -11,6 +11,7 @@ import workflow from './workflow'
 import status from './status'
 import flatpages from './flatpages'
 import errors from './errors'
+import resolutions from './resolutions'
 
 Vue.use(Vuex)
 
@@ -25,7 +26,8 @@ const store = () => new Vuex.Store({
 		workflow,
 		status,
 		flatpages,
-		errors
+		errors,
+		resolutions,
 	},
 	actions: {
 		async nuxtServerInit({dispatch, state}) {
