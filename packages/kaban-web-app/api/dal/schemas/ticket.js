@@ -50,10 +50,6 @@ const schema = new Schema({
 		type: KeySchema,
 		required: true,
 	},
-	resolvedAt: {
-		type: Date,
-		required: false,
-	},
 	resolution: {
 		type: KeySchema,
 		required: false,

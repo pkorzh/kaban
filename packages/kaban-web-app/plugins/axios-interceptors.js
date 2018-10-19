@@ -36,16 +36,16 @@ export default function ({ $axios, redirect, store }) {
 				item.priority = store.getters['priorities/getOne'](item.priority.key)
 			}
 
+			if (item.resolution && item.resolution.key) {
+				item.resolution = store.getters['resolutions/getOne'](item.resolution.key)
+			}
+
 			if (item.createdAt) {
 				item.createdAt = utc(item.createdAt)
 			}
 
 			if (item.updatedAt) {
 				item.updatedAt = utc(item.updatedAt)
-			}
-
-			if (item.resolvedAt) {
-				item.resolvedAt = utc(item.resolvedAt)
 			}
 
 			if (item.hardDeadlineAt) {

@@ -12,12 +12,6 @@
 				{{ ticket.updatedAt | moment('LL') }}
 			</div>
 		</li>
-		<li>
-			<h3>Resolved at:</h3>
-			<div>
-				{{ ticket.resolvedAt | moment('LL') }}
-			</div>
-		</li>
 	</ul>
 </template>
 

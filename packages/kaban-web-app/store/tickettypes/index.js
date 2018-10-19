@@ -1,6 +1,6 @@
 import moduleFactory from '../module-factory'
 
-export default moduleFactory('tickets', {
+export default moduleFactory('tickettypes', {
 	state: {
 		entities: {
 			'story': {
