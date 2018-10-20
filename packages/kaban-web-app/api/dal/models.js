@@ -14,6 +14,7 @@ import {
 	BacklogForecastSchema,
 	UserSchema,
 	TicketCommentSchema,
+	TicketHistorySchema,
 } from './schemas'
 
 const Ticket = mongoose.model('Ticket', TicketSchema)
@@ -32,6 +33,7 @@ const BoardCardColor = mongoose.model('BoardCardColor', BoardCardColorSchema)
 const BacklogForecast = mongoose.model('BacklogForecast', BacklogForecastSchema)
 const User = mongoose.model('User', UserSchema)
 const TicketComment = mongoose.model('TicketComment', TicketCommentSchema)
+const TicketHistory = mongoose.model('TicketHistory', TicketHistorySchema)
 
 export {
 	Ticket,
@@ -47,4 +49,5 @@ export {
 	BacklogForecast,
 	User,
 	TicketComment,
+	TicketHistory,
 }

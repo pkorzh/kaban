@@ -11,6 +11,7 @@ import BoardCardColorSchema from './board-card-color'
 import BacklogForecastSchema from './backlog-forecast'
 import UserSchema from './user'
 import TicketCommentSchema from './ticket-comment'
+import TicketHistorySchema from './ticket-history'
 
 export {
 	TicketSchema,
@@ -26,4 +27,5 @@ export {
 	BacklogForecastSchema,
 	UserSchema,
 	TicketCommentSchema,
+	TicketHistorySchema,
 }
