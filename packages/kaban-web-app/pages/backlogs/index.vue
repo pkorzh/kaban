@@ -10,6 +10,7 @@
 
 				<ActionsNavButton
 					text="Create Backlog"
+					shortkey="c"
 					action="CreateBacklogAction" />
 
 				<ActionsNavViewSwitcher
