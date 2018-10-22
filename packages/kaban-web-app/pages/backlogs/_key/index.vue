@@ -19,6 +19,7 @@
 
 				<ActionsNavButton
 					text="Create Ticket"
+					shortkey="c"
 					:disabled="backlog.isArchived"
 					action="CreateTicketAction" />
 
