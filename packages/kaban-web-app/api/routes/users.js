@@ -4,7 +4,7 @@ import {users as usersDal} from '../dal'
 import {notifySubscribers} from './sse_clients'
 import jsonwebtoken from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
-import shortid from 'shortid'
+import getnewid from '../newid'
 import jwtPerm from 'express-jwt-permissions'
 import {UnauthorizedError} from 'express-jwt'
 
@@ -22,7 +22,7 @@ router.post('/users', guard.check('admin'), async function (req, res, next) {
 	const userSlim = req.body
 
 	if (!userSlim.key) {
-		userSlim.key = shortid.generate()
+		userSlim.key = getnewid()
 	}
 
 	const user = await usersDal.insert(userSlim)

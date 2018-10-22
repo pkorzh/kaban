@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import shortid from 'shortid'
+import getnewid from '../newid'
 
 import { notifySubscribers } from './sse_clients'
 import {
@@ -21,7 +21,7 @@ router.post('/tickets', async function (req, res, next) {
 	const ticketSlim = req.body
 
 	if (!ticketSlim.key) {
-		ticketSlim.key = shortid.generate()
+		ticketSlim.key = getnewid()
 	}
 
 	const ticket = await ticketsDal.insert({
@@ -56,7 +56,7 @@ router.get('/comments', async function (req, res, next) {
 
 router.post('/comments', async function (req, res, next) {
 	const commentSlim = Object.assign(req.body, {
-		key: shortid.generate(),
+		key: getnewid(),
 		author: {
 			key: req.user.key
 		}

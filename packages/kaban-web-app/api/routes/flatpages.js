@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import shortid from 'shortid'
+import getnewid from '../newid'
 
 import { flatpages as flatpagesDal } from '../dal'
 
@@ -15,7 +15,7 @@ router.post('/flatpages', async function (req, res, next) {
 	const flatpageSlim = req.body
 
 	if (!flatpageSlim.key) {
-		flatpageSlim.key = shortid.generate()
+		flatpageSlim.key = getnewid()
 	}
 
 	const flatpage = await flatpagesDal.insert(flatpageSlim)

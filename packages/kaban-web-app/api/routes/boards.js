@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import shortid from 'shortid'
+import getnewid from '../newid'
 
 import { boards as boardsDal } from '../dal'
 import { notifySubscribers } from './sse_clients'
@@ -51,7 +51,7 @@ router.post('/card-color', async function (req, res, next) {
 	const cardColorSlim = req.body
 
 	if (!cardColorSlim.key) {
-		cardColorSlim.key = shortid.generate()
+		cardColorSlim.key = getnewid()
 	}
 
 	const cm = await boardsDal.cardColor.insert(cardColorSlim)

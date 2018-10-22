@@ -1,5 +1,4 @@
 import { Router } from 'express'
-import shortid from 'shortid'
 
 import { notifySubscribers } from './sse_clients'
 
