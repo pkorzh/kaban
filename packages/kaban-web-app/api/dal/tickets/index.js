@@ -7,6 +7,9 @@ import {
 import { mongo as generateMql } from '../../../tql'
 
 import * as comments from './comments'
+import * as history from './history'
+
+import { DataBaseError } from '../../error-handlers'
 
 async function insert(ticketSlim) {
 	ticketSlim.status = Workflow.getTicketInitialStatus()
@@ -75,10 +78,22 @@ async function get(tql) {
 	return tickets[0]
 }
 
-async function patch(key, delta) {
+async function patch(key, delta, user) {
+	if (!user) {
+		throw new DataBaseError('user_missing', {
+			message: 'Please provide a user to patch'
+		})
+	}
+
+	const oldTicket = await get(`key = ${key}`)
+
 	await Ticket.updateOne({ key }, { $set: delta})
 
-	return get(`key = ${key}`)
+	const ticket = await get(`key = ${key}`)
+
+	await history.track(oldTicket, ticket, user)
+
+	return ticket
 }
 
 export {
@@ -88,4 +103,5 @@ export {
 	get,
 	count,
 	comments,
+	history,
 }
