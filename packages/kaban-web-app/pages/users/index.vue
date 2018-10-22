@@ -10,6 +10,7 @@
 
 				<ActionsNavButton
 					text="Create User"
+					shortkey="c"
 					action="CreateUserAction" />
 			</ActionsNav>
 

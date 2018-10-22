@@ -1,6 +1,8 @@
 <template>
 	<button
 		class="btn btn-light"
+		v-shortkey="[shortkey]"
+		@shortkey="handleAction()"
 		@click="handleAction()">
 			<font-awesome-icon v-if="icon" :icon="icon" />
 			{{ text }}</button>
@@ -19,12 +21,12 @@
 			},
 			shortkey: {
 				type: String,
-				required: false,
+				required: false
 			},
 			icon: {
 				type: String,
 				required: false
-			}
+			},
 		},
 		methods: {
 			handleAction() {
