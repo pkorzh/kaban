@@ -57,10 +57,6 @@ const schema = new Schema({
 	lastTransitionAt: {
 		type: Date,
 		required: true,
-	},
-	spentIn: {
-		type: {},
-		required: false,
 	}
 }, {
 	timestamps: true,

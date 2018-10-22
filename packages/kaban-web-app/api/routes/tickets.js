@@ -41,7 +41,8 @@ router.patch('/tickets/:key', async function (req, res, next) {
 
 	const ticket = await ticketsDal.patch(
 		req.params.key,
-		ticketDelta
+		ticketDelta,
+		req.user,
 	)
 
 	notifySubscribers('updateTicket', ticket)
@@ -72,6 +73,10 @@ router.delete('/comments/:key', async function (req, res, next) {
 	await ticketsDal.comments.remove(req.params.key)
 	notifySubscribers('deleteComment', req.params.key)
 	return res.sendStatus(200)
+})
+
+router.get('/history', async function (req, res, next) {
+	return res.json(await ticketsDal.history.query(req.query.tql))
 })
 
 export default router

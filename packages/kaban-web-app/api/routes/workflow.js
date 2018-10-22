@@ -33,7 +33,7 @@ router.post('/workflow/transition', async function(req, res, next) {
 				await ticketsDal.patch(key, {
 					status: workflowDal.status(to),
 					lastTransitionAt: new Date(),
-				})
+				}, req.user)
 
 				await workflowDal.transition(ticket, to)
 			} else {

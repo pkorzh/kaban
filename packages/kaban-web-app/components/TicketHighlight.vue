@@ -88,9 +88,9 @@
 							<b-tab title="Comments" active>
 								<TicketDetailsSlimComments :ticket="ticket" />
 							</b-tab>
-							<!--<b-tab title="History">
+							<b-tab title="History">
 								<TicketDetailsSlimHistory :ticket="ticket" />
-							</b-tab>-->
+							</b-tab>
 						</b-tabs>
 					</div>
 

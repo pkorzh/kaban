@@ -3,10 +3,12 @@ import Vue from 'vue'
 import moduleFactory from '../module-factory'
 
 import comments from './comments'
+import history from './history'
 
 export default moduleFactory('tickets', {
 	modules: {
 		comments,
+		history,
 	},
 	mutations: {
 		UPDATE_TICKETS_STATUS(state, {keys, mapsTo}) {
