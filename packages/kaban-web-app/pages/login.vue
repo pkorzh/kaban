@@ -79,9 +79,6 @@
 								this.fetchUsers()
 							])
 						})
-						.catch(e => {
-							this.error = e + ''
-						})
 			}
 		}
 	}

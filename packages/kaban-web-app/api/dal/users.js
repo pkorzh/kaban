@@ -21,6 +21,10 @@ async function get(query) {
 	return await User.findOne(query).select('+password')
 }
 
+async function getSecure(query) {
+	return await User.findOne(query)
+}
+
 async function patch(key, delta) {
 	await User.updateOne({ key }, { $set: delta})
 
@@ -40,6 +44,7 @@ export {
 	insert,
 	query,
 	get,
+	getSecure,
 	patch,
 	count,
 	remove,

@@ -64,7 +64,7 @@ router.post('/users/login', async function (req, res, next) {
 	})
 
 	if (!user) {
-		throw UnauthorizedError('login_error', {
+		throw new UnauthorizedError('login_error', {
 			message: 'No user found'
 		})
 	}
@@ -81,7 +81,7 @@ router.post('/users/login', async function (req, res, next) {
 
 		res.json({token})
 	} else {
-		throw UnauthorizedError('login_error', {
+		throw new UnauthorizedError('login_error', {
 			message: 'Wrong password'
 		})
 	}
@@ -92,7 +92,7 @@ router.post('/users/logout', (req, res, next) => {
 })
 
 router.get('/users/me', async (req, res, next) => {
-	const user = await usersDal.get({key: {$eq: req.user.key}})
+	const user = await usersDal.getSecure({key: {$eq: req.user.key}})
 
 	res.json({user})
 })

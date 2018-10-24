@@ -38,7 +38,7 @@ module.exports = {
 	*/
 	plugins: [
 		'~/plugins/font-awesome',
-		'~plugins/vue-js-modal',
+		'~/plugins/vue-js-modal',
 		{ src: '~/plugins/vue-shortkey', ssr: false },
 		'~/plugins/kaban-event-bus.js',
 		'~/plugins/kaban-components',
@@ -70,7 +70,7 @@ module.exports = {
 			],
 			defaultLocale: 'en',
 			lazy: true,
-			langDir: 'lang/'
+			langDir: 'lang/',
 		}],
 
 		['bootstrap-vue/nuxt', {
