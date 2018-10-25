@@ -79,5 +79,15 @@ router.get('/history', async function (req, res, next) {
 	return res.json(await ticketsDal.history.query(req.query.tql))
 })
 
+router.post('/rank', async function (req, res, next) {
+	const r = await ticketsDal.rank.move(
+		`key = ${req.body.keys[0]}`, 
+		req.body.before,
+		req.body.after,
+	)
+
+	return res.json(r)
+})
+
 export default router
 

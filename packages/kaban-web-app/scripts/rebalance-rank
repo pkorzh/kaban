@@ -1,0 +1,39 @@
+import '../api/dal/connect';
+
+import { tickets as ticketsDal } from '../api/dal';
+
+import { 
+	Ticket,
+	Backlog,
+ } from '../api/dal/models';
+
+async function main() {
+	let backlogs = await Backlog.find({});
+
+	backlogs = backlogs.filter(b => !b.isArchived)
+
+	const promises = [];
+
+	for (var i = backlogs.length - 1; i >= 0; i--) {
+		const backlog = backlogs[i];
+
+		console.log(backlog.name);
+
+		const tickets = await Ticket.find({'backlog.key': backlog.key}).sort('rank');
+
+		for(let j = 0; j < tickets.length; j++) {
+			console.log(`\t${tickets[j].key}`);
+
+			promises.push(Ticket.updateOne({key: tickets[j].key}, {$set: {
+				rank: (j + 1) * 1000
+			}}))
+		}
+	}
+
+	await Promise.all(promises);
+
+	console.log('Done')
+	process.exit(0)
+}
+
+main()

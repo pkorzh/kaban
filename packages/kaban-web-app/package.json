@@ -13,7 +13,8 @@
     "take-status-slice": "babel-node --presets env --plugins transform-object-rest-spread ./scripts/take-status-slice",
     "calc-percentile": "babel-node --presets env --plugins transform-object-rest-spread ./scripts/calc-percentile",
     "add-test-data": "babel-node --presets env --plugins transform-object-rest-spread ./scripts/add-test-data",
-    "create-super-user": "babel-node --presets env --plugins transform-object-rest-spread ./scripts/create-super-user"
+    "create-super-user": "babel-node --presets env --plugins transform-object-rest-spread ./scripts/create-super-user",
+    "rebalance-rank": "babel-node --presets env --plugins transform-object-rest-spread ./scripts/rebalance-rank"
   },
   "dependencies": {
     "@babel/node": "^7.0.0",

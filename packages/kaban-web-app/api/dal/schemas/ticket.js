@@ -57,6 +57,10 @@ const schema = new Schema({
 	lastTransitionAt: {
 		type: Date,
 		required: true,
+	},
+	rank: {
+		type: Number,
+		required: false,
 	}
 }, {
 	timestamps: true,
@@ -78,11 +82,11 @@ schema.pre('save', async function() {
 })
 
 schema.pre('updateOne', async function() {
-	const ticket = await Ticket.findOne(generateMql(`key = ${this._conditions.key}`))
-	const backlog = await Backlog.findOne(generateMql(`key = ${ticket.backlog.key}`))
+	const ticket = await Ticket.findOne(this._conditions);
+	const backlog = await Backlog.findOne(generateMql(`key = ${ticket.backlog.key}`));
 
 	if (backlog.isArchived) {
-		throw new Error('Can\'t update ticket, backlog is archived')
+		throw new Error('Can\'t update ticket, backlog is archived');
 	}
 })
 
