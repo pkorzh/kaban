@@ -2,8 +2,8 @@ import UnauthorizedError from 'express-jwt'
 import MongoError from 'mongodb'
 
 export function authErrorHandler(err, req, res, next) {
-	if (typeof err !== UnauthorizedError) {
-		next(err)
+	if (!(err instanceof UnauthorizedError)) {
+		throw err
 	}
 
 	if (err.code === 'permission_denied') {
@@ -23,7 +23,7 @@ export function authErrorHandler(err, req, res, next) {
 
 export function dbErrorHandler(err, req, res, next) {
 	if (!(err instanceof DataBaseError)) {
-		next(err)
+		throw err
 	}
 
 	if (err.code === 'not_found') {
