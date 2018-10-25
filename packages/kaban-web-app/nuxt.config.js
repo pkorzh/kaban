@@ -99,7 +99,7 @@ module.exports = {
 				endpoints: {
 					login: { url: '/api/users/login', method: 'post', propertyName: 'token' },
 					logout: { url: '/api/users/logout', method: 'post' },
-					user: { url: '/api/users/me', method: 'get', propertyName: 'user' }
+					user: { url: '/api/users/me', method: 'get', propertyName: false }
 				}
 			}
 		}
@@ -125,6 +125,8 @@ module.exports = {
 					loader: 'eslint-loader',
 					exclude: /(node_modules)/
 				})
+
+				config.devtool = '#source-map'
 			}
 		}
 	},

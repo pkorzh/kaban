@@ -61,24 +61,21 @@
 				this.error = null
 
 				const valid = await this.$validator.validateAll()
+
 				if (!valid) return
 
-				return this.$auth
-						.loginWith('local', {
-							data: {
-								email: this.form.email,
-								password: this.form.password
-							}
-						})
-						.then((res) => {
-							return Promise.all([
-								this.fetchBoards(),
-								this.fetchBacklogs(),
-								this.fetchTransitions(),
-								this.fetchStatuses(),
-								this.fetchUsers()
-							])
-						})
+				await this.$auth.loginWith('local', {
+					data: {
+						email: this.form.email,
+						password: this.form.password
+					}
+				})
+
+				this.fetchBoards()
+				this.fetchBacklogs()
+				this.fetchTransitions()
+				this.fetchStatuses()
+				this.fetchUsers()
 			}
 		}
 	}
