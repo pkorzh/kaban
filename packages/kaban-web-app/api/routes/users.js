@@ -94,7 +94,7 @@ router.post('/users/logout', (req, res, next) => {
 router.get('/users/me', async (req, res, next) => {
 	const user = await usersDal.getSecure({key: {$eq: req.user.key}})
 
-	res.json({user})
+	res.json(user)
 })
 
 
