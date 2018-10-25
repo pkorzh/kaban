@@ -3,7 +3,7 @@
 		<b-row>
 			<b-col cols="8">
 				<div class="dropdown-menu dropdown-menu-mainscreen show">
-					<AppMenu />
+					<AppMenu v-if="$auth.$state.loggedIn" />
 				</div>
 			</b-col>
 		</b-row>

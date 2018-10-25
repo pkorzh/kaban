@@ -30,7 +30,7 @@
 							</fieldset>
 						</form>
 
-						<AppMenu />
+						<AppMenu v-if="$auth.$state.loggedIn" />
 					</b-nav-item-dropdown>
 
 				</b-navbar-nav>
@@ -61,7 +61,7 @@
 			logout() {
 				this.$auth.logout()
 						.then(() => {
-							this.$router.go('login')
+							return this.$router.go('login')
 						})
 			}
 		},
