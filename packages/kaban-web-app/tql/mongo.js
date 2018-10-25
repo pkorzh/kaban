@@ -24,7 +24,7 @@ function resolve(astb) {
 				throw new Error(`Unexpected operator ${astb.lexeme}`)
 		}
 	} else {
-		const lVal = astb.left.lexeme === 'key' || astb.left.lexeme === 'createdAt' || astb.left.lexeme === 'updatedAt'
+		const lVal = astb.left.lexeme === 'rank' || astb.left.lexeme === 'key' || astb.left.lexeme === 'createdAt' || astb.left.lexeme === 'updatedAt'
 			? astb.left.lexeme
 			: `${astb.left.lexeme}.key`
 

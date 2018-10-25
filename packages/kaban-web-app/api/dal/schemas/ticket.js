@@ -61,6 +61,10 @@ const schema = new Schema({
 	rank: {
 		type: Number,
 		required: false,
+		min: 0,
+		index: {
+			unique: true
+		},
 	}
 }, {
 	timestamps: true,

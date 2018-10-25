@@ -26,6 +26,7 @@ router.post('/tickets', async function (req, res, next) {
 
 	const ticket = await ticketsDal.insert({
 		...ticketSlim,
+		rank: await ticketsDal.rank.next(ticketSlim.backlog),
 		lastTransitionAt: new Date()
 	})
 
@@ -80,13 +81,7 @@ router.get('/history', async function (req, res, next) {
 })
 
 router.post('/rank', async function (req, res, next) {
-	const r = await ticketsDal.rank.move(
-		`key = ${req.body.keys[0]}`, 
-		req.body.before,
-		req.body.after,
-	)
-
-	return res.json(r)
+	return res.json(await ticketsDal.rank.rank(req.body))
 })
 
 export default router

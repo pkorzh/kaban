@@ -69,24 +69,17 @@
 			draggable: Draggable,
 		},
 		methods: {
-			...mapActions('tickets', {
-				rankTicket: 'rank',
-			}),
+			...mapActions('tickets', ['rank']),
 
 			async onDraggableMove({item, newIndex, oldIndex}) {
 				const keys = [item.dataset.id];
 
-				const {id: beforeId, rank: beforeRank} = document
-					.querySelector(`[data-index="${newIndex-1}"]`).dataset;
-
-				const {id: afterId, rank: afterRank} = document
+				const { id: targetKey, rank } = document
 					.querySelector(`[data-index="${newIndex}"]`).dataset;
 
-				await this.rankTicket({
+				await this.rank({ 
 					keys, 
-					before: beforeId, 
-					after: afterId,
-					estimatedRank: (parseFloat(beforeRank) + parseFloat(afterRank)) / 2,
+					...(newIndex < oldIndex ? { before: targetKey } : { after: targetKey })
 				});
 			}
 		},
