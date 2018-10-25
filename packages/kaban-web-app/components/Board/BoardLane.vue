@@ -75,7 +75,7 @@
 			draggable: Draggable,
 		},
 		methods: {
-			...mapActions('tickets', ['rank']),
+			...mapActions('tickets', ['rank', 'transition']),
 
 			queueTickets(status) {
 				return this.tickets.filter(ticket =>
@@ -103,11 +103,20 @@
 				});
 			},
 
-			onDraggableAdd() {
-				console.log(arguments);
+			onDraggableAdd({item}) {
+				const {id: key, mapsto } = item.firstChild.dataset;
+
+				this.transition({
+					tickets: [this.getOneTicket(key)], 
+					mapsTo: this.mapsTo,
+				});
 			}
 		},
 		computed: {
+			...mapGetters('tickets', {
+				'getOneTicket': 'getOne'
+			}),
+
 			itemCount() {
 				if (!this.tickets) return '';
 				return this.tickets.length;
@@ -135,10 +144,7 @@
 					const ticketsToTransition = tickets.filter(ticket =>
 						ticket.status.key !== this.mapsTo.key)
 
-					ticketsToTransition.length && this.$bus.$emit('kaban::board::draggables', {
-						tickets: ticketsToTransition,
-						mapsTo: this.mapsTo,
-					})
+
 				}
 			}
 		},

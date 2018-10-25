@@ -100,9 +100,6 @@
 			},
 		},
 		methods: {
-			...mapActions('tickets', [
-				'transition'
-			]),
 			deleteBoard(key) {
 				this.$kaban.dispatch('DeleteBoardAction', {
 					sender: this,
@@ -111,14 +108,6 @@
 					}
 				})
 			}
-		},
-		async mounted() {
-			this.$bus.$on('kaban::board::draggables', ({tickets, mapsTo}) => {
-				this.transition({tickets, mapsTo})
-			})
-		},
-		beforeDestroy() {
-			this.$bus.$off('kaban::board::draggables')
 		}
 	}
 </script>
