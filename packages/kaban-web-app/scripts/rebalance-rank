@@ -12,7 +12,7 @@ async function main() {
 
 	const promises = backlogs
 		.filter(b => !b.isArchived)
-		.map(b => ticketsDal.rank.rebalance(backlogs[i]))
+		.map(b => ticketsDal.rank.rebalance(b))
 
 	await Promise.all(promises);
 

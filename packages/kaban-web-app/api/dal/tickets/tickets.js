@@ -2,11 +2,13 @@ import {
 	Ticket,
 	Workflow,
 	TicketSpentIn
-} from '../models'
+} from '../models';
 
-import { mongo as generateMql } from '../../../tql'
+import { mongo as generateMql } from '../../../tql';
 
-import { DataBaseError } from '../../error-handlers'
+import { DataBaseError } from '../../error-handlers';
+
+import { track as trackHistory } from './history';
 
 async function insert(ticketSlim) {
 	ticketSlim.status = Workflow.getTicketInitialStatus()
@@ -88,7 +90,7 @@ async function patch(key, delta, user) {
 
 	const ticket = await get(`key = ${key}`)
 
-	await history.track(oldTicket, ticket, user)
+	await trackHistory(oldTicket, ticket, user)
 
 	return ticket
 }

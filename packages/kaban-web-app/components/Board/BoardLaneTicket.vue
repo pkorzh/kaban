@@ -7,7 +7,7 @@
 				:href="ticketUrl(ticket)"
 				class="card-link"
 				v-on:click.prevent.stop="highlight(ticket, backlog)">
-				{{ ticket.name }}
+				{{ ticket.name }} {{ ticket.rank }}
 			</a>
 		</h3>
 		<ul class="card-list card-list-tags">
