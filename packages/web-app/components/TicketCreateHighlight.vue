@@ -88,7 +88,7 @@
 </template>
 
 <script>
-	import { mapActions, mapGetters } from 'vuex'
+	import { mapActions } from 'vuex'
 
 	export default {
 		props: {
@@ -124,11 +124,6 @@
 				await this.createTicket(this.ticket)
 				this.$emit('close')
 			},
-		},
-		computed: {
-			...mapGetters('workflow/status', {
-				getStatus: 'getOne'
-			})
 		}
 	}
 </script>
