@@ -27,11 +27,19 @@
 				type: String,
 				required: false
 			},
+			payload: {
+				type: Object,
+				required: false,
+				default: () => {}
+			}
 		},
 		methods: {
 			handleAction() {
 				if (this.action) {
-					this.$kaban.dispatch(this.action, {sender: this})
+					this.$kaban.dispatch(this.action, {
+						sender: this,
+						payload: this.payload
+					})
 				}
 
 				this.$emit('click')

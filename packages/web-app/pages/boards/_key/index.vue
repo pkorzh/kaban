@@ -21,6 +21,7 @@
 				<ActionsNavButton
 					text="Create Ticket"
 					action="CreateTicketAction"
+					:payload="{status: ticketInitialStatus}"
 					shortkey="c" />
 
 				<ActionsNavViewSwitcher v-model="boardView" />
@@ -95,9 +96,19 @@
 				tickets: 'getList',
 			}),
 
+			...mapGetters('statuses', {
+				getStatus: 'getOne',
+			}),
+
 			board() {
 				return this.getBoard(this.$route.params.key)
 			},
+
+			ticketInitialStatus() {
+				const mapsTo = this.board.lanes[0].mapsTo
+
+				return Array.isArray(mapsTo) ? mapsTo[0].key : mapsTo.key
+			}
 		},
 		methods: {
 			deleteBoard(key) {
