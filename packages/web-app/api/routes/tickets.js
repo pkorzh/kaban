@@ -14,7 +14,7 @@ router.get('/tickets', async function (req, res, next) {
 		board: req.query.board
 	})
 
-	return res.json(tickets)
+	return res.json(tickets);
 })
 
 router.post('/tickets', async function (req, res, next) {
@@ -26,6 +26,7 @@ router.post('/tickets', async function (req, res, next) {
 
 	const ticket = await ticketsDal.insert({
 		...ticketSlim,
+		rank: await ticketsDal.rank.next(ticketSlim.backlog),
 		lastTransitionAt: new Date()
 	})
 
@@ -77,6 +78,10 @@ router.delete('/comments/:key', async function (req, res, next) {
 
 router.get('/history', async function (req, res, next) {
 	return res.json(await ticketsDal.history.query(req.query.tql))
+})
+
+router.post('/rank', async function (req, res, next) {
+	return res.json(await ticketsDal.rank.rank(req.body))
 })
 
 export default router

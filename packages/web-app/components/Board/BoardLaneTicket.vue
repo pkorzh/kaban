@@ -8,6 +8,9 @@
 				class="card-link"
 				v-on:click.prevent.stop="highlight(ticket, backlog)">
 				{{ ticket.name }}
+				<small>
+					<code>{{ ticket.rank }}</code>
+				</small>
 			</a>
 		</h3>
 		<ul class="card-list card-list-tags">

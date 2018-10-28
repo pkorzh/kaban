@@ -1,0 +1,5 @@
+import '../api/dal/connect';
+
+import { tickets as ticketsDal } from '../api/dal';
+
+ticketsDal.rank.rebalance().then(() => console.log('Done'));

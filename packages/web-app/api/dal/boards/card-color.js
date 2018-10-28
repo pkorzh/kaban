@@ -7,7 +7,7 @@ export async function query(tql) {
 }
 
 export async function get(tql) {
-	const cardColors = await query(tql)
+	const cardColors = await query(tql);
 
 	if (cardColors.length !== 1) {
 		throw new Error('Get returned multiple elements')

@@ -1,7 +1,7 @@
-export * from './ast'
+export * from './ast';
 
-import predicate from './predicate'
-import mongo from './mongo'
+import predicate from './predicate';
+import mongo from './mongo';
 
 export {
 	predicate,

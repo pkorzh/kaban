@@ -12,7 +12,11 @@ export default moduleFactory('tickets', {
 	},
 	mutations: {
 		UPDATE_TICKETS_STATUS(state, {keys, mapsTo}) {
-			keys.forEach(key => Vue.set(state.entities[key], 'status', mapsTo))
+			keys.forEach(key => Vue.set(state.entities[key], 'status', mapsTo));
+		},
+		UPDATE_TICKETS_POSITION(state, rankChanges) {
+			rankChanges.forEach(rankChange => 
+				Vue.set(state.entities[rankChange.key], 'rank', rankChange.rank));
 		}
 	},
 	actions: {
@@ -30,6 +34,14 @@ export default moduleFactory('tickets', {
 			}, (error => {
 				commit('UPDATE_TICKETS_STATUS', {keys, mapsTo: oldMapsTo})
 			}))
-		}
+		},
+		async rank({commit, getters: {getOne}}, {keys, before, after}) {
+			const rankChanges = await this.$axios.$post(
+				`/api/rank`, 
+				{keys, before, after}
+			);
+
+			commit('UPDATE_TICKETS_POSITION', rankChanges);
+		},
 	}
 })
