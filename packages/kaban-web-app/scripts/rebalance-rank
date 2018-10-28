@@ -2,22 +2,4 @@ import '../api/dal/connect';
 
 import { tickets as ticketsDal } from '../api/dal';
 
-import { 
-	Ticket,
-	Backlog,
- } from '../api/dal/models';
-
-async function main() {
-	let backlogs = await Backlog.find({});
-
-	const promises = backlogs
-		.filter(b => !b.isArchived)
-		.map(b => ticketsDal.rank.rebalance(b))
-
-	await Promise.all(promises);
-
-	console.log('Done')
-	process.exit(0)
-}
-
-main()
+ticketsDal.rank.rebalance().then(() => console.log('Done'));

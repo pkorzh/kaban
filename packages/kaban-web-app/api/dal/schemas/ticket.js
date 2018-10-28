@@ -62,14 +62,12 @@ const schema = new Schema({
 		type: Number,
 		required: false,
 		min: 0,
-		index: {
-			unique: true
-		},
+		index: true,
 	}
 }, {
 	timestamps: true,
 	strict: true,
-})
+});
 
 schema.pre('remove', async function() {
 	await TicketSpentIn.remove(generateMql(`ticket = ${this.key}`))
@@ -87,9 +85,10 @@ schema.pre('save', async function() {
 
 schema.pre('updateOne', async function() {
 	const ticket = await Ticket.findOne(this._conditions);
+	
 	const backlog = await Backlog.findOne(generateMql(`key = ${ticket.backlog.key}`));
 
-	if (backlog.isArchived) {
+	if (backlog && backlog.isArchived) {
 		throw new Error('Can\'t update ticket, backlog is archived');
 	}
 })

@@ -20,7 +20,10 @@
 				</div>
 
 				<div class="table-list-line-name">
-					<span>{{ ticket.name }} {{ ticket.rank }}</span>
+					<span>{{ ticket.name }}</span>
+					<small>
+						<code>{{ ticket.rank }}</code>
+					</small>
 				</div>
 
 				<div class="table-list-line-status">

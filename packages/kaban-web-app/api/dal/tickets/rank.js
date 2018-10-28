@@ -10,17 +10,17 @@ import {
 	get as getTicket,
 } from './tickets';
 
-const GAP = 1000;
+const GAP = 10000;
 
-export async function next({key}) {
-	const [ lastByRank ] = await Ticket.find({'backlog.key': key})
+export async function next() {
+	const [ lastByRank ] = await Ticket.find({})
 		.sort({rank: -1}).limit(1);
 
 	return lastByRank.rank + GAP;
 }
 
-export async function rebalance({key}) {
-	const tickets = await Ticket.find({'backlog.key': key})
+export async function rebalance() {
+	const tickets = await Ticket.find({})
 		.sort({rank: 1});
 
 	const promises = [];
@@ -38,7 +38,6 @@ export async function rank({keys, before, after}) {
 	const targetTicket = await getTicket(`key = ${before || after}`);
 
 	const siblingTicketFilterKwargs = {
-		'backlog.key': targetTicket.backlog.key,
 		rank: before ? { $lt: targetTicket.rank } : { $gt: targetTicket.rank }
 	};
 

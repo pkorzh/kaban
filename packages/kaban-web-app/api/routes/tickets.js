@@ -14,7 +14,7 @@ router.get('/tickets', async function (req, res, next) {
 		board: req.query.board
 	})
 
-	return res.json(tickets)
+	return res.json(tickets);
 })
 
 router.post('/tickets', async function (req, res, next) {
