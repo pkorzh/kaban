@@ -59,13 +59,13 @@
 				</ul>
 			</li>
 
-			<!--<li>
+			<li>
 				<strong class="dropdown-menu-title">
-					<nuxt-link to="/">Import</nuxt-link>
+					<a href="https://docs.kaban.app/" target="_blank">Docs</a>
 				</strong>
 				<ul>
 				</ul>
-			</li>-->
+			</li>
 		</ol>
 	</div>
 </template>
