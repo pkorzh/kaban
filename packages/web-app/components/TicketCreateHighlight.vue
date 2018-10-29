@@ -91,6 +91,12 @@
 	import { mapActions } from 'vuex'
 
 	export default {
+		props: {
+			status: {
+				type: String,
+				required: false
+			}
+		},
 		data() {
 			return {
 				ticket: {
@@ -102,6 +108,7 @@
 					assignee: this.$store.getters['users/unassigned'],
 					reporter: this.$auth.user,
 					backlog: this.$store.getters['backlogs/getList'][0],
+					status: this.status ? this.$store.getters['status/getOne'](this.status): null,
 				}
 			}
 		},

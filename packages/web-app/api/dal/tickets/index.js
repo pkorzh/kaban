@@ -1,7 +1,7 @@
 import * as comments from './comments'
 import * as history from './history'
 import * as rank from './rank'
-import { 
+import {
 	insert,
 	query,
 	patch,

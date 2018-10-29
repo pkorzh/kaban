@@ -11,7 +11,8 @@ import { DataBaseError } from '../../error-handlers';
 import { track as trackHistory } from './history';
 
 async function insert(ticketSlim) {
-	ticketSlim.status = Workflow.getTicketInitialStatus()
+	if (!ticketSlim.status)
+		ticketSlim.status = Workflow.getTicketInitialStatus()
 
 	const ticket = new Ticket(ticketSlim)
 
