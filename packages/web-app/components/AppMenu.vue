@@ -59,6 +59,19 @@
 				</ul>
 			</li>
 
+			<li v-if="$auth.user.scope.includes('admin')">
+				<strong class="dropdown-menu-title">
+					<nuxt-link :to="localePath({name: 'kaban-configuration-attachments'})">
+						<span v-t="'kabanConfiguration'"></span>
+					</nuxt-link>
+				</strong>
+				<ul>
+					<li>
+						<nuxt-link :to="localePath({name: 'kaban-configuration-attachments'})">Attachments</nuxt-link>
+					</li>
+				</ul>
+			</li>
+
 			<li>
 				<strong class="dropdown-menu-title">
 					<a href="https://docs.kaban.app/" target="_blank">Docs</a>

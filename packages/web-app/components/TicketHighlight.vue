@@ -71,13 +71,13 @@
 							:isArchived="backlog.isArchived" />
 					</div>
 
-					<!--<div class="details-section">
+					<div class="details-section">
 						<h3>Attachments:</h3>
 
-						<TicketDetailsSlimDropbox  :ticket="ticket" />
+						<TicketDetailsSlimDropbox :ticket="ticket" />
 
 						<TicketDetailsSlimAttachments :ticket="ticket" />
-					</div>-->
+					</div>
 
 					<div class="details-section">
 						<b-tabs>

@@ -17,5 +17,6 @@ export default {
 	configureBacklog: 'Configure Backlog',
 	noDate: 'No date set',
 	color: 'Color',
-	users: 'Users'
+	users: 'Users',
+	kabanConfiguration: 'Kaban Configuration',
 }
