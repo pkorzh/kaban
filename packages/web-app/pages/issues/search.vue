@@ -79,10 +79,10 @@
 				})
 			},
 			async loadMore(amount) {
-				const lastTicketCreatedAt = this.tickets[this.tickets.length - 1].createdAt
+				const lastTicketRank = this.tickets[this.tickets.length - 1].rank
 
 				await this.fetchMoreTickets({
-					tql: `${this.tql ? this.tql + ' and ' : ''}createdAt > "${lastTicketCreatedAt}"`,
+					tql: `${this.tql ? this.tql + ' and ' : ''}rank > "${lastTicketRank}"`,
 					limit: amount
 				})
 			}
