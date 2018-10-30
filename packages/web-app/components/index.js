@@ -51,6 +51,7 @@ import TicketDetailsSlimHistory from './TicketDetailsSlim/TicketDetailsSlimHisto
 import TicketDetailsSlimDropbox from './TicketDetailsSlim/TicketDetailsSlimDropbox'
 import TicketDetailsSlimAttachments from './TicketDetailsSlim/TicketDetailsSlimAttachments'
 import TicketDetailsSlimPostComment from './TicketDetailsSlim/TicketDetailsSlimPostComment'
+import TicketDetailsSlimDescription from './TicketDetailsSlim/TicketDetailsSlimDescription'
 
 import IconedSelect from './Fields/IconedSelect.vue'
 import InfiniteScroll from './InfiniteScroll'
@@ -109,6 +110,7 @@ export {
 	TicketDetailsSlimDropbox,
 	TicketDetailsSlimAttachments,
 	TicketDetailsSlimPostComment,
+	TicketDetailsSlimDescription,
 
 	IconedSelect,
 	InfiniteScroll

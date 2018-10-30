@@ -66,13 +66,9 @@
 					<div class="details-section">
 						<h3>Description:</h3>
 
-						<LiveEditTextarea
-							:content="ticket.description"
-							:display="ticket.description"
-							action="tickets/patch"
-							path="description"
-							:readonly="backlog.isArchived"
-							:_key="ticket.key" />
+						<TicketDetailsSlimDescription 
+							:ticket="ticket"
+							:isArchived="backlog.isArchived" />
 					</div>
 
 					<!--<div class="details-section">

@@ -23,7 +23,9 @@
 				@mouseout="toggleHover"
 				@mouseover="toggleHover"
 				>
-					<div v-html="content"></div>
+					<slot name="display">
+						<div v-html="content"></div>
+					</slot>
 					<font-awesome-icon icon="pen" />
 				</div>
 		</template>

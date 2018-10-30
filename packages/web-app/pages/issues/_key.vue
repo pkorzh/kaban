@@ -53,12 +53,9 @@
 					<div class="details-section">
 						<h3 v-t="'description'"></h3>
 
-						<LiveEditTextarea
-							:content="ticket.description"
-							:display="ticket.description"
-							action="tickets/patch"
-							path="description"
-							:_key="ticket.key" />
+						<TicketDetailsSlimDescription 
+							:ticket="ticket"
+							:isArchived="ticket.backlog.isArchived" />
 					</div>
 					<!--<div class="details-section">
 						<h3>Attachments:</h3>
