@@ -27,7 +27,7 @@
 		},
 		computed: {
 			markedContent() {
-				return marked(this.ticket.description) || this.$t('clickToEdit')
+				return marked(this.ticket.description) || `<i>${this.$t('clickToEdit')}</i>`
 			}
 		}
 	}
