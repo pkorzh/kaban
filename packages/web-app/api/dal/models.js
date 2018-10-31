@@ -15,6 +15,7 @@ import {
 	UserSchema,
 	TicketCommentSchema,
 	TicketHistorySchema,
+	TicketAttachmentSchema,
 } from './schemas'
 
 const Ticket = mongoose.model('Ticket', TicketSchema)
@@ -34,6 +35,7 @@ const BacklogForecast = mongoose.model('BacklogForecast', BacklogForecastSchema)
 const User = mongoose.model('User', UserSchema)
 const TicketComment = mongoose.model('TicketComment', TicketCommentSchema)
 const TicketHistory = mongoose.model('TicketHistory', TicketHistorySchema)
+const TicketAttachment = mongoose.model('TicketAttachment', TicketAttachmentSchema)
 
 export {
 	Ticket,
@@ -50,4 +52,5 @@ export {
 	User,
 	TicketComment,
 	TicketHistory,
+	TicketAttachment,
 }

@@ -19,4 +19,7 @@ export default {
 	color: 'Color',
 	users: 'Users',
 	kabanConfiguration: 'Kaban Configuration',
+	attachmentsStoreConfig: 'Attachments Store Config',
+	setup: 'Setup',
+	attachments: 'Attachments',
 }

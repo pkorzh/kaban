@@ -14,7 +14,7 @@
 				<b-nav vertical class="section-nav">
 					<b-nav-item
 						:to="localePath({name: 'kaban-configuration-attachments'})">
-						Attachments
+						<span v-t="'attachmentsStoreConfig'"></span>
 					</b-nav-item>
 				</b-nav>
 			</b-col>

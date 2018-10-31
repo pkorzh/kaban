@@ -64,7 +64,7 @@
 			<b-row>
 				<b-col cols="9">
 					<div class="details-section">
-						<h3>Description:</h3>
+						<h3 v-t="'description'"></h3>
 
 						<TicketDetailsSlimDescription 
 							:ticket="ticket"
@@ -72,7 +72,7 @@
 					</div>
 
 					<div class="details-section">
-						<h3>Attachments:</h3>
+						<h3 v-t="'attachments'"></h3>
 
 						<TicketDetailsSlimDropbox :ticket="ticket" />
 

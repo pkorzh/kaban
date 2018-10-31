@@ -12,6 +12,7 @@ import BacklogForecastSchema from './backlog-forecast'
 import UserSchema from './user'
 import TicketCommentSchema from './ticket-comment'
 import TicketHistorySchema from './ticket-history'
+import TicketAttachmentSchema from './ticket-attachment'
 
 export {
 	TicketSchema,
@@ -28,4 +29,5 @@ export {
 	UserSchema,
 	TicketCommentSchema,
 	TicketHistorySchema,
+	TicketAttachmentSchema,
 }

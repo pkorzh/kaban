@@ -67,7 +67,9 @@
 				</strong>
 				<ul>
 					<li>
-						<nuxt-link :to="localePath({name: 'kaban-configuration-attachments'})">Attachments</nuxt-link>
+						<nuxt-link :to="localePath({name: 'kaban-configuration-attachments'})">
+							<span v-t="'attachmentsStoreConfig'"></span>
+						</nuxt-link>
 					</li>
 				</ul>
 			</li>

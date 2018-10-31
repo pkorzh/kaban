@@ -7,6 +7,11 @@
 	import { mapGetters, mapActions } from 'vuex';
 
 	export default {
+		head() {
+			return {
+				title: this.$t('kabanConfiguration')
+			}
+		},
 	}
 </script>
 
