@@ -28,5 +28,7 @@ export default {
 	oldValue: 'Before',
 	newValue: 'After',
 	addedAComment: 'Added a comment',
-
+	next: 'Next',
+	needHelp: 'Need Help?',
+	done: 'Done',
 }
