@@ -19,4 +19,8 @@ export default {
 	color: 'Color',
 	users: 'Users',
 	clickToEdit: 'Click to edit',
+	noHistoryYetOnIssue: 'No history yet',
+	noCommentsYetOnIssue: 'No comments yet',
+	oldValue: 'Before',
+	newValue: 'After',
 }
