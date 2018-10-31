@@ -23,4 +23,5 @@ export default {
 	noCommentsYetOnIssue: 'No comments yet',
 	oldValue: 'Before',
 	newValue: 'After',
+	addedAComment: 'Added a comment',
 }
