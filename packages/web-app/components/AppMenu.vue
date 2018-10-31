@@ -52,11 +52,6 @@
 						<span v-t="'users'"></span>
 					</nuxt-link>
 				</strong>
-				<ul>
-					<li>
-						<nuxt-link to="/">Invite team members</nuxt-link>
-					</li>
-				</ul>
 			</li>
 
 			<li>
