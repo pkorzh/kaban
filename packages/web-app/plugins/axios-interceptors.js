@@ -1,4 +1,3 @@
-import { utc } from 'moment'
 import Vue from 'vue'
 
 
@@ -42,22 +41,6 @@ export default function ({ $axios, redirect, store }) {
 
 			if (item.resolution && item.resolution.key) {
 				item.resolution = store.getters['resolutions/getOne'](item.resolution.key)
-			}
-
-			if (item.createdAt) {
-				item.createdAt = utc(item.createdAt)
-			}
-
-			if (item.updatedAt) {
-				item.updatedAt = utc(item.updatedAt)
-			}
-
-			if (item.hardDeadlineAt) {
-				item.hardDeadlineAt = utc(item.hardDeadlineAt)
-			}
-
-			if (item.lastTransitionAt) {
-				item.lastTransitionAt = utc(item.lastTransitionAt)
 			}
 		}
 

@@ -22,4 +22,11 @@ export default {
 	attachmentsStoreConfig: 'Attachments Store Config',
 	setup: 'Setup',
 	attachments: 'Attachments',
+	clickToEdit: 'Click to edit',
+	noHistoryYetOnIssue: 'No history yet',
+	noCommentsYetOnIssue: 'No comments yet',
+	oldValue: 'Before',
+	newValue: 'After',
+	addedAComment: 'Added a comment',
+
 }

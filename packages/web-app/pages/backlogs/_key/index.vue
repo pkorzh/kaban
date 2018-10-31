@@ -94,10 +94,10 @@
 				patchBacklog: 'patch'
 			}),
 			async loadMore(amount) {
-				const lastTicketCreatedAt = this.tickets[this.tickets.length - 1].createdAt
+				const lastTicketRank = this.tickets[this.tickets.length - 1].rank
 
 				await this.fetchMore({
-					tql: `backlog = ${this.backlog.key} and createdAt > "${lastTicketCreatedAt}"`,
+					tql: `backlog = ${this.backlog.key} and rank > "${lastTicketRank}"`,
 					limit: amount
 				})
 			},
