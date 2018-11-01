@@ -18,6 +18,7 @@
 					</a>
 				</li>
 				<li>
+					<span v-t="'madeAChange'"></span>
 					<span class="details-post-date">
 						{{ item.createdAt | moment('LLL') }}
 					</span>

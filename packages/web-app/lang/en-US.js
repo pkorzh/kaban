@@ -24,4 +24,5 @@ export default {
 	oldValue: 'Before',
 	newValue: 'After',
 	addedAComment: 'Added a comment',
+	madeAChange: 'Made a change',
 }
