@@ -31,7 +31,7 @@
 			</li>
 			<li>
 				<strong class="dropdown-menu-title">
-					<nuxt-link :to="localePath({name: 'issues-search'})">
+					<nuxt-link :to="localePath({name: 'tickets-search'})">
 						<span v-t="'search'"></span>
 					</nuxt-link>
 				</strong>

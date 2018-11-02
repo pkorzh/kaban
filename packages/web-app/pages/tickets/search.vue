@@ -9,7 +9,7 @@
 				<b-breadcrumb>
 					<b-breadcrumb-item
 						:to="localePath({name: 'issues-search'})"
-						text="Issues"
+						text="Tickets"
 						active />
 				</b-breadcrumb>
 			</template>
