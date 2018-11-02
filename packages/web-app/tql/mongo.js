@@ -32,11 +32,13 @@ function resolve(astb, expanders) {
 			? astb.right.lexeme
 			: astb.right.map(astb => astb.lexeme)
 
-		const rValExpanded = expanders[rVal] ? expanders[rVal].apply(null) : rVal;
-
-		return {
-			[lVal]: {
-				[resolve(astb.op)]: rValExpanded
+		if (expanders[rVal]) {
+			return expanders[rVal].call(null, astb);
+		} else {
+			return {
+				[lVal]: {
+					[resolve(astb.op)]: rVal
+				}
 			}
 		}
 	}
@@ -44,10 +46,10 @@ function resolve(astb, expanders) {
 
 function generate(astb, expanders) {
 	if (astb.op.lexeme === 'and') {
-		return {
-			...resolve(astb.left, expanders),
-			...resolve(astb.right, expanders)
-		}
+		return {$and: [
+			resolve(astb.left, expanders),
+			resolve(astb.right, expanders)
+		]}
 	} else if (astb.op.lexeme === 'or') {
 		return {$or: [
 			resolve(astb.left, expanders),
@@ -65,7 +67,47 @@ export default function(source, expanders = {}) {
 
 	const _tokens = tokens(source)
 	const _tree = tree(_tokens)
-	const query = generate(_tree, expanders)
+
+	const query = generate(_tree, Object.assign({
+		today({left, op, right}) {
+			const start = new Date();
+			start.setHours(0,0,0,0);
+
+			const end = new Date();
+			end.setHours(23,59,59,999);
+
+			switch(op.lexeme) {
+				case '=':
+					return { [left.lexeme]: {
+						$gte: start,
+						$lte: end,
+					}}
+				case '!=':
+					return {
+						$or: [
+							{ [left.lexeme]: { $gt: end } },
+							{ [left.lexeme]: { $lt: start } },
+						]
+					}
+				case '>':
+					return { [left.lexeme]: {
+						$gt: start,
+					}}
+				case '<':
+					return { [left.lexeme]: {
+						$lt: end,
+					}}
+				case '>=':
+					return { [left.lexeme]: {
+						$gte: start,
+					}}
+				case '<=':
+					return { [left.lexeme]: {
+						$lte: end,
+					}}
+			}
+		}
+	}, expanders))
 
 	return query
 }

@@ -25,8 +25,8 @@ async function count(tql) {
 
 async function query(tql, limit, context = { board: null, user }) {
 	const kwargs = generateMql(tql, {
-		me() {
-			return context.user.key
+		me({left}) {
+			return { [left.lexeme + '.key']: { $eq: context.user.key } };
 		},
 	})
 
