@@ -23,14 +23,77 @@ function resolve(astb, expanders) {
 			default:
 				throw new Error(`Unexpected operator ${astb.lexeme}`)
 		}
+	} else if (astb.tag === 'date' || astb.tag == 'datevar') {
+		let start = null
+		let end = null
+
+		if (astb.tag === 'datevar') {
+			switch(astb.lexeme) {
+				case 'today':
+					start = new Date();
+					end = new Date();
+					break;
+				case 'yesterday':
+					start = new Date();
+					start.setDate(start.getDate() - 1);
+					end = new Date();
+					end.setDate(end.getDate() - 1);
+					break;
+			}
+		} else {
+			start = new Date(astb.lexeme.getTime());
+			end = new Date(astb.lexeme.getTime());
+		}
+
+		start.setHours(0,0,0,0);
+		end.setHours(23,59,59,999);
+
+		return [start, end];
 	} else {
 		const lVal = astb.left.lexeme === 'rank' || astb.left.lexeme === 'key' || astb.left.lexeme === 'createdAt' || astb.left.lexeme === 'updatedAt'
 			? astb.left.lexeme
-			: `${astb.left.lexeme}.key`
+			: `${astb.left.lexeme}.key`;
 
-		const rVal = astb.right.lexeme
-			? astb.right.lexeme
-			: astb.right.map(astb => astb.lexeme)
+		let rVal;
+
+		if (astb.right.map && astb.right.length) {
+			rVal = astb.right.map(astb => astb.lexeme);
+		} else if (astb.right.tag === 'date' || astb.right.tag === 'datevar') {
+			const [ start, end ] = resolve(astb.right);
+
+ 			switch(astb.op.lexeme) {
+				case '=':
+					return { [astb.left.lexeme]: {
+						$gte: start,
+						$lte: end,
+					}}
+				case '!=':
+					return {
+						$or: [
+							{ [astb.left.lexeme]: { $gt: end } },
+							{ [astb.left.lexeme]: { $lt: start } },
+						]
+					}
+				case '>':
+					return { [astb.left.lexeme]: {
+						$gt: start,
+					}}
+				case '<':
+					return { [astb.left.lexeme]: {
+						$lt: end,
+					}}
+				case '>=':
+					return { [astb.left.lexeme]: {
+						$gte: start,
+					}}
+				case '<=':
+					return { [astb.left.lexeme]: {
+						$lte: end,
+					}}
+			}
+		} else {
+			rVal = astb.right.lexeme
+		}
 
 		if (expanders[rVal]) {
 			return expanders[rVal].call(null, astb);
@@ -68,46 +131,14 @@ export default function(source, expanders = {}) {
 	const _tokens = tokens(source)
 	const _tree = tree(_tokens)
 
-	const query = generate(_tree, Object.assign({
-		today({left, op, right}) {
-			const start = new Date();
-			start.setHours(0,0,0,0);
+	//const util = require('util')
+	//console.log(util.inspect(_tree, false, null, true /* enable colors */))
 
-			const end = new Date();
-			end.setHours(23,59,59,999);
+	const query = generate(_tree, expanders)
 
-			switch(op.lexeme) {
-				case '=':
-					return { [left.lexeme]: {
-						$gte: start,
-						$lte: end,
-					}}
-				case '!=':
-					return {
-						$or: [
-							{ [left.lexeme]: { $gt: end } },
-							{ [left.lexeme]: { $lt: start } },
-						]
-					}
-				case '>':
-					return { [left.lexeme]: {
-						$gt: start,
-					}}
-				case '<':
-					return { [left.lexeme]: {
-						$lt: end,
-					}}
-				case '>=':
-					return { [left.lexeme]: {
-						$gte: start,
-					}}
-				case '<=':
-					return { [left.lexeme]: {
-						$lte: end,
-					}}
-			}
-		}
-	}, expanders))
+	//console.log(util.inspect(query, false, null, true /* enable colors */))
+
+	//console.log('-----------------------------------')
 
 	return query
 }

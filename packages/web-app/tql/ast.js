@@ -17,9 +17,16 @@ function tokens(source) {
 	}
 
 	const isDate = (lexeme) => {
-		return /\b[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z\b/
-			.test(lexeme)
+		const isISODate = /\b[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z\b/
+			.test(lexeme);
+
+		const isDate = /\b[0-9]{4}-[0-9]{2}-[0-9]{2}/
+			.test(lexeme);
+
+		return isISODate || isDate;
 	}
+
+	const isDateVar = (lexeme) => ['today', 'yesterday'].indexOf(lexeme) !== -1
 
 	const isOperator = (w) => ['>', '<', '=', '!=', '<=', '>=', 'in'].indexOf(w) !== -1
 	const isOperatorPart = (w) => ['>', '<', '=', '!=', '<=', '>=', 'in']
@@ -82,8 +89,10 @@ function tokens(source) {
 			token.lexeme = identifier.join('');
 
 			if (isDate(token.lexeme)) {
-				token.lexeme = ISODate(token.lexeme)
+				token.lexeme = new Date(token.lexeme)
 				token.tag = 'date';
+			} else if(isDateVar(token.lexeme)) {
+				token.tag = 'datevar';
 			} else if (isDecimal(token.lexeme)) {
 				token.lexeme = parseInt(token.lexeme)
 				token.tag = 'decimal';
@@ -240,23 +249,6 @@ function tree(tokens) {
 
 	/////////////////////
 
-
-
-	const sequence = (...parslets) => () => {
-		let seq = []
-		let item
-
-		while(item = consumeIf(...parslets)) {
-			seq.push(item);
-		}
-
-		if (!seq.length) {
-			throw new Error('Empty sequence');
-		}
-
-		return seq
-	}
-
 	const criteria = () => () => {
 		const branch = {
 			left: consume(':field'),
@@ -266,6 +258,8 @@ function tree(tokens) {
 				':string',
 				':decimal',
 				':field',
+				':date',
+				':datevar',
 				() => {
 					consume('[')
 
