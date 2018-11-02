@@ -23,8 +23,12 @@ async function count(tql) {
 	return await Ticket.find(generateMql(tql)).countDocuments()
 }
 
-async function query(tql, limit, context = { board: null }) {
-	const kwargs = generateMql(tql)
+async function query(tql, limit, context = { board: null, user }) {
+	const kwargs = generateMql(tql, {
+		me() {
+			return context.user.key
+		},
+	})
 
 	if (!!context.board) {
 		delete kwargs['status.key']

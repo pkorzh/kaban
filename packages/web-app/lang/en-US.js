@@ -25,4 +25,7 @@ export default {
 	newValue: 'After',
 	addedAComment: 'Added a comment',
 	madeAChange: 'Made a change',
+	assignedToMe: 'Assigned to me',
+	createdByMe: 'Created by me',
+	searchTickets: 'Search Tickets',
 }

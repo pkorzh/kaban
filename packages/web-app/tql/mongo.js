@@ -1,9 +1,9 @@
 const { tokens, tree } = require('./ast')
 
-function resolve(astb) {
+function resolve(astb, expanders) {
 
 	if (astb.tag === 'bool') {
-		return generate(astb)
+		return generate(astb, expanders)
 	} else if (astb.tag === 'op') {
 		switch(astb.lexeme) {
 			case '=':
@@ -32,38 +32,40 @@ function resolve(astb) {
 			? astb.right.lexeme
 			: astb.right.map(astb => astb.lexeme)
 
+		const rValExpanded = expanders[rVal] ? expanders[rVal].apply(null) : rVal;
+
 		return {
 			[lVal]: {
-				[resolve(astb.op)]: rVal
+				[resolve(astb.op)]: rValExpanded
 			}
 		}
 	}
 }
 
-function generate(astb) {
+function generate(astb, expanders) {
 	if (astb.op.lexeme === 'and') {
 		return {
-			...resolve(astb.left),
-			...resolve(astb.right)
+			...resolve(astb.left, expanders),
+			...resolve(astb.right, expanders)
 		}
 	} else if (astb.op.lexeme === 'or') {
 		return {$or: [
-			resolve(astb.left),
-			resolve(astb.right)
+			resolve(astb.left, expanders),
+			resolve(astb.right, expanders)
 		]}
 	} else {
-		return resolve(astb)
+		return resolve(astb, expanders)
 	}
 }
 
-export default function(source) {
+export default function(source, expanders = {}) {
 	if (!source || source.length == 0) {
 		return {}
 	}
 
 	const _tokens = tokens(source)
 	const _tree = tree(_tokens)
-	const query = generate(_tree)
+	const query = generate(_tree, expanders)
 
 	return query
 }

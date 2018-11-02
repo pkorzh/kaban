@@ -35,6 +35,18 @@
 						<span v-t="'search'"></span>
 					</nuxt-link>
 				</strong>
+				<ul>
+					<li>
+						<nuxt-link :to="localePath({name: 'tickets-search', query: {tql: 'assignee = me'}})">
+							<span v-t="'assignedToMe'"></span>
+						</nuxt-link>
+					</li>
+					<li>
+						<nuxt-link :to="localePath({name: 'tickets-search', query: {tql: 'reporter = me'}})">
+							<span v-t="'createdByMe'"></span>
+						</nuxt-link>
+					</li>
+				</ul>
 			</li>
 			<li>
 				<strong class="dropdown-menu-title">
