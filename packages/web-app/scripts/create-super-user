@@ -1,21 +1,41 @@
 #!/usr/bin/env node
 
-require('../api/dal/connect')
-const {users: usersDal} = require('../api/dal/users')
+const inquirer = require('inquirer');
 
-const shortid = require('shortid')
+import '../api/dal/connect';
+import { users as usersDal } from '../api/dal';
 
-async function main() {
-	usersDal.insert({
-		key: shortid.generate(),
-		name: 'Administrator',
-		description: 'Administrator',
-		scope: 'user admin',
-		email: 'admin@admin.com',
-		password: 'password123'
-	})
+const shortid = require('shortid');
 
-	console.log('Done.')
+const questions = [
+	{
+		type: 'input',
+		name: 'name',
+		message: 'name',
+	},
+	{
+		type: 'input',
+		name: 'email',
+		message: 'email',
+	},
+	{
+		type: 'password',
+		name: 'password',
+		message: 'password',
+	},
+]
+
+function main() {
+	inquirer.prompt(questions).then(answers => {
+		usersDal.insert({
+			key: shortid.generate(),
+			name: answers.name,
+			description: 'Administrator',
+			scope: 'user admin',
+			email: answers.email,
+			password: answers.password
+		})
+	});
 }
 
 main()

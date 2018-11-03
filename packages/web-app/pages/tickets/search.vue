@@ -9,7 +9,7 @@
 				<b-breadcrumb>
 					<b-breadcrumb-item
 						:to="localePath({name: 'issues-search'})"
-						text="Issues"
+						text="Tickets"
 						active />
 				</b-breadcrumb>
 			</template>
@@ -18,7 +18,7 @@
 			</ActionsNav>
 		</TopBar>
 
-		<b-form class="mb-3" @submit.prevent.stop="search">
+		<b-form class="mb-3" @submit.prevent.stop="search(tql)">
 			<div class="input-group">
 				<div class="input-group-prepend">
 					<span class="input-group-text">
@@ -48,15 +48,24 @@
 	import { mapGetters, mapActions } from 'vuex';
 
 	export default {
-		async fetch({store, params}) {
+		async fetch({store, params, route: {query}}) {
+			let tql = query.tql || null;
+
 			await store.dispatch('tickets/fetchList', {
-				limit: 20
+				limit: 20,
+				tql,
 			})
+		},
+
+		async asyncData({route: {query}}) {
+			return {
+				tql: query.tql || '', 
+			};
 		},
 
 		head() {
 			return {
-				title: 'Search Tickets'
+				title: this.$t('searchTickets')
 			}
 		},
 
@@ -72,12 +81,13 @@
 				fetchMoreTickets: 'fetchMore'
 			}),
 
-			search() {
-				this.fetchTickets({
-					tql: this.tql,
-					limit: 20
-				})
+			search(tql) {
+				this.$router.push(this.localePath({
+					name: 'tickets-search',
+					query: { tql },
+				}));
 			},
+
 			async loadMore(amount) {
 				const lastTicketRank = this.tickets[this.tickets.length - 1].rank
 
@@ -92,6 +102,13 @@
 			...mapGetters('tickets', {
 				tickets: 'getList',
 			})
+		},
+
+		watch: {
+			'$route.query.tql'(tql) {
+				this.tql = tql;
+				this.fetchTickets({ tql, limit: 20 });
+			}
 		},
 	}
 </script>

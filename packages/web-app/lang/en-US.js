@@ -31,4 +31,11 @@ export default {
 	next: 'Next',
 	needHelp: 'Need Help?',
 	done: 'Done',
+	madeAChange: 'Made a change',
+	assignedToMe: 'Assigned to me',
+	createdByMe: 'Created by me',
+	searchTickets: 'Search Tickets',
+	me: 'Me',
+	login: 'Login',
+	logout: 'Logout',
 }

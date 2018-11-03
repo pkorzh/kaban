@@ -47,7 +47,9 @@
 			}),
 
 			user() {
-				return this.getUser(this.$route.params.key)
+				const key = this.$route.params.key
+				const key2 = key === 'me' ? this.$auth.user.key : key
+				return this.getUser(key2)
 			},
 		},
 		methods: {

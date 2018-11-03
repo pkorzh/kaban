@@ -70,8 +70,8 @@ $handle-color: #ddd !default;
 		fill: #fff;
 		dominant-baseline: central;
 		text-anchor: middle;
-		font-size: 12px;
-		font-weight: lighter;
+		font-size: 14px;
+		font-weight: bold;
 
 		&.big {
 			fill: $text-light;

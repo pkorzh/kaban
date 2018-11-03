@@ -38,7 +38,16 @@
 				<b-navbar-nav class="ml-auto">
 					<template v-if="$auth.$state.loggedIn">
 						<b-nav-item-dropdown :text="$auth.user.name" right>
-							<b-dropdown-item @click="logout()">Logout</b-dropdown-item>
+							<b-dropdown-item 
+								:to="localePath({name: 'users-key', params: { key: 'me' }})">
+								<span v-t="'me'"></span>
+							</b-dropdown-item>
+
+							<b-dropdown-divider></b-dropdown-divider>
+
+							<b-dropdown-item @click="logout()">
+								<span v-t="'logout'"></span>
+							</b-dropdown-item>
 						</b-nav-item-dropdown>
 						<b-img :src="$auth.user.avatar" class="mt-1" rounded="circle" width="30px" height="30px" />
 					</template>

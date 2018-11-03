@@ -5,6 +5,7 @@ import {
 	TicketLeadTime,
 	TicketStatusSlice,
 	Ticket,
+	User,
  } from '../api/dal/models';
 
 import shortid from 'shortid';
@@ -78,6 +79,7 @@ async function main() {
 			priority: {
 				key: random_priority_parts[Math.floor(Math.random()*random_priority_parts.length)]
 			},
+			rank: await ticketsDal.rank.next(),
 		}
 
 		console.log(ticketSlim.name)

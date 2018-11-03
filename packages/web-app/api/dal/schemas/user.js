@@ -19,11 +19,12 @@ const schema = new Schema({
 	email: {
 		type: String,
 		required: false,
+		unique: true,
 	},
 	avatar: {
 		type: String,
 		required: false,
-		default: 'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png'
+		default: '/default-avatar.svg'
 	},
 	password: {
 		type: String,
@@ -45,11 +46,5 @@ schema.pre('save', function(next){
 
 	next()
 })
-
-schema.path('email').validate(async function(value, respond) {
-	const count = await this.model('User').count({ email: value });
-
-	respond(count === 0)
-}, 'Email already exists');
 
 export default schema

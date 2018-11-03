@@ -31,10 +31,22 @@
 			</li>
 			<li>
 				<strong class="dropdown-menu-title">
-					<nuxt-link :to="localePath({name: 'issues-search'})">
+					<nuxt-link :to="localePath({name: 'tickets-search'})">
 						<span v-t="'search'"></span>
 					</nuxt-link>
 				</strong>
+				<ul>
+					<li>
+						<nuxt-link :to="localePath({name: 'tickets-search', query: {tql: 'assignee = me'}})">
+							<span v-t="'assignedToMe'"></span>
+						</nuxt-link>
+					</li>
+					<li>
+						<nuxt-link :to="localePath({name: 'tickets-search', query: {tql: 'reporter = me'}})">
+							<span v-t="'createdByMe'"></span>
+						</nuxt-link>
+					</li>
+				</ul>
 			</li>
 			<li>
 				<strong class="dropdown-menu-title">
@@ -52,11 +64,6 @@
 						<span v-t="'users'"></span>
 					</nuxt-link>
 				</strong>
-				<ul>
-					<li>
-						<nuxt-link to="/">Invite team members</nuxt-link>
-					</li>
-				</ul>
 			</li>
 
 			<li v-if="$auth.user.scope.includes('admin')">

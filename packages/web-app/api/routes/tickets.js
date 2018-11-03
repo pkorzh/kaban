@@ -11,7 +11,8 @@ const router = Router()
 
 router.get('/tickets', async function (req, res, next) {
 	const tickets = await ticketsDal.query(req.query.tql, req.query.limit, {
-		board: req.query.board
+		board: req.query.board,
+		user: req.user,
 	})
 
 	return res.json(tickets);
@@ -26,7 +27,7 @@ router.post('/tickets', async function (req, res, next) {
 
 	const ticket = await ticketsDal.insert({
 		...ticketSlim,
-		rank: await ticketsDal.rank.next(ticketSlim.backlog),
+		rank: await ticketsDal.rank.next(),
 		lastTransitionAt: new Date()
 	})
 
