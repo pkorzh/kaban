@@ -5,6 +5,7 @@ import {
 	TicketLeadTime,
 	TicketStatusSlice,
 	Ticket,
+	User,
  } from '../api/dal/models';
 
 import shortid from 'shortid';
