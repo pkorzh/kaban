@@ -28,4 +28,7 @@ export default {
 	assignedToMe: 'Assigned to me',
 	createdByMe: 'Created by me',
 	searchTickets: 'Search Tickets',
+	me: 'Me',
+	login: 'Login',
+	logout: 'Logout',
 }
