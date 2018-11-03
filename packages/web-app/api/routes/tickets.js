@@ -27,7 +27,7 @@ router.post('/tickets', async function (req, res, next) {
 
 	const ticket = await ticketsDal.insert({
 		...ticketSlim,
-		rank: await ticketsDal.rank.next(ticketSlim.backlog),
+		rank: await ticketsDal.rank.next(),
 		lastTransitionAt: new Date()
 	})
 

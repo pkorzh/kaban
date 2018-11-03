@@ -11,7 +11,7 @@ export default {
 		},
 		ticketUrl(ticket) {
 			return this.localePath({
-				name: 'issues-key',
+				name: 'tickets-key',
 				params: {
 					key: ticket.key
 				}
