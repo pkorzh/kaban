@@ -8,7 +8,6 @@ import tickets from './routes/tickets'
 import boards from './routes/boards'
 import backlogs from './routes/backlogs'
 import ping from './routes/ping'
-import sse from './routes/sse'
 import workflow from './routes/workflow'
 import flatpages from './routes/flatpages'
 import comments from './routes/comments'
@@ -29,7 +28,6 @@ app.use(
 	).unless({
 		path: [
 			'/api/users/login',
-			'/api/sse'
 		]
 	})
 )
@@ -39,7 +37,6 @@ app.use(tickets)
 app.use(boards)
 app.use(backlogs)
 app.use(ping)
-app.use(sse)
 app.use(workflow)
 app.use(flatpages)
 app.use(comments)
