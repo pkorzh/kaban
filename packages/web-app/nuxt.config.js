@@ -48,8 +48,6 @@ module.exports = {
 		'~/plugins/vue-moment',
 		'~/plugins/axios-interceptors.js',
 		'~/plugins/vue-textarea-autosize',
-		{ src: '~/plugins/kaban-sse', ssr: false },
-		{ src: '~/plugins/kaban-sse-subscribe', ssr: false },
 		{ src: '~/plugins/vue-select', ssr: false },
 		{ src: '~/plugins/vue-color', ssr: false },
 		`~/plugins/vue-vuelidate`,
@@ -89,7 +87,6 @@ module.exports = {
 	},
 
 	env: {
-		SSE_URL: '/api/sse',
 	},
 
 	auth: {
