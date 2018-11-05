@@ -49,7 +49,12 @@
 								<span v-t="'logout'"></span>
 							</b-dropdown-item>
 						</b-nav-item-dropdown>
-						<b-img :src="$auth.user.avatar" class="mt-1" rounded="circle" width="30px" height="30px" />
+
+						<avatar 
+							:username="$auth.user.name"
+							:src="$auth.user.avatar"
+							:size="30"></avatar>
+
 					</template>
 				</b-navbar-nav>
 			</b-collapse>

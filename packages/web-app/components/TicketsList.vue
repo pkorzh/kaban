@@ -30,15 +30,16 @@
 				</div>
 
 				<div class="table-list-line-user">
-						<img
-							:src="ticket.assignee.avatar"
-							style="max-width: 20px;min-width: 20px;">
+					<avatar 
+						:username="ticket.assignee.name"
+						:src="ticket.assignee.avatar"
+						:size="20"></avatar>
 				</div>
 
 				<div class="table-list-line-priority">
-						<img
-							:src="ticket.priority.iconUrl"
-							style="max-width: 20px;min-width: 20px;">
+					<img
+						:src="ticket.priority.iconUrl"
+						style="max-width: 20px;min-width: 20px;">
 				</div>
 
 				<div class="table-list-line-estm">

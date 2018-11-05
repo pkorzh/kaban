@@ -1,3 +1,5 @@
+import Avatar from 'vue-avatar';
+
 import ActionsNav from './ActionsNav/ActionsNav'
 import ActionsNavAssigned from './ActionsNav/ActionsNavAssigned'
 import ActionsNavViewSwitcher from './ActionsNav/ActionsNavViewSwitcher'
@@ -113,5 +115,7 @@ export {
 	TicketDetailsSlimDescription,
 
 	IconedSelect,
-	InfiniteScroll
+	InfiniteScroll,
+
+	Avatar,
 }
