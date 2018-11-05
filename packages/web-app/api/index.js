@@ -28,6 +28,7 @@ app.use(
 	).unless({
 		path: [
 			'/api/users/login',
+			'/api/ping',
 		]
 	})
 )
