@@ -19,11 +19,21 @@ schema.statics._get = async function _getKabanConfiguration() {
 	}
 
 	const newOne = new this({
-		storage: {}
+		storage: {
+			type: null,
+		}
 	});
 
 	await newOne.save()
 	return newOne;
+}
+
+schema.statics.status = async function _status() {
+	const kc = await this._get();
+
+	return {
+		storageStatus: kc.storage.type,
+	};
 }
 
 schema.statics.storageConfig = async function _storageConfig(storage) {

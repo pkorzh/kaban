@@ -77,6 +77,14 @@
 						<span v-t="'kabanConfiguration'"></span>
 					</nuxt-link>
 				</strong>
+
+				<ul>
+					<li v-if="!storageStatus">
+						<nuxt-link :to="localePath({name: 'kaban-configuration-storage'})">
+							<span v-t="'storageConfig'"></span>
+						</nuxt-link>
+					</li>
+				</ul>
 			</li>
 
 			<li>
@@ -102,7 +110,9 @@
 
 			...mapGetters('backlogs', {
 				backlogList: 'getList'
-			})
+			}),
+
+			...mapGetters('kabanConfiguration', ['storageStatus'])
 		}
 	};
 </script>

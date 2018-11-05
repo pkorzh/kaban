@@ -41,4 +41,7 @@ export default {
 	testAccessKeys: 'Test Access Keys',
 	testBucketAccess: 'Test Bucket Access',
 	recent: 'Recent',
+	general: 'General',
+	options: 'Options',
+	change: 'Change',
 }

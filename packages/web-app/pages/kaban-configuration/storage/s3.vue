@@ -82,8 +82,8 @@
 		},
 		data() {
 			return {
-				accessKeyId: 'AKIAJ7OZNCOBDNSR4RWQ',
-				secretAccessKey: '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',
+				accessKeyId: null,
+				secretAccessKey: null,
 				bucket: null,
 				prefix: null,
 				buckets: [],
@@ -93,6 +93,8 @@
 		methods: {
 			...mapActions('kabanConfiguration/storage/s3', [
 				'listBuckets', 'uploadSample', 'saveConfiguration']),
+
+			...mapActions('kabanConfiguration', ['fetchStatus']),
 
 			async testAccessKeys() {
 				const valid = await this.$validator.validateAll();
@@ -127,6 +129,8 @@
 					prefix: this.prefix,
 					bucket: this.bucket,
 				});
+
+				this.fetchStatus();
 			}
 		}
 	}

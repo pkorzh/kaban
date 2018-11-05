@@ -23,7 +23,7 @@
 			return {
 				title: this.$t('storageConfig')
 			}
-		},
+		}
 	}
 </script>
 

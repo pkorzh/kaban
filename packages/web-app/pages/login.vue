@@ -63,6 +63,9 @@
 			...mapActions('users', {
 				fetchUsers: 'fetchList'
 			}),
+			...mapActions('kabanConfiguration', {
+				fetchKabanConfStatus: 'fetchStatus'
+			}),
 			async login() {
 				this.error = null
 
@@ -82,6 +85,7 @@
 				this.fetchTransitions()
 				this.fetchStatuses()
 				this.fetchUsers()
+				this.fetchKabanConfStatus();
 			}
 		}
 	}
