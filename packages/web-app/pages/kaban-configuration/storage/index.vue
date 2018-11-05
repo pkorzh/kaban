@@ -3,10 +3,10 @@
 		<b-card-group deck>
 			<b-card title="S3">
 				<p class="card-text">
-					Use AWS Simple Storage Service to store your attachments
+					Use AWS Simple Storage Service
 				</p>
 				<nuxt-link 
-					:to="localePath({name: 'kaban-configuration-attachments-s3'})"
+					:to="localePath({name: 'kaban-configuration-storage-s3'})"
 					class="btn btn-outline-success">
 					<span v-t="'setup'"></span>
 				</nuxt-link>
@@ -21,7 +21,7 @@
 	export default {
 		head() {
 			return {
-				title: this.$t('attachmentsStoreConfig')
+				title: this.$t('storageConfig')
 			}
 		},
 	}

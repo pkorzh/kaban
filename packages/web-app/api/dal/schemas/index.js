@@ -13,6 +13,7 @@ import UserSchema from './user'
 import TicketCommentSchema from './ticket-comment'
 import TicketHistorySchema from './ticket-history'
 import TicketAttachmentSchema from './ticket-attachment'
+import KabanConfigurationSchema from './kaban-configuration'
 
 export {
 	TicketSchema,
@@ -30,4 +31,5 @@ export {
 	TicketCommentSchema,
 	TicketHistorySchema,
 	TicketAttachmentSchema,
+	KabanConfigurationSchema,
 }

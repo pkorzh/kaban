@@ -19,7 +19,7 @@ export default {
 	color: 'Color',
 	users: 'Users',
 	kabanConfiguration: 'Kaban Configuration',
-	attachmentsStoreConfig: 'Attachments Store Config',
+	storageConfig: 'Storage Config',
 	setup: 'Setup',
 	attachments: 'Attachments',
 	clickToEdit: 'Click to edit',
@@ -38,4 +38,7 @@ export default {
 	me: 'Me',
 	login: 'Login',
 	logout: 'Logout',
+	testAccessKeys: 'Test Access Keys',
+	testBucketAccess: 'Test Bucket Access',
+	recent: 'Recent',
 }

@@ -13,8 +13,8 @@
 			<b-col cols="2">
 				<b-nav vertical class="section-nav">
 					<b-nav-item
-						:to="localePath({name: 'kaban-configuration-attachments'})">
-						<span v-t="'attachmentsStoreConfig'"></span>
+						:to="localePath({name: 'kaban-configuration-storage'})">
+						<span v-t="'storageConfig'"></span>
 					</b-nav-item>
 				</b-nav>
 			</b-col>
@@ -32,6 +32,7 @@
 	export default {
 		head() {
 			return {
+				title: this.$t('kabanConfiguration')
 			}
 		},
 		computed: {

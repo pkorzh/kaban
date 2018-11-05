@@ -25,8 +25,8 @@
 							v-validate="'required'">
 						</b-form-input>
 					</b-form-group>
-					<b-button type="submit" variant="primary">
-						<span v-t="'next'"></span>
+					<b-button type="submit" variant="secondary">
+						<span v-t="'testAccessKeys'"></span>
 					</b-button>
 				</b-form>
 			</b-col>
@@ -43,24 +43,29 @@
 							v-validate="'required'" />
 					</b-form-group>
 					<b-form-group 
-						label="Prefix"
+						label="Optional prefix"
 						:invalid-feedback="errors.first('prefix')"
 						:state="!errors.has('prefix')">
 						<b-form-input 
 							name="prefix"
 							type="text"
-							v-model="prefix"
-							v-validate="'required'">
+							v-model="prefix">
 						</b-form-input>
 					</b-form-group>
 
-					<b-button type="submit" variant="primary">
-						<span v-t="'next'"></span>
+					<b-button type="submit" variant="secondary">
+						<span v-t="'testBucketAccess'"></span>
 					</b-button>
 				</b-form>
 			</b-col>
 			<b-col cols="3" v-if="step >= 3">
-				<span v-t="'done'"></span>
+				<div>
+					<span v-t="'done'"></span>
+				</div>
+
+				<b-button variant="primary" @click="saveCredentials">
+					<span v-t="'save'"></span>
+				</b-button>
 			</b-col>
 		</b-row>
 	</b-container>
@@ -72,13 +77,13 @@
 	export default {
 		head() {
 			return {
-				title: `S3 ${this.$t('attachmentsStoreConfig')}`
+				title: `S3 ${this.$t('storageConfig')}`
 			}
 		},
 		data() {
 			return {
-				accessKeyId: null,
-				secretAccessKey: null,
+				accessKeyId: 'AKIAJ7OZNCOBDNSR4RWQ',
+				secretAccessKey: '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',
 				bucket: null,
 				prefix: null,
 				buckets: [],
@@ -86,23 +91,43 @@
 			}
 		},
 		methods: {
+			...mapActions('kabanConfiguration/storage/s3', [
+				'listBuckets', 'uploadSample', 'saveConfiguration']),
+
 			async testAccessKeys() {
 				const valid = await this.$validator.validateAll();
 				if (!valid) return;
+
+				this.buckets = await this.listBuckets({
+					accessKeyId: this.accessKeyId,
+					secretAccessKey: this.secretAccessKey,
+				});
 
 				this.step++;
 			},
 
 			async testBucket() {
-				//const valid = await this.$validator.validateAll();
-				//if (!valid) return;
+				const valid = await this.$validator.validateAll();
+				if (!valid) return;
+
+				await this.uploadSample({
+					accessKeyId: this.accessKeyId,
+					secretAccessKey: this.secretAccessKey,
+					prefix: this.prefix,
+					bucket: this.bucket,
+				});
 
 				this.step++;
 			},
+
+			async saveCredentials() {
+				await this.saveConfiguration({
+					accessKeyId: this.accessKeyId,
+					secretAccessKey: this.secretAccessKey,
+					prefix: this.prefix,
+					bucket: this.bucket,
+				});
+			}
 		}
 	}
 </script>
-
-<style>
-
-</style>
