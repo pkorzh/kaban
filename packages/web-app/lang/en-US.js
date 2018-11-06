@@ -44,4 +44,5 @@ export default {
 	general: 'General',
 	options: 'Options',
 	change: 'Change',
+	set: 'Set',
 }

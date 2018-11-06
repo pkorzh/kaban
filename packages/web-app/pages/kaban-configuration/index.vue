@@ -3,7 +3,7 @@
 		<table class="table table-hover mb-5">
 			<thead>
 				<tr>
-					<th v-t="'options'"></th>
+					<th class="text-right" v-t="'options'"></th>
 					<th></th>
 				</tr>
 			</thead>
@@ -14,7 +14,7 @@
 						{{ storageStatus || 'None' }}
 						<div>
 							<nuxt-link :to="localePath({name: 'kaban-configuration-storage'})">
-								<span v-t="'change'"></span>
+								{{ storageActionButtonText }}
 							</nuxt-link>
 						</div>
 					</td>
@@ -34,7 +34,13 @@
 			}
 		},
 		computed: {
-			...mapGetters('kabanConfiguration', ['storageStatus'])
+			...mapGetters('kabanConfiguration', ['storageStatus']),
+
+			storageActionButtonText() {
+				return this.storageStatus 
+					? this.$t('change')
+					: this.$t('set');
+			}
 		}
 	}
 </script>
