@@ -21,6 +21,7 @@
 					text="Create Ticket"
 					shortkey="c"
 					:disabled="backlog.isArchived"
+					:payload="{backlog: backlog}"
 					action="CreateTicketAction" />
 
 				<div class="actions-nav-separator"></div>

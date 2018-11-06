@@ -95,9 +95,15 @@
 			status: {
 				type: String,
 				required: false
+			},
+			backlog: {
+				type: Object,
+				required: false,
 			}
 		},
 		data() {
+			const backlog = this.backlog;
+
 			return {
 				ticket: {
 					name: '',
@@ -107,7 +113,7 @@
 					resolution: this.$store.getters['resolutions/getOne']('unresolved'),
 					assignee: this.$store.getters['users/unassigned'],
 					reporter: this.$auth.user,
-					backlog: this.$store.getters['backlogs/getList'][0],
+					backlog: backlog || this.$store.getters['backlogs/getList'][0],
 					status: this.status ? this.$store.getters['status/getOne'](this.status): null,
 				}
 			}
