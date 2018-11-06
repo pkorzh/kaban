@@ -24,7 +24,7 @@ const schema = new Schema({
 	avatar: {
 		type: String,
 		required: false,
-		default: '/default-avatar.svg'
+		default: null,
 	},
 	password: {
 		type: String,

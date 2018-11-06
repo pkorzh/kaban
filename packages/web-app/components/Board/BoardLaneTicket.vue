@@ -42,10 +42,10 @@
 					10
 				</span>-->
 				<div class="card-image">
-					<img
-						v-if="ticket.assignee"
-						:title="ticket.assignee.name"
-						:src="ticket.assignee.avatar">
+					<avatar 
+						:src="ticket.assignee.avatar"
+						:username="ticket.assignee.name"
+						:size="24"></avatar>
 				</div>
 			</div>
 		</div>

@@ -12,6 +12,7 @@ import status from './status'
 import flatpages from './flatpages'
 import errors from './errors'
 import resolutions from './resolutions'
+import kabanConfiguration from './kaban-configuration'
 
 Vue.use(Vuex)
 
@@ -28,6 +29,7 @@ const store = () => new Vuex.Store({
 		flatpages,
 		errors,
 		resolutions,
+		kabanConfiguration,
 	},
 	actions: {
 		async nuxtServerInit({dispatch, state}) {
@@ -37,7 +39,8 @@ const store = () => new Vuex.Store({
 					dispatch('backlogs/fetchList'),
 					dispatch('workflow/fetchTransitions'),
 					dispatch('status/fetchList'),
-					dispatch('users/fetchList')
+					dispatch('users/fetchList'),
+					dispatch('kabanConfiguration/fetchStatus'),
 				])
 			} else {
 				return Promise.resolve()

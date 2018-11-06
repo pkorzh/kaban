@@ -46,6 +46,11 @@
 							<span v-t="'createdByMe'"></span>
 						</nuxt-link>
 					</li>
+					<li>
+						<nuxt-link :to="localePath({name: 'tickets-search', query: {tql: 'createdAt >= yesterday'}})">
+							<span v-t="'recent'"></span>
+						</nuxt-link>
+					</li>
 				</ul>
 			</li>
 			<li>
@@ -64,6 +69,22 @@
 						<span v-t="'users'"></span>
 					</nuxt-link>
 				</strong>
+			</li>
+
+			<li v-if="$auth.user.scope.includes('admin')">
+				<strong class="dropdown-menu-title">
+					<nuxt-link :to="localePath({name: 'kaban-configuration'})">
+						<span v-t="'kabanConfiguration'"></span>
+					</nuxt-link>
+				</strong>
+
+				<ul>
+					<li v-if="!storageStatus">
+						<nuxt-link :to="localePath({name: 'kaban-configuration-storage'})">
+							<span v-t="'storageConfig'"></span>
+						</nuxt-link>
+					</li>
+				</ul>
 			</li>
 
 			<li>
@@ -89,7 +110,9 @@
 
 			...mapGetters('backlogs', {
 				backlogList: 'getList'
-			})
+			}),
+
+			...mapGetters('kabanConfiguration', ['storageStatus'])
 		}
 	};
 </script>

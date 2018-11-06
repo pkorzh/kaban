@@ -1,6 +1,8 @@
 import * as comments from './comments'
 import * as history from './history'
 import * as rank from './rank'
+import * as attachments from './attachments'
+
 import {
 	insert,
 	query,
@@ -18,4 +20,5 @@ export {
 	comments,
 	history,
 	rank,
+	attachments,
 }

@@ -1,4 +1,4 @@
-import moduleFactory from '../module-factory'
+import moduleFactory from './module-factory'
 
 export default moduleFactory('tickettypes', {
 	state: {

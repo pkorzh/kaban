@@ -12,6 +12,8 @@ import BacklogForecastSchema from './backlog-forecast'
 import UserSchema from './user'
 import TicketCommentSchema from './ticket-comment'
 import TicketHistorySchema from './ticket-history'
+import TicketAttachmentSchema from './ticket-attachment'
+import KabanConfigurationSchema from './kaban-configuration'
 
 export {
 	TicketSchema,
@@ -28,4 +30,6 @@ export {
 	UserSchema,
 	TicketCommentSchema,
 	TicketHistorySchema,
+	TicketAttachmentSchema,
+	KabanConfigurationSchema,
 }

@@ -64,20 +64,20 @@
 			<b-row>
 				<b-col cols="9">
 					<div class="details-section">
-						<h3>Description:</h3>
+						<h3 v-t="'description'"></h3>
 
 						<TicketDetailsSlimDescription 
 							:ticket="ticket"
 							:isArchived="backlog.isArchived" />
 					</div>
 
-					<!--<div class="details-section">
-						<h3>Attachments:</h3>
+					<div class="details-section">
+						<h3 v-t="'attachments'"></h3>
 
-						<TicketDetailsSlimDropbox  :ticket="ticket" />
+						<TicketDetailsSlimDropbox :ticket="ticket" />
 
 						<TicketDetailsSlimAttachments :ticket="ticket" />
-					</div>-->
+					</div>
 
 					<div class="details-section">
 						<b-tabs>
