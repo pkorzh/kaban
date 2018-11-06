@@ -4,11 +4,13 @@ import moduleFactory from '../module-factory'
 
 import comments from './comments'
 import history from './history'
+import attachments from './attachments'
 
 export default moduleFactory('tickets', {
 	modules: {
 		comments,
 		history,
+		attachments,
 	},
 	mutations: {
 		UPDATE_TICKETS_STATUS(state, {keys, mapsTo}) {

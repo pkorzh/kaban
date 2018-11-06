@@ -50,7 +50,6 @@ import TicketDetailsSlimDates from './TicketDetailsSlim/TicketDetailsSlimDates'
 import TicketDetailsSlimVersion from './TicketDetailsSlim/TicketDetailsSlimVersion'
 import TicketDetailsSlimComments from './TicketDetailsSlim/TicketDetailsSlimComments'
 import TicketDetailsSlimHistory from './TicketDetailsSlim/TicketDetailsSlimHistory'
-import TicketDetailsSlimDropbox from './TicketDetailsSlim/TicketDetailsSlimDropbox'
 import TicketDetailsSlimAttachments from './TicketDetailsSlim/TicketDetailsSlimAttachments'
 import TicketDetailsSlimPostComment from './TicketDetailsSlim/TicketDetailsSlimPostComment'
 import TicketDetailsSlimDescription from './TicketDetailsSlim/TicketDetailsSlimDescription'
@@ -109,7 +108,6 @@ export {
 	TicketDetailsSlimVersion,
 	TicketDetailsSlimComments,
 	TicketDetailsSlimHistory,
-	TicketDetailsSlimDropbox,
 	TicketDetailsSlimAttachments,
 	TicketDetailsSlimPostComment,
 	TicketDetailsSlimDescription,

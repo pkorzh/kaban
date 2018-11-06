@@ -147,6 +147,9 @@ export default (
 				commit('REMOVE', key)
 				commit('SET_WORKING', false)
 			},
+			empty({commit}) {
+				commit('EMPTY')
+			}
 		}, actions)
 	}
 

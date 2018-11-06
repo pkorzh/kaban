@@ -53,7 +53,8 @@ module.exports = {
 		`~/plugins/vue-vuelidate`,
 		{ src: '~plugins/vue-simplemde', ssr: false },
 		{ src: '~plugins/vue-toasted', ssr: false},
-		{ src: '~plugins/vue-shortkey', ssr: false}
+		{ src: '~plugins/vue-shortkey', ssr: false},
+		'~/plugins/kaban-storage',
 	],
 
 	/*

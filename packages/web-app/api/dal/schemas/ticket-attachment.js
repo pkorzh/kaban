@@ -11,11 +11,15 @@ const schema = new Schema({
 		type: KeySchema,
 		required: true,
 	},
-	fileName: {
+	user: {
+		type: KeySchema,
+		required: true,
+	},
+	name: {
 		type: String,
 		required: true,
 	},
-	fileURL: {
+	url: {
 		type: String,
 		required: true,
 	},
