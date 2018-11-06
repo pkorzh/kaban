@@ -60,8 +60,6 @@
 					<div class="details-section">
 						<h3 v-t="'attachments'"></h3>
 
-						<TicketDetailsSlimDropbox :ticket="ticket" />
-
 						<TicketDetailsSlimAttachments :ticket="ticket" />
 					</div>
 

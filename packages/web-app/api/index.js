@@ -14,6 +14,8 @@ import comments from './routes/comments'
 import history from './routes/history'
 import rank from './routes/rank'
 import kabanConfiguration from './routes/kaban-configuration'
+import storage from './routes/storage'
+import attachments from './routes/attachments'
 
 import {authErrorHandler, errorHandler, dbErrorHandler} from './error-handlers'
 
@@ -44,6 +46,8 @@ app.use(comments)
 app.use(history)
 app.use(rank)
 app.use(kabanConfiguration)
+app.use(storage)
+app.use(attachments)
 app.use(authErrorHandler)
 app.use(dbErrorHandler)
 app.use(errorHandler)
