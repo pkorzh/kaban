@@ -21,7 +21,7 @@ import {authErrorHandler, errorHandler, dbErrorHandler} from './error-handlers'
 
 const app = express()
 
-app.set('secret', 'dfjbakjgsfd238irgfa')
+app.set('secret', process.env.JWT_SECRET)
 
 app.use(
 	jwt({
