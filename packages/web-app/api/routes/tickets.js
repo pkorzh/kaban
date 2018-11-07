@@ -52,8 +52,12 @@ router.patch('/tickets/:key', async function (req, res, next) {
 	return res.json(ticket)
 })
 
-router.post('/rank', async function (req, res, next) {
-	return res.json(await ticketsDal.rank.rank(req.body))
+router.delete('/tickets/:key', async function (req, res, next) {
+	await ticketsDal.remove(req.params.key)
+
+	notifySubscribers('deleteTicket', req.params.key)
+
+	return res.sendStatus(200)
 })
 
 export default router

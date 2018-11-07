@@ -45,4 +45,5 @@ export default {
 	options: 'Options',
 	change: 'Change',
 	set: 'Set',
+	move: 'Move',
 }

@@ -10,6 +10,7 @@ import ActionsNavLink from './ActionsNav/ActionsNavLink'
 import ActionsAllowedTransitions from './ActionsNav/ActionsAllowedTransitions'
 import ActionsNavColumns from './ActionsNav/ActionsNavColumns'
 import ActionsNavMultipleEdit from './ActionsNav/ActionsNavMultipleEdit'
+import ActionsNavTicketOptions from './ActionsNav/ActionsNavTicketOptions'
 
 import BacklogCreateHighlight from './BacklogCreateHighlight'
 import BacklogDeleteHighlight from './BacklogDeleteHighlight'
@@ -20,6 +21,7 @@ import BoardLaneTicket from './Board/BoardLaneTicket'
 
 import BoardCreateHighlight from './BoardCreateHighlight'
 import BoardDeleteHighlight from './BoardDeleteHighlight'
+import TicketDeleteHighlight from './TicketDeleteHighlight'
 
 import UserCreateHighlight from './UserCreateHighlight'
 import UserDeleteHighlight from './UserDeleteHighlight'
@@ -68,6 +70,7 @@ export {
 	ActionsAllowedTransitions,
 	ActionsNavColumns,
 	ActionsNavMultipleEdit,
+	ActionsNavTicketOptions,
 
 	BacklogCreateHighlight,
 	BacklogDeleteHighlight,
@@ -78,6 +81,7 @@ export {
 
 	BoardCreateHighlight,
 	BoardDeleteHighlight,
+	TicketDeleteHighlight,
 
 	UserCreateHighlight,
 	UserDeleteHighlight,

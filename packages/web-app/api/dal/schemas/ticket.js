@@ -70,9 +70,11 @@ const schema = new Schema({
 });
 
 schema.pre('remove', async function() {
-	await TicketSpentIn.remove(generateMql(`ticket = ${this.key}`))
-	await TicketLeadTime.remove(generateMql(`backlog = ${this.key}`))
-	await TicketStatusSlice.remove(generateMql(`backlog = ${this.key}`))
+	const kwargs = generateMql(`ticket = ${this.key}`);
+
+	await TicketSpentIn.remove(kwargs)
+	await TicketLeadTime.remove(kwargs)
+	await TicketStatusSlice.remove(kwargs)
 })
 
 schema.pre('save', async function() {

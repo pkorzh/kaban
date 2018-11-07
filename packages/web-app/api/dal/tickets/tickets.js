@@ -100,10 +100,15 @@ async function patch(key, delta, user) {
 	return ticket
 }
 
+function remove(key) {
+	return Ticket.deleteOne(generateMql(`key = ${key}`))
+}
+
 export {
 	insert,
 	query,
 	patch,
 	get,
 	count,
+	remove,
 }

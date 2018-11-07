@@ -31,6 +31,14 @@
 					shortkey="" />-->
 
 				<ActionsAllowedTransitions :ticket="ticket" />
+
+				<div class="actions-nav-separator"></div>
+
+				<ActionsNavTicketOptions 
+					class="float-right"
+					:ticket="ticket" 
+					:gotoBacklog="true"
+					:readonly="ticket.backlog.isArchived"/>
 			</ActionsNav>
 		</TopBar>
 
@@ -107,6 +115,6 @@
 			ticket() {
 				return this.getTicket(this.$route.params.key)
 			},
-		}
+		},
 	}
 </script>

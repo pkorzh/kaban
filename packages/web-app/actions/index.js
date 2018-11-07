@@ -7,6 +7,7 @@ import DeleteBacklogAction from './backlog-delete'
 import DeleteBoardAction from './board-delete'
 import CreateUserAction from './user-create'
 import DeleteUserAction from './user-delete'
+import TicketDeleteHighlight from './ticket-delete'
 
 export {
 	CreateTicketAction,
@@ -17,5 +18,6 @@ export {
 	DeleteBacklogAction,
 	DeleteBoardAction,
 	CreateUserAction,
-	DeleteUserAction
+	DeleteUserAction,
+	TicketDeleteHighlight
 }

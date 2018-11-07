@@ -47,7 +47,9 @@
 					action=""
 					shortkey="" />-->
 
-				<ActionsAllowedTransitions :ticket="ticket" :readonly="backlog.isArchived"/>
+				<ActionsAllowedTransitions 
+					:ticket="ticket" 
+					:readonly="backlog.isArchived"/>
 				<!--
 
 				<ActionsNavButton
@@ -58,6 +60,12 @@
 					icon="ellipsis-h"
 					action=""
 					shortkey="" />-->
+
+				<div class="actions-nav-separator"></div>
+
+				<ActionsNavTicketOptions 
+					:ticket="ticket" 
+					:readonly="backlog.isArchived"/>
 
 			</ActionsNav>
 
@@ -173,7 +181,12 @@
 		watch: {
 			'$route'(to, from) {
 				this.$emit('close')
-			}
+			},
+			ticket(newTicket) {
+				if (!newTicket) {
+					this.$emit('close')
+				}
+			},
 		}
 	}
 </script>

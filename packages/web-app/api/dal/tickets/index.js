@@ -9,6 +9,7 @@ import {
 	patch,
 	get,
 	count,
+	remove,
 } from './tickets'
 
 export {
@@ -17,6 +18,7 @@ export {
 	patch,
 	get,
 	count,
+	remove,
 	comments,
 	history,
 	rank,
