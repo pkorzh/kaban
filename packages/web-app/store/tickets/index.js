@@ -45,5 +45,11 @@ export default moduleFactory('tickets', {
 
 			commit('UPDATE_TICKETS_POSITION', rankChanges);
 		},
+		move({commit}, changeset) {
+			return this.$axios.$post(
+				`/api/tickets/move`, 
+				changeset,
+			);
+		}
 	}
 })

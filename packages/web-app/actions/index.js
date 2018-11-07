@@ -8,6 +8,7 @@ import DeleteBoardAction from './board-delete'
 import CreateUserAction from './user-create'
 import DeleteUserAction from './user-delete'
 import TicketDeleteHighlight from './ticket-delete'
+import TicketMoveHighlight from './ticket-move.js'
 
 export {
 	CreateTicketAction,
@@ -19,5 +20,6 @@ export {
 	DeleteBoardAction,
 	CreateUserAction,
 	DeleteUserAction,
-	TicketDeleteHighlight
+	TicketDeleteHighlight,
+	TicketMoveHighlight,
 }

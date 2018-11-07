@@ -4,7 +4,7 @@
 			<font-awesome-icon icon="ellipsis-v" /> 
 		</template>
 
-		<b-dropdown-item>
+		<b-dropdown-item @click="onMoveTicket">
 			<span v-t="'move'"></span>
 		</b-dropdown-item>
 
@@ -36,6 +36,15 @@
 					payload: {
 						ticket: this.ticket,
 						gotoBacklog: this.gotoBacklog,
+					}
+				});
+			},
+
+			onMoveTicket() {
+				this.$kaban.dispatch('TicketMoveHighlight', {
+					sender: this,
+					payload: {
+						ticket: this.ticket,
 					}
 				});
 			}

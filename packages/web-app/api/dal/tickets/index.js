@@ -10,6 +10,7 @@ import {
 	get,
 	count,
 	remove,
+	move,
 } from './tickets'
 
 export {
@@ -19,6 +20,7 @@ export {
 	get,
 	count,
 	remove,
+	move,
 	comments,
 	history,
 	rank,

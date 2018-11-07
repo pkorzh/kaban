@@ -1,7 +1,9 @@
 import {
 	Ticket,
 	Workflow,
-	TicketSpentIn
+	TicketSpentIn,
+	TicketLeadTime,
+	TicketStatusSlice,
 } from '../models';
 
 import { mongo as generateMql } from '../../../tql';
@@ -104,6 +106,35 @@ function remove(key) {
 	return Ticket.deleteOne(generateMql(`key = ${key}`))
 }
 
+async function move(changeset) {
+	for (let i = changeset.length - 1; i >= 0; i--) {
+		const item = changeset[i];
+		const ticket = await get(`key = ${item.ticketKey}`);
+
+		const p1 = Ticket.updateOne(
+			generateMql(`key = ${item.ticketKey}`),
+			{$set: { backlog: {key: item.backlogKey}}}
+		);
+
+		const p2 = TicketSpentIn.updateMany(
+			generateMql(`key = ${item.ticketKey}`),
+			{$set: { backlog: {key: item.backlogKey}}},
+		);
+
+		const p3 = TicketLeadTime.migrate(
+			{'ticket.key': item.ticketKey}, 
+			{key: item.backlogKey},
+		);
+
+		const p4 = TicketStatusSlice.updateMany(
+			generateMql(`key = ${item.backlogKey}`),
+			{$set: { backlog: {key: item.backlogKey}}},
+		);
+
+		await Promise.all([p1, p2, p3, p4]);
+	}
+}
+
 export {
 	insert,
 	query,
@@ -111,4 +142,5 @@ export {
 	get,
 	count,
 	remove,
+	move,
 }

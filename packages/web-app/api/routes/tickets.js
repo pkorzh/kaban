@@ -38,6 +38,11 @@ router.post('/tickets', async function (req, res, next) {
 	return res.json(ticket)
 })
 
+router.post('/tickets/move', async function (req, res, next) {
+	await ticketsDal.move(req.body);
+	return res.json();
+})
+
 router.patch('/tickets/:key', async function (req, res, next) {
 	const ticketDelta = req.body
 

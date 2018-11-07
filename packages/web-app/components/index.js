@@ -22,6 +22,7 @@ import BoardLaneTicket from './Board/BoardLaneTicket'
 import BoardCreateHighlight from './BoardCreateHighlight'
 import BoardDeleteHighlight from './BoardDeleteHighlight'
 import TicketDeleteHighlight from './TicketDeleteHighlight'
+import TicketMoveHighlight from './TicketMoveHighlight'
 
 import UserCreateHighlight from './UserCreateHighlight'
 import UserDeleteHighlight from './UserDeleteHighlight'
@@ -82,6 +83,7 @@ export {
 	BoardCreateHighlight,
 	BoardDeleteHighlight,
 	TicketDeleteHighlight,
+	TicketMoveHighlight,
 
 	UserCreateHighlight,
 	UserDeleteHighlight,
