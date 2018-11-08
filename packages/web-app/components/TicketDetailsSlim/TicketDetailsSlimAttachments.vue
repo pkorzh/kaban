@@ -1,13 +1,13 @@
 <template>
 	<div>
 		<div class="details-dropbox">
-			<form ref="dropboxForm" enctype="multipart/form-data" novalidate>
-				<input 
-					type="file" 
-					multiple  
-					@change="filesChange($event.target.files)"
-					class="input-file">
-			</form>
+			<font-awesome-icon icon="cloud-upload-alt" />
+			Drop files here to attach or click to browse
+			<input 
+				type="file" 
+				multiple  
+				@change="filesChange($event.target.files)"
+				class="input-file">
 		</div>
 
 		<ul class="mt-3">
@@ -70,12 +70,6 @@
 					...slim,
 					ticket: this.ticket,
 				}));
-
-				this.reset();
-			},
-
-			reset() {
-				this.$refs.dropboxForm.reset();
 			},
 
 			onDeleteAttachment(attachment) {
