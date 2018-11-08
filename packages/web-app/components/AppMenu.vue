@@ -91,14 +91,6 @@
 					</li>
 				</ul>
 			</li>
-
-			<li>
-				<strong class="dropdown-menu-title">
-					<a href="https://docs.kaban.app/" target="_blank">Docs</a>
-				</strong>
-				<ul>
-				</ul>
-			</li>
 		</ol>
 	</div>
 </template>

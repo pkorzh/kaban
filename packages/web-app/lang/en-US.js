@@ -29,7 +29,6 @@ export default {
 	newValue: 'After',
 	addedAComment: 'Added a comment',
 	next: 'Next',
-	needHelp: 'Need Help?',
 	done: 'Done',
 	madeAChange: 'Made a change',
 	assignedToMe: 'Assigned to me',
@@ -46,4 +45,5 @@ export default {
 	change: 'Change',
 	set: 'Set',
 	move: 'Move',
+	gethelp: 'Get Help',
 }

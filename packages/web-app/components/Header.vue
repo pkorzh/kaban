@@ -45,6 +45,15 @@
 
 							<b-dropdown-divider></b-dropdown-divider>
 
+							<a class="dropdown-item" href="https://docs.kaban.app/" target="_blank">Docs</a>
+
+							<b-dropdown-item 
+								:to="localePath({name: 'gethelp'})">
+								<span v-t="'gethelp'"></span>
+							</b-dropdown-item>
+
+							<b-dropdown-divider></b-dropdown-divider>
+
 							<b-dropdown-item @click="logout()">
 								<span v-t="'logout'"></span>
 							</b-dropdown-item>
