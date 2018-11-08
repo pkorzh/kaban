@@ -21,7 +21,7 @@
 					text="Create Ticket"
 					shortkey="c"
 					:disabled="backlog.isArchived"
-					:payload="{backlog: backlog}"
+					:payload="{backlog: backlog, stageIfTQLMatch: `backlog = ${backlog.key}`}"
 					action="CreateTicketAction" />
 
 				<div class="actions-nav-separator"></div>

@@ -107,14 +107,21 @@ export default (
 
 				return rawEntity[0]
 			},
-			create({commit}, entity) {
+			create({commit}, payload) {
+				let { entity, stage } = payload;
+
+				if (!entity) {
+					entity = payload;
+					stage = true;
+				}
+
 				commit('SET_WORKING', true)
 
 				return this.$axios.$post(`/api/${resource}/`, entity).then((data) => {
-					commit('STAGE', data)
-					commit('SET_WORKING', false)
+					stage && commit('STAGE', data);
+					commit('SET_WORKING', false);
 
-					return data
+					return data;
 				})
 			},
 			patch({commit}, {delta, key}) {
@@ -149,6 +156,9 @@ export default (
 			},
 			empty({commit}) {
 				commit('EMPTY')
+			},
+			stage({commit}, entity) {
+				commit('STAGE', entity);
 			}
 		}, actions)
 	}
