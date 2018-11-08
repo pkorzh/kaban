@@ -66,6 +66,9 @@
 			...mapActions('kabanConfiguration', {
 				fetchKabanConfStatus: 'fetchStatus'
 			}),
+			...mapActions('flatpages', {
+				fetchLatestFlatpages: 'fetchLatest',
+			}),
 			async login() {
 				this.error = null
 
@@ -86,6 +89,7 @@
 				this.fetchStatuses()
 				this.fetchUsers()
 				this.fetchKabanConfStatus();
+				this.fetchLatestFlatpages();
 			}
 		}
 	}

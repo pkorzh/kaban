@@ -6,7 +6,7 @@ import { flatpages as flatpagesDal } from '../dal'
 const router = Router()
 
 router.get('/flatpages', async function (req, res, next) {
-	const flatpages = await flatpagesDal.query(req.query.tql)
+	const flatpages = await flatpagesDal.query(req.query.tql, req.query.limit)
 
 	return res.json(flatpages)
 })

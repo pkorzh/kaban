@@ -60,6 +60,11 @@
 					</nuxt-link>
 				</strong>
 				<ul>
+					<li v-for="fp in latestFlatpages" :key="fp.key">
+						<nuxt-link :to="localePath({name: 'flatpages-key', params: {key: fp.key}})">
+							{{ fp.name }}
+						</nuxt-link>
+					</li>
 				</ul>
 			</li>
 
@@ -112,7 +117,11 @@
 				backlogList: 'getList'
 			}),
 
-			...mapGetters('kabanConfiguration', ['storageStatus'])
+			...mapGetters('kabanConfiguration', ['storageStatus']),
+
+			...mapGetters('flatpages', {
+				latestFlatpages: 'getLatest'
+			})
 		}
 	};
 </script>

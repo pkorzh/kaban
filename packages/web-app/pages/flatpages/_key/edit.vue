@@ -52,6 +52,9 @@
 	import { mapActions } from 'vuex'
 
 	export default {
+		async fetch({store, params}) {
+			await store.dispatch('flatpages/fetchList')
+		},
 		async asyncData({store, params}) {
 			const md = await store.dispatch(
 				'flatpages/getContent',
@@ -72,6 +75,7 @@
 			...mapActions('flatpages', {
 				patchFlatpage: 'patch',
 				deleteFlatpage: 'delete',
+				fetchLatest: 'fetchLatest',
 			}),
 
 			async patch() {
@@ -85,10 +89,13 @@
 					},
 					key: this.flatpage.key
 				})
+
+				await this.fetchLatest();
 			},
 
 			async del() {
-				await this.deleteFlatpage(this.flatpage.key)
+				await this.deleteFlatpage(this.flatpage.key);
+				await this.fetchLatest();
 			}
 		},
 	}

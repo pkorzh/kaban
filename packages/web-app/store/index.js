@@ -41,6 +41,7 @@ const store = () => new Vuex.Store({
 					dispatch('status/fetchList'),
 					dispatch('users/fetchList'),
 					dispatch('kabanConfiguration/fetchStatus'),
+					dispatch('flatpages/fetchLatest'),
 				])
 			} else {
 				return Promise.resolve()

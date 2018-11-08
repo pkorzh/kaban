@@ -2,8 +2,10 @@ import { Flatpage } from './models'
 
 import { mongo as generateMql } from '../../tql'
 
-async function query(tql, includeContent) {
+async function query(tql, limit = 0) {
 	return await Flatpage.find(generateMql(tql), { content: 0 })
+		.limit(Number(limit))
+		.sort('-updatedAt');
 }
 
 async function get(tql) {
