@@ -8,7 +8,7 @@
 			</li>
 
 			<li><a href="http://twitter.com/home?status=Put your message here @platonkorzh" target="_blank">
-				Tweet us
+				Tweet
 			</a></li>
 		</ul>
 	</b-container>
