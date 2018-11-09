@@ -9,14 +9,14 @@
 					action="tickets/patch"
 					getter="users/getList"
 					path="assignee"
-					icon="avatar"
 					:readonly="readonly"
 					:_key="ticket.key">
 						<template slot="display">
-							<img
-								class="details-avatar"
-								:src="ticket.assignee.avatar"
-								style="width:20px;">
+							<avatar 
+								inline
+								:src="ticket.assignee.avatar" 
+								:username="ticket.assignee.name"
+								:size="20"></avatar>
 							{{ ticket.assignee.name }}
 						</template>
 					</LiveEditSelect>
@@ -35,10 +35,11 @@
 					icon="avatar"
 					:_key="ticket.key">
 						<template slot="display">
-							<img
-								class="details-avatar"
-								:src="ticket.reporter.avatar"
-								style="width:20px;">
+							<avatar
+								inline 
+								:src="ticket.reporter.avatar" 
+								:username="ticket.reporter.name"
+								:size="20"></avatar>
 							{{ ticket.reporter.name }}
 						</template>
 					</LiveEditSelect>
