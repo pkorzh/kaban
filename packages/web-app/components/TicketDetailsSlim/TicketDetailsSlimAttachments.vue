@@ -10,28 +10,29 @@
 				class="input-file">
 		</div>
 
-		<ul class="mt-3">
-			<li v-for="attachment in attachments" :key="attachment.key">
-				<a :href="attachment.url" target="_blank">
-					{{ attachment.name }}
-				</a>
-				<b-dropdown variant="link" size="sm" no-caret>
-					<template slot="button-content">
-						<font-awesome-icon icon="ellipsis-v" /> 
-					</template>
-					<b-dropdown-item-button 
-						class="text-danger"
-						@click="onDeleteAttachment(attachment)">
-						<span v-t="'delete'"></span>
-					</b-dropdown-item-button>
-				</b-dropdown>
-				<br>
-				<small>
+		<div class="details-attach">
+			<div 
+				class="details-attach-item"
+				v-for="attachment in attachments" :key="attachment.key">
+
+				<img 
+					v-if="isImageAttachment(attachment)"
+					:src="attachment.url">
+
+				<span>
+					<a :href="attachment.url" target="_blank">
+						{{ attachment.name }}<br>
+					</a>
 					{{ attachment.user.name }}, 
-					{{ attachment.createdAt | moment('LL') }}
-				</small>
-			</li>
-		</ul>
+					<small>{{ attachment.createdAt | moment('LL') }}</small>
+				</span>
+
+				<a 
+					href="#"
+					@click.prevent="onDeleteAttachment(attachment)"
+					class="details-attach-close"></a>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -75,6 +76,10 @@
 			onDeleteAttachment(attachment) {
 				this.deleteAttachment(attachment);
 			},
+
+			isImageAttachment(attachment) {
+				return (/\.(gif|jpg|jpeg|tiff|png)$/i).test(attachment.url);
+			}
 		},
 		async mounted() {
 			if (process.client) {
