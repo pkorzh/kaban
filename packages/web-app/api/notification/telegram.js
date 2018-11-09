@@ -7,8 +7,8 @@ export default class Telegram {
 
 	async checkToken() {
 		const r = await axios.get(`https://api.telegram.org/bot${this.token}/getMe`);
-		return r.data
-	},
+		return r.data;
+	}
 
 	async sendMessage(md) {
 		await axios.post(`https://api.telegram.org/bot${this.token}/sendMessage`, {
