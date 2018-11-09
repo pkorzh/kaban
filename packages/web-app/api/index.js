@@ -31,6 +31,7 @@ app.use(
 		path: [
 			'/api/users/login',
 			'/api/ping',
+			'/api/kaban-configuration/notification/telegram/handle-webhook',
 		]
 	})
 )

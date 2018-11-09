@@ -6,12 +6,15 @@ const schema = new Schema({
 	storage: {
 		type: {}
 	},
+	notification: {
+		type: {}
+	},
 }, {
 	timestamps: true,
 	strict: true,
 });
 
-schema.statics._get = async function _getKabanConfiguration() {
+schema.statics.get = async function _getKabanConfiguration() {
 	const existingOne = await this.findOne().sort({ updatedAt: -1 });
 
 	if (existingOne) {
@@ -21,7 +24,10 @@ schema.statics._get = async function _getKabanConfiguration() {
 	const newOne = new this({
 		storage: {
 			type: null,
-		}
+		},
+		notification: {
+			type: null,
+		},
 	});
 
 	await newOne.save()
@@ -29,22 +35,34 @@ schema.statics._get = async function _getKabanConfiguration() {
 }
 
 schema.statics.status = async function _status() {
-	const kc = await this._get();
+	const kc = await this.get();
 
 	return {
-		storageStatus: kc.storage.type,
+		storageStatus: kc.storage && kc.storage.type,
+		notificationStatus: kc.notification && kc.notification.type,
 	};
 }
 
 schema.statics.storageConfig = async function _storageConfig(storage) {
-	const kc = await this._get();
+	const kc = await this.get();
 
 	if (arguments.length) {
 		kc.storage = storage;
 		return await kc.save();
 	}
 
-	return kc.storage;
+	return kc.storage || {};
+}
+
+schema.statics.notificationConfig = async function _notificationConfig(notification) {
+	const kc = await this.get();
+
+	if (arguments.length) {
+		kc.notification = notification;
+		return await kc.save();
+	}
+
+	return kc.notification || {};
 }
 
 export default schema;

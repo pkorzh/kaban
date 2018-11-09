@@ -46,4 +46,6 @@ export default {
 	set: 'Set',
 	move: 'Move',
 	gethelp: 'Get Help',
+	notificationConfig: 'Notification Config',
+	testToken: 'Test token',
 }
