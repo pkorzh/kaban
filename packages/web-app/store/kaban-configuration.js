@@ -13,12 +13,18 @@ export default {
 		storageStatus(state) {
 			return state.storageStatus;
 		},
+		notificationStatus(state) {
+			return state.notificationStatus;
+		}
 	},
 	actions: {
 		async fetchStatus({commit, getters}, payload) {
 			const status = await this.$axios.$get(`/api/kaban-configuration`);
 			commit('STATUS', status);
 			return status;
+		},
+		patchConfiguration({commit, getters}, payload) {
+			return this.$axios.$patch(`/api/kaban-configuration`, payload);
 		}
 	},
 	modules: {
@@ -40,12 +46,22 @@ export default {
 								payload,
 							);
 						},
-						saveConfiguration({commit, getters}, payload) {
+					}
+				}
+			}
+		},
+		notification: {
+			namespaced: true,
+			modules: {
+				telegram: {
+					namespaced: true,
+					actions: {
+						checkToken({commit, getters}, payload) {
 							return this.$axios.$post(
-								`/api/kaban-configuration/storage/s3/save-configuration`,
+								`/api/kaban-configuration/notification/telegram/check-token`,
 								payload,
 							);
-						}
+						},
 					}
 				}
 			}
