@@ -9,7 +9,7 @@ const guard = jwtPerm();
 const router = Router();
 
 router.post('/check-token', guard.check('admin'), async function (req, res, next) {	
-	const t = new Telegram(req.body)
+	const t = new Telegram(req.body);
 
 	return res.json(await t.checkToken());
 });
