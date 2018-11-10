@@ -6,11 +6,26 @@ const regex = {
 };
 
 function tokens(source) {
-	let pos = 0
+	let pos = 0;
 
-	const isBool = (lexeme) => ['and', 'or'].indexOf(lexeme) !== -1
-	const isField = (lexeme) => ['rank', 'board', 'ticket', 'key', 'assignee', 'reporter', 'status', 'backlog', 'type', 'priority', 'resolution', 'createdAt', 'updatedAt']
-		.indexOf(lexeme) !== -1
+	const isBool = (lexeme) => ['and', 'or'].indexOf(lexeme) !== -1;
+
+	const isField = (lexeme) => [
+		'rank', 
+		'board', 
+		'ticket', 
+		'key', 
+		'assignee', 
+		'reporter', 
+		'status', 
+		'backlog', 
+		'type', 
+		'priority', 
+		'resolution', 
+		'createdAt', 
+		'updatedAt'
+		].indexOf(lexeme) !== -1;
+
 	const isDecimal = (lexeme) => {
 		const d = parseInt(lexeme)
 		return /^\d+$/.test(lexeme) && !isNaN(d) && isFinite(d)
