@@ -60,6 +60,10 @@ import TicketDetailsSlimDescription from './TicketDetailsSlim/TicketDetailsSlimD
 import IconedSelect from './Fields/IconedSelect.vue'
 import InfiniteScroll from './InfiniteScroll'
 
+import TqlSearch from './TqlSearch/TqlSearch'
+import TqlSearchKey from './TqlSearch/TqlSearchKey'
+import TqlSearchText from './TqlSearch/TqlSearchText'
+
 export {
 	ActionsNav,
 	ActionsNavAssigned,
@@ -117,6 +121,10 @@ export {
 	TicketDetailsSlimAttachments,
 	TicketDetailsSlimPostComment,
 	TicketDetailsSlimDescription,
+
+	TqlSearch,
+	TqlSearchKey,
+	TqlSearchText,
 
 	IconedSelect,
 	InfiniteScroll,

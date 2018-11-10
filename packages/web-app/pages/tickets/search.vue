@@ -8,9 +8,9 @@
 			<template slot="breadcrumb">
 				<b-breadcrumb>
 					<b-breadcrumb-item
-						:to="localePath({name: 'issues-search'})"
-						text="Tickets"
-						active />
+							:to="localePath({name: 'issues-search'})"
+							text="Tickets"
+							active/>
 				</b-breadcrumb>
 			</template>
 
@@ -18,38 +18,66 @@
 			</ActionsNav>
 		</TopBar>
 
-		<b-form class="mb-3" @submit.prevent.stop="search(tql)">
-			<div class="input-group">
-				<div class="input-group-prepend">
-					<span class="input-group-text">
-						<font-awesome-icon icon="search" />
-					</span>
-				</div>
+		<tql-search class="mb-3"
+					placeholder="Enter search query"
+					:fields="searchFields"
+					@input="search">
 
-				<b-form-input
-					type="text"
-					size="lg"
-					v-model="tql"
-					placeholder="Enter search query" />
-			</div>
-		</b-form>
+			<b-row>
+				<b-col>
+					<tql-search-text
+							name="name"
+							v-model="searchFields.name"
+							placeholder="Ticket summary"/>
+
+					<tql-search-key
+							name="backlog"
+							v-model="searchFields.backlog"
+							getter="backlogs/getList"/>
+
+					<tql-search-key
+							name="type"
+							v-model="searchFields.type"
+							getter="tickettypes/getList"/>
+				</b-col>
+				<b-col>
+					<tql-search-key
+							name="priority"
+							v-model="searchFields.priority"
+							getter="priorities/getList"/>
+
+					<tql-search-key
+							name="resolution"
+							v-model="searchFields.resolution"
+							getter="resolutions/getList"/>
+
+					<tql-search-key
+							name="assignee"
+							icon="avatar"
+							v-model="searchFields.assignee"
+							getter="users/getList"/>
+				</b-col>
+			</b-row>
+		</tql-search>
 
 		<InfiniteScroll
 				:list="tickets"
 				@loadmore="loadMore"
 				item-selector="tbody tr">
 			<TicketsTable
-					:tickets="tickets" />
+					:tickets="tickets"/>
 		</InfiniteScroll>
 	</b-container>
 </template>
 
 <script>
-	import { mapGetters, mapActions } from 'vuex';
+	import {mapGetters, mapActions} from 'vuex'
+	import TqlSearchKey from '../../components/TqlSearch/TqlSearchKey'
 
 	export default {
+		components: {TqlSearchKey},
 		async fetch({store, params, route: {query}}) {
-			let tql = query.tql || null;
+			let tql = query.tql || null
 
 			await store.dispatch('tickets/fetchList', {
 				limit: 20,
@@ -59,33 +87,40 @@
 
 		async asyncData({route: {query}}) {
 			return {
-				tql: query.tql || '', 
-			};
+				tql: query.tql || '',
+			}
 		},
 
 		head() {
 			return {
-				title: this.$t('searchTickets')
+				title: this.$t('searchTickets'),
 			}
 		},
 
 		data() {
 			return {
-				tql: ''
+				searchFields: {
+					backlog: '',
+					type: '',
+					name: '',
+					priority: '',
+					resolution: '',
+					assignee: '',
+				},
 			}
 		},
 
 		methods: {
 			...mapActions('tickets', {
 				fetchTickets: 'fetchList',
-				fetchMoreTickets: 'fetchMore'
+				fetchMoreTickets: 'fetchMore',
 			}),
 
 			search(tql) {
 				this.$router.push(this.localePath({
 					name: 'tickets-search',
-					query: { tql },
-				}));
+					query: {tql},
+				}))
 			},
 
 			async loadMore(amount) {
@@ -93,22 +128,22 @@
 
 				await this.fetchMoreTickets({
 					tql: `${this.tql ? this.tql + ' and ' : ''}rank > "${lastTicketRank}"`,
-					limit: amount
+					limit: amount,
 				})
-			}
+			},
 		},
 
 		computed: {
 			...mapGetters('tickets', {
 				tickets: 'getList',
-			})
+			}),
 		},
 
 		watch: {
 			'$route.query.tql'(tql) {
-				this.tql = tql;
-				this.fetchTickets({ tql, limit: 20 });
-			}
+				this.tql = tql
+				this.fetchTickets({tql, limit: 20})
+			},
 		},
 	}
 </script>
