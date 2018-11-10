@@ -1,6 +1,7 @@
 <template>
 	<v-select
 		:options="options"
+		:multiple="multiple"
 		v-model="modified"
 		:clearable="false"
 		label="name">
@@ -39,6 +40,10 @@
 			},
 			value: {
 				required: false
+			},
+			multiple: {
+				required: false,
+				default: () => false
 			}
 		},
 		data() {

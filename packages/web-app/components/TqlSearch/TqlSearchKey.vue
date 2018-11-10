@@ -5,6 +5,7 @@
 		<iconed-select
 				:icon="icon"
 				:getter="getter"
+				:multiple="true"
 				v-model="entity"/>
 	</b-form-group>
 </template>
@@ -39,9 +40,13 @@
 
 		watch: {
 			entity(value) {
-				//this.value = `${this.name} = ${this.entity.key}`;
+				const str = (arr) => arr.map(el => el.key).join(',');
 
-				this.$emit('input', `${this.name} = ${this.entity.key}`)
+				if (value.length > 1) {
+					this.$emit('input', `${this.name} in [${str(value)}]`);
+				} else {
+					this.$emit('input', `${this.name} = ${value[0].key}`);
+				}
 			}
 		},
 
