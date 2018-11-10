@@ -37,12 +37,13 @@
 		},
 		watch: {
 			entity(value) {
-				const str = (arr) => arr.map(el => el.key).join(',');
+				const strKey = (key) => key.indexOf('.') !== -1 ? `"${key}"` : key;
+				const strArr = (arr) => arr.map(el => strKey(el.key)).join(',');
 
 				if (value.length > 1) {
-					this.$emit('input', `${this.name} in [${str(value)}]`);
+					this.$emit('input', `${this.name} in [${strArr(value)}]`);
 				} else if (value.length == 1) {
-					this.$emit('input', `${this.name} = ${value[0].key}`);
+					this.$emit('input', `${this.name} = ${strKey(value[0].key)}`);
 				} else {
 					this.$emit('input', '');
 				}

@@ -12,11 +12,6 @@
 			</template>
 
 			<ActionsNav>
-				<!--<ActionsNavAssigned />
-				<ActionsNavQuickFilters />
-
-				<ActionsNavSimpleSearch />-->
-
 				<ActionsNavButton
 					text="Create Ticket"
 					shortkey="c"

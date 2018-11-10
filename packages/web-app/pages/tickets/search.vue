@@ -18,8 +18,7 @@
 			</ActionsNav>
 		</TopBar>
 
-		<tql-search class="mb-3"
-					placeholder="Enter search query"
+		<tql-search placeholder="Enter search query"
 					:value="tql"
 					@input="search">
 			<template slot-scope="{ fields }">

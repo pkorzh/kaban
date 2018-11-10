@@ -9,7 +9,6 @@
 
 			<b-form-input
 					type="text"
-					size="lg"
 					v-model="tql"
 					:placeholder="placeholder"/>
 
