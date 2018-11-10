@@ -19,14 +19,17 @@
 					</b-button>
 				</b-form>
 			</b-col>
-			<b-col cols="3" v-if="step >= 2">
-				<div>
-					<span v-t="'done'"></span>
-
+			<b-col cols="9" v-if="step >= 2">
+				<div class="pb-3">
 					<p>
-						{{ bot.first_name }}<br>
-						{{ bot.username }}
+						<kbd>{{ bot.username }}</kbd>
 					</p>
+
+					<p>Please run the following code in the terminal to finish setup.</p>
+
+					<code>
+curl -d "url={{ domain }}/api/kaban-configuration/notification/telegram/handle-webhook?secret={{ token }}" https://api.telegram.org/bot{{ token }}/setWebhook
+					</code>
 				</div>
 
 				<b-button variant="primary" @click="saveCredentials">
@@ -51,6 +54,7 @@
 				token: null,
 				bot: {},
 				step: 1,
+				domain: 'https://example.com',
 			}
 		},
 		methods: {
