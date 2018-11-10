@@ -76,13 +76,9 @@
 </template>
 
 <script>
-	import {mapGetters, mapActions} from 'vuex'
-	import TqlSearchKey from '../../components/TqlSearch/TqlSearchKey'
+	import {mapGetters, mapActions} from 'vuex';
 
 	export default {
-		components: {
-			TqlSearchKey
-		},
 		async fetch({store, params, route: {query}}) {
 			let tql = query.tql || null
 
