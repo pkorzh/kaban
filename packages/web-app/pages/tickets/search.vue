@@ -39,6 +39,11 @@
 								name="type"
 								v-model="fields.type"
 								getter="tickettypes/getList"/>
+
+						<tql-search-key
+								name="status"
+								v-model="fields.status"
+								getter="status/getList"/>
 					</b-col>
 					<b-col>
 						<tql-search-key

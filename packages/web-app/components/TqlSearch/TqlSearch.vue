@@ -47,6 +47,7 @@
 					priority: '',
 					resolution: '',
 					assignee: '',
+					status: '',
 				},
 			}
 		},
