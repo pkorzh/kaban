@@ -18,13 +18,16 @@ router.post('/handle-webhook', async function(req, res, next) {
 	const secret = req.query.secret;
 	const kc = await kabanConfiguration.get();
 
+	console.log(req.body)
+
 	if (secret !== kc.notification.token) {
 		throw new Error('Wrong secret');
 	}
 
 	const text = req.body.message.text;
-	const chatId = req.body.message.chat.id;
-	const chatTitle = req.body.message.chat.title;
+	const chat = req.body.message.chat;
+	const chatId = chat.id;
+	const chatTitle = chat.title || chat.username;
 
 	const t = new Telegram({ ...kc.notification, chatId: chatId  });
 
@@ -38,6 +41,10 @@ Hit [/register](/register) to receive notifications
 
 		await t.sendMessage(`
 Registered *${chatTitle}* as notification target
+		`);
+	} else {
+		await t.sendMessage(`
+Please use [/start](/start) or [/register](/register)
 		`);
 	}
 
