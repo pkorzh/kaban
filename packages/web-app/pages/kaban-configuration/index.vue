@@ -1,5 +1,13 @@
 <template>
 	<b-container fluid>
+		<b-form-group
+			description="Domain">
+			<LiveEditInput
+				:content="general.domain"
+				action="kabanConfiguration/patchConfiguration"
+				path="general.domain" />
+		</b-form-group>
+
 		<table class="table table-hover mb-5">
 			<thead>
 				<tr>
@@ -48,6 +56,7 @@
 			...mapGetters('kabanConfiguration', [
 				'storageStatus',
 				'notificationStatus',
+				'general',
 			]),
 		},
 		methods: {

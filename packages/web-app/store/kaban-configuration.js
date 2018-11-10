@@ -4,9 +4,9 @@ export default {
 	namespaced: true,
 	state: {},
 	mutations: {
-		STATUS(state, payload) {
-			Object.keys(payload).forEach(statusKey =>
-				Vue.set(state, statusKey, payload[statusKey]));
+		CONFIGURATION(state, payload) {
+			Object.keys(payload).forEach(key =>
+				Vue.set(state, key, payload[key]));
 		},
 	},
 	getters: {
@@ -15,16 +15,20 @@ export default {
 		},
 		notificationStatus(state) {
 			return state.notificationStatus;
+		},
+		general(state) {
+			return state.general;
 		}
 	},
 	actions: {
-		async fetchStatus({commit, getters}, payload) {
+		async fetchConfiguration({commit, getters}, payload) {
 			const status = await this.$axios.$get(`/api/kaban-configuration`);
-			commit('STATUS', status);
+			commit('CONFIGURATION', status);
 			return status;
 		},
-		patchConfiguration({commit, getters}, payload) {
-			return this.$axios.$patch(`/api/kaban-configuration`, payload);
+		async patchConfiguration({commit, dispatch}, payload) {
+			await this.$axios.$patch(`/api/kaban-configuration`, payload);
+			await dispatch('fetchConfiguration');
 		}
 	},
 	modules: {

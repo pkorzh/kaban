@@ -1,6 +1,6 @@
 const { Schema } = require('mongoose');
 
-import KeySchema from './key';
+import GeneralSchema from './general';
 
 const schema = new Schema({
 	storage: {
@@ -9,6 +9,7 @@ const schema = new Schema({
 	notification: {
 		type: {}
 	},
+	general: GeneralSchema,
 }, {
 	timestamps: true,
 	strict: true,
@@ -28,6 +29,8 @@ schema.statics.get = async function _getKabanConfiguration() {
 		notification: {
 			type: null,
 		},
+		general: {
+		}
 	});
 
 	await newOne.save()
@@ -40,29 +43,27 @@ schema.statics.status = async function _status() {
 	return {
 		storageStatus: kc.storage && kc.storage.type,
 		notificationStatus: kc.notification && kc.notification.type,
+		general: kc.general || {},
 	};
 }
 
-schema.statics.storageConfig = async function _storageConfig(storage) {
-	const kc = await this.get();
+function _partialGetter(key) {
+	return async function _partialGetterInner(value) {
+		const kc = await this.get();
 
-	if (arguments.length) {
-		kc.storage = storage;
-		return await kc.save();
-	}
+		if (arguments.length) {
+			kc[key] = value;
+			return await kc.save();
+		}
 
-	return kc.storage || {};
+		return kc[key] || {};
+	};
 }
 
-schema.statics.notificationConfig = async function _notificationConfig(notification) {
-	const kc = await this.get();
+schema.statics.storageConfig = _partialGetter('storage');
 
-	if (arguments.length) {
-		kc.notification = notification;
-		return await kc.save();
-	}
+schema.statics.notificationConfig = _partialGetter('notification');
 
-	return kc.notification || {};
-}
+schema.statics.generalConfig = _partialGetter('general');
 
 export default schema;

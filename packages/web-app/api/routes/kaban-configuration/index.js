@@ -16,7 +16,7 @@ router.get('/kaban-configuration', guard.check('admin'), async function (req, re
 });
 
 router.patch('/kaban-configuration', guard.check('admin'), async function (req, res, next) {	
-	await kabanConfiguration.patchConfig(req.body);
+	await kabanConfiguration.patchConfig(req.body.delta ? req.body.delta : req.body);
 	return res.json();
 });
 

@@ -19,12 +19,13 @@
 		<template v-else>
 			<div
 				class="editor-holder"
-				:class="{readonly}"
+				:class="{ readonly }"
 				@click="edit"
 				@mouseout="toggleHover"
 				@mouseover="toggleHover"
 				>
-					<div v-html="content"></div>
+					<div v-if="content" v-html="content"></div>
+					<div v-else class="font-italic" v-t="'clickToEdit'"></div>
 					<font-awesome-icon icon="pen" />
 				</div>
 		</template>

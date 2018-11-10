@@ -95,7 +95,7 @@
 				'listBuckets', 'uploadSample']),
 
 			...mapActions('kabanConfiguration', [
-				'fetchStatus', 'patchConfiguration']),
+				'fetchConfiguration', 'patchConfiguration']),
 
 			async testAccessKeys() {
 				const valid = await this.$validator.validateAll();
@@ -134,7 +134,7 @@
 					}
 				});
 
-				this.fetchStatus();
+				this.fetchConfiguration();
 			}
 		}
 	}

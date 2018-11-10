@@ -61,7 +61,7 @@ curl -d "url={{ domain }}/api/kaban-configuration/notification/telegram/handle-w
 			...mapActions('kabanConfiguration/notification/telegram', ['checkToken']),
 
 			...mapActions('kabanConfiguration', [
-				'fetchStatus', 'patchConfiguration']),
+				'fetchConfiguration', 'patchConfiguration']),
 
 			async testToken() {
 				const valid = await this.$validator.validateAll();
@@ -85,7 +85,7 @@ curl -d "url={{ domain }}/api/kaban-configuration/notification/telegram/handle-w
 					}
 				});
 
-				this.fetchStatus();
+				this.fetchConfiguration();
 			}
 		}
 	}
