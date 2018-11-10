@@ -1,6 +1,6 @@
 <template>
 	<b-form-group
-			:label="label"
+			:label="name"
 			horizontal>
 		<iconed-select
 				:icon="icon"
@@ -13,7 +13,6 @@
 <script>
 	export default {
 		name: 'tql-search-key',
-
 		props: {
 			name: {
 				type: String,
@@ -28,32 +27,26 @@
 			},
 			value: {
 				type: String,
-				required: true
-			}
+				required: true,
+			},
 		},
-
 		data() {
 			return {
 				entity: null,
 			}
 		},
-
 		watch: {
 			entity(value) {
 				const str = (arr) => arr.map(el => el.key).join(',');
 
 				if (value.length > 1) {
 					this.$emit('input', `${this.name} in [${str(value)}]`);
-				} else {
+				} else if (value.length == 1) {
 					this.$emit('input', `${this.name} = ${value[0].key}`);
+				} else {
+					this.$emit('input', '');
 				}
 			}
 		},
-
-		computed: {
-			label() {
-				return this.name.charAt(0).toUpperCase() + this.name.slice(1);
-			}
-		}
 	}
 </script>

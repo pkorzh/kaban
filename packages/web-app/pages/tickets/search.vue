@@ -20,44 +20,45 @@
 
 		<tql-search class="mb-3"
 					placeholder="Enter search query"
-					:fields="searchFields"
+					:value="tql"
 					@input="search">
+			<template slot-scope="{ fields }">
+				<b-row>
+					<b-col>
+						<tql-search-text
+								name="name"
+								v-model="fields.name"
+								placeholder="Ticket summary"/>
 
-			<b-row>
-				<b-col>
-					<tql-search-text
-							name="name"
-							v-model="searchFields.name"
-							placeholder="Ticket summary"/>
+						<tql-search-key
+								name="backlog"
+								v-model="fields.backlog"
+								getter="backlogs/getList"/>
 
-					<tql-search-key
-							name="backlog"
-							v-model="searchFields.backlog"
-							getter="backlogs/getList"/>
+						<tql-search-key
+								name="type"
+								v-model="fields.type"
+								getter="tickettypes/getList"/>
+					</b-col>
+					<b-col>
+						<tql-search-key
+								name="priority"
+								v-model="fields.priority"
+								getter="priorities/getList"/>
 
-					<tql-search-key
-							name="type"
-							v-model="searchFields.type"
-							getter="tickettypes/getList"/>
-				</b-col>
-				<b-col>
-					<tql-search-key
-							name="priority"
-							v-model="searchFields.priority"
-							getter="priorities/getList"/>
+						<tql-search-key
+								name="resolution"
+								v-model="fields.resolution"
+								getter="resolutions/getList"/>
 
-					<tql-search-key
-							name="resolution"
-							v-model="searchFields.resolution"
-							getter="resolutions/getList"/>
-
-					<tql-search-key
-							name="assignee"
-							icon="avatar"
-							v-model="searchFields.assignee"
-							getter="users/getList"/>
-				</b-col>
-			</b-row>
+						<tql-search-key
+								name="assignee"
+								icon="avatar"
+								v-model="fields.assignee"
+								getter="users/getList"/>
+					</b-col>
+				</b-row>
+			</template>
 		</tql-search>
 
 		<InfiniteScroll
@@ -75,7 +76,9 @@
 	import TqlSearchKey from '../../components/TqlSearch/TqlSearchKey'
 
 	export default {
-		components: {TqlSearchKey},
+		components: {
+			TqlSearchKey
+		},
 		async fetch({store, params, route: {query}}) {
 			let tql = query.tql || null
 
@@ -84,32 +87,16 @@
 				tql,
 			})
 		},
-
 		async asyncData({route: {query}}) {
 			return {
 				tql: query.tql || '',
 			}
 		},
-
 		head() {
 			return {
 				title: this.$t('searchTickets'),
 			}
 		},
-
-		data() {
-			return {
-				searchFields: {
-					backlog: '',
-					type: '',
-					name: '',
-					priority: '',
-					resolution: '',
-					assignee: '',
-				},
-			}
-		},
-
 		methods: {
 			...mapActions('tickets', {
 				fetchTickets: 'fetchList',
@@ -132,13 +119,11 @@
 				})
 			},
 		},
-
 		computed: {
 			...mapGetters('tickets', {
 				tickets: 'getList',
 			}),
 		},
-
 		watch: {
 			'$route.query.tql'(tql) {
 				this.tql = tql

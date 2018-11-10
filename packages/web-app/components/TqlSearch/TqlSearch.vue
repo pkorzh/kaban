@@ -21,7 +21,7 @@
 		</div>
 		<b-collapse id="tql-collapse" class="tql-input-dropdown">
 			<div class="tql-input-dropdown-content clearfix">
-				<slot></slot>
+				<slot :fields="fields"></slot>
 
 				<b-btn type="submit" v-b-toggle.tql-collapse variant="primary" class="float-right">Search</b-btn>
 			</div>
@@ -32,29 +32,29 @@
 <script>
 	export default {
 		name: 'tql-search',
-
 		props: {
 			placeholder: {
 				type: String,
 			},
-			fields: {
-				type: Object,
-				required: true,
-			},
 		},
-
 		data() {
 			return {
 				tql: '',
+				fields: {
+					name: '',
+					backlog: '',
+					type: '',
+					priority: '',
+					resolution: '',
+					assignee: '',
+				},
 			}
 		},
-
 		methods: {
 			submit() {
 				this.$emit('input', this.tql)
 			},
 		},
-
 		watch: {
 			fields: {
 				handler(fields) {
