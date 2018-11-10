@@ -21,7 +21,7 @@
 				<ActionsNavButton
 					text="Create Ticket"
 					action="CreateTicketAction"
-					:payload="{status: ticketInitialStatus}"
+					:payload="{status: ticketInitialStatus, stageIfTQLMatch: board.tql}"
 					shortkey="c" />
 
 				<ActionsNavViewSwitcher v-model="boardView" />

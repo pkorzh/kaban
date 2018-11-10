@@ -88,7 +88,9 @@
 </template>
 
 <script>
-	import { mapActions } from 'vuex'
+	import { mapActions } from 'vuex';
+
+	import { predicate } from '../tql';
 
 	export default {
 		props: {
@@ -98,6 +100,10 @@
 			},
 			backlog: {
 				type: Object,
+				required: false,
+			},
+			stageIfTQLMatch: {
+				type: String,
 				required: false,
 			}
 		},
@@ -120,15 +126,28 @@
 		},
 		methods: {
 			...mapActions('tickets', {
-				createTicket: 'create'
+				createTicket: 'create',
+				stageTicket: 'stage'
 			}),
 
 			async create() {
-				const valid = await this.$validator.validateAll()
-				if (!valid) return
+				const valid = await this.$validator.validateAll();
+				if (!valid) return;
 
-				await this.createTicket(this.ticket)
-				this.$emit('close')
+				const ticket = await this.createTicket({
+					entity: this.ticket,
+					stage: false,
+				});
+
+				const stage = this.stageIfTQLMatch
+					? predicate(this.stageIfTQLMatch)(this.ticket)
+					: true;
+
+				if (stage) {
+					this.stageTicket(ticket);
+				}
+
+				this.$emit('close');
 			},
 		}
 	}
