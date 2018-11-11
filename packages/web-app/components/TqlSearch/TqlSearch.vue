@@ -43,7 +43,7 @@
 			}
 		},
 		data() {
-			const data =  {
+			const data = {
 				tql: this.value,
 				fields: {
 					name: '',
@@ -73,7 +73,7 @@
 					const strArr = (arr) => arr.map(el => strKey(el)).join(',');
 
 					const tql = Object.keys(fields)
-							.filter(key => this.fields[key])
+							.filter(key => this.fields[key].length)
 							.map(key => {
 								const rval = this.fields[key];
 
@@ -82,7 +82,7 @@
 								} else if (rval.length && rval.map && rval.length == 1) {
 									return `${key} = ${strKey(rval[0])}`;
 								} else {
-									return `${key} = "${rval}"`;
+									return `${key} = ${rval}`;
 								};
 							})
 							.join(' and ');
@@ -91,6 +91,13 @@
 				},
 				deep: true
 			},
+			value(value, value2) {
+				this.tql = value;
+				const data2 = tqlTransformToObject(value);
+
+				Object.keys(this.fields).forEach(key => this.fields[key] = '');
+				Object.assign(this.fields, data2);
+			}
 		},
 	}
 </script>

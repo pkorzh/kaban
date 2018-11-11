@@ -126,8 +126,8 @@
 		},
 		watch: {
 			'$route.query.tql'(tql) {
-				this.tql = tql
-				this.fetchTickets({tql, limit: 20})
+				this.tql = tql;
+				this.fetchTickets({tql, limit: 20});
 			},
 		},
 	}

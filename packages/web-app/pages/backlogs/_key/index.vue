@@ -191,14 +191,18 @@
 		},
 		watch: {
 			'$route.query.tql'(tqlSuffix) {
-				let tql = `backlog = ${this.backlog.key}`;
+				this.tql = tqlSuffix;
 
-				if (!!tqlSuffix) {
-					tql += ` and ${tqlSuffix}`;
+				let tql2 = `backlog = ${this.backlog.key}`;
+
+				if (tqlSuffix) {
+					tql2 += ` and ${tqlSuffix}`
 				}
 
-				this.tql = tql;
-				this.fetchList({tql, limit: 20});
+				this.fetchList({
+					tql: tqlSuffix,
+					limit: 20,
+				});
 			},
 		},
 	}
