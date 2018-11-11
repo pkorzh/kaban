@@ -4,7 +4,7 @@
 			horizontal>
 		<b-form-input
 				type="text"
-				v-model="text"
+				v-model="value"
 				:placeholder="placeholder"/>
 	</b-form-group>
 </template>
@@ -12,7 +12,6 @@
 <script>
 	export default {
 		name: 'tql-search-text',
-
 		props: {
 			name: {
 				type: String,
@@ -22,21 +21,18 @@
 				type: String,
 			},
 			value: {
-				type: String,
 				required: true,
 			},
 		},
-
 		data() {
 			return {
-				text: '',
-			}
+				entity: this.value
+			};
 		},
-
 		watch: {
-			text(value) {
-				this.$emit('input', `${this.name} = "${this.text}"`)
-			},
+			entity(value) {
+				this.$emit('input', value);
+			}
 		},
 	}
 </script>

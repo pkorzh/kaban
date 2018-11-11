@@ -1,5 +1,5 @@
 <template>
-	<b-form class="tql-input" @submit.prevent.stop="submit(value)">
+	<b-form class="tql-input" @submit.prevent.stop="submit(tql)">
 		<div class="input-group">
 			<div class="input-group-prepend">
 					<span class="input-group-text">
@@ -9,7 +9,7 @@
 
 			<b-form-input
 					type="text"
-					v-model="value"
+					v-model="tql"
 					:placeholder="placeholder"/>
 
 			<div class="input-group-append">
@@ -43,7 +43,8 @@
 			}
 		},
 		data() {
-			return {
+			const data =  {
+				tql: this.value,
 				fields: {
 					name: '',
 					backlog: '',
@@ -54,26 +55,42 @@
 					status: '',
 				},
 			}
+
+			const data2 = tqlTransformToObject(this.value);
+			Object.assign(data.fields, data2);
+
+			return data;
 		},
 		methods: {
-			submit() {
-				this.$emit('input', this.value);
+			submit(tql) {
+				this.$emit('input', tql);
 			},
 		},
 		watch: {
 			fields: {
 				handler(fields) {
-					this.value = Object.keys(fields)
+					const strKey = (key) => key.indexOf('.') !== -1 ? `"${key}"` : key;
+					const strArr = (arr) => arr.map(el => strKey(el)).join(',');
+
+					const tql = Object.keys(fields)
 							.filter(key => this.fields[key])
-							.map(key => this.fields[key])
+							.map(key => {
+								const rval = this.fields[key];
+
+								if (rval.length && rval.map && rval.length > 1) {
+									return `${key} in [${strArr(rval)}]`;
+								} else if (rval.length && rval.map && rval.length == 1) {
+									return `${key} = ${strKey(rval[0])}`;
+								} else {
+									return `${key} = "${rval}"`;
+								};
+							})
 							.join(' and ');
+
+					this.tql = tql;
 				},
 				deep: true
 			},
-			value(tql) {
-				//const obj = tqlTransformToObject(tql);
-				//console.log(this.fields);
-			}
 		},
 	}
 </script>

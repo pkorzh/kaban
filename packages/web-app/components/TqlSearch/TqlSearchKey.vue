@@ -26,28 +26,27 @@
 				type: String
 			},
 			value: {
-				type: String,
 				required: true,
 			},
 		},
 		data() {
+			const expand = (arrOrObject) => {
+				const arr = Array.isArray(arrOrObject)
+					? arrOrObject
+					: [arrOrObject];
+
+				return arr.filter(item => !!item).map(item => 
+					this.$store.getters[this.getter.replace('getList', 'getOne')](item));
+			};
+
 			return {
-				entity: null,
-			}
+				entity: expand(this.value)
+			};
 		},
 		watch: {
 			entity(value) {
-				const strKey = (key) => key.indexOf('.') !== -1 ? `"${key}"` : key;
-				const strArr = (arr) => arr.map(el => strKey(el.key)).join(',');
-
-				if (value.length > 1) {
-					this.$emit('input', `${this.name} in [${strArr(value)}]`);
-				} else if (value.length == 1) {
-					this.$emit('input', `${this.name} = ${strKey(value[0].key)}`);
-				} else {
-					this.$emit('input', '');
-				}
+				this.$emit('input', value.map(val => val.key));
 			}
-		},
+		}
 	}
 </script>
