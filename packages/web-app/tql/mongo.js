@@ -139,6 +139,8 @@ export default function(source, expanders = {}) {
 		return {}
 	}
 
+	//console.log('source', source)
+
 	const _tokens = tokens(source)
 	const _tree = tree(_tokens)
 

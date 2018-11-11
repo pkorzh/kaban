@@ -12,6 +12,42 @@
 			</template>
 
 			<ActionsNav>
+				<tql-search placeholder="Enter search query"
+							:value="tql"
+							@input="search">
+					<template slot-scope="{ fields }">
+						<tql-search-text
+								name="name"
+								v-model="fields.name"
+								placeholder="Ticket summary"/>
+
+						<tql-search-key
+								name="type"
+								v-model="fields.type"
+								getter="tickettypes/getList"/>
+
+						<tql-search-key
+								name="status"
+								v-model="fields.status"
+								getter="status/getList"/>
+						<tql-search-key
+								name="priority"
+								v-model="fields.priority"
+								getter="priorities/getList"/>
+
+						<tql-search-key
+								name="resolution"
+								v-model="fields.resolution"
+								getter="resolutions/getList"/>
+
+						<tql-search-key
+								name="assignee"
+								icon="avatar"
+								v-model="fields.assignee"
+								getter="users/getList"/>
+					</template>
+				</tql-search>
+
 				<ActionsNavButton
 					text="Create Ticket"
 					shortkey="c"
@@ -57,11 +93,22 @@
 	import { mapGetters, mapActions } from 'vuex';
 
 	export default {
-		async fetch({store, params, error}) {
-			await store.dispatch('tickets/fetchList', {
-				tql: `backlog = ${params.key}`,
-				limit: 20
-			})
+		fetch({store, params, route: {query}}) {
+			let tql = `backlog = ${params.key}`;
+
+			if (!!query.tql) {
+				tql += ` and ${query.tql}`
+			}
+
+			return store.dispatch('tickets/fetchList', {
+				tql,
+				limit: 20,
+			});
+		},
+		asyncData({route: {query}}) {
+			return {
+				tql: query.tql || '',
+			}
 		},
 		head() {
 			return {
@@ -84,19 +131,32 @@
 		methods: {
 			...mapActions('tickets', [
 				'createTicket',
-				'fetchMore'
+				'fetchMore',
+				'fetchList',
 			]),
+
 			...mapActions('backlogs', {
 				patchBacklog: 'patch'
 			}),
+
 			async loadMore(amount) {
-				const lastTicketRank = this.tickets[this.tickets.length - 1].rank
+				if (!this.tickets.length) {
+					return;
+				}
+
+				const lastTicketRank = this.tickets[this.tickets.length - 1].rank;
+				let tqlBase = `backlog = ${this.backlog.key}`;
+
+				if (!!this.tql) {
+					tqlBase += ` and ${this.tql}`;
+				}
 
 				await this.fetchMore({
-					tql: `backlog = ${this.backlog.key} and rank > "${lastTicketRank}"`,
+					tql: `${tqlBase} and rank > "${lastTicketRank}"`,
 					limit: amount
 				})
 			},
+
 			deleteBacklog(key) {
 				this.$kaban.dispatch('DeleteBacklogAction', {
 					sender: this,
@@ -106,6 +166,7 @@
 					}
 				})
 			},
+
 			toggleBacklogIsArchive(backlog) {
 				this.patchBacklog({
 					key: backlog.key,
@@ -113,7 +174,30 @@
 						isArchived: !backlog.isArchived
 					}
 				})
-			}
-		}
+			},
+
+			search(tql) {
+				this.$router.push(this.localePath({
+					name: 'backlogs-key',
+					params: {
+						key: this.backlog.key,
+					},
+					query: {
+						tql
+					},
+				}))
+			},
+		},
+		watch: {
+			'$route.query.tql'(tqlSuffix) {
+				let tql = `backlog = ${this.backlog.key}`;
+
+				if (!!tqlSuffix) {
+					tql += ` and ${tqlSuffix}`;
+				}
+
+				this.fetchList({tql, limit: 20})
+			},
+		},
 	}
 </script>

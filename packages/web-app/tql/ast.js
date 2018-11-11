@@ -281,7 +281,7 @@ function tree(tokens) {
 					const args = []
 
 					while(!consumeIf(']')) {
-						args.push(consume(':id', ':string', ':decimal'))
+						args.push(consume(':id', ':string', ':decimal', ':field'))
 
 						consumeIf(',')
 					}

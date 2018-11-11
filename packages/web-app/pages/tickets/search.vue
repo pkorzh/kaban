@@ -79,15 +79,15 @@
 	import {mapGetters, mapActions} from 'vuex';
 
 	export default {
-		async fetch({store, params, route: {query}}) {
+		fetch({store, params, route: {query}}) {
 			let tql = query.tql || null
 
-			await store.dispatch('tickets/fetchList', {
+			return store.dispatch('tickets/fetchList', {
 				limit: 20,
 				tql,
 			})
 		},
-		async asyncData({route: {query}}) {
+		asyncData({route: {query}}) {
 			return {
 				tql: query.tql || '',
 			}
