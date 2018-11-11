@@ -16,9 +16,9 @@ function resolve(astb) {
 				return astb.lexeme
 		}
 	} else {
-		const lVal = astb.left.lexeme === 'key'
+		const lVal = astb.left.lexeme === 'rank' || astb.left.lexeme === 'key' || astb.left.lexeme === 'createdAt' || astb.left.lexeme === 'updatedAt'
 			? astb.left.lexeme
-			: `${astb.left.lexeme}.key`
+			: `${astb.left.lexeme}.key`;
 
 		const rVal = astb.right.lexeme
 			? astb.right.lexeme
@@ -35,17 +35,23 @@ function resolve(astb) {
 }
 
 function generate(astb) {
-	let code = 'return false'
+	let code = 'return false';
+
+	function branch(astb) {
+		return astb.op 
+			? generate(astb)
+			: resolve(astb);
+	}
 
 	if (astb.op.lexeme === 'and') {
-		code =  `${resolve(astb.left)} && ${resolve(astb.right)}`
+		code = `(${branch(astb.left)} && ${branch(astb.right)})`
 	} else if (astb.op.lexeme === 'or') {
-		code =  `${resolve(astb.left)} || ${resolve(astb.right)}`
+		code = `(${branch(astb.left)} || ${branch(astb.right)})`
 	} else {
 		code = `${resolve(astb)}`
 	}
 
-	return `return ${code};`
+	return code;
 }
 
 function predicate(source) {
@@ -58,7 +64,7 @@ function predicate(source) {
 
 	const fnCode = generate(_tree)
 
-	return new Function('obj', fnCode);
+	return new Function('obj', `return ${fnCode}`);
 }
 
 export default predicate

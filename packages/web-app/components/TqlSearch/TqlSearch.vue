@@ -1,5 +1,5 @@
 <template>
-	<b-form class="tql-input" @submit.prevent.stop="submit(tql)">
+	<b-form class="tql-input" @submit.prevent.stop="submit(value)">
 		<div class="input-group">
 			<div class="input-group-prepend">
 					<span class="input-group-text">
@@ -9,7 +9,7 @@
 
 			<b-form-input
 					type="text"
-					v-model="tql"
+					v-model="value"
 					:placeholder="placeholder"/>
 
 			<div class="input-group-append">
@@ -29,16 +29,21 @@
 </template>
 
 <script>
+	import { object as tqlTransformToObject } from '../../tql';
+
 	export default {
 		name: 'tql-search',
 		props: {
 			placeholder: {
 				type: String,
 			},
+			value: {
+				type: String,
+				required: true,
+			}
 		},
 		data() {
 			return {
-				tql: '',
 				fields: {
 					name: '',
 					backlog: '',
@@ -52,18 +57,22 @@
 		},
 		methods: {
 			submit() {
-				this.$emit('input', this.tql)
+				this.$emit('input', this.value);
 			},
 		},
 		watch: {
 			fields: {
 				handler(fields) {
-					this.tql = Object.keys(fields)
+					this.value = Object.keys(fields)
 							.filter(key => this.fields[key])
 							.map(key => this.fields[key])
-							.join(' and ')
+							.join(' and ');
 				},
 				deep: true
+			},
+			value(tql) {
+				//const obj = tqlTransformToObject(tql);
+				//console.log(this.fields);
 			}
 		},
 	}

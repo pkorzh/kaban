@@ -147,13 +147,14 @@
 				const lastTicketRank = this.tickets[this.tickets.length - 1].rank;
 				let tqlBase = `backlog = ${this.backlog.key}`;
 
-				if (!!this.tql) {
+				if (this.tql) {
 					tqlBase += ` and ${this.tql}`;
 				}
 
 				await this.fetchMore({
 					tql: `${tqlBase} and rank > "${lastTicketRank}"`,
-					limit: amount
+					limit: amount,
+					more: true,
 				})
 			},
 
@@ -196,7 +197,8 @@
 					tql += ` and ${tqlSuffix}`;
 				}
 
-				this.fetchList({tql, limit: 20})
+				this.tql = tql;
+				this.fetchList({tql, limit: 20});
 			},
 		},
 	}

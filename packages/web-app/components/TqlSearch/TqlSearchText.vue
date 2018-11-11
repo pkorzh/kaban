@@ -1,6 +1,6 @@
 <template>
 	<b-form-group
-			:label="label"
+			:label="name"
 			horizontal>
 		<b-form-input
 				type="text"
@@ -35,13 +35,7 @@
 
 		watch: {
 			text(value) {
-				this.$emit('input', `${this.name} = ${this.text}`)
-			},
-		},
-
-		computed: {
-			label() {
-				return this.name.charAt(0).toUpperCase() + this.name.slice(1)
+				this.$emit('input', `${this.name} = "${this.text}"`)
 			},
 		},
 	}
