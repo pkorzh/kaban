@@ -111,12 +111,16 @@
 			},
 
 			async loadMore(amount) {
-				const lastTicketRank = this.tickets[this.tickets.length - 1].rank
+				if (!this.tickets.length) {
+					return;
+				}
+
+				const lastTicketRank = this.tickets[this.tickets.length - 1].rank;
 
 				await this.fetchMoreTickets({
 					tql: `${this.tql ? this.tql + ' and ' : ''}rank > "${lastTicketRank}"`,
 					limit: amount,
-				})
+				});
 			},
 		},
 		computed: {

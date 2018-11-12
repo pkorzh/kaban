@@ -1,32 +1,34 @@
 <template>
-<div>
-	<v-select
-		:options="options"
-		:multiple="multiple"
-		v-model="modified"
-		:clearable="false"
-		label="name">
+	<div>
+	<no-ssr>
+		<v-select
+			:options="options"
+			:multiple="multiple"
+			v-model="modified"
+			:clearable="false"
+			label="name">
 
-		<template slot="option" slot-scope="option">
-			<img
-				:src="getIcon(option)"
-				v-if="hasIcon(option)"
-				style="width: 20px" />
-			{{ option.name }}
-		</template>
-
-		<template slot="selected-option" slot-scope="option">
-			<div class="selected d-center">
+			<template slot="option" slot-scope="option">
 				<img
 					:src="getIcon(option)"
 					v-if="hasIcon(option)"
 					style="width: 20px" />
 				{{ option.name }}
-			</div>
-		</template>
+			</template>
 
-	</v-select>
-</div>
+			<template slot="selected-option" slot-scope="option">
+				<div class="selected d-center">
+					<img
+						:src="getIcon(option)"
+						v-if="hasIcon(option)"
+						style="width: 20px" />
+					{{ option.name }}
+				</div>
+			</template>
+
+		</v-select>
+	</no-ssr>
+	</div>
 </template>
 
 <script>
