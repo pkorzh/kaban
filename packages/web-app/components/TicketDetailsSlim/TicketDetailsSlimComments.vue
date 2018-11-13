@@ -9,10 +9,12 @@
 			:key="comment.key">
 			<ul class="details-post-info">
 				<li>
-					<a href="#">
-						<img 
-							class="details-avatar"
-							:src="comment.author.avatar" />
+					<a href="">
+						<avatar 
+							inline
+							:size="25"
+							:src="comment.author.avatar"
+							:username="comment.author.name" />
 
 						{{ comment.author.name }}
 					</a>

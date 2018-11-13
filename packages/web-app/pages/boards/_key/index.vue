@@ -12,11 +12,9 @@
 			</template>
 
 			<ActionsNav>
-				<!--<ActionsNavAssigned />
+				<!--<ActionsNavAssigned />-->
 
-				<ActionsNavQuickFilters />
-
-				<ActionsNavSimpleSearch />-->
+				<ActionsNavQuickFilters @filters="quickFilterTql = $event" />
 
 				<ActionsNavButton
 					text="Create Ticket"
@@ -68,6 +66,7 @@
 		data() {
 			return {
 				boardView: true,
+				quickFilterTql: null,
 			}
 		},
 		async fetch({store, params}) {
@@ -93,12 +92,16 @@
 			}),
 
 			...mapGetters('tickets', {
-				tickets: 'getList',
+				queryTickets: 'queryList',
 			}),
 
 			...mapGetters('statuses', {
 				getStatus: 'getOne',
 			}),
+
+			tickets() {
+				return this.queryTickets(this.quickFilterTql);
+			},
 
 			board() {
 				return this.getBoard(this.$route.params.key)
@@ -118,7 +121,7 @@
 						boardKey: key
 					}
 				})
-			}
+			},
 		}
 	}
 </script>

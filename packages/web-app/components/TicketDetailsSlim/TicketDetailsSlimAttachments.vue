@@ -14,23 +14,25 @@
 			<div 
 				class="details-attach-item"
 				v-for="attachment in attachments" :key="attachment.key">
+					<div class="details-attach-item-preview">
+						<img
+							v-if="isImageAttachment(attachment)"
+							:src="attachment.url">
 
-				<img 
-					v-if="isImageAttachment(attachment)"
-					:src="attachment.url">
+						<img v-else src="../../assets/images/kaban-logo.svg">
+					</div>
+
+				<a 
+					href=""
+					@click.prevent="onDeleteAttachment(attachment)"
+					class="details-attach-item-close"></a>
 
 				<span>
 					<a :href="attachment.url" target="_blank">
 						{{ attachment.name }}<br>
 					</a>
-					{{ attachment.user.name }}, 
-					<small>{{ attachment.createdAt | moment('LL') }}</small>
+					{{ attachment.createdAt | moment('LL') }}
 				</span>
-
-				<a 
-					href="#"
-					@click.prevent="onDeleteAttachment(attachment)"
-					class="details-attach-close"></a>
 			</div>
 		</div>
 	</div>
@@ -79,7 +81,7 @@
 
 			isImageAttachment(attachment) {
 				return (/\.(gif|jpg|jpeg|tiff|png)$/i).test(attachment.url);
-			}
+			},
 		},
 		async mounted() {
 			if (process.client) {

@@ -1,8 +1,9 @@
-const generateMongo = require('./mongo')
-const generatePredicate = require('./predicate')
+const objectFn = require('./object');
+const mongoFn = require('./mongo');
+const predicateFn = require('./predicate');
 
-const tql = 'key  = nzWkQiTtX'
+const tql = 'name = "hello"';
 
-//console.dir(generateMongo(tql, false, null))
-
-console.log(generatePredicate(tql)({key: 'nzWkQiTtX'}))
+console.log(mongoFn.default(tql));
+console.log(predicateFn.default(tql).toString());
+console.log(objectFn.default(tql));

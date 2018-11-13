@@ -1,29 +1,34 @@
 <template>
-	<v-select
-		:options="options"
-		v-model="modified"
-		:clearable="false"
-		label="name">
+	<div>
+	<no-ssr>
+		<v-select
+			:options="options"
+			:multiple="multiple"
+			v-model="modified"
+			:clearable="false"
+			label="name">
 
-		<template slot="option" slot-scope="option">
-			<img
-				:src="getIcon(option)"
-				v-if="hasIcon(option)"
-				style="width: 20px" />
-			{{ option.name }}
-		</template>
-
-		<template slot="selected-option" slot-scope="option">
-			<div class="selected d-center">
+			<template slot="option" slot-scope="option">
 				<img
 					:src="getIcon(option)"
 					v-if="hasIcon(option)"
 					style="width: 20px" />
 				{{ option.name }}
-			</div>
-		</template>
+			</template>
 
-	</v-select>
+			<template slot="selected-option" slot-scope="option">
+				<div class="selected d-center">
+					<img
+						:src="getIcon(option)"
+						v-if="hasIcon(option)"
+						style="width: 20px" />
+					{{ option.name }}
+				</div>
+			</template>
+
+		</v-select>
+	</no-ssr>
+	</div>
 </template>
 
 <script>
@@ -39,6 +44,10 @@
 			},
 			value: {
 				required: false
+			},
+			multiple: {
+				required: false,
+				default: () => false
 			}
 		},
 		data() {
@@ -57,17 +66,43 @@
 			},
 			hasIcon(option) {
 				return !!this.getIcon(option)
+			},
+			different(a, b) {
+				if (!a) {
+					return true;
+				}
+
+				if (!b) {
+					return true;
+				}
+
+				if (Array.isArray(a) && Array.isArray(b)) {
+					if (a.length !== b.length) {
+						return true;
+					}
+
+					for (var i = a.length - 1; i >= 0; i--) {
+						if (a[i].key !== b[i].key) {
+							return true;
+						}
+					}
+				}
+
+				return a.key !== b.key;
 			}
 		},
 		mounted() {
-			if ('value' in this) {
-				this.modified = this.value
-			}
+			this.modified = this.value
 		},
 		watch: {
 			modified(modified) {
-				if (('value' in this) && modified && this.value !== modified) {
-					this.$emit('input', modified)
+				if (this.different(modified, this.value)) {
+					this.$emit('input', modified);
+				}
+			},
+			value(value) {
+				if (this.different(this.modified, value)) {
+					this.modified = value;
 				}
 			}
 		}

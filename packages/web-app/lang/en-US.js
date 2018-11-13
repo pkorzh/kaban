@@ -46,6 +46,9 @@ export default {
 	set: 'Set',
 	move: 'Move',
 	gethelp: 'Get Help',
+	quickFilters: 'Quick Filters',
+	bugsOnly: 'Bugs Only',
+	storiesOnly: 'Stories Only',
 	notificationConfig: 'Notification Config',
 	testToken: 'Test token',
 }

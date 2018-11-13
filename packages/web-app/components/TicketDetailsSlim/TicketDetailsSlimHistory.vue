@@ -9,10 +9,12 @@
 			:key="item._id">
 			<ul class="details-post-info">
 				<li>
-					<a href="#">
-						<img 
-							class="details-avatar"
-							:src="item.user.avatar" />
+					<a href="">
+						<avatar 
+							inline
+							:size="25"
+							:src="item.user.avatar"
+							:username="item.user.name" />
 
 						{{ item.user.name }}
 					</a>

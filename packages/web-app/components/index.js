@@ -4,7 +4,6 @@ import ActionsNav from './ActionsNav/ActionsNav'
 import ActionsNavAssigned from './ActionsNav/ActionsNavAssigned'
 import ActionsNavViewSwitcher from './ActionsNav/ActionsNavViewSwitcher'
 import ActionsNavQuickFilters from './ActionsNav/ActionsNavQuickFilters'
-import ActionsNavSimpleSearch from './ActionsNav/ActionsNavSimpleSearch'
 import ActionsNavButton from './ActionsNav/ActionsNavButton'
 import ActionsNavLink from './ActionsNav/ActionsNavLink'
 import ActionsAllowedTransitions from './ActionsNav/ActionsAllowedTransitions'
@@ -60,12 +59,15 @@ import TicketDetailsSlimDescription from './TicketDetailsSlim/TicketDetailsSlimD
 import IconedSelect from './Fields/IconedSelect.vue'
 import InfiniteScroll from './InfiniteScroll'
 
+import TqlSearch from './TqlSearch/TqlSearch'
+import TqlSearchKey from './TqlSearch/TqlSearchKey'
+import TqlSearchText from './TqlSearch/TqlSearchText'
+
 export {
 	ActionsNav,
 	ActionsNavAssigned,
 	ActionsNavViewSwitcher,
 	ActionsNavQuickFilters,
-	ActionsNavSimpleSearch,
 	ActionsNavButton,
 	ActionsNavLink,
 	ActionsAllowedTransitions,
@@ -117,6 +119,10 @@ export {
 	TicketDetailsSlimAttachments,
 	TicketDetailsSlimPostComment,
 	TicketDetailsSlimDescription,
+
+	TqlSearch,
+	TqlSearchKey,
+	TqlSearchText,
 
 	IconedSelect,
 	InfiniteScroll,

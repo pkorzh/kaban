@@ -9,10 +9,6 @@
 			:fields="ticketFields"
 			@row-clicked="rowclicked">
 				<template slot="table-caption">
-					<ActionsNavColumns
-						:fields="originalTicketFields"
-						@columns="applyColumns" />
-
 					<ActionsNavMultipleEdit
 						class="ml-3"
 						v-if="selectedTickets.length > 0"

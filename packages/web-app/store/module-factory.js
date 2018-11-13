@@ -1,5 +1,7 @@
-import Vue from 'vue'
-import shortid from 'shortid'
+import Vue from 'vue';
+import shortid from 'shortid';
+
+import { predicate } from '../tql';
 
 export default (
 		resource,
@@ -13,6 +15,20 @@ export default (
 	const moduleGetters = Object.assign({
 		getList(state) {
 			return Object.keys(state.entities).map(key => state.entities[key]);
+		},
+		queryList(state) {
+			return tqlOrFn => {
+				let filterFn = (entity) => true;
+
+				if (typeof tqlOrFn === 'string' && tqlOrFn.length) {
+					filterFn = predicate(tqlOrFn);
+				} else if (typeof tqlOrFn === 'function') {
+					filterFn = tqlOrFn;
+				}
+
+				return Object.keys(state.entities).map(key => state.entities[key])
+					.filter(filterFn);
+			};
 		},
 		getOne(state) {
 			return key => {

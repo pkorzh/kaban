@@ -15,7 +15,8 @@
     "add-test-data": "babel-node --presets env --plugins transform-object-rest-spread ./scripts/add-test-data",
     "create-super-user": "babel-node --presets env --plugins transform-object-rest-spread ./scripts/create-super-user",
     "rebalance-rank": "babel-node --presets env --plugins transform-object-rest-spread ./scripts/rebalance-rank",
-    "bootstrap": "babel-node --presets env --plugins transform-object-rest-spread ./scripts/bootstrap"
+    "bootstrap": "babel-node --presets env --plugins transform-object-rest-spread ./scripts/bootstrap",
+    "tql-spec": "babel-node --presets env --plugins transform-object-rest-spread ./tql/spec"
   },
   "dependencies": {
     "@babel/node": "^7.0.0",
