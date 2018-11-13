@@ -92,9 +92,10 @@
 		},
 		methods: {
 			...mapActions('kabanConfiguration/storage/s3', [
-				'listBuckets', 'uploadSample', 'saveConfiguration']),
+				'listBuckets', 'uploadSample']),
 
-			...mapActions('kabanConfiguration', ['fetchStatus']),
+			...mapActions('kabanConfiguration', [
+				'fetchConfiguration', 'patchConfiguration']),
 
 			async testAccessKeys() {
 				const valid = await this.$validator.validateAll();
@@ -123,14 +124,17 @@
 			},
 
 			async saveCredentials() {
-				await this.saveConfiguration({
-					accessKeyId: this.accessKeyId,
-					secretAccessKey: this.secretAccessKey,
-					prefix: this.prefix,
-					bucket: this.bucket,
+				await this.patchConfiguration({
+					storage: {
+						type: 's3',
+						accessKeyId: this.accessKeyId,
+						secretAccessKey: this.secretAccessKey,
+						prefix: this.prefix,
+						bucket: this.bucket,
+					}
 				});
 
-				this.fetchStatus();
+				this.fetchConfiguration();
 			}
 		}
 	}

@@ -2,7 +2,7 @@ import { Router } from 'express'
 import getnewid from '../newid'
 
 import { boards as boardsDal } from '../dal'
-import { notifySubscribers } from './sse_clients'
+import broadcast from './../broadcast'
 
 const router = Router()
 
@@ -16,7 +16,7 @@ router.post('/boards', async function (req, res, next) {
 
 	const board = await boardsDal.insert(boardSlim)
 
-	notifySubscribers('createBoard', board)
+	broadcast('createBoard', board)
 
 	return res.json(board)
 })
@@ -24,7 +24,7 @@ router.post('/boards', async function (req, res, next) {
 router.delete('/boards/:key', async function (req, res, next) {
 	await boardsDal.remove(req.params.key)
 
-	notifySubscribers('deleteBoard', req.params.key)
+	broadcast('deleteBoard', req.params.key)
 
 	return res.sendStatus(200)
 })
@@ -37,7 +37,7 @@ router.patch('/boards/:key', async function (req, res, next) {
 		boardDelta
 	)
 
-	notifySubscribers('updateBoard', board)
+	broadcast('updateBoard', board)
 
 	return res.json(board)
 })

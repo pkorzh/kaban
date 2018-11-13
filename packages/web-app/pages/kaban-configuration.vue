@@ -13,12 +13,19 @@
 			<b-col cols="2">
 				<b-nav vertical class="section-nav">
 					<b-nav-item
+						exact
 						:to="localePath({name: 'kaban-configuration'})">
 						<span v-t="'general'"></span>
 					</b-nav-item>
 					<b-nav-item
+						exact
 						:to="localePath({name: 'kaban-configuration-storage'})">
 						<span v-t="'storageConfig'"></span>
+					</b-nav-item>
+					<b-nav-item
+						exact
+						:to="localePath({name: 'kaban-configuration-notification'})">
+						<span v-t="'notificationConfig'"></span>
 					</b-nav-item>
 				</b-nav>
 			</b-col>
@@ -38,8 +45,6 @@
 			return {
 				title: this.$t('kabanConfiguration')
 			}
-		},
-		computed: {
 		},
 	}
 </script>

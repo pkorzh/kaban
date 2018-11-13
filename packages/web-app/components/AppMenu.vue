@@ -89,6 +89,11 @@
 							<span v-t="'storageConfig'"></span>
 						</nuxt-link>
 					</li>
+					<li v-if="!notificationStatus">
+						<nuxt-link :to="localePath({name: 'kaban-configuration-notification'})">
+							<span v-t="'notificationConfig'"></span>
+						</nuxt-link>
+					</li>
 				</ul>
 			</li>
 		</ol>
@@ -109,7 +114,7 @@
 				backlogList: 'getList'
 			}),
 
-			...mapGetters('kabanConfiguration', ['storageStatus']),
+			...mapGetters('kabanConfiguration', ['storageStatus', 'notificationStatus']),
 
 			...mapGetters('flatpages', {
 				latestFlatpages: 'getLatest'

@@ -54,6 +54,7 @@ export default function ({ $axios, redirect, store }) {
 	})
 
 	$axios.onError(async (error) => {
+		console.log(error)
 		const entity = await store.dispatch('errors/create', error.response.data)
 		
 		Vue.toasted.error(entity.message, {
