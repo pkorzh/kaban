@@ -1,0 +1,4 @@
+import takeStatusSlice from './take-status-slice';
+import calcForecast from './calc-forecast';
+
+Promise.all([takeStatusSlice(), calcForecast()]).finally(process.exit);

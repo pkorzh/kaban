@@ -11,12 +11,13 @@
     "precommit": "npm run lint",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "take-status-slice": "babel-node --presets env --plugins transform-object-rest-spread ./scripts/take-status-slice",
-    "calc-percentile": "babel-node --presets env --plugins transform-object-rest-spread ./scripts/calc-percentile",
+    "calc-forecast": "babel-node --presets env --plugins transform-object-rest-spread ./scripts/calc-forecast",
     "add-test-data": "babel-node --presets env --plugins transform-object-rest-spread ./scripts/add-test-data",
     "create-super-user": "babel-node --presets env --plugins transform-object-rest-spread ./scripts/create-super-user",
     "rebalance-rank": "babel-node --presets env --plugins transform-object-rest-spread ./scripts/rebalance-rank",
     "bootstrap": "babel-node --presets env --plugins transform-object-rest-spread ./scripts/bootstrap",
-    "tql-spec": "babel-node --presets env --plugins transform-object-rest-spread ./tql/spec"
+    "tql-spec": "babel-node --presets env --plugins transform-object-rest-spread ./tql/spec",
+    "daily": "babel-node --presets env --plugins transform-object-rest-spread ./scripts/daily"
   },
   "dependencies": {
     "@babel/node": "^7.0.0",

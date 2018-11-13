@@ -90,4 +90,8 @@ async function main() {
 	console.log('Done.')
 }
 
-main()
+export default main;
+
+if (require.main === module) {
+	main().finally(process.exit);
+}

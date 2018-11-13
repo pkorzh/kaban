@@ -72,8 +72,10 @@ async function main() {
 			{ upsert: true }
 		)
 	}
-
-	process.exit()
 }
 
-main()
+export default main;
+
+if (require.main === module) {
+	main().finally(process.exit);
+}

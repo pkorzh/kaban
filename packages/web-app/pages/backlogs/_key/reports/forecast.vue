@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<table class="table table-hover mb-5" v-if="forecast">
-			<caption>Forecast</caption>
+			<caption style="caption-side: top;">Forecast</caption>
 			<thead>
 				<tr>
 					<th></th>
@@ -23,7 +23,7 @@
 		</table>
 
 		<table class="table table-hover" v-if="forecast">
-			<caption>Statistics</caption>
+			<caption style="caption-side: top;">Statistics</caption>
 			<thead>
 				<tr>
 					<th></th>
