@@ -2,11 +2,11 @@
 	<div class="dropdown-menu-holder">
 		<ol>
 			<li>
-				<strong class="dropdown-menu-title">
+				<span class="dropdown-menu-title">
 					<nuxt-link :to="localePath({name: 'boards'})">
 						<span v-t="'boards'"></span>
 					</nuxt-link>
-				</strong>
+				</span>
 				<ul>
 					<li v-for="board in boardList" :key="board.key">
 						<nuxt-link :to="localePath({name: 'boards-key', params: {key: board.key}})">
@@ -16,11 +16,11 @@
 				</ul>
 			</li>
 			<li>
-				<strong class="dropdown-menu-title">
+				<span class="dropdown-menu-title">
 					<nuxt-link :to="localePath({name: 'backlogs'})">
 						<span v-t="'backlogs'"></span>
 					</nuxt-link>
-				</strong>
+				</span>
 				<ul>
 					<li v-for="backlog in backlogList" :key="backlog.key">
 						<nuxt-link :to="localePath({name: 'backlogs-key', params: {key: backlog.key}})">
@@ -30,11 +30,11 @@
 				</ul>
 			</li>
 			<li>
-				<strong class="dropdown-menu-title">
+				<span class="dropdown-menu-title">
 					<nuxt-link :to="localePath({name: 'tickets-search'})">
 						<span v-t="'search'"></span>
 					</nuxt-link>
-				</strong>
+				</span>
 				<ul>
 					<li>
 						<nuxt-link :to="localePath({name: 'tickets-search', query: {tql: 'assignee = me'}})">
@@ -54,11 +54,11 @@
 				</ul>
 			</li>
 			<li>
-				<strong class="dropdown-menu-title">
+				<span class="dropdown-menu-title">
 					<nuxt-link :to="localePath({name: 'flatpages'})">
 						<span v-t="'flatpages'"></span>
 					</nuxt-link>
-				</strong>
+				</span>
 				<ul>
 					<li v-for="fp in latestFlatpages" :key="fp.key">
 						<nuxt-link :to="localePath({name: 'flatpages-key', params: {key: fp.key}})">
@@ -69,19 +69,19 @@
 			</li>
 
 			<li v-if="$auth.user.scope.includes('admin')">
-				<strong class="dropdown-menu-title">
+				<span class="dropdown-menu-title">
 					<nuxt-link :to="localePath({name: 'users'})">
 						<span v-t="'users'"></span>
 					</nuxt-link>
-				</strong>
+				</span>
 			</li>
 
 			<li v-if="$auth.user.scope.includes('admin')">
-				<strong class="dropdown-menu-title">
+				<span class="dropdown-menu-title">
 					<nuxt-link :to="localePath({name: 'kaban-configuration'})">
 						<span v-t="'kabanConfiguration'"></span>
 					</nuxt-link>
-				</strong>
+				</span>
 
 				<ul>
 					<li v-if="!storageStatus">

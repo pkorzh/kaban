@@ -14,6 +14,11 @@ export default {
 					sortable: true,
 				},
 				{
+					key: 'backlog.name',
+					label: 'Backlog',
+					sortable: true,
+				},
+				{
 					key: 'assignee.name',
 					label: 'Assignee',
 					sortable: true,

@@ -38,17 +38,17 @@
     a {
       color: $body-color;
     }
-	.header & {
-	  &::after {
-		position: absolute;
-		left: 0;
-		top: 0;
-		right: 0;
-		height: 4px;
-		content: '';
-		background: $secondary;
-	  }
-	}
+  .header & {
+    &::after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 4px;
+    content: '';
+    background: #84d1f1;
+    }
+  }
     .site-menu & {
       min-width: 900px;
       overflow: hidden;

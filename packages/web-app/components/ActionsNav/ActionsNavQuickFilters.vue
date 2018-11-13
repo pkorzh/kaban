@@ -1,37 +1,49 @@
 <template>
-	<b-dropdown :text="dropdownText" class="">
-		<!--<form action="#" class="form-search">
-			<fieldset>
-				<input type="text" placeholder="Find a service by name or feature">
-				<button><font-awesome-icon icon="search" /></button>
-			</fieldset>
-		</form>-->
-
-		<div>
-			<b-dropdown-header>Status</b-dropdown-header>
-		</div>
-
-		<div>
-			<b-dropdown-header>Type</b-dropdown-header>
-		</div>
-
+	<b-dropdown :text="dropdownText" variant="light">
+		<b-form-checkbox-group 
+			plain 
+			v-model="selected" 
+			:options="options">
+		</b-form-checkbox-group>
 	</b-dropdown>
 </template>
 
 <script>
 	export default {
-		props: {
-		},
 		data() {
 			return {
-				dropdownText: 'Quick Filters'
-			}
+				selected: [],
+				options: [
+					{
+						text: this.$t('assignedToMe'),
+						value: `assignee = "${this.$auth.user.key}"`,
+					},
+					{
+						text: this.$t('bugsOnly'),
+						value: 'type = bug',
+					},
+					{
+						text: this.$t('storiesOnly'),
+						value: 'type = story',
+					},
+				],
+			};
 		},
 		computed: {
-		},
-		methods: {
+			dropdownText() {
+				return this.tql || this.$t('quickFilters');
+			},
+
+			tql() {
+				return this.selected.join(' and ');
+			}
 		},
 		watch: {
-		}
+			tql(newTql, oldTql) {
+				if (newTql !== oldTql) {
+					this.$emit('filters', newTql);
+				}
+			}
+		},
 	}
 </script>

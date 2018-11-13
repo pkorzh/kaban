@@ -19,6 +19,7 @@
 		</TopBar>
 
 		<tql-search placeholder="Enter search query"
+					class="mb-5"
 					:value="tql"
 					@input="search">
 			<template slot-scope="{ fields }">

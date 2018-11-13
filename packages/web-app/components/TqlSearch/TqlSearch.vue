@@ -1,19 +1,22 @@
 <template>
 	<b-form class="tql-input" @submit.prevent.stop="submit(tql)">
 		<div class="input-group">
-			<div class="input-group-prepend">
-					<span class="input-group-text">
-						<font-awesome-icon icon="search"/>
-					</span>
-			</div>
-
 			<b-form-input
 					type="text"
 					v-model="tql"
 					:placeholder="placeholder"/>
 
 			<div class="input-group-append">
-				<b-button v-b-toggle.tql-collapse class="input-group-text" variant="outline">
+				<b-button 
+					class="input-group-text" 
+					variant="light"
+					@click="submit(tql)">
+					<font-awesome-icon icon="search"/>
+				</b-button>
+
+				<b-button 
+					class="input-group-text" 
+					v-b-toggle.tql-collapse variant="light">
 					<font-awesome-icon icon="angle-down"/>
 				</b-button>
 			</div>
@@ -121,6 +124,11 @@
 			&-content {
 				padding: 20px;
 			}
+		}
+
+		.input-group-text {
+			background-color: white;
+			border-left: none;
 		}
 	}
 </style>
