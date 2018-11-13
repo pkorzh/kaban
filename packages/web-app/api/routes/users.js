@@ -1,12 +1,13 @@
-import {Router} from 'express'
+import { Router } from 'express'
 import util from 'util'
-import {users as usersDal} from '../dal'
-import {notifySubscribers} from './sse_clients'
 import jsonwebtoken from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import getnewid from '../newid'
 import jwtPerm from 'express-jwt-permissions'
-import {UnauthorizedError} from 'express-jwt'
+import { UnauthorizedError } from 'express-jwt'
+
+import { users as usersDal } from '../dal'
+import broadcast from './../broadcast'
 
 const guard = jwtPerm()
 const compare = util.promisify(bcrypt.compare)
@@ -27,7 +28,7 @@ router.post('/users', guard.check('admin'), async function (req, res, next) {
 
 	const user = await usersDal.insert(userSlim)
 
-	notifySubscribers('createUser', user)
+	broadcast('createUser', user)
 
 	return res.json(user)
 })
@@ -40,7 +41,7 @@ router.patch('/users/:key', guard.check('admin'), async function (req, res, next
 		userDelta,
 	)
 
-	notifySubscribers('updateUser', user)
+	broadcast('updateUser', user)
 
 	return res.json(user)
 })
@@ -48,7 +49,7 @@ router.patch('/users/:key', guard.check('admin'), async function (req, res, next
 router.delete('/users/:key', guard.check('admin'), async function (req, res, next) {
 	await usersDal.remove(req.params.key)
 
-	notifySubscribers('deleteUser', req.params.key)
+	broadcast('deleteUser', req.params.key)
 
 	return res.sendStatus(200)
 })

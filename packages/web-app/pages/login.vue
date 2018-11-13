@@ -64,7 +64,7 @@
 				fetchUsers: 'fetchList'
 			}),
 			...mapActions('kabanConfiguration', {
-				fetchKabanConfStatus: 'fetchStatus'
+				fetchKabanConf: 'fetchConfiguration'
 			}),
 			...mapActions('flatpages', {
 				fetchLatestFlatpages: 'fetchLatest',
@@ -88,7 +88,7 @@
 				this.fetchTransitions()
 				this.fetchStatuses()
 				this.fetchUsers()
-				this.fetchKabanConfStatus();
+				this.fetchKabanConf();
 				this.fetchLatestFlatpages();
 			}
 		}

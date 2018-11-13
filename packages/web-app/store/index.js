@@ -40,7 +40,7 @@ const store = () => new Vuex.Store({
 					dispatch('workflow/fetchTransitions'),
 					dispatch('status/fetchList'),
 					dispatch('users/fetchList'),
-					dispatch('kabanConfiguration/fetchStatus'),
+					dispatch('kabanConfiguration/fetchConfiguration'),
 					dispatch('flatpages/fetchLatest'),
 				])
 			} else {

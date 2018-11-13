@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import getnewid from '../newid'
 
-import { notifySubscribers } from './sse_clients'
+import broadcast from './../broadcast'
 import {
 	tickets as ticketsDal,
 	workflow as workflowDal,
@@ -33,7 +33,7 @@ router.post('/tickets', async function (req, res, next) {
 
 	await workflowDal.zeroTransition(ticket)
 
-	notifySubscribers('createTicket', ticket)
+	broadcast('createTicket', ticket)
 
 	return res.json(ticket)
 })
@@ -52,7 +52,7 @@ router.patch('/tickets/:key', async function (req, res, next) {
 		req.user,
 	)
 
-	notifySubscribers('updateTicket', ticket)
+	broadcast('patchTicket', ticket)
 
 	return res.json(ticket)
 })
@@ -60,7 +60,7 @@ router.patch('/tickets/:key', async function (req, res, next) {
 router.delete('/tickets/:key', async function (req, res, next) {
 	await ticketsDal.remove(req.params.key)
 
-	notifySubscribers('deleteTicket', req.params.key)
+	broadcast('deleteTicket', req.params.key)
 
 	return res.sendStatus(200)
 })

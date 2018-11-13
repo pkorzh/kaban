@@ -1,21 +1,20 @@
 <template>
 	<b-container fluid>
 		<b-card-group deck>
-			<b-card title="S3">
+			<b-card title="Telegram">
 				<span 
 					class="badge badge-success" 
-					v-if="storageStatus === 's3'"
+					v-if="notificationStatus === 'telegram'"
 					v-t="'active'">
 				</span>
 
 				<p class="card-text">
-					Use AWS Simple Storage Service
+Telegram is a cloud-based mobile and desktop messaging app with a focus on security and speed.
 				</p>
-
 				<nuxt-link 
-					:to="localePath({name: 'kaban-configuration-storage-s3'})"
+					:to="localePath({name: 'kaban-configuration-notification-telegram'})"
 					class="btn btn-outline-success">
-					{{ actionButtonText('s3') }}
+					{{ actionButtonText('telegram') }}
 				</nuxt-link>
 			</b-card>
 		</b-card-group>
@@ -28,17 +27,17 @@
 	export default {
 		head() {
 			return {
-				title: this.$t('storageConfig')
+				title: this.$t('notificationConfig')
 			}
 		},
 		computed: {
 			...mapGetters('kabanConfiguration', [
-				'storageStatus',
+				'notificationStatus',
 			]),
 		},
 		methods: {
 			actionButtonText(type) {
-				if (this.storageStatus === type) {
+				if (this.notificationStatus === type) {
 					return this.$t('change');
 				} else {
 					return this.$t('setup');
@@ -47,7 +46,3 @@
 		}
 	}
 </script>
-
-<style>
-
-</style>

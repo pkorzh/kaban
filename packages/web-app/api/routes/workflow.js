@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import { notifySubscribers } from './sse_clients'
+import broadcast from './../broadcast'
 import {
 	workflow as workflowDal,
 	tickets as ticketsDal
@@ -33,9 +33,15 @@ router.post('/workflow/transition', async function(req, res, next) {
 				await ticketsDal.patch(key, {
 					status: workflowDal.status(to),
 					lastTransitionAt: new Date(),
-				}, req.user)
+				}, req.user);
 
-				await workflowDal.transition(ticket, to)
+				await broadcast('workflowTransition', {
+					ticket,
+					from,
+					to
+				});
+
+				await workflowDal.transition(ticket, to);
 			} else {
 				throw new WorkflowTransitionError({
 					key,
@@ -47,8 +53,6 @@ router.post('/workflow/transition', async function(req, res, next) {
 	} catch(e) {
 		return next(e)
 	}
-
-	notifySubscribers('workflowTransition', {})
 
 	return res.json({})
 })

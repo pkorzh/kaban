@@ -49,4 +49,6 @@ export default {
 	quickFilters: 'Quick Filters',
 	bugsOnly: 'Bugs Only',
 	storiesOnly: 'Stories Only',
+	notificationConfig: 'Notification Config',
+	testToken: 'Test token',
 }

@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import getnewid from '../newid'
 
-import { notifySubscribers } from './sse_clients'
+import broadcast from './../broadcast'
 import { tickets as ticketsDal } from '../dal'
 
 const router = Router()
@@ -18,14 +18,14 @@ router.post('/attachments', async function (req, res, next) {
 
 	const comment = await ticketsDal.attachments.insert(commentSlim)
 
-	notifySubscribers('createAttachment', comment)
+	broadcast('createAttachment', comment)
 
 	return res.json(comment)
 })
 
 router.delete('/attachments/:key', async function (req, res, next) {
 	await ticketsDal.attachments.remove(req.params.key)
-	notifySubscribers('deleteAttachment', req.params.key)
+	broadcast('deleteAttachment', req.params.key)
 	return res.sendStatus(200)
 })
 

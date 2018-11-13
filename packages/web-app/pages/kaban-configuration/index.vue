@@ -1,5 +1,13 @@
 <template>
 	<b-container fluid>
+		<b-form-group
+			description="Domain">
+			<LiveEditInput
+				:content="general.domain"
+				action="kabanConfiguration/patchConfiguration"
+				path="general.domain" />
+		</b-form-group>
+
 		<table class="table table-hover mb-5">
 			<thead>
 				<tr>
@@ -14,7 +22,18 @@
 						{{ storageStatus || 'None' }}
 						<div>
 							<nuxt-link :to="localePath({name: 'kaban-configuration-storage'})">
-								{{ storageActionButtonText }}
+								{{ actionButtonText(storageStatus) }}
+							</nuxt-link>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="text-right" v-t="'notificationConfig'"></td>
+					<td class="text-right">
+						{{ notificationStatus || 'None' }}
+						<div>
+							<nuxt-link :to="localePath({name: 'kaban-configuration-notification'})">
+								{{ actionButtonText(notificationStatus) }}
 							</nuxt-link>
 						</div>
 					</td>
@@ -34,10 +53,15 @@
 			}
 		},
 		computed: {
-			...mapGetters('kabanConfiguration', ['storageStatus']),
-
-			storageActionButtonText() {
-				return this.storageStatus 
+			...mapGetters('kabanConfiguration', [
+				'storageStatus',
+				'notificationStatus',
+				'general',
+			]),
+		},
+		methods: {
+			actionButtonText(status) {
+				return status 
 					? this.$t('change')
 					: this.$t('set');
 			}
