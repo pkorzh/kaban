@@ -72,7 +72,7 @@
 		watch: {
 			fields: {
 				handler(fields) {
-					const strKey = (key) => key.indexOf('.') !== -1 ? `"${key}"` : key;
+					const strKey = (key) => /[\.\s+]/.test(key) ? `"${key}"` : key;
 					const strArr = (arr) => arr.map(el => strKey(el)).join(',');
 
 					const tql = Object.keys(fields)
@@ -85,7 +85,7 @@
 								} else if (rval.length && rval.map && rval.length == 1) {
 									return `${key} = ${strKey(rval[0])}`;
 								} else {
-									return `${key} = ${rval}`;
+									return `${key} = ${strKey(rval)}`;
 								};
 							})
 							.join(' and ');
@@ -96,6 +96,7 @@
 			},
 			value(value, value2) {
 				this.tql = value;
+
 				const data2 = tqlTransformToObject(value);
 
 				Object.keys(this.fields).forEach(key => this.fields[key] = '');

@@ -23,7 +23,8 @@ function tokens(source) {
 		'priority', 
 		'resolution', 
 		'createdAt', 
-		'updatedAt'
+		'updatedAt',
+		'name',
 		].indexOf(lexeme) !== -1;
 
 	const isDecimal = (lexeme) => {

@@ -84,10 +84,22 @@ function resolveDate(astb) {
 	return [start, end];
 }
 
+function resolveTextSearch(astb) {
+	return {
+		$text: {
+			$search: astb.right.lexeme,
+		}
+	};
+}
+
 function resolve(astb, expanders) {
 	if (astb.right.tag === 'date' || astb.right.tag === 'datevar') {
 		return resolveDateOp(astb);
 	} else {
+		if (astb.left.lexeme === 'name') {
+			return resolveTextSearch(astb);
+		}
+
 		const lVal = astb.left.lexeme === 'rank' || astb.left.lexeme === 'key' || astb.left.lexeme === 'createdAt' || astb.left.lexeme === 'updatedAt'
 			? astb.left.lexeme
 			: `${astb.left.lexeme}.key`;
