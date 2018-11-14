@@ -2,7 +2,7 @@ import {
 	Backlog, 
 	Ticket, 
 	TicketSpentIn, 
-	TicketLeadTime,
+	TicketTime,
 	TicketStatusSlice,
 } from "../models"
 
@@ -74,7 +74,7 @@ schema.pre('remove', async function() {
 	const kwargs = generateMql(`ticket = ${this.key}`);
 
 	await TicketSpentIn.remove(kwargs)
-	await TicketLeadTime.remove(kwargs)
+	await TicketTime.remove(kwargs)
 	await TicketStatusSlice.remove(kwargs)
 })
 

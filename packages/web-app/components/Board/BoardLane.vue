@@ -135,18 +135,6 @@
 			orderedTickets() {
 				return orderBy(this.tickets, 'rank');
 			},
-
-			draggables: {
-				get() {
-					return this.tickets
-				},
-				set(tickets) {
-					const ticketsToTransition = tickets.filter(ticket =>
-						ticket.status.key !== this.mapsTo.key)
-
-
-				}
-			}
 		},
 	}
 </script>

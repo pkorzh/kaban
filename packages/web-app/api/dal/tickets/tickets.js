@@ -2,7 +2,7 @@ import {
 	Ticket,
 	Workflow,
 	TicketSpentIn,
-	TicketLeadTime,
+	TicketTime,
 	TicketStatusSlice,
 } from '../models';
 
@@ -43,35 +43,7 @@ async function query(tql, limit, context = { board: null, user: null }) {
 		.limit(Number(limit))
 		.sort('rank')
 
-	let allSpentIns = await TicketSpentIn.find({
-		'ticket.key': {$in: tickets.map(t => t.key)}
-	})
-
-	return tickets.map(t => t.toJSON()).map(ticket => {
-		let spentIns = allSpentIns
-			.filter(sin => sin.ticket.key === ticket.key)
-			.reduce((spentIn, ticketSpentIn) => {
-				if (!!spentIn[ticketSpentIn.status.key]) {
-					if (spentIn[ticketSpentIn.status.key].createdAt < ticketSpentIn.createdAt) {
-						spentIn[ticketSpentIn.status.key] = {
-							createdAt: ticketSpentIn.createdAt,
-							ms: ticketSpentIn.ms,
-						}
-					}
-				} else {
-					spentIn[ticketSpentIn.status.key] = {
-						createdAt: ticketSpentIn.createdAt,
-						ms: ticketSpentIn.ms
-					}
-				}
-
-				return spentIn
-			}, {});
-
-		spentIns = Object.keys(spentIns).map(sinKey => ({[sinKey]: spentIns[sinKey].ms}))
-
-		return { ...ticket, spentIns }
-	})
+	return tickets
 }
 
 async function get(tql) {
@@ -121,7 +93,7 @@ async function move(changeset) {
 			{$set: { backlog: {key: item.backlogKey}}},
 		);
 
-		const p3 = TicketLeadTime.migrate(
+		const p3 = TicketTime.migrate(
 			{'ticket.key': item.ticketKey}, 
 			{key: item.backlogKey},
 		);

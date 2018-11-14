@@ -2,7 +2,7 @@ import {
 	Backlog,
 	Ticket,
 	TicketSpentIn,
-	TicketLeadTime,
+	TicketTime,
 	BacklogForecast,
 } from './models'
 
@@ -52,7 +52,7 @@ async function removeAndMigrate(key, migrateKey) {
 		{multi: true}
 	)
 
-	await TicketLeadTime.migrate(
+	await TicketTime.migrate(
 		{'backlog.key': key}, 
 		{key: migrateKey},
 	)

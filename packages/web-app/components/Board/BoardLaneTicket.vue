@@ -24,9 +24,7 @@
 						:title="ticket.type.name">
 				</div>
 
-				<div
-					class="ticket-estm ticket-estm-1"
-					title="Less than a day"><span></span></div>
+				<div :class="spentInClass(ticket)" :title="spentInText(ticket)"><span></span></div>
 
 				<div class="card-priority">
 					<img
@@ -54,10 +52,13 @@
 
 <script>
 	import { mapGetters } from 'vuex'
-	import {TicketBaseMixin} from '@/mixins'
+	import { TicketBaseMixin, TicketSpentInMixin } from '@/mixins'
 
 	export default {
-		mixins: [TicketBaseMixin],
+		mixins: [
+			TicketBaseMixin,
+			TicketSpentInMixin,
+		],
 		props: {
 			ticket: {
 				type: Object,

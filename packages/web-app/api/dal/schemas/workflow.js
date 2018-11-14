@@ -115,6 +115,10 @@ WorkflowSchema.statics.getTicketInitialStatus = function _getTicketInitialStatus
 	return SOFTWARE_WORKFLOW.STATUS[SOFTWARE_WORKFLOW.BACKLOG]
 }
 
+WorkflowSchema.statics.getTicketInProgressStatus = function _getTicketInitialStatus() {
+	return SOFTWARE_WORKFLOW.STATUS[SOFTWARE_WORKFLOW.DEVELOPMENT];
+}
+
 WorkflowSchema.statics.getTicketFinalStatus = function _getTicketFinalStatus() {
 	return SOFTWARE_WORKFLOW.STATUS[SOFTWARE_WORKFLOW.CLOSED]
 }

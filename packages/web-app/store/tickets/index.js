@@ -22,7 +22,7 @@ export default moduleFactory('tickets', {
 		}
 	},
 	actions: {
-		transition({commit}, {tickets, mapsTo}) {
+		transition({commit, dispatch}, {tickets, mapsTo}) {
 			const keys = tickets.map(ticket => ticket.key)
 
 			const oldMapsTo = JSON.parse(
@@ -32,7 +32,12 @@ export default moduleFactory('tickets', {
 			commit('UPDATE_TICKETS_STATUS', {keys, mapsTo})
 
 			return this.$axios.$post(`/api/workflow/transition/`, {keys, mapsTo: mapsTo.key}).then((data) => {
-				return data
+				dispatch('fetchList', {
+					empty: false,
+					tql: `key in [${keys.join(',')}]`
+				});
+
+				return data;
 			}, (error => {
 				commit('UPDATE_TICKETS_STATUS', {keys, mapsTo: oldMapsTo})
 			}))

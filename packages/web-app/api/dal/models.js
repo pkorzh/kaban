@@ -9,7 +9,7 @@ import {
 	TicketSpentInSchema,
 	TicketStatusSliceSchema,
 	FlatpageSchema,
-	TicketLeadTimeSchema,
+	TicketTimeSchema,
 	BoardCardColorSchema,
 	BacklogForecastSchema,
 	UserSchema,
@@ -30,7 +30,7 @@ const WorkflowTransition = mongoose.model(
 const TicketSpentIn = mongoose.model('TicketSpentIn', TicketSpentInSchema)
 const TicketStatusSlice = mongoose.model('TicketStatusSlice', TicketStatusSliceSchema)
 const Flatpage = mongoose.model('Flatpage', FlatpageSchema)
-const TicketLeadTime = mongoose.model('TicketLeadTime', TicketLeadTimeSchema)
+const TicketTime = mongoose.model('TicketTime', TicketTimeSchema)
 const BoardCardColor = mongoose.model('BoardCardColor', BoardCardColorSchema)
 const BacklogForecast = mongoose.model('BacklogForecast', BacklogForecastSchema)
 const User = mongoose.model('User', UserSchema)
@@ -48,7 +48,7 @@ export {
 	TicketSpentIn,
 	TicketStatusSlice,
 	Flatpage,
-	TicketLeadTime,
+	TicketTime,
 	BoardCardColor,
 	BacklogForecast,
 	User,

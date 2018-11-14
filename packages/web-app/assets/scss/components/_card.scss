@@ -96,6 +96,13 @@
     top: 8px;
   }
 
+  &-0 {
+    &::before,
+    &::after,
+    span {
+      visibility: hidden;
+    }
+  }
   &-1 {
     &::before,
     span {

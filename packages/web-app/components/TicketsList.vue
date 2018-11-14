@@ -43,11 +43,7 @@
 				</div>
 
 				<div class="table-list-line-estm">
-					<div
-						class="ticket-estm ticket-estm-1"
-						title="Less than a day">
-						<span></span>
-					</div>
+					<div :class="spentInClass(ticket)" :title="spentInText(ticket)"><span></span></div>
 				</div>
 			</div>
 		</draggable>
@@ -57,11 +53,20 @@
 <script>
 	import { mapActions } from 'vuex';
 	import Draggable from 'vuedraggable';
-	import { TicketBaseMixin } from '@/mixins';
+	import { TicketBaseMixin, TicketSpentInMixin } from '@/mixins';
 	import orderBy from 'lodash/orderBy';
 
 	export default {
-		mixins: [TicketBaseMixin],
+		mixins: [
+			TicketBaseMixin,
+			TicketSpentInMixin,
+		],
+		props: {
+			tickets: {
+				type: Array,
+				required: true,
+			},
+		},
 		data() {
 			return {
 			}
@@ -82,18 +87,12 @@
 					keys, 
 					...(newIndex < oldIndex ? { before: targetKey } : { after: targetKey })
 				});
-			}
+			},
 		},
 		computed: {
 			orderedTickets() {
 				return orderBy(this.tickets, 'rank');
-			}
-		},
-		props: {
-			tickets: {
-				type: Array,
-				required: true,
 			},
-		}
+		},
 	}
 </script>

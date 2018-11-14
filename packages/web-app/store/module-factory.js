@@ -89,16 +89,21 @@ export default (
 			async fetchList({commit, getters}, payload) {
 				commit('SET_WORKING', true)
 
+				const doNotEmpty = payload && payload.empty === false;
+
 				const rawList = await this.$axios.$get(
 					`/api/${resource}/`,
 					{ params: payload },
 				)
 
-				commit('EMPTY')
-				commit('STAGE_MULTIPLE', rawList)
-				commit('SET_WORKING', false)
+				if (!doNotEmpty) {
+					commit('EMPTY');
+				}
 
-				return rawList
+				commit('STAGE_MULTIPLE', rawList);
+				commit('SET_WORKING', false);
+
+				return rawList;
 			},
 			async fetchMore({commit, getters}, payload) {
 				commit('SET_WORKING', true)

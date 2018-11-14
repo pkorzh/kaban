@@ -2,7 +2,7 @@ import {
 	Workflow,
 	WorkflowTransition,
 	TicketSpentIn,
-	TicketLeadTime,
+	TicketTime,
 } from './models'
 
 function WorkflowTransitionError({key, from, to}) {
@@ -12,7 +12,7 @@ function WorkflowTransitionError({key, from, to}) {
 }
 WorkflowTransitionError.prototype = new Error
 
-function transition(ticket, to) {
+async function transition(ticket, to) {
 	const ticketTransition = new WorkflowTransition({
 		ticket: { key: ticket.key },
 		from: { key: ticket.status.key },
@@ -33,13 +33,19 @@ function transition(ticket, to) {
 	]
 
 	if (to.key === Workflow.getTicketFinalStatus().key) {
-		const ticketLeadTime = new TicketLeadTime({
+		const [ inProgressTransition ] = await WorkflowTransition.find({
+			'to.key': Workflow.getTicketInProgressStatus().key,
+			'ticket.key': ticket.key,
+		}).sort('createdAt').limit(1);
+
+		const ticketTime = new TicketTime({
 			ticket,
 			backlog: ticket.backlog,
-			ms: new Date() - ticket.createdAt,
-		})
+			lead_time: new Date() - ticket.createdAt,
+			cycle_time: new Date() - inProgressTransition.createdAt,
+		});
 
-		promises.push(ticketLeadTime.save())
+		promises.push(ticketTime.save());
 	}
 
 	return Promise.all(promises)
