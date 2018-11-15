@@ -18,17 +18,6 @@
 					path="description"
 					:_key="backlog.key" />
 			</b-form-group>
-
-			<b-form-group>
-				<LiveEditDate
-					:content="backlog.hardDeadlineAt"
-					action="backlogs/patch"
-					path="hardDeadlineAt"
-					:_key="backlog.key"></LiveEditDate>
-					<small class="text-danger form-text">
-						Hard deadline
-					</small>
-			</b-form-group>
 		</div>
 	</div>
 </template>

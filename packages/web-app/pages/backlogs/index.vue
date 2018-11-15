@@ -59,6 +59,7 @@
 
 		<Gantt
 			:backlogs="backlogList"
+			@dateChange="dateChange"
 			v-if="!tableView" />
 	</b-container>
 </template>
@@ -84,11 +85,6 @@
 					description: {
 						label: this.$t('description'),
 						sortable: false,
-					},
-					hardDeadlineAt: {
-						label: 'Hard Deadline',
-						sortable: true,
-						formatter: (date) => date && this.$moment(date).format('LL'),
 					},
 					action: {
 						label: '',
@@ -121,6 +117,8 @@
 						isArchived: !backlog.isArchived
 					}
 				})
+			},
+			dateChange({key, start, end}) {
 			}
 		}
 	}

@@ -51,4 +51,6 @@ export default {
 	storiesOnly: 'Stories Only',
 	notificationConfig: 'Notification Config',
 	testToken: 'Test token',
+	percentCompleted: '% Completed',
+	hardDeadline: 'Hard Deadline',
 }
