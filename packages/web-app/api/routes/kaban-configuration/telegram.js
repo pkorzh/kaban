@@ -18,8 +18,6 @@ router.post('/handle-webhook', async function(req, res, next) {
 	const secret = req.query.secret;
 	const kc = await kabanConfiguration.get();
 
-	console.log(req.body)
-
 	if (secret !== kc.notification.token) {
 		throw new Error('Wrong secret');
 	}

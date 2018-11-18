@@ -1,6 +1,6 @@
 <template>
 	<ul class="details-options details-options-assign">
-		<li>
+		<li v-if="ticket.assignee">
 			<h3>Assignee</h3>
 			<div>
 				<LiveEditSelect

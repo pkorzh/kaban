@@ -92,25 +92,42 @@ function resolveTextSearch(astb) {
 	};
 }
 
+function resolveRVal(astb) {
+	if (astb.map && astb.length) {
+		return astb.map(astb => astb.lexeme);
+	} else {
+		return astb.lexeme;
+	}
+}
+
 function resolve(astb, expanders) {
 	if (astb.right.tag === 'date' || astb.right.tag === 'datevar') {
 		return resolveDateOp(astb);
 	} else {
 		if (astb.left.lexeme === 'name') {
 			return resolveTextSearch(astb);
+		} else if (astb.left.lexeme === 'type') {
+			return {
+				$or: [
+					{
+						'__t': {
+							[resolveOp(astb.op)]: resolveRVal(astb.right)
+						}
+					},
+					{ 
+						'type.key': {
+							[resolveOp(astb.op)]: resolveRVal(astb.right)
+						}
+					},
+				]
+			};
 		}
 
 		const lVal = astb.left.lexeme === 'rank' || astb.left.lexeme === 'key' || astb.left.lexeme === 'createdAt' || astb.left.lexeme === 'updatedAt'
 			? astb.left.lexeme
 			: `${astb.left.lexeme}.key`;
 
-		let rVal;
-
-		if (astb.right.map && astb.right.length) {
-			rVal = astb.right.map(astb => astb.lexeme);
-		} else {
-			rVal = astb.right.lexeme
-		}
+		let rVal = resolveRVal(astb.right);
 
 		if (expanders[rVal]) {
 			return expanders[rVal].call(null, astb);

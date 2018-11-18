@@ -13,10 +13,10 @@
 					shortkey="c"
 					action="CreateBacklogAction" />
 
-				<ActionsNavViewSwitcher
+				<!--<ActionsNavViewSwitcher
 					v-model="tableView"
 					icon1="table"
-					icon2="align-left" />
+					icon2="align-left" />-->
 			</ActionsNav>
 
 		</TopBar>
@@ -57,9 +57,10 @@
 				</template>
 			</b-table>
 
-		<Gantt
+		<!--<Gantt
 			:backlogs="backlogList"
-			v-if="!tableView" />
+			@dateChange="dateChange"
+			v-if="!tableView" />-->
 	</b-container>
 </template>
 
@@ -84,11 +85,6 @@
 					description: {
 						label: this.$t('description'),
 						sortable: false,
-					},
-					hardDeadlineAt: {
-						label: 'Hard Deadline',
-						sortable: true,
-						formatter: (date) => date && this.$moment(date).format('LL'),
 					},
 					action: {
 						label: '',
@@ -121,6 +117,8 @@
 						isArchived: !backlog.isArchived
 					}
 				})
+			},
+			dateChange({key, start, end}) {
 			}
 		}
 	}

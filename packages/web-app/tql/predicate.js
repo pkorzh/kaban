@@ -16,20 +16,24 @@ function resolve(astb) {
 				return astb.lexeme
 		}
 	} else {
-		const lVal = astb.left.lexeme === 'rank' || astb.left.lexeme === 'key' || astb.left.lexeme === 'createdAt' || astb.left.lexeme === 'updatedAt'
-			? astb.left.lexeme
-			: `${astb.left.lexeme}.key`;
+		const appendKey = (lexeme) => ['rank', 'key', 'createdAt', 'updatedAt'].indexOf(lexeme) == -1;
+
+		const lVal = astb.left.lexeme;
 
 		const rVal = astb.right.lexeme
 			? astb.right.lexeme
-			: astb.right.map(astb => astb.lexeme)
+			: astb.right.map(astb => astb.lexeme);
 
 		const op = resolve(astb.op)
 
 		if (op.fn === 'indexOf') {
-			return `${JSON.stringify(rVal)}.${op.fn}(obj.${lVal}) !== -1`
+			return `${JSON.stringify(rVal)}.${op.fn}(obj.${lVal}) !== -1`;
 		} else {
-			return `obj.${lVal} ${op} '${rVal}'`
+			if (appendKey(lVal)) {
+				return `obj.${lVal} && obj.${lVal}.key ${op} '${rVal}'`;
+			}
+
+			return `obj.${lVal} ${op} '${rVal}'`;
 		}
 	}
 }

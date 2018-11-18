@@ -27,6 +27,10 @@ export default new Schema({
 		type: Number,
 		required: false,
 	},
+	milestoneForecast: {
+		type: [{}],
+		required: false,
+	},
 }, {
 	timestamps: true,
 	strict: true,

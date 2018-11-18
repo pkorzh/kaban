@@ -31,7 +31,7 @@
 		},
 		methods: {
 			onDeleteTicket() {
-				this.$kaban.dispatch('TicketDeleteHighlight', {
+				this.$kaban.dispatch('DeleteTicketAction', {
 					sender: this,
 					payload: {
 						ticket: this.ticket,
@@ -41,7 +41,7 @@
 			},
 
 			onMoveTicket() {
-				this.$kaban.dispatch('TicketMoveHighlight', {
+				this.$kaban.dispatch('MoveTicketAction', {
 					sender: this,
 					payload: {
 						ticket: this.ticket,

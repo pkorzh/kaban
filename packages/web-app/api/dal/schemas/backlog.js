@@ -18,10 +18,6 @@ const schema = new Schema({
 		type: String,
 		required: false,
 	},
-	hardDeadlineAt: {
-		type: Date,
-		required: false,
-	},
 	isArchived: {
 		type: Boolean,
 		required: true,

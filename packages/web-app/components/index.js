@@ -3,12 +3,10 @@ import Avatar from 'vue-avatar';
 import ActionsNav from './ActionsNav/ActionsNav'
 import ActionsNavAssigned from './ActionsNav/ActionsNavAssigned'
 import ActionsNavViewSwitcher from './ActionsNav/ActionsNavViewSwitcher'
-import ActionsNavQuickFilters from './ActionsNav/ActionsNavQuickFilters'
 import ActionsNavButton from './ActionsNav/ActionsNavButton'
 import ActionsNavLink from './ActionsNav/ActionsNavLink'
 import ActionsAllowedTransitions from './ActionsNav/ActionsAllowedTransitions'
 import ActionsNavColumns from './ActionsNav/ActionsNavColumns'
-import ActionsNavMultipleEdit from './ActionsNav/ActionsNavMultipleEdit'
 import ActionsNavTicketOptions from './ActionsNav/ActionsNavTicketOptions'
 
 import BacklogCreateHighlight from './BacklogCreateHighlight'
@@ -47,7 +45,7 @@ import Sparkline from './Sparkline'
 
 import TicketDetailsSlimStatus from './TicketDetailsSlim/TicketDetailsSlimStatus'
 import TicketDetailsSlimEstimations from './TicketDetailsSlim/TicketDetailsSlimEstimations'
-import TicketDetailsSlimAssign from './TicketDetailsSlim/TicketDetailsSlimAssign'
+import TicketDetailsSlimPeople from './TicketDetailsSlim/TicketDetailsSlimPeople'
 import TicketDetailsSlimDates from './TicketDetailsSlim/TicketDetailsSlimDates'
 import TicketDetailsSlimVersion from './TicketDetailsSlim/TicketDetailsSlimVersion'
 import TicketDetailsSlimComments from './TicketDetailsSlim/TicketDetailsSlimComments'
@@ -67,12 +65,10 @@ export {
 	ActionsNav,
 	ActionsNavAssigned,
 	ActionsNavViewSwitcher,
-	ActionsNavQuickFilters,
 	ActionsNavButton,
 	ActionsNavLink,
 	ActionsAllowedTransitions,
 	ActionsNavColumns,
-	ActionsNavMultipleEdit,
 	ActionsNavTicketOptions,
 
 	BacklogCreateHighlight,
@@ -111,7 +107,7 @@ export {
 
 	TicketDetailsSlimStatus,
 	TicketDetailsSlimEstimations,
-	TicketDetailsSlimAssign,
+	TicketDetailsSlimPeople,
 	TicketDetailsSlimDates,
 	TicketDetailsSlimVersion,
 	TicketDetailsSlimComments,

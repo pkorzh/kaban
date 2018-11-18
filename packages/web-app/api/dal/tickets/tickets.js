@@ -1,4 +1,7 @@
 import {
+	Story,
+	Bug,
+	Milestone,
 	Ticket,
 	Workflow,
 	TicketSpentIn,
@@ -12,13 +15,40 @@ import { DataBaseError } from '../../error-handlers';
 
 import { track as trackHistory } from './history';
 
+function _includeType(t) {
+	if (t.type) {
+		return t;
+	}
+
+	const type = {
+		key: t.__t
+	};
+
+	return { ...t, type };
+}
+
 async function insert(ticketSlim) {
+	let Klass;
+
+	switch(ticketSlim.type.key) {
+		case 'story':
+			Klass = Story;
+			break;
+		case 'bug':
+			Klass = Bug;
+			break;
+		case 'milestone':
+			Klass = Milestone;
+			break;
+	}
+
 	if (!ticketSlim.status)
-		ticketSlim.status = Workflow.getTicketInitialStatus()
+		ticketSlim.status = Workflow.getTicketInitialStatus();
 
-	const ticket = new Ticket(ticketSlim)
+	const ticket = new Klass(ticketSlim);
+	await ticket.save();
 
-	return await ticket.save()
+	return _includeType(ticket.toJSON());
 }
 
 async function count(tql) {
@@ -33,17 +63,17 @@ async function query(tql, limit, context = { board: null, user: null }) {
 	})
 
 	if (!!context.board) {
-		delete kwargs['status.key']
+		delete kwargs['status.key'];
 		kwargs['status.key'] = {
 			$in: Workflow.getBoardStatus().map(s => s.key)
-		}
+		};
 	}
 
 	const tickets = await Ticket.find(kwargs)
 		.limit(Number(limit))
-		.sort('rank')
+		.sort('rank');
 
-	return tickets
+	return tickets.map(t => t.toJSON()).map(_includeType);
 }
 
 async function get(tql) {
