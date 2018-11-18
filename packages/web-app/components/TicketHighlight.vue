@@ -48,6 +48,7 @@
 					shortkey="" />-->
 
 				<ActionsAllowedTransitions 
+					v-if="!isMilestone"
 					:ticket="ticket" 
 					:readonly="backlog.isArchived"/>
 				<!--
@@ -61,9 +62,12 @@
 					action=""
 					shortkey="" />-->
 
-				<div class="actions-nav-separator"></div>
+				<div 
+					v-if="!isMilestone"
+					class="actions-nav-separator"></div>
 
-				<ActionsNavTicketOptions 
+				<ActionsNavTicketOptions
+					v-if="!isMilestone"
 					:ticket="ticket" 
 					:readonly="backlog.isArchived"/>
 
@@ -104,7 +108,7 @@
 
 					<!--<TicketDetailsSlimEstimations :ticket="ticket" />-->
 
-					<TicketDetailsSlimAssign 
+					<TicketDetailsSlimPeople 
 						:ticket="ticket" 
 						:readonly="backlog.isArchived"/>
 
@@ -137,17 +141,6 @@
 				required: true,
 			}
 		},
-		data() {
-			return {
-				//goBack: true
-			}
-		},
-		methods: {
-			/*onpopstate() {
-				this.goBack = false
-				this.$emit('close')
-			}*/
-		},
 		computed: {
 			...mapGetters('tickets', {
 				getTicket: 'getOne'
@@ -163,25 +156,17 @@
 
 			backlog() {
 				return this.getBacklog(this.backlogKey)
-			}
-		},
-		mounted() {
-			/*history.pushState(
-				{highlight: true},
-				this.ticket.name,
-				`/issues/${this.ticket.key}`
-			)
+			},
 
-			window.onpopstate = this.onpopstate.bind(this)*/
-		},
-		destroyed() {
-			/*this.goBack && this.$router.go(-1)
-			window.onpopstate = null*/
+			isMilestone() {
+				return this.ticket.type.key === 'milestone';
+			},
 		},
 		watch: {
 			'$route'(to, from) {
 				this.$emit('close')
 			},
+
 			ticket(newTicket) {
 				if (!newTicket) {
 					this.$emit('close')

@@ -12,42 +12,6 @@
 			</template>
 
 			<ActionsNav>
-				<tql-search placeholder="Enter search query"
-							:value="tql"
-							@input="search">
-					<template slot-scope="{ fields }">
-						<tql-search-text
-								name="name"
-								v-model="fields.name"
-								placeholder="Ticket summary"/>
-
-						<tql-search-key
-								name="type"
-								v-model="fields.type"
-								getter="tickettypes/getList"/>
-
-						<tql-search-key
-								name="status"
-								v-model="fields.status"
-								getter="status/getList"/>
-						<tql-search-key
-								name="priority"
-								v-model="fields.priority"
-								getter="priorities/getList"/>
-
-						<tql-search-key
-								name="resolution"
-								v-model="fields.resolution"
-								getter="resolutions/getList"/>
-
-						<tql-search-key
-								name="assignee"
-								icon="avatar"
-								v-model="fields.assignee"
-								getter="users/getList"/>
-					</template>
-				</tql-search>
-
 				<ActionsNavButton
 					text="Create Ticket"
 					shortkey="c"
@@ -92,23 +56,16 @@
 <script>
 	import { mapGetters, mapActions } from 'vuex';
 
+	const basetql = (key) => `backlog = ${key} and status != closed`;
+
 	export default {
 		fetch({store, params, route: {query}}) {
-			let tql = `backlog = ${params.key}`;
-
-			if (!!query.tql) {
-				tql += ` and ${query.tql}`
-			}
+			let tql = basetql(params.key);
 
 			return store.dispatch('tickets/fetchList', {
 				tql,
 				limit: 20,
 			});
-		},
-		asyncData({route: {query}}) {
-			return {
-				tql: query.tql || '',
-			}
 		},
 		head() {
 			return {
@@ -145,11 +102,7 @@
 				}
 
 				const lastTicketRank = this.tickets[this.tickets.length - 1].rank;
-				let tqlBase = `backlog = ${this.backlog.key}`;
-
-				if (this.tql) {
-					tqlBase += ` and ${this.tql}`;
-				}
+				let tqlBase =basetql(this.backlog.key);
 
 				await this.fetchMore({
 					tql: `${tqlBase} and rank > "${lastTicketRank}"`,
@@ -175,34 +128,6 @@
 						isArchived: !backlog.isArchived
 					}
 				})
-			},
-
-			search(tql) {
-				this.$router.push(this.localePath({
-					name: 'backlogs-key',
-					params: {
-						key: this.backlog.key,
-					},
-					query: {
-						tql
-					},
-				}))
-			},
-		},
-		watch: {
-			'$route.query.tql'(tqlSuffix) {
-				this.tql = tqlSuffix;
-
-				let tql2 = `backlog = ${this.backlog.key}`;
-
-				if (tqlSuffix) {
-					tql2 += ` and ${tqlSuffix}`
-				}
-
-				this.fetchList({
-					tql: tqlSuffix,
-					limit: 20,
-				});
 			},
 		},
 	}

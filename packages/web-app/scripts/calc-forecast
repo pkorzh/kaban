@@ -4,78 +4,103 @@ const util = require('util')
 require('../api/dal/connect')
 
 const {
-	TicketLeadTime,
+	TicketTime,
 	Backlog,
 	BacklogForecast,
+	Milestone,
 } = require('../api/dal/models')
 
 const {
 	tickets: ticketsDal
 } = require('../api/dal')
 
+async function _duration(tql, avg) {
+	const totalTickets = await ticketsDal.count(tql);
+	const closedTickets = await ticketsDal.count(`${tql} and status = closed`);
+
+	const todo = totalTickets - closedTickets;
+
+	const todoDuration = todo * avg;
+
+	const lowerBound = todoDuration * 0.6;
+	const upperBound = todoDuration * 1.2;	
+
+	return [
+		new Date(Date.now() + lowerBound),
+		new Date(Date.now() + upperBound),
+	];
+}
+
 async function main() {
-	const backlogs = await Backlog.find()
+	const backlogs = await Backlog.find();
 
 	for (let backlog of backlogs) {
-		const ticketLeadTimeSamples = await TicketLeadTime.find({'backlog.key': backlog.key}).sort({ms: 1})
+		const kwargs = {'backlog.key': backlog.key};
 
-		const samplesCount = ticketLeadTimeSamples.length
+		const ticketLeadTimeSamples = await TicketTime.find(kwargs).sort({lead_time: 1});
+
+		const samplesCount = ticketLeadTimeSamples.length;
 
 		if (samplesCount == 0) {
-			continue
+			continue;
 		}
 
-		const p50Index = Math.ceil(samplesCount * (50 / 100)) - 1
-		const p99Index = Math.ceil(samplesCount * (99 / 100)) - 1
+		const p50Index = Math.ceil(samplesCount * (50 / 100)) - 1;
+		const p99Index = Math.ceil(samplesCount * (99 / 100)) - 1;
 
-		const p50 = ticketLeadTimeSamples[p50Index].ms
-		const p99 = ticketLeadTimeSamples[p99Index].ms
+		const p50 = ticketLeadTimeSamples[p50Index].lead_time;
+		const p99 = ticketLeadTimeSamples[p99Index].lead_time;
 
-		let summ = 0
+		let summ = 0;
 
 		for (let ticketLeadTimeSample of ticketLeadTimeSamples) {
-			summ += ticketLeadTimeSample.ms || 0
+			summ += ticketLeadTimeSample.lead_time || 0;
 		}
 
-		let avg = summ / samplesCount
-		let sigma = 0
+		let avg = summ / samplesCount;
+		let sigma = 0;
 
 		for (let ticketLeadTimeSample of ticketLeadTimeSamples) {
-			sigma += Math.pow((ticketLeadTimeSample.ms || 0) - avg, 2)
+			sigma += Math.pow((ticketLeadTimeSample.lead_time || 0) - avg, 2);
 		}
 
-		sigma = Math.sqrt(sigma / samplesCount)
+		sigma = Math.sqrt(sigma / samplesCount);
 
-		const v = (sigma / avg) * 100
+		const v = (sigma / avg) * 100;
 
-		const totalTickets = await ticketsDal.count(`backlog = ${backlog.key}`)
-		const closedTickets = await ticketsDal.count(`backlog = ${backlog.key} and status = closed`)
-		const todo = totalTickets - closedTickets
-		const todoDuration = todo * avg
+		const [lowerBound, upperBound] = await _duration(`backlog = ${backlog.key}`, avg);
 
-		const lowerBound = todoDuration * 0.6
-		const upperBound = todoDuration * 1.2
+		const milestones = await Milestone.find(kwargs).sort('rank');
+		const milestoneForecast = [];
+
+		for(let milestone of milestones) {
+			const [lowerBound2, upperBound2] = await _duration(
+				`backlog = ${backlog.key} and rank < ${milestone.rank}`, avg);
+
+			milestoneForecast.push({
+				forecastEndAt: [ lowerBound2, upperBound2 ],
+				name: milestone.name
+			});
+		}
 
 		await BacklogForecast.findOneAndUpdate(
-			{ 'backlog.key': backlog.key },
+			kwargs,
 			{
 				var: v,
 				p50,
 				p99,
 				avg,
 				backlog,
-				forecastEndAt: [
-					new Date(Date.now() + lowerBound),
-					new Date(Date.now() + upperBound),
-				]
+				forecastEndAt: [ lowerBound, upperBound ],
+				milestoneForecast,
 			},
 			{ upsert: true }
-		)
+		);
 	}
 }
 
 export default main;
 
 if (require.main === module) {
-	main().finally(process.exit);
+	main().catch(console.error).finally(process.exit);
 }

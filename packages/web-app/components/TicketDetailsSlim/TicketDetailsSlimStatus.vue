@@ -1,6 +1,6 @@
 <template>
 	<ul class="details-options">
-		<li>
+		<li v-if="ticket.type">
 			<h3>Type:</h3>
 			<div>
 				<LiveEditSelect
@@ -20,7 +20,7 @@
 					</LiveEditSelect>
 			</div>
 		</li>
-		<li>
+		<li v-if="ticket.priority">
 			<h3>Priority:</h3>
 			<div>
 				<LiveEditSelect
@@ -40,7 +40,7 @@
 					</LiveEditSelect>
 			</div>
 		</li>
-		<li>
+		<li v-if="ticket.status">
 			<h3>Status:</h3>
 			<div>
 				<span class="details-label">
@@ -48,7 +48,7 @@
 				</span>
 			</div>
 		</li>
-		<li>
+		<li v-if="ticket.resolution">
 			<h3>Resolution:</h3>
 			<div>
 				<LiveEditSelect

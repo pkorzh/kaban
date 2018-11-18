@@ -4,15 +4,18 @@ export default moduleFactory('tickettypes', {
 	state: {
 		entities: {
 			'story': {
-				id: 1,
 				key: 'story',
 				name: 'Story',
 				iconUrl: '/tickettypes/story.svg',
 			},
 			'bug': {
-				id: 1,
 				key: 'bug',
 				name: 'Bug',
+				iconUrl: '/tickettypes/bug.svg',
+			},
+			'milestone': {
+				key: 'milestone',
+				name: 'Milestone',
 				iconUrl: '/tickettypes/bug.svg',
 			}
 		}

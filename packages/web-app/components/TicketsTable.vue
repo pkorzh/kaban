@@ -6,15 +6,7 @@
 			caption-top
 			ref="table"
 			:items="tickets"
-			:fields="ticketFields"
-			@row-clicked="rowclicked">
-				<template slot="table-caption">
-					<ActionsNavMultipleEdit
-						class="ml-3"
-						v-if="selectedTickets.length > 0"
-						:tickets="selectedTickets" />
-				</template>
-
+			:fields="ticketFields">
 				<template slot="name" slot-scope="data">
 					<a
 						:href="ticketUrl(data.item)"
@@ -43,24 +35,6 @@
 
 	export default {
 		mixins: [TicketBaseMixin, TicketsTableBaseMixin],
-		data() {
-			return {
-				selectedTickets: []
-			}
-		},
-		computed: {
-			/*selectedTickets() {
-				return this.tickets.filter(t => t._rowVariant == 'info')
-			}*/
-		},
-		methods: {
-			rowclicked(item, index, event) {
-				/*if (event.metaKey || event.ctrlKey) {
-					this.$set(item, '_rowVariant',
-						item._rowVariant == 'info' ? null : 'info')
-				}*/
-			}
-		},
 		props: {
 			tickets: {
 				type: Array,

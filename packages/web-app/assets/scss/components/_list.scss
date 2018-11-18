@@ -3,6 +3,17 @@
   cursor: default;
   border: 1px solid $gray-300;
   border-radius: 6px;
+
+  &-milestone {
+    padding: .875em;
+    text-align: center;
+    position: relative;
+
+    &-name {
+      display: inline-block;
+    }
+  }
+
   &-line {
     padding: 6px 0;
     display: flex;

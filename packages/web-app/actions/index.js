@@ -1,25 +1,30 @@
-import CreateTicketAction from './ticket-create'
-import CreateBacklogAction from './backlog-create'
-import CreateBoardAction from './board-create'
-import HighlightTicketAction from './ticket-highlight'
-import TicketMultipleEdit from './ticket-multi-edit'
-import DeleteBacklogAction from './backlog-delete'
-import DeleteBoardAction from './board-delete'
-import CreateUserAction from './user-create'
-import DeleteUserAction from './user-delete'
-import TicketDeleteHighlight from './ticket-delete'
-import TicketMoveHighlight from './ticket-move.js'
-
-export {
-	CreateTicketAction,
-	HighlightTicketAction,
-	CreateBacklogAction,
-	CreateBoardAction,
-	TicketMultipleEdit,
-	DeleteBacklogAction,
-	DeleteBoardAction,
-	CreateUserAction,
-	DeleteUserAction,
+import {
+	BacklogCreateHighlight,
+	BacklogDeleteHighlight,
+	BoardCreateHighlight,
+	BoardDeleteHighlight,
+	TicketCreateHighlight,
 	TicketDeleteHighlight,
 	TicketMoveHighlight,
-}
+	TicketHighlight,
+	MultipleEditHighlight,
+	UserCreateHighlight,
+	UserDeleteHighlight,
+} from '@/components';
+
+import makeAction from './action-factory';
+
+export const CreateTicketAction = makeAction(TicketCreateHighlight);
+export const CreateBacklogAction = makeAction(BacklogCreateHighlight);
+export const CreateBoardAction = makeAction(BoardCreateHighlight);
+
+export const HighlightTicketAction = 
+	makeAction(TicketHighlight, '75%');
+
+export const TicketMultipleEdit = makeAction(MultipleEditHighlight);
+export const DeleteBacklogAction = makeAction(BacklogDeleteHighlight);
+export const DeleteBoardAction = makeAction(BoardDeleteHighlight);
+export const CreateUserAction = makeAction(UserCreateHighlight);
+export const DeleteUserAction = makeAction(UserDeleteHighlight);
+export const DeleteTicketAction = makeAction(TicketDeleteHighlight);
+export const MoveTicketAction = makeAction(TicketMoveHighlight);

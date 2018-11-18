@@ -126,8 +126,12 @@
 		},
 		computed: {
 			...mapGetters('tickets', {
-				tickets: 'getList',
+				queryTickets: 'queryList',
 			}),
+
+			tickets() {
+				return this.queryTickets('type != milestone');
+			},
 		},
 		watch: {
 			'$route.query.tql'(tql) {

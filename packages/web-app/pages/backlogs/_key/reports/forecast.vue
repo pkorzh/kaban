@@ -11,12 +11,21 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td class="text-right">Forecast End Date</td>
+					<td class="text-right">Backlog Forecast End Date</td>
 					<td class="text-right">
 						{{ forecast.forecastEndAt[0] | moment('LL') }}
 					</td>
 					<td class="text-right">
 						{{ forecast.forecastEndAt[1] | moment('LL') }}
+					</td>
+				</tr>
+				<tr v-for="(milestone, index) in forecast.milestoneForecast" :key="index">
+					<td class="text-right">{{ milestone.name }}</td>
+					<td class="text-right">
+						{{ milestone.forecastEndAt[0] | moment('LL') }}
+					</td>
+					<td class="text-right">
+						{{ milestone.forecastEndAt[1] | moment('LL') }}
 					</td>
 				</tr>
 			</tbody>

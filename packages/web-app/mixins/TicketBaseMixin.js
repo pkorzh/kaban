@@ -16,6 +16,6 @@ export default {
 					key: ticket.key
 				}
 			})
-		}
+		},
 	}
 }

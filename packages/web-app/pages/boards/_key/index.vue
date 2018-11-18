@@ -14,8 +14,6 @@
 			<ActionsNav>
 				<!--<ActionsNavAssigned />-->
 
-				<ActionsNavQuickFilters @filters="quickFilterTql = $event" />
-
 				<ActionsNavButton
 					text="Create Ticket"
 					action="CreateTicketAction"

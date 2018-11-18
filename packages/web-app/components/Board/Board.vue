@@ -31,7 +31,7 @@
 					status.map(s => s.key) :
 					[status.key];
 
-				return this.tickets.filter(ticket =>
+				return this.tickets.filter(t => !!t.status).filter(ticket =>
 					statuses.indexOf(ticket.status.key) !== -1)
 			}
 		},

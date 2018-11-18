@@ -19,10 +19,10 @@ router.get('/tickets', async function (req, res, next) {
 })
 
 router.post('/tickets', async function (req, res, next) {
-	const ticketSlim = req.body
+	const ticketSlim = req.body;
 
 	if (!ticketSlim.key) {
-		ticketSlim.key = getnewid()
+		ticketSlim.key = getnewid();
 	}
 
 	const ticket = await ticketsDal.insert({
@@ -31,11 +31,11 @@ router.post('/tickets', async function (req, res, next) {
 		lastTransitionAt: new Date()
 	})
 
-	await workflowDal.zeroTransition(ticket)
+	await workflowDal.zeroTransition(ticket);
 
-	broadcast('createTicket', ticket)
+	broadcast('createTicket', ticket);
 
-	return res.json(ticket)
+	return res.json(ticket);
 })
 
 router.post('/tickets/move', async function (req, res, next) {

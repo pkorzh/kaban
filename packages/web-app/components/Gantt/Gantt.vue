@@ -4,6 +4,14 @@
 			<button
 				type="button"
 				class="btn btn-sm btn-light"
+				:class="{'active': activeGanttViewMode == 'Day'}"
+				@click="setGanttViewMode('Day')">
+				Day
+			</button>
+
+			<button
+				type="button"
+				class="btn btn-sm btn-light"
 				:class="{'active': activeGanttViewMode == 'Week'}"
 				@click="setGanttViewMode('Week')">
 				Week
@@ -54,7 +62,7 @@
 			    header_height: 50,
 			    column_width: 30,
 			    step: 24,
-			    view_modes: ['Week', 'Month'],
+			    view_modes: ['Day', 'Week', 'Month'],
 			    bar_height: 20,
 			    bar_corner_radius: 3,
 			    arrow_curve: 5,

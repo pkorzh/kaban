@@ -13,10 +13,10 @@
 					shortkey="c"
 					action="CreateBacklogAction" />
 
-				<ActionsNavViewSwitcher
+				<!--<ActionsNavViewSwitcher
 					v-model="tableView"
 					icon1="table"
-					icon2="align-left" />
+					icon2="align-left" />-->
 			</ActionsNav>
 
 		</TopBar>
@@ -57,10 +57,10 @@
 				</template>
 			</b-table>
 
-		<Gantt
+		<!--<Gantt
 			:backlogs="backlogList"
 			@dateChange="dateChange"
-			v-if="!tableView" />
+			v-if="!tableView" />-->
 	</b-container>
 </template>
 
