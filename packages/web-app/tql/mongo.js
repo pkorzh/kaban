@@ -173,8 +173,8 @@ export default function(source, expanders = {}) {
 	const _tokens = tokens(source)
 	const _tree = tree(_tokens)
 
-	const util = require('util')
-	//onsole.log(util.inspect(_tree, false, null, true /* enable colors */))
+	//const util = require('util')
+	//console.log(util.inspect(_tree, false, null, true /* enable colors */))
 
 	const query = generate(_tree, expanders)
 
