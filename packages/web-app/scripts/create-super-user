@@ -28,7 +28,12 @@ const questions = [
 function main() {
 	inquirer.prompt(questions).then(answers => {
 		usersDal.insert({
-			key: shortid.generate(),
+			key: answers.name
+				.split(/\s+/)
+				.filter(c => c.length)
+				.map(c => c.trim())
+				.join('.')
+				.toLowerCase(),
 			name: answers.name,
 			description: 'Administrator',
 			scope: 'user admin',

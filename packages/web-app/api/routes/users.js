@@ -2,7 +2,7 @@ import { Router } from 'express'
 import util from 'util'
 import jsonwebtoken from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
-import getnewid from '../newid'
+
 import jwtPerm from 'express-jwt-permissions'
 import { UnauthorizedError } from 'express-jwt'
 
@@ -23,7 +23,12 @@ router.post('/users', guard.check('admin'), async function (req, res, next) {
 	const userSlim = req.body
 
 	if (!userSlim.key) {
-		userSlim.key = getnewid()
+		userSlim.key = userSlim.name
+			.split(/\s+/)
+			.filter(c => c.length)
+			.map(c => c.trim())
+			.join('.')
+			.toLowerCase();
 	}
 
 	const user = await usersDal.insert(userSlim)
@@ -65,6 +70,12 @@ router.post('/users/login', async function (req, res, next) {
 	})
 
 	if (!user) {
+		throw new UnauthorizedError('login_error', {
+			message: 'No user found'
+		})
+	}
+
+	if (user.key === 'unassigned') {
 		throw new UnauthorizedError('login_error', {
 			message: 'No user found'
 		})
