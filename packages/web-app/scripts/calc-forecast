@@ -1,18 +1,20 @@
 #!/usr/bin/env node
-const util = require('util')
+const util = require('util');
 
-require('../api/dal/connect')
+const moment = require('moment-business-days');
+
+require('../api/dal/connect');
 
 const {
 	TicketTime,
 	Backlog,
 	BacklogForecast,
 	Milestone,
-} = require('../api/dal/models')
+} = require('../api/dal/models');
 
 const {
 	tickets: ticketsDal
-} = require('../api/dal')
+} = require('../api/dal');
 
 async function _duration(tql, avg) {
 	const totalTickets = await ticketsDal.count(tql);
@@ -25,9 +27,11 @@ async function _duration(tql, avg) {
 	const lowerBound = todoDuration * 0.6;
 	const upperBound = todoDuration * 1.2;	
 
+	const toDays = milliseconds => milliseconds / (1000*60*60*24);
+
 	return [
-		new Date(Date.now() + lowerBound),
-		new Date(Date.now() + upperBound),
+		moment().businessAdd(toDays(lowerBound)).toDate(),
+		moment().businessAdd(toDays(upperBound)).toDate(),
 	];
 }
 
