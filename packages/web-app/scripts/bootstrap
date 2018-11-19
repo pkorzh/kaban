@@ -1,8 +1,16 @@
 import '../api/dal/connect';
 
-import {
-} from '../api/dal';
+import { tickets as ticketsDal } from '../api/dal';
 
 import { 
+	Ticket,
 } from '../api/dal/models';
 
+async function main() {
+}
+
+export default main;
+
+if (require.main === module) {
+	main().catch(console.error).finally(process.exit);
+}

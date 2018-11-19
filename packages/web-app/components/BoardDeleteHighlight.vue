@@ -33,8 +33,8 @@
 				type: String,
 				required: true,
 			},
-			goBack: {
-				type: String,
+			gotoBoards: {
+				type: Boolean,
 				required: false
 			}
 		},
@@ -44,11 +44,15 @@
 			}),
 
 			async justDelete() {
-				await this.deleteBoard({ key: this.boardKey })
+				this.$emit('close');
 
-				this.$emit('close')
-
-				this.goBack && this.$router.go(this.goBack)
+				if (this.gotoBoards) {
+					this.$router.replace(this.localePath({
+						name: 'boards',
+					}), () => this.deleteBoard({ key: this.boardKey }) );
+				} else {
+					this.deleteBoard({ key: this.boardKey })
+				}
 			}
 		}
 	}

@@ -90,18 +90,35 @@ async function patch(key, delta, user) {
 	if (!user) {
 		throw new DataBaseError('user_missing', {
 			message: 'Please provide a user to patch'
-		})
+		});
 	}
 
-	const oldTicket = await get(`key = ${key}`)
+	const oldTicket = await get(`key = ${key}`);
 
-	await Ticket.updateOne({ key }, { $set: delta})
+	let Klass;
+	let type = oldTicket.type
+		? oldTicket.type.key
+		: oldTicket.__t;
 
-	const ticket = await get(`key = ${key}`)
+	switch(type) {
+		case 'story':
+			Klass = Story;
+			break;
+		case 'bug':
+			Klass = Bug;
+			break;
+		case 'milestone':
+			Klass = Milestone;
+			break;
+	}
 
-	await trackHistory(oldTicket, ticket, user)
+	await Klass.updateOne({ key }, { $set: delta });
 
-	return ticket
+	const ticket = await get(`key = ${key}`);
+
+	await trackHistory(oldTicket, ticket, user);
+
+	return ticket;
 }
 
 function remove(key) {

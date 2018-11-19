@@ -1,97 +1,14 @@
 import '../api/dal/connect';
 import { tickets as ticketsDal } from '../api/dal';
 import { 
-	TicketSpentIn,
-	TicketLeadTime,
-	TicketStatusSlice,
 	Ticket,
-	User,
  } from '../api/dal/models';
 
-import shortid from 'shortid';
-
-const random_verb_parts = [
-	'interrupt',
-	'tour',
-	'rejoice',
-	'tempt',
-	'smoke',
-	'smash',
-	'match',
-	'flood',
-	'fix',
-	'untidy',
-	'develop',
-	'hum'
-]
-
-const random_role_parts = ['User', 'Admin', 'Developer', 'Manager']
-
-const random_status_parts = ['backlog', 'ready-to-start', 'development', 'code-review', 'ready-to-verification', 'verification']
-
-const random_priority_parts = ['high', 'low', 'trivial']
-
-const random_type_parts = ['story', 'bug']
-
-const random_unicorn_parts = [
-	'Quince Bonny Hooves',
-	'Windy Velvet Horse',
-	'Acorn Candy Nostrils',
-	'Elm Dainty Ears',
-	'Dandelion Dainty Lord',
-	'Chestnut Pied Nose',
-]
-
-const random_parts = [
-	'want to',
-	'need to',
-	'require',
-	'demand',
-]
-
-const skeleton = {
-	name: 'Test',
-	description: 'pofk',
-	priority: { key: 'high' },
-	type: { key: 'story' },
-	resolution: null,
-	assignee: { key: 'platon.korzh' },
-	reporter: { key: 'platon.korzh' },
-	backlog: { key: 'AMA'},
-	status: { key: 'backlog' },
-	lastTransitionAt: new Date(),
-}
-
 async function main() {
-	for (var i = 100; i >= 0; i--) {
-		const role = random_role_parts[Math.floor(Math.random()*random_role_parts.length)]
-		const verb = random_verb_parts[Math.floor(Math.random()*random_verb_parts.length)]
-		const unicorn = random_unicorn_parts[Math.floor(Math.random()*random_unicorn_parts.length)]
-		const r = random_parts[Math.floor(Math.random()*random_parts.length)]
-
-		const ticketSlim = {
-			...skeleton,
-			key: shortid.generate(),
-			name: `As a ${role} i ${r} ${verb} ${unicorn}`,
-			type: {
-				key: random_type_parts[Math.floor(Math.random()*random_type_parts.length)]
-			},
-			priority: {
-				key: random_priority_parts[Math.floor(Math.random()*random_priority_parts.length)]
-			},
-			rank: await ticketsDal.rank.next(),
-		}
-
-		console.log(ticketSlim.name)
-
-		await ticketsDal.insert(ticketSlim)
-	}
-
-	console.log('Done.')
 }
 
 export default main;
 
 if (require.main === module) {
-	main().finally(process.exit);
+	main();
 }

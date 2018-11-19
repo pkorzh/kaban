@@ -43,13 +43,48 @@
 					description="e.g. backlog = BACKLOG-KEY or backlog in [BACKLOG-KEY-1, BACKLOG-KEY-2, ...]"
 					:invalid-feedback="errors.first('board.tql')"
 					:state="!errors.has('board.tql')">
-					<input
-						type="text"
-						v-model="board.tql"
-						name="board.tql"
-						v-validate="'required'"
-						class="form-control"
-						placeholder="TQL" />
+
+					<tql-search placeholder="Enter board query"
+								v-model="board.tql">
+						<template slot-scope="{ fields }">
+							<b-row>
+								<b-col>
+									<tql-search-key
+											name="backlog"
+											v-model="fields.backlog"
+											getter="backlogs/getList"/>
+
+									<tql-search-key
+											name="type"
+											v-model="fields.type"
+											getter="tickettypes/getList"/>
+
+									<tql-search-key
+											name="status"
+											v-model="fields.status"
+											getter="status/getList"/>
+								</b-col>
+								<b-col>
+									<tql-search-key
+											name="priority"
+											v-model="fields.priority"
+											getter="priorities/getList"/>
+
+									<tql-search-key
+											name="resolution"
+											v-model="fields.resolution"
+											getter="resolutions/getList"/>
+
+									<tql-search-key
+											name="assignee"
+											icon="avatar"
+											v-model="fields.assignee"
+											getter="users/getList"/>
+								</b-col>
+							</b-row>
+						</template>
+					</tql-search>
+
 				</b-form-group>
 
 				<b-form-group

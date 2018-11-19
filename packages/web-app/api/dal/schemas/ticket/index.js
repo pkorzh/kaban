@@ -1,10 +1,10 @@
 import TicketSchema from './base';
 import MilestoneSchema from './milestone';
 
-import ticket from './ticket';
+import ticketFactory from './ticket';
 
-const BugSchema = ticket.clone();
-const StorySchema = ticket.clone();
+const BugSchema = ticketFactory();
+const StorySchema = ticketFactory();
 
 export {
 	TicketSchema,

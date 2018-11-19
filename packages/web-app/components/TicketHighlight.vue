@@ -62,12 +62,9 @@
 					action=""
 					shortkey="" />-->
 
-				<div 
-					v-if="!isMilestone"
-					class="actions-nav-separator"></div>
+				<div class="actions-nav-separator"></div>
 
 				<ActionsNavTicketOptions
-					v-if="!isMilestone"
 					:ticket="ticket" 
 					:readonly="backlog.isArchived"/>
 

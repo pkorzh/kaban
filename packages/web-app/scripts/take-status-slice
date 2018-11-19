@@ -38,5 +38,5 @@ async function main() {
 export default main;
 
 if (require.main === module) {
-	main().finally(process.exit);
+	main().catch(console.error).finally(process.exit);
 }

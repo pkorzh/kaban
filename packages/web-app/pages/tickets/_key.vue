@@ -34,13 +34,10 @@
 					v-if="!isMilestone"
 					:ticket="ticket" />
 
-				<div 
-					v-if="!isMilestone"
-					class="actions-nav-separator"></div>
+				<div class="actions-nav-separator"></div>
 
 				<ActionsNavTicketOptions 
 					class="float-right"
-					v-if="!isMilestone"
 					:ticket="ticket" 
 					:gotoBacklog="true"
 					:readonly="ticket.backlog.isArchived"/>

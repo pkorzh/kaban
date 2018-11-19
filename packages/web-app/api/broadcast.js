@@ -27,7 +27,7 @@ ${ticket.description}
 }
 
 export default async function broadcast(event, payload) {
-	if (!event in TEMPLATES) {
+	if (!(event in TEMPLATES)) {
 		return;
 	}
 

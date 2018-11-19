@@ -16,6 +16,10 @@ export async function next() {
 	const [ lastByRank ] = await Ticket.find({})
 		.sort({rank: -1}).limit(1);
 
+	if (!lastByRank) {
+		return GAP;
+	}
+
 	return lastByRank.rank + GAP;
 }
 
