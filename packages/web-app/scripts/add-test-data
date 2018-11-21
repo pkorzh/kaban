@@ -79,6 +79,9 @@ async function main() {
 			priority: {
 				key: random_priority_parts[Math.floor(Math.random()*random_priority_parts.length)]
 			},
+			resolution: {
+				key: 'unresolved',
+			},
 			rank: await ticketsDal.rank.next(),
 		}
 
