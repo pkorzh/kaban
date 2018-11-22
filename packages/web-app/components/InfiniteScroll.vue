@@ -46,9 +46,10 @@
 
 			window.addEventListener('scroll', () => {
 				const heightOfOneScreen = item.offsetHeight * this.itemsPerScreen;
+				const scrollTop = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop);
 
 				const itsTimeToLoad =
-						document.documentElement.scrollTop + window.innerHeight >=
+						scrollTop + window.innerHeight >=
 						document.documentElement.offsetHeight - heightOfOneScreen
 
 				if (itsTimeToLoad && !this.disableLoadMoreUntilLoaded) {
