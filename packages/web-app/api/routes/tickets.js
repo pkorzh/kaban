@@ -1,13 +1,13 @@
-import { Router } from 'express'
-import getnewid from '../newid'
+import { Router } from 'express';
+import getnewid from '../newid';
 
-import broadcast from './../broadcast'
+import broadcast from './../broadcast';
 import {
 	tickets as ticketsDal,
 	workflow as workflowDal,
-} from '../dal'
+} from '../dal';
 
-const router = Router()
+const router = Router();
 
 router.get('/tickets', async function (req, res, next) {
 	const tickets = await ticketsDal.query(req.query.tql, req.query.limit, {
