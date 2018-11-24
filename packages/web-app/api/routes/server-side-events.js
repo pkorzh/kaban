@@ -11,6 +11,7 @@ router.get('/server-side-events', function (req, res, next) {
 		'content-type': 'text/event-stream',
 		'cache-control': 'no-cache',
 		'connection': 'keep-alive',
+		'X-Accel-Buffering': 'no',
 	});
 
 	res.write('\n');
