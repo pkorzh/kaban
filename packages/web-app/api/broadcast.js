@@ -63,10 +63,8 @@ export default async function broadcast(event, payload) {
 	const redis = redisClientFactory();
 
 	redis.publish('server-side-events', JSON.stringify({
-		event,
-		...(payload.ticket || {}),
-		...(payload.backlog || {}),
-		...(payload.board || {}),
+		event, 
+		...payload,
 	}));
 
 	if (!(event in TEMPLATES)) {
