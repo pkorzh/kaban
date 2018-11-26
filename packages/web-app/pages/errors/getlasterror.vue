@@ -7,23 +7,20 @@
 </template>
 
 <script>
-	import {mapGetters} from 'vuex'
+	import { mapGetters } from 'vuex';
 
 	export default {
 		validate({ params, query, store }) {
-			const error = store.getters['errors/getOne'](params.key)
-
-			return !!error
+			const error = store.getters['errors/getLastError'];
+			return !!error;
 		},
+
 		auth: false,
+
 		computed: {
 			...mapGetters('errors', {
-				getError: 'getOne'
-			}),
-
-			error() {
-				return this.getError(this.$route.params.key)
-			},
+				error: 'getLastError'
+			})
 		}
 	}
 </script>

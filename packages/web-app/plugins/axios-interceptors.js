@@ -54,23 +54,24 @@ export default function ({ $axios, redirect, store }) {
 	})
 
 	$axios.onError(async (error) => {
-		console.error(error);
-		const entity = await store.dispatch('errors/create', error.response.data)
+		console.error('[$axios.onError]', error);
+
+		const entity = await store.dispatch('errors/setLastError', error.response.data);
 		
 		Vue.toasted.error(entity.message, {
 			action : [
 				{
 					text : 'Details',
 					onClick : (e, toastObject) => {
-						redirect(`/errors/${entity.key}`)
+						redirect(`/errors/getlasterror`)
 
-						toastObject.goAway(0)
+						toastObject.goAway(0);
 					}
 				},
 				{
 					text : 'Cancel',
 					onClick : (e, toastObject) => {
-						toastObject.goAway(0)
+						toastObject.goAway(0);
 					}
 				}
 			]
