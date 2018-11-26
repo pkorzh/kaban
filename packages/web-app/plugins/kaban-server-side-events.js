@@ -24,7 +24,7 @@ export default ({ store }, inject) => {
 
 			case 'deleteBacklog':
 			case 'deleteBoard':
-				console.error(event, payload);
+				console.error(e.data);
 				return;
 		};
 	};
