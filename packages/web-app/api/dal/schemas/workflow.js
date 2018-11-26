@@ -134,7 +134,7 @@ WorkflowSchema.statics.getBoardLanes = function _getBoardLanes() {
 }
 
 WorkflowSchema.statics.hasTransition = function _transition({ key: from }, { key: to }) {
-	return SOFTWARE_WORKFLOW.TRANSITION[from].indexOf(to) !== -1
+	return SOFTWARE_WORKFLOW.TRANSITION[from].indexOf(to) !== -1;
 }
 
 WorkflowSchema.statics.status = function _status(optionalStatus) {

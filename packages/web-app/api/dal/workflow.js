@@ -3,14 +3,7 @@ import {
 	WorkflowTransition,
 	TicketSpentIn,
 	TicketTime,
-} from './models'
-
-function WorkflowTransitionError({key, from, to}) {
-	this.name = 'WorkflowTransitionError'
-	this.from = from
-	this.to = to
-}
-WorkflowTransitionError.prototype = new Error
+} from './models';
 
 async function transition(ticket, to) {
 	const ticketTransition = new WorkflowTransition({
@@ -56,7 +49,7 @@ function transitions() {
 }
 
 function hasTransition(from, to) {
-	return Workflow.transitions(from, to)
+	return Workflow.hasTransition(from, to);
 }
 
 function status(status) {

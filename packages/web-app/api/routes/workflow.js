@@ -6,6 +6,14 @@ import {
 	tickets as ticketsDal
 } from '../dal'
 
+function WorkflowTransitionError({key, from, to}) {
+	this.name = 'WorkflowTransitionError';
+	this.message = `Can't transition from ${from.key} to ${to.key}`;
+	this.from = from;
+	this.to = to;
+}
+WorkflowTransitionError.prototype = new Error;
+
 const router = Router()
 
 router.get('/workflow/transition', function(req, res, next) {
