@@ -1,7 +1,7 @@
 import * as actions from '@/actions'
 
 export default ({ store }, inject) => {
-	const eventSource = new EventSource('/api/server-side-events');
+	const eventSource = new EventSource('/api/sse');
 
 	eventSource.onmessage = function(e) {
 		const { event, key } = JSON.parse(e.data);

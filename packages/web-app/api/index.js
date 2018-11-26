@@ -33,7 +33,7 @@ app.use(
 			'/api/users/login',
 			'/api/ping',
 			'/api/kaban-configuration/notification/telegram/handle-webhook',
-			'/api/server-side-events',
+			'/api/sse',
 		]
 	})
 )
