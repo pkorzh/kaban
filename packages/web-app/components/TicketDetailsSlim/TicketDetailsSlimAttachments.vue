@@ -85,8 +85,8 @@
 		},
 		async mounted() {
 			if (process.client) {
-				const comments = await this.fetchAttachments({
-					tql: `ticket = ${this.ticket.key}`
+				this.fetchAttachments({
+					tql: `ticket = ${this.ticket.key}`,
 				});
 			}
 		},

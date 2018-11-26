@@ -52,13 +52,12 @@
 			class="w-75"
 			v-if="postCommentOpen"
 			:ticket="ticket"
-			@comment="onNewComment"
 			@cancel="postCommentOpen = false" />
 	</div>
 </template>
 
 <script>
-	import { mapActions } from 'vuex'
+	import { mapActions, mapGetters } from 'vuex'
 
 	export default {
 		props: {
@@ -73,32 +72,34 @@
 		},
 		data() {
 			return {
-				comments: [],
 				postCommentOpen: false,
 			}
+		},
+		computed: {
+			...mapGetters('tickets/comments', {
+				comments: 'getList'
+			})
 		},
 		methods: {
 			...mapActions('tickets/comments', {
 				fetchCommentList: 'fetchList',
+				createComment: 'create',
 				deleteComment: 'delete',
+				emptyComments: 'empty',
 			}),
-			onNewComment(comment) {
-				this.comments.push(comment)
-				this.postCommentOpen = false
-			},
 			async onDeleteComment(comment, index) {
-				await this.deleteComment(comment)
-				this.comments.splice(index, 1)
+				this.deleteComment(comment);
 			}
 		},
 		async mounted() {
 			if (process.client) {
-				const comments = await this.fetchCommentList({
-					tql: `ticket = ${this.ticket.key}`
+				await this.fetchCommentList({
+					tql: `ticket = ${this.ticket.key}`,
 				})
-
-				this.comments.push.apply(this.comments, comments)
 			}
+		},
+		destroyed() {
+			this.emptyComments();
 		}
 	}
 </script>

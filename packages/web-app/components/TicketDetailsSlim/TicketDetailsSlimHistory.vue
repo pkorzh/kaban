@@ -51,7 +51,7 @@
 </template>
 
 <script>
-	import { mapActions } from 'vuex'
+	import { mapActions, mapGetters } from 'vuex'
 
 	export default {
 		props: {
@@ -60,24 +60,26 @@
 				required: true,
 			}
 		},
-		data() {
-			return {
-				items: []
-			}
-		},
 		methods: {
 			...mapActions('tickets/history', {
 				fetchHistoryList: 'fetchList',
+				emptyHistory: 'empty',
 			}),
+		},
+		computed: {
+			...mapGetters('tickets/history', {
+				items: 'getList'
+			})
 		},
 		async mounted() {
 			if (process.client) {
-				const items = await this.fetchHistoryList({
-					tql: `ticket = ${this.ticket.key}`
+				this.fetchHistoryList({
+					tql: `ticket = ${this.ticket.key}`,
 				})
-
-				this.items.push.apply(this.items, items)
 			}
+		},
+		destroyed() {
+			this.emptyHistory();
 		}
 	}
 </script>

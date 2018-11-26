@@ -55,6 +55,6 @@ export default moduleFactory('tickets', {
 				`/api/tickets/move`, 
 				changeset,
 			);
-		}
+		},
 	}
 })

@@ -54,10 +54,10 @@
 					ticket: {
 						key: this.ticket.key
 					}
-				})
+				});
 
-				this.$emit('comment', comment)
-				this.empty()
+				this.$emit('comment', comment);
+				this.empty();
 			},
 			cancel() {
 				this.empty()

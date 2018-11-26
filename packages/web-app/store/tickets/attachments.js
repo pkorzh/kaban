@@ -1,4 +1,3 @@
 import moduleFactory from '../module-factory'
 
-export default moduleFactory('attachments', {
-})
+export default moduleFactory('attachments', {});

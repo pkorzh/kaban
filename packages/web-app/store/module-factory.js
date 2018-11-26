@@ -121,7 +121,7 @@ export default (
 				return data;
 			})
 		},
-		patch({commit}, {delta, key}) {
+		patch({commit, dispatch}, {delta, key}) {
 			commit('SET_WORKING', true)
 
 			const reducedDelta = {}
