@@ -16,7 +16,7 @@ router.post('/boards', async function (req, res, next) {
 
 	const board = await boardsDal.insert(boardSlim)
 
-	broadcast('createBoard', board)
+	await broadcast('createBoard', board)
 
 	return res.json(board)
 })
@@ -24,7 +24,7 @@ router.post('/boards', async function (req, res, next) {
 router.delete('/boards/:key', async function (req, res, next) {
 	await boardsDal.remove(req.params.key)
 
-	broadcast('deleteBoard', req.params.key)
+	await broadcast('deleteBoard', req.params.key)
 
 	return res.sendStatus(200)
 })
@@ -37,7 +37,7 @@ router.patch('/boards/:key', async function (req, res, next) {
 		boardDelta
 	)
 
-	broadcast('updateBoard', board)
+	await broadcast('updateBoard', board)
 
 	return res.json(board)
 })

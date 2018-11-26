@@ -16,11 +16,7 @@ router.get('/sse', function (req, res, next) {
 		'Accept-Encoding': 'identity',
 	});
 
-	res.flush();
-
 	const sub = redisClientFactory();
-
-	console.log('server-side-events');
 
 	sub.on('message', (channel, message) => {
 		res.write(`data: ${message}\n\n`);

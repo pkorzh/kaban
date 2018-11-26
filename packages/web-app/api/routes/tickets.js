@@ -33,7 +33,7 @@ router.post('/tickets', async function (req, res, next) {
 
 	await workflowDal.zeroTransition(ticket);
 
-	broadcast('createTicket', ticket);
+	await broadcast('createTicket', ticket);
 
 	return res.json(ticket);
 })
@@ -52,15 +52,15 @@ router.patch('/tickets/:key', async function (req, res, next) {
 		req.user,
 	)
 
-	broadcast('patchTicket', ticket)
+	await broadcast('patchTicket', ticket);
 
-	return res.json(ticket)
+	return res.json(ticket);
 })
 
 router.delete('/tickets/:key', async function (req, res, next) {
 	await ticketsDal.remove(req.params.key)
 
-	broadcast('deleteTicket', req.params.key)
+	await broadcast('deleteTicket', req.params.key)
 
 	return res.sendStatus(200)
 })
