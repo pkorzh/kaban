@@ -19,7 +19,7 @@ router.post('/backlogs', async function (req, res, next) {
 
 	const backlog = await backlogsDal.insert(backlogSlim)
 
-	broadcast('createBacklog', backlog)
+	await broadcast('createBacklog', backlog)
 
 	return res.json(backlog)
 })
@@ -32,7 +32,7 @@ router.patch('/backlogs/:key', async function (req, res, next) {
 		backlogDelta
 	)
 
-	broadcast('updateBacklog', backlog)
+	await broadcast('updateBacklog', backlog)
 
 	return res.json(backlog)
 })
@@ -44,7 +44,7 @@ router.delete('/backlogs/:key', async function (req, res, next) {
 		await backlogsDal.remove(req.params.key)
 	}
 
-	broadcast('deleteBacklog', req.params.key)
+	await broadcast('deleteBacklog', req.params.key)
 
 	return res.sendStatus(200)
 })

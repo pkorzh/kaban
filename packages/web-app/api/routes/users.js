@@ -33,7 +33,7 @@ router.post('/users', guard.check('admin'), async function (req, res, next) {
 
 	const user = await usersDal.insert(userSlim)
 
-	broadcast('createUser', user)
+	await broadcast('createUser', user)
 
 	return res.json(user)
 })
@@ -46,7 +46,7 @@ router.patch('/users/:key', guard.check('admin'), async function (req, res, next
 		userDelta,
 	)
 
-	broadcast('updateUser', user)
+	await broadcast('updateUser', user)
 
 	return res.json(user)
 })
