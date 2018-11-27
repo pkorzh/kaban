@@ -9,13 +9,24 @@
 							<b-form-group label="Email"
 										  :invalid-feedback="errors.first('form.email')"
 										  :state="!errors.has('form.email')">
-								<b-form-input v-model="form.email" name="form.email" placeholder="Your Email" v-validate="'required|email'"/>
+								<b-form-input 
+									v-model="form.email" 
+									name="form.email" 
+									autocomplete="username"
+									placeholder="Your Email" 
+									v-validate="'required|email'"/>
 							</b-form-group>
 
 							<b-form-group label="Password"
 										  :invalid-feedback="errors.first('form.password')"
 										  :state="!errors.has('form.password')">
-								<b-form-input type="password" name="form.password" v-model="form.password" placeholder="Password" v-validate="'required'"/>
+								<b-form-input 
+									type="password" 
+									name="form.password" 
+									autocomplete="current-password"
+									v-model="form.password" 
+									placeholder="Password" 
+									v-validate="'required'"/>
 							</b-form-group>
 							<div class="text-center">
 								<b-btn 
