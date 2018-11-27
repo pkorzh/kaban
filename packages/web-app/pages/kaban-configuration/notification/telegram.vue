@@ -1,5 +1,6 @@
 <template>
 	<b-container fluid>
+		{{general}}
 		<b-row>
 			<b-col cols="3">
 				<b-form @submit.prevent="testToken">
@@ -54,7 +55,16 @@ curl -d "url={{ domain }}/api/kaban-configuration/notification/telegram/handle-w
 				token: null,
 				bot: {},
 				step: 1,
-				domain: 'https://example.com',
+			}
+		},
+		fetch({store}) {
+			return store.dispatch('kabanConfiguration/fetchConfiguration');
+		},
+		computed: {
+			...mapGetters('kabanConfiguration', ['general']),
+
+			domain() {
+				return this.general.domain || window.location.host;
 			}
 		},
 		methods: {
