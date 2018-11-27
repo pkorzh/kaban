@@ -9,7 +9,7 @@
 					action="tickets/patch"
 					getter="tickettypes/getList"
 					path="type"
-					:readonly="readonly"
+					:readonly="true"
 					:_key="ticket.key">
 						<template slot="display">
 							<img
