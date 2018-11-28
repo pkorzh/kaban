@@ -2,4 +2,12 @@ import '../api/dal/connect';
 
 import { tickets as ticketsDal } from '../api/dal';
 
-ticketsDal.rank.rebalance().then(() => console.log('Done')).finally(process.exit);
+async function main() {
+	ticketsDal.rank.rebalance().then(() => console.log('Done')).finally(process.exit);
+}
+
+export default main;
+
+if (require.main === module) {
+	main().catch(console.error).finally(process.exit);
+}
