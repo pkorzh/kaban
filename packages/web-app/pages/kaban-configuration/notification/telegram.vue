@@ -1,6 +1,5 @@
 <template>
 	<b-container fluid>
-		{{general}}
 		<b-row>
 			<b-col cols="3">
 				<b-form @submit.prevent="testToken">
