@@ -74,6 +74,13 @@
 						<span v-t="'users'"></span>
 					</nuxt-link>
 				</span>
+
+				<ul>
+					<li>
+						<a href="" @click.prevent="inviteTeamMembers" v-t="'inviteTeamMembers'">
+						</a>
+					</li>
+				</ul>
 			</li>
 
 			<li v-if="$auth.user.scope.includes('admin')">
@@ -119,6 +126,15 @@
 			...mapGetters('flatpages', {
 				latestFlatpages: 'getLatest'
 			})
+		},
+		methods: {
+			inviteTeamMembers() {
+				this.$emit('inviteTeamMembers');
+
+				this.$kaban.dispatch('CreateUserAction', {
+					sender: this,
+				});
+			}
 		}
 	};
 </script>

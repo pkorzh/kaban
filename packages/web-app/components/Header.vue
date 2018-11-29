@@ -30,7 +30,10 @@
 							</fieldset>
 						</form>
 
-						<AppMenu v-if="$auth.$state.loggedIn" />
+						<AppMenu 
+							v-if="$auth.$state.loggedIn" 
+							@inviteTeamMembers="hideDd" />
+
 					</b-nav-item-dropdown>
 
 				</b-navbar-nav>
@@ -86,11 +89,14 @@
 						.then(() => {
 							return this.$router.go('login')
 						})
+			},
+			hideDd() {
+				this.$refs.menuDropDown && this.$refs.menuDropDown.hide();
 			}
 		},
 		watch: {
 			'$route'() {
-				this.$refs.menuDropDown && this.$refs.menuDropDown.hide()
+				this.hideDd();
 			}
 		},
 	};

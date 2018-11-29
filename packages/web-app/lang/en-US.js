@@ -53,4 +53,5 @@ export default {
 	testToken: 'Test token',
 	percentCompleted: '% Completed',
 	hardDeadline: 'Hard Deadline',
+	inviteTeamMembers: 'Invite Team Members',
 }
