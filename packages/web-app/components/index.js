@@ -22,6 +22,7 @@ import TicketDeleteHighlight from './TicketDeleteHighlight'
 import TicketMoveHighlight from './TicketMoveHighlight'
 
 import UserCreateHighlight from './UserCreateHighlight'
+import UserCreateSuccessHighlight from './UserCreateSuccessHighlight.vue'
 import UserDeleteHighlight from './UserDeleteHighlight'
 
 import Header from './Header'
@@ -84,6 +85,7 @@ export {
 	TicketMoveHighlight,
 
 	UserCreateHighlight,
+	UserCreateSuccessHighlight,
 	UserDeleteHighlight,
 
 	Header,

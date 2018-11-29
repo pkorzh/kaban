@@ -10,6 +10,7 @@ import {
 	MultipleEditHighlight,
 	UserCreateHighlight,
 	UserDeleteHighlight,
+	UserCreateSuccessHighlight,
 } from '@/components';
 
 import makeAction from './action-factory';
@@ -25,6 +26,7 @@ export const TicketMultipleEdit = makeAction(MultipleEditHighlight);
 export const DeleteBacklogAction = makeAction(BacklogDeleteHighlight);
 export const DeleteBoardAction = makeAction(BoardDeleteHighlight);
 export const CreateUserAction = makeAction(UserCreateHighlight);
+export const CreateUserSuccessAction = makeAction(UserCreateSuccessHighlight);
 export const DeleteUserAction = makeAction(UserDeleteHighlight);
 export const DeleteTicketAction = makeAction(TicketDeleteHighlight);
 export const MoveTicketAction = makeAction(TicketMoveHighlight);
