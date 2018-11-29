@@ -21,7 +21,8 @@
 					<b-form-input
 							type="text"
 							v-model="user.name"
-							name="user.name"
+							name="new-username"
+							autocomplete="new-username"
 							v-validate="'required'"
 							placeholder="User Name" />
 				</b-form-group>
@@ -35,7 +36,6 @@
 							type="text"
 							v-model="user.description"
 							name="user.description"
-							v-validate="'required'"
 							placeholder="User Description" />
 				</b-form-group>
 
@@ -72,7 +72,8 @@
 					<b-form-input
 							type="password"
 							v-model="user.password"
-							name="user.password"
+							name="new-password"
+							autocomplete="new-password"
 							v-validate="'required'"
 							placeholder="User Password" />
 				</b-form-group>
