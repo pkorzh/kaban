@@ -1,7 +1,8 @@
 <template>
 	<div
 		class="table-list-line"
-		@click="highlight(ticket)">
+		@click="highlight(ticket)"
+		@contextmenu.prevent="$emit('contextmenu', $event)">
 
 		<div class="table-list-line-type">
 			<img

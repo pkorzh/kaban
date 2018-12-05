@@ -11,8 +11,19 @@
 				:data-rank="ticket.rank"
 				:key="ticket.key"
 				:is="ticketComponent(ticket)" 
-				v-bind="ticketComponentProperties(ticket)"></component>
+				v-bind="ticketComponentProperties(ticket)"
+				@contextmenu.prevent="$refs.ctxMenu.open($event, { ticket })"></component>
 		</draggable>
+
+		<no-ssr>
+			<context-menu 
+				ref="ctxMenu" 
+				@ctx-open="contextMenuTicket=$event.ticket">
+				<li @click="moveToTop(contextMenuTicket)">Move to Top</li>
+				<li @click="moveToBottom(contextMenuTicket)">Move to Bottom</li>
+				<li>Create After</li>
+			</context-menu>
+		</no-ssr>
 	</div>
 </template>
 
@@ -33,6 +44,7 @@
 		},
 		data() {
 			return {
+				contextMenuTicket: null,
 			}
 		},
 		components: {
@@ -65,7 +77,13 @@
 
 			ticketComponentProperties(ticket) {
 				return { ticket };
-			}
+			},
+
+			moveToTop(ticket) {
+			},
+
+			moveToBottom(ticket) {
+			},
 		},
 		computed: {
 			orderedTickets() {

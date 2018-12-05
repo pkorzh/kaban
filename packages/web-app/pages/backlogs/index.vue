@@ -65,7 +65,7 @@
 </template>
 
 <script>
-	import Gantt from '@/components/Gantt'
+	import Gantt from '@/components/Gantt';
 	import { mapGetters, mapActions } from 'vuex';
 
 	export default {

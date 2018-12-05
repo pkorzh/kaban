@@ -56,6 +56,7 @@ module.exports = {
 		{ src: '~plugins/vue-shortkey', ssr: false},
 		'~/plugins/kaban-storage',
 		{ src: '~/plugins/kaban-server-side-events', ssr: false },
+		{ src: '~/plugins/vue-context-menu', ssr: false },
 	],
 
 	/*
