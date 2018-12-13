@@ -28,7 +28,7 @@
 		},
 		head() {
 			return {
-				title: 'Kaban Project Management'
+				title: 'Kaban Issue Tracker'
 			}
 		},
 	}
