@@ -20,14 +20,14 @@ router.post('/comments', async function (req, res, next) {
 
 	const comment = await ticketsDal.comments.insert(commentSlim)
 
-	broadcast('createComment', comment)
+	await broadcast('createComment', comment)
 
 	return res.json(comment)
 })
 
 router.delete('/comments/:key', async function (req, res, next) {
 	await ticketsDal.comments.remove(req.params.key)
-	broadcast('deleteComment', req.params.key)
+	await broadcast('deleteComment', req.params.key)
 	return res.sendStatus(200)
 })
 

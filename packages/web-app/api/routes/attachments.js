@@ -18,14 +18,14 @@ router.post('/attachments', async function (req, res, next) {
 
 	const comment = await ticketsDal.attachments.insert(commentSlim)
 
-	broadcast('createAttachment', comment)
+	await broadcast('createAttachment', comment)
 
 	return res.json(comment)
 })
 
 router.delete('/attachments/:key', async function (req, res, next) {
 	await ticketsDal.attachments.remove(req.params.key)
-	broadcast('deleteAttachment', req.params.key)
+	await broadcast('deleteAttachment', req.params.key)
 	return res.sendStatus(200)
 })
 

@@ -54,7 +54,7 @@ router.patch('/users/:key', guard.check('admin'), async function (req, res, next
 router.delete('/users/:key', guard.check('admin'), async function (req, res, next) {
 	await usersDal.remove(req.params.key)
 
-	broadcast('deleteUser', req.params.key)
+	await broadcast('deleteUser', req.params.key)
 
 	return res.sendStatus(200)
 })

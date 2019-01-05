@@ -77,12 +77,20 @@ export default async function broadcast(event, payload) {
 		return;
 	}
 
-	const md = TEMPLATES[event].call(null, payload, { ...config.general });
+	const md = TEMPLATES[event].call(null, payload, { domain: config.general.domain });
 
 	if (!md) {
 		return;
 	}
 
-	const notif = Notification.from(config.notification);
-	return await notif.sendMessage(md);
+	return new Promise((resolve, reject) => {
+		try {
+			const notif = Notification.from(config.notification);
+
+			notif.sendMessage(md)
+				.then(resolve, resolve);
+		} catch (e) {
+			resolve();
+		}
+	});
 }
