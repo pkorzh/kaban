@@ -1,5 +1,3 @@
-import './connect';
-
 import * as tickets from './tickets';
 import * as backlogs from './backlogs';
 import * as boards from './boards';

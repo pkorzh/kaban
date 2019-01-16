@@ -88,7 +88,7 @@ router.post('/users/login', async function (req, res, next) {
 				key: user.key,
 				permissions: user.scope
 			},
-			req.app.get('secret'),
+			process.env.JWT_SECRET,
 			{expiresIn: '24h'})
 
 		res.json({token})

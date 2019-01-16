@@ -3,6 +3,9 @@ import 'express-async-errors';
 import express from 'express';
 import jwt from 'express-jwt';
 
+import { authErrorHandler, errorHandler, dbErrorHandler } from './error-handlers';
+import { ensureDbConnection } from './db-connection';
+
 import users from './routes/users';
 import tickets from './routes/tickets';
 import boards from './routes/boards';
@@ -18,17 +21,16 @@ import storage from './routes/storage';
 import attachments from './routes/attachments';
 import serverSideEvents from './routes/server-side-events';
 
-import { authErrorHandler, errorHandler, dbErrorHandler } from './error-handlers';
-
 const app = express();
 
-app.set('secret', process.env.JWT_SECRET);
+app.use(ensureDbConnection);
 
 app.use(
 	jwt({
-			secret: app.get('secret')
-		}
-	).unless({
+		secret(req, payload, done) {
+			done(null, process.env.JWT_SECRET);
+		},
+	}).unless({
 		path: [
 			'/api/users/login',
 			'/api/ping',
@@ -36,7 +38,7 @@ app.use(
 			'/api/sse',
 		]
 	})
-)
+);
 
 app.use(serverSideEvents);
 app.use(users);
@@ -52,6 +54,7 @@ app.use(rank);
 app.use(kabanConfiguration);
 app.use(storage);
 app.use(attachments);
+
 app.use(authErrorHandler);
 app.use(dbErrorHandler);
 app.use(errorHandler);
