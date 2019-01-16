@@ -1,0 +1,17 @@
+import takeStatusSlice from './take-status-slice';
+import calcForecast from './calc-forecast';
+import rebalanceRank from './rebalance-rank';
+
+async function main() {
+	return Promise.all([
+		takeStatusSlice(), 
+		calcForecast(), 
+		rebalanceRank()
+	]).finally(process.exit);
+}
+
+export default main;
+
+if (require.main === module) {
+	main().catch(console.error).finally(process.exit);
+}

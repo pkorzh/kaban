@@ -1,0 +1,27 @@
+import '../api/dal/connect';
+
+import {
+	tickets as ticketsDal,
+	users as usersDal,
+} from '../api/dal';
+
+import { 
+	Ticket,
+} from '../api/dal/models';
+
+async function main() {
+	await usersDal.insert({
+		key: 'unassigned',
+		name: 'Unassigned',
+		description: 'Unassigned user',
+		scope: 'user',
+		email: 'unassigned@kaban.app',
+		password: '!',
+	})
+}
+
+export default main;
+
+if (require.main === module) {
+	main().catch(console.error).finally(process.exit);
+}

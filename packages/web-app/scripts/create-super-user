@@ -1,0 +1,46 @@
+#!/usr/bin/env node
+
+const inquirer = require('inquirer');
+
+import '../api/dal/connect';
+import { users as usersDal } from '../api/dal';
+
+const shortid = require('shortid');
+
+const questions = [
+	{
+		type: 'input',
+		name: 'name',
+		message: 'name',
+	},
+	{
+		type: 'input',
+		name: 'email',
+		message: 'email',
+	},
+	{
+		type: 'password',
+		name: 'password',
+		message: 'password',
+	},
+]
+
+function main() {
+	inquirer.prompt(questions).then(answers => {
+		usersDal.insert({
+			key: answers.name
+				.split(/\s+/)
+				.filter(c => c.length)
+				.map(c => c.trim())
+				.join('.')
+				.toLowerCase(),
+			name: answers.name,
+			description: 'Administrator',
+			scope: 'user admin',
+			email: answers.email,
+			password: answers.password
+		})
+	});
+}
+
+main()

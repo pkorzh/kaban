@@ -1,0 +1,110 @@
+#!/usr/bin/env node
+const util = require('util');
+
+const moment = require('moment-business-days');
+
+require('../api/dal/connect');
+
+const {
+	TicketTime,
+	Backlog,
+	BacklogForecast,
+	Milestone,
+} = require('../api/dal/models');
+
+const {
+	tickets: ticketsDal
+} = require('../api/dal');
+
+async function _duration(tql, avg) {
+	const totalTickets = await ticketsDal.count(tql);
+	const closedTickets = await ticketsDal.count(`${tql} and status = closed`);
+
+	const todo = totalTickets - closedTickets;
+
+	const todoDuration = todo * avg;
+
+	const lowerBound = todoDuration * 0.6;
+	const upperBound = todoDuration * 1.2;	
+
+	const toDays = milliseconds => milliseconds / (1000*60*60*24);
+
+	return [
+		moment().businessAdd(toDays(lowerBound)).toDate(),
+		moment().businessAdd(toDays(upperBound)).toDate(),
+	];
+}
+
+async function main() {
+	const backlogs = await Backlog.find();
+
+	for (let backlog of backlogs) {
+		const kwargs = {'backlog.key': backlog.key};
+
+		const ticketLeadTimeSamples = await TicketTime.find(kwargs).sort({lead_time: 1});
+
+		const samplesCount = ticketLeadTimeSamples.length;
+
+		if (samplesCount == 0) {
+			continue;
+		}
+
+		const p50Index = Math.ceil(samplesCount * (50 / 100)) - 1;
+		const p99Index = Math.ceil(samplesCount * (99 / 100)) - 1;
+
+		const p50 = ticketLeadTimeSamples[p50Index].lead_time;
+		const p99 = ticketLeadTimeSamples[p99Index].lead_time;
+
+		let summ = 0;
+
+		for (let ticketLeadTimeSample of ticketLeadTimeSamples) {
+			summ += ticketLeadTimeSample.lead_time || 0;
+		}
+
+		let avg = summ / samplesCount;
+		let sigma = 0;
+
+		for (let ticketLeadTimeSample of ticketLeadTimeSamples) {
+			sigma += Math.pow((ticketLeadTimeSample.lead_time || 0) - avg, 2);
+		}
+
+		sigma = Math.sqrt(sigma / samplesCount);
+
+		const v = (sigma / avg) * 100;
+
+		const [lowerBound, upperBound] = await _duration(`backlog = ${backlog.key}`, avg);
+
+		const milestones = await Milestone.find(kwargs).sort('rank');
+		const milestoneForecast = [];
+
+		for(let milestone of milestones) {
+			const [lowerBound2, upperBound2] = await _duration(
+				`backlog = ${backlog.key} and rank < ${milestone.rank}`, avg);
+
+			milestoneForecast.push({
+				forecastEndAt: [ lowerBound2, upperBound2 ],
+				name: milestone.name
+			});
+		}
+
+		await BacklogForecast.findOneAndUpdate(
+			kwargs,
+			{
+				var: v,
+				p50,
+				p99,
+				avg,
+				backlog,
+				forecastEndAt: [ lowerBound, upperBound ],
+				milestoneForecast,
+			},
+			{ upsert: true }
+		);
+	}
+}
+
+export default main;
+
+if (require.main === module) {
+	main().catch(console.error).finally(process.exit);
+}

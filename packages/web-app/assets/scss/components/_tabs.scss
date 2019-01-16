@@ -1,0 +1,16 @@
+.nav-tabs {
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  .nav-item {
+    margin-right: 20px;
+  }
+  .nav-link {
+    color: $gray-700;
+    padding: 5px 0;
+    &:hover,
+    &.active {
+      color: $body-color;
+      border-color: transparent transparent $body-color;
+    }
+  }
+}

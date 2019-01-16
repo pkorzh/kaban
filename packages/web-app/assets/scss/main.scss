@@ -1,0 +1,33 @@
+@import 'fonts';
+
+@import '~bootstrap/scss/functions';
+@import 'variables';
+@import "~bootstrap/scss/bootstrap";
+
+//components
+@import 'components/actions-nav';
+@import 'components/backlog';
+@import 'components/board';
+@import 'components/breadcrumbs';
+@import 'components/buttons';
+@import 'components/card';
+@import 'components/details';
+@import 'components/docs';
+@import 'components/dropdown';
+@import 'components/editor';
+@import 'components/profile';
+@import 'components/tabs';
+@import 'components/form';
+@import 'components/header';
+@import 'components/import';
+@import 'components/modal';
+@import 'components/table';
+@import 'components/top-bar';
+@import 'components/gantt';
+@import 'components/select';
+@import 'components/sparkline';
+@import 'components/section-nav';
+@import 'components/list';
+
+@import 'simplemde/dist/simplemde.min.css';
+@import 'vue-js-modal/dist/styles.css';

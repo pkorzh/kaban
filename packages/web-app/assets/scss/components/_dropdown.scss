@@ -1,0 +1,106 @@
+.dropdown {
+  &-item {
+    padding: 5px 10px;
+  }
+  &-toggle {
+    color: $body-color;
+    padding: 0;
+    background: none;
+    border: 0 !important;
+    background: none !important;
+    &::after {
+      content: '';
+      display: inline-block;
+      vertical-align: middle;
+      width: 7px;
+      height: 7px;
+      margin-left: 10px;
+      transform: translateY(-50%) rotate(-45deg);
+      border: 1px solid $body-color;
+      border-width: 0 0 2px 2px;
+      transition: transform .3s;
+    }
+    &:active,
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  &-menu-holder {
+    max-height: 570px;
+    overflow: auto;
+  }
+  &-menu {
+    padding: 20px 10px;
+    border: 0;
+    min-width: 200px;
+    border-radius: 6px;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,.3);
+    a {
+      color: $body-color;
+    }
+  .header & {
+    &::after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 4px;
+    content: '';
+    background: #84d1f1;
+    }
+  }
+    .site-menu & {
+      min-width: 900px;
+      overflow: hidden;
+      left: -100px;
+    }
+    ol {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      counter-reset: li;
+      li {
+        width: 33.33%;
+        padding: 0 15px 0 40px;
+        min-width: 250px;
+        margin-bottom: 15px;
+        position: relative;
+        &::before {
+          counter-increment: li; 
+          content: counter(li);
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 30px;
+          height: 30px;
+          color: $gray-700;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 50%;
+          border: 1px solid $gray-700;
+        }
+        li {
+          padding: 0;
+          &::before {
+            counter-increment: unset;
+            display: none;
+          }
+        }
+      }
+      ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+    }
+  }
+  &-menu-title {
+    color: $gray-700;
+    padding: 5px 0 10px;
+    display: block;
+    text-transform: uppercase;
+  }
+}
